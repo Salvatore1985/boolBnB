@@ -20,11 +20,9 @@ class CreateApartmentsTable extends Migration
             $table->string('structure_type',50)->nullable(false);
             $table->text('description');
             $table->string('category')->nullable(false);
-            $table->string('service',50)->nullable(false);
             $table->float('sqr_meters', 10, 2);
             $table->tinyInteger('n_beds')->default(1);
             $table->tinyInteger('n_bathrooms')->default(1);
-            $table->bigInteger('likes')->nullable();
             $table->tinyInteger('n_floor')->nullable();
             $table->float('lat', 6, 4);
             $table->float('long', 6, 4);
