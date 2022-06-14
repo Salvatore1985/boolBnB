@@ -17,6 +17,11 @@
                     {{ __('You are logged in!') }}
                 </div>
             </div>
+            <div>
+                <a href="{{route('user.apartments.index')}}">
+                    list appartamenti
+                </a>
+            </div>
         </div>
     </div>
 </div>

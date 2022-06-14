@@ -11,5 +11,9 @@
 
     @dump($apartment)
 
+    <a href="{{route('user.apartments.index')}}">
+        Lista appartamenti
+    </a>
+
 </body>
 </html>
