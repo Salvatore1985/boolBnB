@@ -17,13 +17,8 @@
                 @endif
 
                 <div class="col-6 py-3">
-                    <form class="text-center"
-                    action= @yield('route')
-                    method="POST"
-                    enctype="multipart/form-data">
-                        @csrf
+
                         @yield('form-content')
-                    </form>
                 </div>
             </div>
         </div>

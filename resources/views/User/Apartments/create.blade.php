@@ -1,7 +1,11 @@
 @extends('layouts.createPage')
-@section('route', "{{ route('user.apartments.store') }}")
-@section('form-content')
 
+@section('form-content')
+<form class="text-center"
+    action= "{{ route('user.apartments.store') }}"
+    method="POST"
+    enctype="multipart/form-data">
+    @csrf
     <div class="mb-3">
         <label for="title" class="form-label">Inserisci il titolo dell' appartamento</label>
         <input type="text" class="form-control" id="title" name="title" id="title">
@@ -113,6 +117,7 @@
         @enderror
     </div>
     <button type="submit" class="btn btn-primary">Pubblica il tuo appartamento</button>
+</form>
 
 @endsection
 {{-- @extends('layouts.creatPage') --}}
