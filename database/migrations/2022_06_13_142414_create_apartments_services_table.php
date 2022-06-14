@@ -15,15 +15,20 @@ class CreateApartmentsServicesTable extends Migration
     public function up()
     {
         Schema::create('apartments_services', function (Blueprint $table) {
-            $table->unsignedBigInteger('apartment_id');
+            $table->unsignedBigInteger('apartment_id')
+            ;
             $table->foreign('apartment_id')
                     ->references('id')
-                    ->on('apartments');
+                    ->on('apartments')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
                     /* ***** */
             $table->unsignedBigInteger('service_id');
             $table->foreign('service_id')
                     ->references('id')
-                    ->on('services');
+                    ->on('services')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
         });
     }
 

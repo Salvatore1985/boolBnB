@@ -17,13 +17,17 @@ class CreateApartmentsSponsorshipsTable extends Migration
             $table->unsignedBigInteger('apartment_id');
             $table->foreign('apartment_id')
                      ->references('id')
-                     ->on('apartments');
+                     ->on('apartments')
+                     ->onDelete('cascade')
+                     ->onUpdate('cascade');
             $table->date('start_date');
               /* ***** */
             $table->unsignedBigInteger('sponsorship_id');
             $table->foreign('sponsorship_id')
                     ->references('id')
-                    ->on('sponsorships');
+                    ->on('sponsorships')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
             $table->date('end_date');
         });
     }

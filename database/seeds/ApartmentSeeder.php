@@ -47,9 +47,9 @@ class ApartmentSeeder extends Seeder
             $newApartment = new Apartment;
             $newApartment->user_id = $faker->randomElement($userIds);;
             $newApartment->n_rooms=$faker->numberBetween(1, 5);
-            $newApartment->structure_type=$faker->randomElement(['casa indipendente','casolare','appartamento']);
+           // $newApartment->structure_type=$faker->randomElement(['casa indipendente','casolare','appartamento']);
             $newApartment->description= $faker->paragraph();
-            $newApartment->category= $faker->randomElement(['montagna','mare','foresta','campagna','lago','fiume']);
+           // $newApartment->category= $faker->randomElement(['montagna','mare','foresta','campagna','lago','fiume']);
             $newApartment->sqr_meters= $faker->numberBetween(10, 500);
             $newApartment->n_beds= $faker->numberBetween(1, 10);
             $newApartment->n_bathrooms= $faker->numberBetween(1, 5);
