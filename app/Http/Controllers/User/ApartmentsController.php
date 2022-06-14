@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Apartment;
 
 class ApartmentsController extends Controller
 {
@@ -78,8 +79,10 @@ class ApartmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+        return redirect()->route("user.apartments.index", $apartment)->with("message","Apartment è stato eliminato con successo!");
+
     }
 }
