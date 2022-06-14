@@ -39,6 +39,7 @@ class ApartmentsController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate(
             [
                 'title' => 'required|string',
@@ -55,9 +56,8 @@ class ApartmentsController extends Controller
             ]
         );
 
-        $data['user_id'] = Auth::id();
         $data = $request->all();
-        $newApartment = new Apartment();
+        $data['user_id'] = Auth::id();
 
         $address = $data['street'] . ' ' . $data['house_number'] . ' ' . $data['city'];
 
@@ -65,15 +65,18 @@ class ApartmentsController extends Controller
         $response = Http::get("https://api.tomtom.com/search/2/geocode/$address.json", [
             'key' => 'SsllzLi6J5XLezFkwzq7gpR0xOCwBOzL',
             ])->json();
-            $coordinates = $response['results'][0]['position'];
-            $data['lat'] = $coordinates['lat'];
-            $data['long'] = $coordinates['lon'];
-            $data['address'] = $address;
-        $newApartment->fill($data);
+        $coordinates = $response['results'][0]['position'];
+        $data['lat'] = $coordinates['lat'];
+        $data['long'] = $coordinates['lon'];
+        $data['address'] = $address;
 
+        // creation new apartment
+        $newApartment = new Apartment();
+        $newApartment->fill($data);
+        $newApartment->is_visible = true;
         $newApartment->save();
 
-        return redirect()->route('user.apartments.show', compact('newApartment'))->with('message', $data['title']. " è stato pubblicato con successo.");
+        return redirect()->route('user.apartments.show', $newApartment->id)->with('message', $data['title']. " è stato pubblicato con successo.");
     }
 
     /**

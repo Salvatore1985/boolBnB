@@ -1,6 +1,7 @@
 @extends('layouts.createPage')
 
 @section('form-content')
+@dump(Auth::id())
 <form class="text-center"
     action= "{{ route('user.apartments.store') }}"
     method="POST"

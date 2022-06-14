@@ -24,4 +24,19 @@ class Apartment extends Model
         return $this->belongsToMany('App\Models\Service');
     }
 
+    protected $fillable = [
+        'title',
+        'description',
+        'n_rooms',
+        'sqr_meters',
+        'n_beds',
+        'n_bathrooms',
+        'n_floor',
+        'price',
+        'address',
+        'lat',
+        'long',
+        'user_id'
+    ];
+
 }
