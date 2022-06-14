@@ -13,7 +13,7 @@ class CreateApartmentsSponsorshipsTable extends Migration
      */
     public function up()
     {
-        Schema::create('apartments_sponsorships', function (Blueprint $table) {
+        Schema::create('apartment_sponsorship', function (Blueprint $table) {
             $table->unsignedBigInteger('apartment_id');
             $table->foreign('apartment_id')
                      ->references('id')
@@ -39,7 +39,7 @@ class CreateApartmentsSponsorshipsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('apartments_sponsorships');
+        Schema::dropIfExists('apartment_sponsorship');
 
     }
 }
