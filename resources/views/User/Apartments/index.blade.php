@@ -57,12 +57,10 @@
                             </td>
                             <td colspan="2">
                                 {{-- add delete route --}}
-                                <form action="#" method="POST" class="post-destroyer" post-name="{{ucfirst($apartment->name)}}">
+                                <form action="{{route("user.apartments.destroy", $apartment)}}" method="POST">
                                     @csrf
-                                    @method('DELETE')
-                                        <button class="btn btn-md btn-delete btn-outline-danger" type="submit">
-                                            &#10006;
-                                        </button>
+                                    @method("DELETE")
+                                    <button type="submit">Elimina</button>
                                 </form>
                             </td>
                         </tr>
@@ -83,3 +81,4 @@
 </div>
 
 @endsection
+
