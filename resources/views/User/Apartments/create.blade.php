@@ -16,8 +16,8 @@
         @enderror
     </div>
     <div class="mb-3">
-        <label for="address">Inserisci la via</label>
-        <input type="text" name="address" id="address">
+        <label for="street">Inserisci la via</label>
+        <input type="text" name="street" id="street">
         @error('title')
             <div class="alert alert-danger">
                 {{ $message }}

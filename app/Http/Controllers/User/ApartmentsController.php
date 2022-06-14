@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Apartment;
+use Illuminate\Support\Facades\Http;
 
 class ApartmentsController extends Controller
 {
@@ -38,7 +39,41 @@ class ApartmentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'title' => 'required|string',
+                'description' => 'required|string|min:10',
+                'n_rooms' => 'required|numeric|min:1',
+                'n_beds' => 'required|numeric|min:1',
+                'n_floor' => 'required|numeric|min:1',
+                'n_bathrooms' => 'required|numeric|min:1',
+                'sqr_meters' => 'required|numeric|min:1',
+                'street' => 'required|string',
+                'house_number' => 'required|numeric',
+                'city' => 'required|string',
+                'price' => 'required|numeric|min:1',
+            ]
+        );
+
+        $data['user_id'] = Auth::id();
+        $data = $request->all();
+        $newApartment = new Apartment();
+
+        $address = $data['street'] . ' ' . $data['house_number'] . ' ' . $data['city'];
+
+        // TOMTOM api
+        $response = Http::get("https://api.tomtom.com/search/2/geocode/$address.json", [
+            'key' => 'SsllzLi6J5XLezFkwzq7gpR0xOCwBOzL',
+            ])->json();
+            $coordinates = $response['results'][0]['position'];
+            $data['lat'] = $coordinates['lat'];
+            $data['long'] = $coordinates['lon'];
+            $data['address'] = $address;
+        $newApartment->fill($data);
+
+        $newApartment->save();
+
+        return redirect()->route('user.apartments.show', compact('newApartment'))->with('message', $data['title']. " è stato pubblicato con successo.");
     }
 
     /**
