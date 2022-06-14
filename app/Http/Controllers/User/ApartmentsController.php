@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Apartment;
 
 class ApartmentsController extends Controller
 {
@@ -46,7 +47,8 @@ class ApartmentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $apartment = Apartment::findOrFail($id);
+        return view('user.apartments.show', ['apartment' => $apartment]);
     }
 
     /**
