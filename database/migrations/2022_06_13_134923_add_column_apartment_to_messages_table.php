@@ -14,7 +14,7 @@ class AddColumnApartmentToMessagesTable extends Migration
     public function up()
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->unsignedBigInteger('apartment_id');
+            $table->unsignedBigInteger('apartment_id')->after('id');
             $table->foreign('apartment_id')
             ->references('id')
             ->on('apartments')
