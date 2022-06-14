@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Appartment;
+use App\Models\Apartment;
 use App\Models\Image;
 class ImageSeeder extends Seeder
 {
