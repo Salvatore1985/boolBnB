@@ -6,7 +6,7 @@
         {{-- Create Apartment Button --}}
         <div class="col-12 text-end">
             {{-- Enter route --}}
-            <a href="#"
+            <a href="{{route('user.apartments.create')}} "
             class="btn btn-sm btn-success">
                 Add Apartment
             </a>
@@ -42,7 +42,7 @@
                             <td>{{$apartment->price}}</td>
                             <td>
                                 {{-- add route apartment.show --}}
-                                <a href="#" class="btn btn-primary">
+                                <a href="{{route('user.apartments.show', $apartment->id)}} " class="btn btn-primary">
                                     Read More
                                 </a>
                             </td>
