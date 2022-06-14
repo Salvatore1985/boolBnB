@@ -57,10 +57,12 @@
                             </td>
                             <td colspan="2">
                                 {{-- add delete route --}}
-                                <form action="{{route("user.apartments.destroy", $apartment)}}" method="POST">
+                                <form action="{{route('user.apartments.destroy', $apartment)}}" method="POST" class="apartment-destroyer" apartment-name="{{ucfirst($apartment->title)}}">
                                     @csrf
-                                    @method("DELETE")
-                                    <button type="submit">Elimina</button>
+                                    @method('DELETE')
+                                        <button class="btn btn-md btn-delete btn-outline-danger" type="submit">
+                                            &#10006;
+                                        </button>
                                 </form>
                             </td>
                         </tr>
@@ -80,5 +82,20 @@
     </div>
 </div>
 
+@endsection
+@section('js-files')
+    <script>
+        const deleteForms = document.querySelectorAll('.apartment-destroyer');
+    console.log(deleteForms);
+    deleteForms.forEach(singleForm => {
+        singleForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            userConfirmation = window.confirm(`Are you sure you want to delete ${this.getAttribute('apartment-name')}?` );
+            if (userConfirmation) {
+                this.submit();
+            }
+    })
+});
+    </script>
 @endsection
 

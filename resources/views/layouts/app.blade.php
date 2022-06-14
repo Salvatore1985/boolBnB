@@ -58,5 +58,6 @@
             @yield('content')
         </main>
     </div>
+    @yield('js-files')
 </body>
 </html>
