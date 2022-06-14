@@ -20,3 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware('auth')
+->namespace('User')
+->name('user.')
+->prefix('user')
+->group(function () {
+    Route::resource('apartments', ApartmentsController::class);
+});
