@@ -107,29 +107,30 @@ class ApartmentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Apartment  $id
+     * @param  id  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Apartment $apartment)
+    public function update(Request $request, $id)
     {
         $data = $request->all();
 
-        $apartment->address = $data["address"];
-        $apartment->n_rooms = $data["n_rooms"];
-        $apartment->description = $data["description"];
-        $apartment->sqr_meters = $data["sqr_meters"];
-        $apartment->n_bedss = $data["n_beds"];
-        $apartment->n_bathrooms = $data["n_bathrooms"];
-        $apartment->lat = $data["lat"];
-        $apartment->long = $data["long"];
-        $apartment->title = $data["title"];
-        $apartment->is_visible = $data["is_visible"];
-        $apartment->price = $data["price"];
 
+        $address = $data['street'] . ' ' . $data['house_number'] . ' ' . $data['city'];
+
+        // TOMTOM api
+        $response = Http::get("https://api.tomtom.com/search/2/geocode/$address.json", [
+            'key' => 'SsllzLi6J5XLezFkwzq7gpR0xOCwBOzL',
+            ])->json();
+        $coordinates = $response['results'][0]['position'];
+        $data['lat'] = $coordinates['lat'];
+        $data['long'] = $coordinates['lon'];
+        $data['address'] = $address;
+
+        // creation new apartment
+        $apartment->update($data);
         $apartment->save();
 
-        return redirect()->route('user.apartment.show', $apartment)
-        ->with('message', $data['title']. " è stato modificato con successo.");
+        return redirect()->route('user.apartments.show', $apartment->id)->with('message', $data['title']. " è stato pubblicato con successo.");
     }
 
     /**
