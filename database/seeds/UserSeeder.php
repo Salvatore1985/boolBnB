@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 use App\User;
+
 class UserSeeder extends Seeder
 {
     /**
@@ -14,6 +15,7 @@ class UserSeeder extends Seeder
         $users = [
             [
             'name' => 'Salvo',
+            'surname' => 'surname',
             'email' => 'sal@gmail.com',
             'password' => 'boolBnB',
             'date_of_birth' => '1995-01-20',
@@ -23,6 +25,7 @@ class UserSeeder extends Seeder
             ],
             [
             'name' => 'Feli',
+            'surname' => 'surname',
             'email' => 'feli@gmail.com',
             'password' => 'boolBnB',
             'date_of_birth' => '1995-01-20',
@@ -32,6 +35,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Airowl',
+                'surname' => 'surname',
                 'email' => 'airowl@gmail.com',
                 'password' => 'boolBnB',
                 'date_of_birth' => '1995-01-20',
@@ -41,6 +45,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Thom',
+                'surname' => 'surname',
                 'email' => 'thom@gmail.com',
                 'password' => 'boolBnB',
                 'date_of_birth' => '1995-01-20',
@@ -50,6 +55,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Simone',
+                'surname' => 'surname',
                 'email' => 'simo@gmail.com',
                 'password' => 'boolBnB',
                 'date_of_birth' => '1995-01-20',
@@ -58,9 +64,11 @@ class UserSeeder extends Seeder
                 'phone_n' => '5445811680',
             ]
         ];
+
         for ($i=0; $i < count($users) ; $i++) {
             $newUser = new User;
             $newUser->name = $users[$i]['name'];
+            $newUser->surname = $users[$i]['surname'];
             $newUser->email = $users[$i]['email'];
             $newUser->password = Hash::make($users[$i]['password'] . $i);
             $newUser->phone_n = $users[$i]['phone_n'];
