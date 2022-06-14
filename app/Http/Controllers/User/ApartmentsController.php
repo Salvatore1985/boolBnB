@@ -110,10 +110,9 @@ class ApartmentsController extends Controller
      * @param  id  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Apartment $apartment)
     {
         $data = $request->all();
-
 
         $address = $data['street'] . ' ' . $data['house_number'] . ' ' . $data['city'];
 

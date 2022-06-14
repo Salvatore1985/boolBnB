@@ -50,7 +50,7 @@
                             {{-- edit button apartments --}}
                             <td>
                                 {{-- add route --}}
-                                <a href="#"
+                                <a href="{{route('user.apartments.edit', $apartment)}} "
                                 class="btn btn-warning">
                                     &#9998;
                                 </a>

@@ -18,13 +18,9 @@
 
                 <div class="col-6 py-3">
                     <div class="col-6 py-3">
-                        <form class="text-center" action=@yield('route') method="POST">
-                            @csrf
-                            @method('PUT')
-                            @yield('form-content')
-                    </form>
+                        @yield('form-content')
+                    </div>
                 </div>
-            </div>
         </div>
     </body>
 </html>
