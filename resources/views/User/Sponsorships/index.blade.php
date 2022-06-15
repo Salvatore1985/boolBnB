@@ -22,11 +22,10 @@
                 <tr>
                     <td>{{ $sponsorship->id }}</td>
                     <td>{{ $sponsorship->name }}</td>
-                    <td> {{ $sponsorship->duration }}</td>
+                    <td> {{ $sponsorship->period }}</td>
                     <td> {{ $sponsorship->price }}</td>
                     <td class="d-flex justify-content-end">
-                        {{-- <a href="{{ route('admin.sponsorships.show', $sponsorship->id) }}" class="btn btn-primary">Vai</a> --}}
-                        <a href="{{ route('admin.payments.index', ['apartment' => $apartment->id, 'sponsorship' => $sponsorship->id]) }}" class="btn btn-secondary mx-2">Acquista</a>
+                        <a href="{{ route('user.sponsorships.payment')}}" class="btn btn-secondary mx-2">Acquista</a>
                     </td>
                 </tr>
             @empty

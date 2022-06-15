@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Sponsorship;
+use App\Models\Apartment;
 
 class SponsorshipsController extends Controller
 {
@@ -14,7 +16,9 @@ class SponsorshipsController extends Controller
      */
     public function index()
     {
-        //
+        $sponsorships = Sponsorship::all();
+        // $apartment = Apartment::findOrFail($id);
+        return view('user.Sponsorships.index', compact('sponsorships'));
     }
 
     /**
@@ -81,5 +85,9 @@ class SponsorshipsController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function payment()
+    {
+        return view('User.Sponsorships.payment');
     }
 }

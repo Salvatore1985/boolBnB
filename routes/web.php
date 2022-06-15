@@ -29,8 +29,11 @@ Route::middleware('auth')
 ->prefix('user')
 ->group(function () {
     Route::resource('apartments', ApartmentsController::class);
+    Route::get('sponsorships', 'SponsorshipsController@index');
+    Route::get('sponsorships/payment', 'SponsorshipsController@payment');
 });
-
+Route::get('/payment/make', 'PaymentController@make')->name('payment.make');
+Route::get('/payment/make', 'PaymentController@make')->name('payment.make');
 Route::get('payments/{apartment}/{sponsorship}', 'PaymentsController@index')->name('payments.index');
 Route::post('payments/{apartment}/{sponsorship}/transaction', 'PaymentsController@transaction')->name('payments.transaction');
 

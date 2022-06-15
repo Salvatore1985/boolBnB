@@ -51,4 +51,17 @@ class PaymentsController extends Controller
             return redirect()->route('admin.apartments.show', $apartment->id)->with('alert-message', 'Sponsorizzazione fallita')->with('alert-type', 'danger');
         }
     }
+    public function make(Request $request)
+    {
+        $payload = $request->input('payload', false);
+        $nonce = $payload['nonce'];
+        $status = Braintree\Transaction::sale([
+            'amount' => '10.00',
+            'paymentMethodNonce' => $nonce,
+            'options' => [
+            'submitForSettlement' => True
+            ]
+        ]);
+        return response()->json($status);
+    }
 }
