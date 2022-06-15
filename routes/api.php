@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::namespace('api')->group(function(){
+/*      Route::get('/posts','PostController@index');
+    Route::get('/posts/{post}','PostController@show');
+    Route::delete('/posts/{post}','PostController@destroy'); /
+
+    / **OPPURE**/
+    Route::resource('apartments','ApartmentController');
+});
