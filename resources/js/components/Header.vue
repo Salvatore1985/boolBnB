@@ -1,22 +1,20 @@
 <template>
-    <header>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <router-link class="nav-link"
-                :to="{ name: 'apartments'}">
-                    Apartments
-                </router-link>
-            </li>
-        </ul>
-    </header>
+  <header>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <router-link class="nav-link" :to="{ name: 'apartments' }">
+          Apartments
+        </router-link>
+      </li>
+    </ul>
+  </header>
 </template>
 
 <script>
 export default {
-    name:'Header'
-}
+  name: "Header",
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>

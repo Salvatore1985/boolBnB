@@ -1,6 +1,7 @@
 <template>
   <section id="apartiment-list">
     <h2>I miei appartamenti</h2>
+
     <Loader v-if="isLoading" />
     <div v-else>
       <Pagination
@@ -26,9 +27,10 @@
 import Pagination from "../components/Pagination.vue";
 import Loader from "../components/Loader.vue";
 import Apartment from "../components/Apartment.vue";
+
 export default {
   name: "Apartments",
-  component: {
+  components: {
     Pagination,
     Loader,
     Apartment,
@@ -64,7 +66,10 @@ export default {
       this.getApartments(page);
     },
   },
-  created() {
+  /*   created() {
+    this.getApartments();
+  }, */
+  mounted() {
     this.getApartments();
   },
 };

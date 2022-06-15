@@ -45,7 +45,7 @@ Route::get('/contact', 'guest\ContactController@contact')->name('guest.contact')
 Route::post('/contact', 'guest\ContactController@contactMailSender')->name('guest.send');
 Route::get('/thanks', 'guest\ContactController@thanks')->name('guest.thanks');
 
-Route::get('/', function(){
+Route::get('{any?}',function(){
     return view('guests.home');
-});
+})->where('any','.*');
 

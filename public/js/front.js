@@ -1935,12 +1935,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Apartments",
-  component: {
+  components: {
     Pagination: _components_Pagination_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Loader: _components_Loader_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     Apartment: _components_Apartment_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
@@ -1980,7 +1981,11 @@ __webpack_require__.r(__webpack_exports__);
       this.getApartments(page);
     }
   },
-  created: function created() {
+
+  /*   created() {
+    this.getApartments();
+  }, */
+  mounted: function mounted() {
     this.getApartments();
   }
 });
@@ -2002,8 +2007,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'HeaderIndex'
+  name: "HeaderIndex",
+  props: ["apartment"],
+  methods: {
+    getFormattedDate: function getFormattedDate(data) {
+      //*creao una funzione per convertire la data dal database
+      var apartmentdate = new Date(data);
+      var day = apartmentdate.getDate();
+      var month = apartmentdate.getMonth() + 1; //* sggiungo +1 perche il mesi vengono considerati come un array per questo aggiungo 1
+
+      var year = apartmentdate.getFullYear(); //? aggiungo una condistione in caso il giorno e minore di 10
+
+      if (day < 10) {
+        day = "0" + day;
+      } //? aggiungo una condistione in caso il mese e minore di 10
+
+
+      if (month < 10) {
+        month = "0" + month;
+      }
+
+      return "".concat(day, "/").concat(month, "/").concat(year);
+    }
+  }
 });
 
 /***/ }),
@@ -2050,9 +2100,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Header'
+  name: "Header"
 });
 
 /***/ }),
@@ -2095,10 +2144,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'MainIndex'
+  name: "MainIndex"
 });
 
 /***/ }),
@@ -38533,7 +38580,53 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "div",
+      {
+        staticClass: "card mb-3 rounded",
+        staticStyle: { "max-width": "540px" },
+      },
+      [
+        _c("div", { staticClass: "row no-gutters" }, [
+          _c("div", { staticClass: "col-md-4" }, [
+            _c("img", {
+              staticClass: "w-100 h-100 rounded-left",
+              attrs: {
+                src: _vm.apartment.images,
+                alt: "img to" + _vm.apartment.title,
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-8" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("h5", { staticClass: "card-title" }, [
+                _vm._v(_vm._s(_vm.apartment.title)),
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.apartment.description) +
+                    "\n          "
+                ),
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text" }, [
+                _c("small", { staticClass: "text-muted" }, [
+                  _vm._v(
+                    "Creato il: " +
+                      _vm._s(_vm.getFormattedDate(_vm.apartment.created_at))
+                  ),
+                ]),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]
+    ),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38597,7 +38690,7 @@ var render = function () {
           _c(
             "router-link",
             { staticClass: "nav-link", attrs: { to: { name: "apartments" } } },
-            [_vm._v("\n                Apartments\n            ")]
+            [_vm._v("\n        Apartments\n      ")]
           ),
         ],
         1
@@ -38667,12 +38760,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [_c("h1", [_vm._v("Main")]), _vm._v(" "), _c("router-view")],
-    1
-  )
+  return _c("div", [_c("router-view")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -54740,7 +54828,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _view_App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view/App */ "./resources/js/view/App.vue");
 /* harmony import */ var _Pages_Apartments__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Pages/Apartments */ "./resources/js/Pages/Apartments.vue");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; // 
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; //
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
@@ -54863,7 +54951,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\final-project\boolBnB\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Boolean\boolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
