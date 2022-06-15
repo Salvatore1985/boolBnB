@@ -8,7 +8,7 @@ use App\Models\Apartment;
 
 class ApartmentController extends Controller
 {
-    public function index(Post $post)
+    public function index(Apartment $apartmen)
     {
         $apartments= Apartment::paginate(5);
         return response()->json($apartments);
