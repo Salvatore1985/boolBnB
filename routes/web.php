@@ -31,6 +31,9 @@ Route::middleware('auth')
     Route::resource('apartments', ApartmentsController::class);
 });
 
+Route::get('payments/{apartment}/{sponsorship}', 'PaymentsController@index')->name('payments.index');
+Route::post('payments/{apartment}/{sponsorship}/transaction', 'PaymentsController@transaction')->name('payments.transaction');
+
 /*
 Route::get('/send-mail', function () {
 
