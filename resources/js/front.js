@@ -8,7 +8,7 @@ import App from "./view/App";
 
 Vue.use(VueRouter);
 
-import Apartments from "./pages/Apartment";
+import Apartments from "./Pages/Apartments";
 // import Posts from "./pages/Posts";
 // import Contacts from "./pages/Contacts";
 // import About from "./pages/About";
@@ -45,5 +45,5 @@ const router = new VueRouter({
 const app = new Vue({
     el: '#root',
     render: h => h(App),
-    // router
+     router
 });
