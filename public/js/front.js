@@ -2051,8 +2051,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Header'
 });
@@ -38591,30 +38589,20 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("header", [
-    _c("h1", [_vm._v("Header")]),
-    _vm._v(" "),
-    _c(
-      "ul",
-      { staticClass: "navbar-nav me-auto mb-2 mb-lg-0" },
-      _vm._l(_vm.navLinks, function (navLink, index) {
-        return _c(
-          "li",
-          { key: index, staticClass: "nav-item" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "nav-link",
-                attrs: { to: { name: "Apartments" } },
-              },
-              [_vm._v("\n                Apartments\n            ")]
-            ),
-          ],
-          1
-        )
-      }),
-      0
-    ),
+    _c("ul", { staticClass: "navbar-nav me-auto mb-2 mb-lg-0" }, [
+      _c(
+        "li",
+        { staticClass: "nav-item" },
+        [
+          _c(
+            "router-link",
+            { staticClass: "nav-link", attrs: { to: { name: "apartments" } } },
+            [_vm._v("\n                Apartments\n            ")]
+          ),
+        ],
+        1
+      ),
+    ]),
   ])
 }
 var staticRenderFns = []
@@ -54875,7 +54863,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/tommasoriccobono/Desktop/BOOLEAN/boolBnB/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\final-project\boolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
