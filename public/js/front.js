@@ -1899,6 +1899,17 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/view/App.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/view/App.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\final-project\\boolBnB\\resources\\js\\view\\App.vue: Unexpected token (13:0)\n\n\u001b[0m \u001b[90m 11 |\u001b[39m }\u001b[0m\n\u001b[0m \u001b[90m 12 |\u001b[39m     components \u001b[33m:\u001b[39m \u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n    at instantiate (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:72:32)\n    at constructor (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:358:12)\n    at Parser.raise (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:3341:19)\n    at Parser.unexpected (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:3379:16)\n    at Parser.parseExprAtom (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:13118:22)\n    at Parser.parseExprSubscripts (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:12643:23)\n    at Parser.parseUpdate (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:12622:21)\n    at Parser.parseMaybeUnary (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:12593:23)\n    at Parser.parseMaybeUnaryOrPrivate (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:12387:61)\n    at Parser.parseExprOps (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:12394:23)\n    at Parser.parseMaybeConditional (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:12364:23)\n    at Parser.parseMaybeAssign (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:12316:21)\n    at Parser.parseExpressionBase (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:12252:23)\n    at C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:12246:39\n    at Parser.allowInAnd (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:14341:16)\n    at Parser.parseExpression (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:12246:17)\n    at Parser.parseStatementContent (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:14781:23)\n    at Parser.parseStatement (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:14638:17)\n    at Parser.parseLabeledStatement (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:15231:22)\n    at Parser.parseStatementContent (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:14784:19)\n    at Parser.parseStatement (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:14638:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:15281:25)\n    at Parser.parseBlockBody (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:15272:10)\n    at Parser.parseProgram (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:14556:10)\n    at Parser.parseTopLevel (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:14543:25)\n    at Parser.parse (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:16506:10)\n    at parse (C:\\final-project\\boolBnB\\node_modules\\@babel\\parser\\lib\\index.js:16558:38)\n    at parser (C:\\final-project\\boolBnB\\node_modules\\@babel\\core\\lib\\parser\\index.js:52:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (C:\\final-project\\boolBnB\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:87:38)\n    at normalizeFile.next (<anonymous>)\n    at run (C:\\final-project\\boolBnB\\node_modules\\@babel\\core\\lib\\transformation\\index.js:31:50)\n    at run.next (<anonymous>)\n    at Function.transform (C:\\final-project\\boolBnB\\node_modules\\@babel\\core\\lib\\transform.js:25:41)\n    at transform.next (<anonymous>)\n    at step (C:\\final-project\\boolBnB\\node_modules\\gensync\\index.js:261:32)");
+
+/***/ }),
+
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
   !*** ./node_modules/process/browser.js ***!
@@ -2364,6 +2375,30 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (this && this.clearImmediate);
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/view/App.vue?vue&type=template&id=e1b452d6&":
+/*!************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/view/App.vue?vue&type=template&id=e1b452d6& ***!
+  \************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
 
 /***/ }),
 
@@ -14610,17 +14645,20 @@ var app = new Vue({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-var render, staticRenderFns
-var script = {}
+/* harmony import */ var _App_vue_vue_type_template_id_e1b452d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.vue?vue&type=template&id=e1b452d6& */ "./resources/js/view/App.vue?vue&type=template&id=e1b452d6&");
+/* harmony import */ var _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.vue?vue&type=script&lang=js& */ "./resources/js/view/App.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
-  script,
-  render,
-  staticRenderFns,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _App_vue_vue_type_template_id_e1b452d6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _App_vue_vue_type_template_id_e1b452d6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -14628,8 +14666,42 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   
 )
 
+/* hot reload */
+if (false) { var api; }
 component.options.__file = "resources/js/view/App.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/view/App.vue?vue&type=script&lang=js&":
+/*!************************************************************!*\
+  !*** ./resources/js/view/App.vue?vue&type=script&lang=js& ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./App.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/view/App.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/view/App.vue?vue&type=template&id=e1b452d6&":
+/*!******************************************************************!*\
+  !*** ./resources/js/view/App.vue?vue&type=template&id=e1b452d6& ***!
+  \******************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_e1b452d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./App.vue?vue&type=template&id=e1b452d6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/view/App.vue?vue&type=template&id=e1b452d6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_e1b452d6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_template_id_e1b452d6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
