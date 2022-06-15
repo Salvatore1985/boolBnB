@@ -93,18 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var deleteForms = document.querySelectorAll('.apartment-destroyer');
-console.log(deleteForms);
-deleteForms.forEach(function (singleForm) {
-  singleForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    userConfirmation = window.confirm("Are you sure you want to delete ".concat(this.getAttribute('apartment-name'), "?"));
-
-    if (userConfirmation) {
-      this.submit();
-    }
-  });
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\final-project\\boolBnB\\resources\\js\\confirm-delete.js'");
 
 /***/ }),
 

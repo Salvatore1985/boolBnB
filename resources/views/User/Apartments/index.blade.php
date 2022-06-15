@@ -14,9 +14,9 @@
 
         {{-- Delete Apartment Message --}}
         <div class="col-12">
-            @if (session('delete-message'))
-                <div class="alert alert-danger">
-                    {{session('delete-message')}}
+            @if (session('alert-message'))
+                <div class="alert alert-{{session('alert-type')}}">
+                    {{session('alert-message')}}
                 </div>
             @endif
         </div>
@@ -56,7 +56,7 @@
                                 </a>
                             </td>
                             <td colspan="2">
-                                {{-- add delete route --}}
+                                {{-- delete form --}}
                                 <form action="{{route('user.apartments.destroy', $apartment)}}" method="POST" class="apartment-destroyer" apartment-name="{{ucfirst($apartment->title)}}">
                                     @csrf
                                     @method('DELETE')
@@ -64,6 +64,7 @@
                                             &#10006;
                                         </button>
                                 </form>
+
                             </td>
                         </tr>
                     @empty
@@ -84,18 +85,18 @@
 
 @endsection
 @section('js-files')
-    <script>
+    <script defer>
         const deleteForms = document.querySelectorAll('.apartment-destroyer');
-    console.log(deleteForms);
-    deleteForms.forEach(singleForm => {
-        singleForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            userConfirmation = window.confirm(`Are you sure you want to delete ${this.getAttribute('apartment-name')}?` );
-            if (userConfirmation) {
-                this.submit();
-            }
-    })
-});
+        console.log(deleteForms);
+        deleteForms.forEach(singleForm => {
+            singleForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                userConfirmation = window.confirm(`Sei sicuro di voler eliminare ${this.getAttribute('apartment-title')}?` );
+                if (userConfirmation) {
+                    this.submit();
+                }
+            })
+        });
     </script>
 @endsection
 

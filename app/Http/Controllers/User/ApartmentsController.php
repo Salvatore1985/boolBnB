@@ -141,7 +141,7 @@ class ApartmentsController extends Controller
     public function destroy(Apartment $apartment)
     {
         $apartment->delete();
-        return redirect()->route("user.apartments.index", $apartment)->with("message","Apartment è stato eliminato con successo!");
+        return redirect()->route("user.apartments.index", $apartment)->with("alert-message","Apartment è stato eliminato con successo!")->with('alter-type', 'warning');
 
     }
 }
