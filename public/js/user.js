@@ -49614,17 +49614,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\final-project\\boolBnB\\resources\\js\\components\\ExampleComponent.vue'");
-
-/***/ }),
-
 /***/ "./resources/js/user.js":
 /*!******************************!*\
   !*** ./resources/js/user.js ***!
@@ -49640,7 +49629,7 @@ throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.j
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/**
+/** 
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
  * components and automatically register them with their "basename".
@@ -49649,8 +49638,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  */
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49681,8 +49670,8 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\final-project\boolBnB\resources\js\user.js */"./resources/js/user.js");
-module.exports = __webpack_require__(/*! C:\final-project\boolBnB\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/tommasoriccobono/Desktop/BOOLEAN/boolBnB/resources/js/user.js */"./resources/js/user.js");
+module.exports = __webpack_require__(/*! /Users/tommasoriccobono/Desktop/BOOLEAN/boolBnB/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
