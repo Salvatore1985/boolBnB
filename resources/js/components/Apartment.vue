@@ -5,10 +5,11 @@
         <div class="col-md-4">
           <img
             class="w-100 h-100 rounded-left"
-            :src="apartment.images"
+            :src="apartment.images[0].link"
             :alt="'img to' + apartment.title"
           />
         </div>
+        <!--   <pre class="text-darger">{{ apartment.images[0].link }}</pre> -->
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">{{ apartment.title }}</h5>
@@ -49,6 +50,7 @@ export default {
       return `${day}/${month}/${year}`;
     },
   },
+  created() {},
 };
 </script>
 

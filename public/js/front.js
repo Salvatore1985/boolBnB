@@ -1971,6 +1971,7 @@ __webpack_require__.r(__webpack_exports__);
           lastPage: last_page
         };
         console.log(_this.apartments);
+        console.log(_this.apartments[1].images[0].link);
       })["catch"](function (err) {
         console.error(err);
       }).then(function () {
@@ -1981,10 +1982,9 @@ __webpack_require__.r(__webpack_exports__);
       this.getApartments(page);
     }
   },
-
-  /*   created() {
-    this.getApartments();
-  }, */
+  created: function created() {
+    /* this.getApartments(); */
+  },
   mounted: function mounted() {
     this.getApartments();
   }
@@ -2001,6 +2001,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -2053,7 +2054,8 @@ __webpack_require__.r(__webpack_exports__);
 
       return "".concat(day, "/").concat(month, "/").concat(year);
     }
-  }
+  },
+  created: function created() {}
 });
 
 /***/ }),
@@ -38593,7 +38595,7 @@ var render = function () {
             _c("img", {
               staticClass: "w-100 h-100 rounded-left",
               attrs: {
-                src: _vm.apartment.images,
+                src: _vm.apartment.images[0].link,
                 alt: "img to" + _vm.apartment.title,
               },
             }),

@@ -35,15 +35,87 @@ class ApartmentSeeder extends Seeder
                 'long'=>'9.1589497'
             ],
             [
+                'address'=>'Corso Como',
+                'lat' =>'45.462129414164934',
+                'long'=>'9.190990579397749'
+            ],
+            [
                 'address'=>'via paolo da cannobio 2 milano',
                 'lat' =>'45.462129414164934',
                 'long'=>'9.190990579397749'
-            ]
+            ],
+            [
+                'address'=>'Via Como, Strada Provinciale 44bis',
+                'lat' =>'45.462129414164934',
+                'long'=>'9.190990579397749'
+            ],
+            [
+                'address'=>'Via Como, Strada Provinciale 44bis & Corso Milano',
+                'lat' =>'45.48138',
+                'long'=>'9.18731'
+            ],
+            [
+                'address'=>'Via Stalingrado Bologna',
+                'lat' =>'44.51691',
+                'long'=>'11.36396'
+            ],
+            [
+                'address'=>'Via Stalingrado, 40016 San Giorgio di Piano',
+                'lat' =>'44.64734',
+                'long'=>'11.36656'
+            ],
+            [
+                'address'=>'Via Ferrarese, 40127, 40128 Bologna',
+                'lat' =>'44.52887',
+                'long'=>'11.36691'
+            ],
+            [
+                'address'=>'Via Stalingrado & Via Ferrarese, 40128 Bologna',
+                'lat' =>'44.52991',
+                'long'=>'11.36697'
+            ],
+       /*      [
+                'address'=>'',
+                'lat' =>'',
+                'long'=>''
+            ],
+            [
+                'address'=>'',
+                'lat' =>'',
+                'long'=>''
+            ],
+            [
+                'address'=>'',
+                'lat' =>'',
+                'long'=>''
+            ],
+            [
+                'address'=>'',
+                'lat' =>'',
+                'long'=>''
+            ],
+            [
+                'address'=>'',
+                'lat' =>'',
+                'long'=>''
+            ],
+            [
+                'address'=>'',
+                'lat' =>'',
+                'long'=>''
+            ],
+            [
+                'address'=>'',
+                'lat' =>'',
+                'long'=>''
+            ], */
+
+
         ];
 
         $userIds = User::pluck('id')->toArray();
 
-        for ($i=0; $i < count($addresses) ; $i++) {
+        for ($i=1; $i < count($addresses) ; $i++) {
             $newApartment = new Apartment;
             $newApartment->user_id = $faker->randomElement($userIds);
             $newApartment->n_rooms=$faker->numberBetween(1, 5);

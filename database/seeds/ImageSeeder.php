@@ -16,7 +16,7 @@ class ImageSeeder extends Seeder
         $apartmentIds = Apartment::pluck('id')->toArray();
         for ($i=0; $i < 10; $i++) {
             $newImage = new Image;
-            $newImage->link = 'https://picsum.photos/rand(1,100)/237/200/300';
+            $newImage->link = "https://picsum.photos/id/$i/250/400";
             $newImage->apartment_id = $faker->randomElement($apartmentIds);
             $newImage->save();
         }

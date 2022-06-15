@@ -54,6 +54,7 @@ export default {
           this.apartments = data;
           this.pagination = { currentPage: current_page, lastPage: last_page };
           console.log(this.apartments);
+          console.log(this.apartments[1].images[0].link);
         })
         .catch((err) => {
           console.error(err);
@@ -66,9 +67,9 @@ export default {
       this.getApartments(page);
     },
   },
-  /*   created() {
-    this.getApartments();
-  }, */
+  created() {
+    /* this.getApartments(); */
+  },
   mounted() {
     this.getApartments();
   },
