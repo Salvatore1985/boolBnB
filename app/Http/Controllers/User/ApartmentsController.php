@@ -76,7 +76,7 @@ class ApartmentsController extends Controller
         // creation new apartment
         $newApartment = new Apartment();
         $newApartment->fill($data);
-        $newApartment->is_visible = true;
+        //$newApartment->is_visible = true;
         $newApartment->save();
         // $service= Service::find($data['service_']);
         $newApartment->services()->attach($data['service']);
@@ -133,6 +133,7 @@ class ApartmentsController extends Controller
         );
 
         $data = $request->all();
+        if (!array_key_exists('is_visible', $data)) $data['is_visibile'] = 0;
 
         $address = $data['address'];
 

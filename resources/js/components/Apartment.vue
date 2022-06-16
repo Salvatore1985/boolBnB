@@ -16,6 +16,7 @@
             <p class="card-text">
               {{ apartment.description }}
             </p>
+            <pre>numeri letti {{ apartment.n_beds }}</pre>
             <p class="card-text">
               <small class="text-muted"
                 >Creato il: {{ getFormattedDate(apartment.created_at) }}</small
