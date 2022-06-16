@@ -17,8 +17,6 @@
 
     @dump($apartment)
 
-    <div id="map-div"></div>
-
     <a href="{{route('user.apartments.index')}}">
         Lista appartamenti
     </a>
@@ -28,18 +26,26 @@
         const APPLICATION_NAME = 'My Application';
         const APPLICATION_VERSION = '1.0';
 
-        tt.setProductInfo(APPLICATION_NAME, APPLICATION_VERSION);
-        const position = {lng: -122.47483, lat: 37.80776};
+        //tt.setProductInfo(APPLICATION_NAME, APPLICATION_VERSION);
+        const positions = [
+            { lat: 6.4434, lng: 3.3553 },
+            { lat: 6.4442, lng: 3.3561 },
+            { lat: 6.4451, lng: 3.3573 },
+            { lat: 6.4459, lng: 3.3520 }
+        ];
 
-        var map = tt.map({
+        const map = tt.map({
         key: API_KEY,
         container: 'map-div',
-        center: position,
-        zoom: 12
+        center: positions[0],
+        zoom: 15
         });
 
-        var marker = new tt.Marker().setLngLat(position).addTo(map);
-        var popup = new tt.Popup({ anchor: 'top' }).marker.setPopup(popup).togglePopup()
+        positions.forEach((position) => {
+            const marker = new tt.Marker().setLngLat(position).addTo(map);
+            const popup = new tt.Popup({ anchor: 'top' }).setText('Apartment')
+            marker.setPopup(popup).togglePopup()
+        });
 
     </script>
 </body>

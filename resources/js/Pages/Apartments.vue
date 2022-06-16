@@ -2,6 +2,8 @@
   <section id="apartiment-list">
     <h2>I miei appartamenti</h2>
 
+    <TomTomMap />
+
     <Loader v-if="isLoading" />
     <div v-else>
       <Pagination
@@ -27,6 +29,7 @@
 import Pagination from "../components/Pagination.vue";
 import Loader from "../components/Loader.vue";
 import Apartment from "../components/Apartment.vue";
+import TomTomMap from "../components/TomTomMap.vue";
 
 export default {
   name: "Apartments",
@@ -34,14 +37,15 @@ export default {
     Pagination,
     Loader,
     Apartment,
+    TomTomMap,
   },
   data() {
     return {
-      baseUri: "http://localhost:8000",
-      apartments: [],
-      isLoading: false,
-      pagination: {},
-      isActive: 0,
+        baseUri: "http://localhost:8000",
+        apartments: [],
+        isLoading: false,
+        pagination: {},
+        isActive: 0,
     };
   },
   methods: {
