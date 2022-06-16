@@ -26,9 +26,10 @@ class ApartmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Apartment $apartment)
     {
-        return view('User.apartments.create');
+        $apartment= Apartment::all();
+        return view('User.apartments.create' ,compact('apartment'));
     }
 
     /**
@@ -42,7 +43,7 @@ class ApartmentsController extends Controller
 
         $request->validate(
             [
-                'title' => 'required|string',
+                'title' => 'required|string|unique:apartments|min:3',
                 'description' => 'required|string|min:10',
                 'n_rooms' => 'required|numeric|min:1',
                 'n_beds' => 'required|numeric|min:1',
@@ -50,16 +51,36 @@ class ApartmentsController extends Controller
                 'n_bathrooms' => 'required|numeric|min:1',
                 'sqr_meters' => 'required|numeric|min:1',
                 'street' => 'required|string',
-                'house_number' => 'required|numeric',
-                'city' => 'required|string',
                 'price' => 'required|numeric|min:1',
+            ] ,
+            [
+                /* 'required' => 'Devi riempire il campo :attribute', */
+                'title.required'=>'Devi inserire il titolo',
+                'title.min'=>'Il minimo dei carattere del titolo deve essere di :min',
+                'title.unique'=>"Il titolo ''$request->title'' esiste già ",
+                'description.required'=>'Devi inserire la descrizione',
+                'description.min'=>'Il minimo dei carattere della descrizione deve essere di :min',
+                'n_rooms.required'=>'Devi il numero delle stanze',
+                'n_rooms.min'=>'Il numero delle stanze deve essere più di :min',
+                'n_beds.required'=>'Devi il numero dei letti',
+                'n_beds.min'=>'Il numero dei letti deve essere più di :min',
+                'n_floor.required'=>'Devi il numero dei piani',
+                'n_floor.min'=>'Il numero dei piani deve essere più di :min',
+                'n_bathrooms.required'=>'Devi il numero dei bagni',
+                'n_bathrooms.min'=>'Il numero dei bagni deve essere più di :min',
+                'sqr_meters.required'=>'Devi il numero dei mq',
+                'sqr_meters.min'=>'Il numero dei mq deve  essere più di :min',
+                'street.required'=>'Devi il numero dei mq',
+                'price.required'=>'Devi il numero il prezzo',
+                'price.min'=>'Il prezzo non può essere inferiore a :min €',
+
             ]
         );
 
         $data = $request->all();
         $data['user_id'] = Auth::id();
 
-        $address = $data['street'] . ' ' . $data['house_number'] . ' ' . $data['city'];
+      $address = $data['street'] . ' ' . $data['house_number'] . ' ' . $data['city'];
 
         // TOMTOM api
         $response = Http::get("https://api.tomtom.com/search/2/geocode/$address.json", [

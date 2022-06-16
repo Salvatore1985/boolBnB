@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-    @include('layouts.partials.head')
-    <body>
-        <div class="container">
-            <div class="row justify-content-center">
-                @if ($errors->any())
+@include('layouts.partials.head')
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            {{-- @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
-                        @foreach ( $errors->all() as $error )
+                        @foreach ($errors->all() as $error)
                             <li>
                                 {{$error}}
                             </li>
                         @endforeach
                     </ul>
                 </div>
-                @endif
+                @endif --}}
 
-                <div class="col-6 py-3">
+            <div class="col-6 py-3">
 
-                        @yield('form-content')
-                </div>
+                @yield('form-content')
             </div>
         </div>
-    </body>
-</html>
+    </div>
+</body>
 
+</html>
