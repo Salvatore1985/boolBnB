@@ -8,7 +8,7 @@
         @method('PUT')
         <div class="row">
             <div class="col-12 mb-3">
-                <label for="title" class="form-label">* Inserisci un titolo *</label>
+                <label for="title" class="form-label">Inserisci un titolo<sup>*</sup></label>
                 <input
                     type="text"
                     class="form-control @error('title') is-invalid @enderror"
@@ -24,7 +24,7 @@
             </div>
 
         <div class="col-12 mb-3">
-            <label for="address" class="form-label"> * Inserisci l'indirizzo *</label>
+            <label for="address" class="form-label">Inserisci l'indirizzo<sup>*</sup></label>
             <input
                 type="text"
                 class="form-control @error('address') is-invalid @enderror"
@@ -40,7 +40,7 @@
         </div>
 
         <div class="col-12 mb-3">
-            <label for="description" class="form-label">* Inserisci una descrizione *</label>
+            <label for="description" class="form-label">Inserisci una descrizione<sup>*</sup></label>
             <textarea
                 type="text"
                 rows="8"
@@ -57,7 +57,7 @@
         </div>
 
         <div class="col-12 mb-3">
-            <label for="sqr_meters" class="form-label">* Inserisci i metri quadri *</label>
+            <label for="sqr_meters" class="form-label">Inserisci i metri quadri<sup>*</sup></label>
             <input
                 type="text"
                 class="form-control @error('sqr_meters') is-invalid @enderror"
@@ -73,7 +73,7 @@
         </div>
 
         <div class="col-12 mb-3">
-            <label for="n_beds" class="form-label">* Inserisci il numero di letti *</label>
+            <label for="n_beds" class="form-label">Inserisci il numero di letti<sup>*</sup></label>
             <input
                 type="text"
                 class="form-control @error('n_beds') is-invalid @enderror"
@@ -89,7 +89,7 @@
         </div>
 
         <div class="col-12 mb-3">
-            <label for="n_rooms" class="form-label">* Inserisci il numero di stanze *</label>
+            <label for="n_rooms" class="form-label">Inserisci il numero di stanze<sup>*</sup></label>
             <input
                 type="text"
                 class="form-control @error('n_rooms') is-invalid @enderror"
@@ -105,7 +105,7 @@
         </div>
 
         <div class="col-12 mb-3">
-            <label for="n_bathrooms" class="form-label">* Inserisci il numero di bagni *</label>
+            <label for="n_bathrooms" class="form-label">Inserisci il numero di bagni<sup>*</sup></label>
             <input
                 type="text"
                 class="form-control @error('n_bathrooms') is-invalid @enderror"
@@ -121,7 +121,7 @@
         </div>
 
         <div class="col-12 mb-3">
-            <label for="n_floor" class="form-label">* Inserisci il numero di piani *</label>
+            <label for="n_floor" class="form-label">Inserisci il numero di piani<sup>*</sup></label>
             <input
                 type="text"
                 class="form-control @error('n_floor') is-invalid @enderror"
@@ -138,7 +138,7 @@
         </div>
 
         <div class="col-12 mb-3">
-            <label for="price" class="form-label">* Inserisci prezzo *</label>
+            <label for="price" class="form-label">Inserisci prezzo<sup>*</sup></label>
             <input
                 type="text"
                 class="form-control @error('price') is-invalid @enderror"
