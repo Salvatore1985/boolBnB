@@ -31,13 +31,19 @@
                         <th scope="col">number rooms</th>
                         <th scope="col">sqr. meters</th>
                         <th scope="col">price</th>
+                        <th scope="col">Read More</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                        <th scope="col">Is Visible</th>
+
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($apartments as $apartment)
                         <tr>
                             <th scope="row">{{$apartment->id}}</th>
-                            <td>{{$apartment->address}}</td>
+                            <td>{{$apartment->sqr_meters}}</td>
+                            <td>{{$apartment->n_rooms}}</td>
                             <td>{{$apartment->sqr_meters}}</td>
                             <td>{{$apartment->price}}</td>
                             <td>
@@ -55,7 +61,7 @@
                                     &#9998;
                                 </a>
                             </td>
-                            <td colspan="2">
+                            <td>
                                 {{-- delete form --}}
                                 <form action="{{route('user.apartments.destroy', $apartment)}}" method="POST" class="apartment-destroyer" apartment-name="{{ucfirst($apartment->title)}}">
                                     @csrf
@@ -66,6 +72,8 @@
                                 </form>
 
                             </td>
+                            <td>{{$apartment->is_visible}}</td>
+
                         </tr>
                     @empty
                         <h2>

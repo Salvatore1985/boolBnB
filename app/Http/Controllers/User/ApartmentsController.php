@@ -73,7 +73,7 @@ class ApartmentsController extends Controller
         // creation new apartment
         $newApartment = new Apartment();
         $newApartment->fill($data);
-        $newApartment->is_visible = true;
+        //$newApartment->is_visible = true;
         $newApartment->save();
 
         return redirect()->route('user.apartments.show', $newApartment->id)->with('message', $data['title']. " è stato pubblicato con successo.");
@@ -113,6 +113,7 @@ class ApartmentsController extends Controller
     public function update(Request $request, Apartment $apartment)
     {
         $data = $request->all();
+        if (!array_key_exists('is_visible', $data)) $data['is_visibile'] = 0;
 
         $address = $data['street'] . ' ' . $data['house_number'] . ' ' . $data['city'];
 

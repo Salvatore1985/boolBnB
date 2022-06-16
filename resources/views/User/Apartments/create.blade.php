@@ -117,6 +117,19 @@
             </div>
         @enderror
     </div>
+
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="radio" name="is_visible" id="is_visible" value="1">
+        <label class="form-check-label" for="is_visible">
+            Appartamento disponibile 
+        </label>
+    </div>
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="radio" name="is_visible" id="is_visible" value="0">
+        <label class="form-check-label" for="is_visible">
+            Appartamento non disponibile 
+        </label>
+    </div>
     <button type="submit" class="btn btn-primary">Pubblica il tuo appartamento</button>
 </form>
 
