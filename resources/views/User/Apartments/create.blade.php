@@ -20,7 +20,7 @@
             <input type="text" name="street" id="street" value="{{ old('street') }}">
             @error('street')
 
-    
+
 
                 <div class="alert alert-danger">
                     {{ $message }}
@@ -105,10 +105,6 @@
                 </div>
             @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Pubblica il tuo appartamento</button>
-    </form>
-
-    
     <div class="mb-3 d-flex">
         <label for="service">Servizi</label>
             @foreach ($services as $service)
@@ -122,18 +118,18 @@
             @endforeach
     </div>
 
-    
+
 
     <div class="form-check form-switch">
         <input class="form-check-input" type="radio" name="is_visible" id="is_visible" value="1">
         <label class="form-check-label" for="is_visible">
-            Appartamento disponibile 
+            Appartamento disponibile
         </label>
     </div>
     <div class="form-check form-switch">
         <input class="form-check-input" type="radio" name="is_visible" id="is_visible" value="0">
         <label class="form-check-label" for="is_visible">
-            Appartamento non disponibile 
+            Appartamento non disponibile
         </label>
     </div>
     <button type="submit" class="btn btn-primary">Pubblica il tuo appartamento</button>
