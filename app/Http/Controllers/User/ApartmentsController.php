@@ -29,7 +29,8 @@ class ApartmentsController extends Controller
      */
     public function create()
     {
-        return view('User.apartments.create');
+        $services = Service::all();
+        return view('User.apartments.create', ['services' => $services]);
     }
 
     /**
@@ -50,17 +51,18 @@ class ApartmentsController extends Controller
                 'n_floor' => 'required|numeric|min:1',
                 'n_bathrooms' => 'required|numeric|min:1',
                 'sqr_meters' => 'required|numeric|min:1',
-                'street' => 'required|string',
-                'house_number' => 'required|numeric',
-                'city' => 'required|string',
+                'address' => 'required|string',
+                'service' => 'required',
                 'price' => 'required|numeric|min:1',
             ]
         );
 
+
+        // ***********
         $data = $request->all();
         $data['user_id'] = Auth::id();
 
-        $address = $data['street'] . ' ' . $data['house_number'] . ' ' . $data['city'];
+        $address = $data['address'];
 
         // TOMTOM api
         $response = Http::get("https://api.tomtom.com/search/2/geocode/$address.json", [
@@ -76,7 +78,8 @@ class ApartmentsController extends Controller
         $newApartment->fill($data);
         $newApartment->is_visible = true;
         $newApartment->save();
-
+        // $service= Service::find($data['service_']);
+        $newApartment->services()->attach($data['service']);
         return redirect()->route('user.apartments.show', $newApartment->id)->with('message', $data['title']. " è stato pubblicato con successo.");
     }
 
@@ -131,7 +134,7 @@ class ApartmentsController extends Controller
 
         $data = $request->all();
 
-        $address = $data['street'] . ' ' . $data['house_number'] . ' ' . $data['city'];
+        $address = $data['address'];
 
         // TOMTOM api
         $response = Http::get("https://api.tomtom.com/search/2/geocode/$address.json", [
@@ -141,11 +144,14 @@ class ApartmentsController extends Controller
         $data['lat'] = $coordinates['lat'];
         $data['long'] = $coordinates['lon'];
         $data['address'] = $address;
-
+        // $apartment->is_visible = $data['is_visible'];
         // creation new apartment
-        $apartment->update($data);
+        $apartment->fill($data);
+        if (!array_key_exists('services', $data) && $apartment->services)
+            $apartment->services()->detach();
+        else
+        $apartment->services()->sync($data['services']);
         $apartment->save();
-
         return redirect()->route('user.apartments.show', $apartment->id)->with('message', $data['title']. " è stato pubblicato con successo.");
     }
 

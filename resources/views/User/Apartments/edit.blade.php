@@ -50,7 +50,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="n_beds">Inserisci numero letti</label>
+                <label for="n_beds">* Inserisci il numero di letti *</label>
                 <input type="text" name="n_beds" id="n_beds" value="{{$apartment->n_beds}}">
                 @error('n_beds')
                     <div class="alert alert-danger">
@@ -60,7 +60,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="n_rooms">Inserisci numero stanze</label>
+                <label for="n_rooms">* Inserisci il numero di stanze *</label>
                 <input type="text" name="n_rooms" id="n_rooms" value="{{$apartment->n_rooms}}">
                 @error('n_rooms')
                     <div class="alert alert-danger">
@@ -70,7 +70,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="n_bathrooms">Inserisci numero bagni</label>
+                <label for="n_bathrooms">* Inserisci il numero di bagni *</label>
                 <input type="text" name="n_bathrooms" id="n_bathrooms" value="{{$apartment->n_bathrooms}}">
                 @error('n_bathrooms')
                     <div class="alert alert-danger">
@@ -80,7 +80,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="n_floor" class="form-label">Inserisci il numero dei piani</label>
+                <label for="n_floor" class="form-label">* Inserisci il numero di piani *</label>
                 <input type="text" class="form-control" id="n_floor" name="n_floor" id="n_floor" value="{{$apartment->n_floor}}">
                 @error('content')
                     <div class="alert alert-danger">
@@ -90,7 +90,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="price">Inserisci prezzo</label>
+                <label for="price">* Inserisci prezzo *</label>
                 <input type="text" name="price" id="price" value="{{$apartment->price}}">
                 @error('price')
                     <div class="alert alert-danger">
@@ -99,19 +99,23 @@
                 @enderror
             </div>
             <div class="mb-3 d-flex">
-                <label for="color">Servizi</label>
+                <label for="service">Servizi</label>
                     @foreach ($services as $service)
-                        <input type="checkbox" class="form-control" id="service" value="{{$service->name}}" title="Seleziona il service"  disabled>
+                        <input type="checkbox"
+                        class="form-check"
+                        id="service"
+                        name="service[]"
+                        value="{{$service->id}}"
+                        title="Seleziona il service"
+                        @if ($apartment->services->contains($service))
+                            checked
+                        @endif
+                        >
                         <label for="services">
                             {{$service->name}}
                         </label>
-                        <input type="checkbox" name="service_id" value="{{$service->id}}"
-                        @if ($apartment->services->contains($service))
-                            checked
-                        @endif>
                     @endforeach
             </div>
-
             <button type="submit" class="btn btn-primary">Modifica l'appartamento</button>
             </div>
         </form>
