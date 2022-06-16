@@ -16,7 +16,7 @@ class ApartmentController extends Controller
     {
         // $apartments = Apartment::with(['image','service', 'sponsorship' ])
             $apartments = Apartment::with('images')
-        ->inRandomOrder()
+       /*  ->inRandomOrder() */
         ->paginate(6);
         return response()->json($apartments);
     }

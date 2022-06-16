@@ -3,7 +3,7 @@
     <h2>I miei appartamenti</h2>
 
     <TomTomMap />
-
+    <Search @search="search" />
     <Loader v-if="isLoading" />
     <div v-else>
       <Pagination
@@ -30,6 +30,7 @@ import Pagination from "../components/Pagination.vue";
 import Loader from "../components/Loader.vue";
 import Apartment from "../components/Apartment.vue";
 import TomTomMap from "../components/TomTomMap.vue";
+import Search from "../components/Search.vue";
 
 export default {
   name: "Apartments",
@@ -38,19 +39,22 @@ export default {
     Loader,
     Apartment,
     TomTomMap,
+    Search,
   },
   data() {
     return {
-        baseUri: "http://localhost:8000",
-        apartments: [],
-        isLoading: false,
-        pagination: {},
-        isActive: 0,
+      baseUri: "http://localhost:8000",
+      apartments: [],
+      isLoading: false,
+      pagination: {},
+      isActive: 0,
+      searchApartment: [],
     };
   },
   methods: {
     getApartments(page) {
       this.isLoading = true;
+
       axios
         .get(`${this.baseUri}/api/apartments?page=${page}`)
         .then((res) => {
@@ -69,6 +73,10 @@ export default {
     },
     changePage(page) {
       this.getApartments(page);
+    },
+    search() {
+      this.getApartments();
+      console.log("clicco la funzione");
     },
   },
   created() {
