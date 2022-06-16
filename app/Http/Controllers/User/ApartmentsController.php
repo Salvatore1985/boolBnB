@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Apartment;
+use App\Models\Service;
 use Illuminate\Support\Facades\Http;
 
 class ApartmentsController extends Controller
@@ -26,10 +27,14 @@ class ApartmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Apartment $apartment)
+    public function create(Apartment $apartment, Service $service)
     {
+ 
         $apartment= Apartment::all();
-        return view('User.apartments.create' ,compact('apartment'));
+        
+
+        $services = Service::all();
+        return view('User.apartments.create', ['services' => $services, 'apartment' => $apartment]);
     }
 
     /**
@@ -50,7 +55,12 @@ class ApartmentsController extends Controller
                 'n_floor' => 'required|numeric|min:1',
                 'n_bathrooms' => 'required|numeric|min:1',
                 'sqr_meters' => 'required|numeric|min:1',
+
                 'street' => 'required|string',
+
+                
+                'service' => 'required',
+
                 'price' => 'required|numeric|min:1',
             ] ,
             [
@@ -77,10 +87,16 @@ class ApartmentsController extends Controller
             ]
         );
 
+
+        // ***********
         $data = $request->all();
         $data['user_id'] = Auth::id();
 
-      $address = $data['street'] . ' ' . $data['house_number'] . ' ' . $data['city'];
+
+     
+
+        $address = $data['address'];
+
 
         // TOMTOM api
         $response = Http::get("https://api.tomtom.com/search/2/geocode/$address.json", [
@@ -94,9 +110,10 @@ class ApartmentsController extends Controller
         // creation new apartment
         $newApartment = new Apartment();
         $newApartment->fill($data);
-        $newApartment->is_visible = true;
+        //$newApartment->is_visible = true;
         $newApartment->save();
-
+        // $service= Service::find($data['service_']);
+        $newApartment->services()->attach($data['service']);
         return redirect()->route('user.apartments.show', $newApartment->id)->with('message', $data['title']. " è stato pubblicato con successo.");
     }
 
@@ -116,12 +133,14 @@ class ApartmentsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     * @param Service $services
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Service $services)
     {
+        $services = Service::all();
         $apartment = Apartment::findOrFail($id);
-        return view('user.apartments.edit', ['apartment' => $apartment]);
+        return view('user.apartments.edit', ['apartment' => $apartment, 'services' => $services]);
     }
 
     /**
@@ -133,9 +152,24 @@ class ApartmentsController extends Controller
      */
     public function update(Request $request, Apartment $apartment)
     {
-        $data = $request->all();
+        $request->validate(
+            [
+                'title' => 'required|string',
+                'description' => 'required|string|min:10',
+                'n_rooms' => 'required|numeric|min:1',
+                'n_beds' => 'required|numeric|min:1',
+                'n_floor' => 'required|numeric|min:1',
+                'n_bathrooms' => 'required|numeric|min:1',
+                'sqr_meters' => 'required|numeric|min:1',
+                'address'=>'required|string',
+                'price' => 'required|numeric|min:1'
+            ]
+        );
 
-        $address = $data['street'] . ' ' . $data['house_number'] . ' ' . $data['city'];
+        $data = $request->all();
+        if (!array_key_exists('is_visible', $data)) $data['is_visibile'] = 0;
+
+        $address = $data['address'];
 
         // TOMTOM api
         $response = Http::get("https://api.tomtom.com/search/2/geocode/$address.json", [
@@ -145,11 +179,14 @@ class ApartmentsController extends Controller
         $data['lat'] = $coordinates['lat'];
         $data['long'] = $coordinates['lon'];
         $data['address'] = $address;
-
+        // $apartment->is_visible = $data['is_visible'];
         // creation new apartment
-        $apartment->update($data);
+        $apartment->fill($data);
+        if (!array_key_exists('services', $data) && $apartment->services)
+            $apartment->services()->detach();
+        else
+        $apartment->services()->sync($data['services']);
         $apartment->save();
-
         return redirect()->route('user.apartments.show', $apartment->id)->with('message', $data['title']. " è stato pubblicato con successo.");
     }
 

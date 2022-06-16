@@ -1,6 +1,7 @@
 @extends('layouts.createPage')
 
 @section('form-content')
+
     {{-- @dump(Auth::id()) --}}
     <form class="text-center" action="{{ route('user.apartments.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -18,11 +19,15 @@
             <label for="street">Inserisci la via</label>
             <input type="text" name="street" id="street" value="{{ old('street') }}">
             @error('street')
+
+    
+
                 <div class="alert alert-danger">
                     {{ $message }}
                 </div>
             @enderror
         </div>
+
 
         <div class="mb-3">
             <label for="n_rooms">Inserisci il numero delle stanze</label>
@@ -102,27 +107,38 @@
         </div>
         <button type="submit" class="btn btn-primary">Pubblica il tuo appartamento</button>
     </form>
-@endsection
-{{-- @extends('layouts.creatPage') --}}
-{{-- @section('route', "{{ route('user.apartments.store') }}") --}}
-{{-- @section('form-content')
 
+    
+    <div class="mb-3 d-flex">
+        <label for="service">Servizi</label>
+            @foreach ($services as $service)
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                name="service[]" value="{{$service->id}}">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{$service->name}}
+                </label>
+            </div>
+            @endforeach
+    </div>
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="radio" name="is_visible" id="is_visible" value="1">
+        <label class="form-check-label" for="is_visible">
+            Appartamento disponibile 
+        </label>
+    </div>
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="radio" name="is_visible" id="is_visible" value="0">
+        <label class="form-check-label" for="is_visible">
+            Appartamento non disponibile 
+        </label>
+    </div>
     <button type="submit" class="btn btn-primary">Pubblica il tuo appartamento</button>
+</form>
 
 
+@endsection
 
-@endsection --}}

@@ -27,7 +27,7 @@ class ApartmentController extends Controller
             [
                 'success' => true,
                 'results' => $apartment,
-                // 'author' => $post->user,
+                'services' => $apartment->service_id,
                 // 'comments' => $post->comments,
             ]);
     }
