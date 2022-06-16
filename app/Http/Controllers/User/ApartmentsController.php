@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Apartment;
 use App\Models\Service;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Validation\Rule;
 
 class ApartmentsController extends Controller
 {
@@ -55,12 +56,8 @@ class ApartmentsController extends Controller
                 'n_floor' => 'required|numeric|min:1',
                 'n_bathrooms' => 'required|numeric|min:1',
                 'sqr_meters' => 'required|numeric|min:1',
-
                 'address' => 'required|string',
-
-
                 'service' => 'required',
-
                 'price' => 'required|numeric|min:1',
             ] ,
             [
@@ -154,15 +151,38 @@ class ApartmentsController extends Controller
     {
         $request->validate(
             [
-                'title' => 'required|string',
+                'title' => ['required', 'string', Rule::unique('apartments')->ignore($apartment->id), 'min:3'],
                 'description' => 'required|string|min:10',
                 'n_rooms' => 'required|numeric|min:1',
                 'n_beds' => 'required|numeric|min:1',
                 'n_floor' => 'required|numeric|min:1',
                 'n_bathrooms' => 'required|numeric|min:1',
                 'sqr_meters' => 'required|numeric|min:1',
-                'address'=>'required|string',
-                'price' => 'required|numeric|min:1'
+                'address' => 'required|string',
+                'service' => 'required',
+                'price' => 'required|numeric|min:1',
+            ] ,
+            [
+                /* 'required' => 'Devi riempire il campo :attribute', */
+                'title.required'=>'Questo campo non più essere vuoto',
+                'title.min'=>'Il minimo dei carattere del titolo deve essere di :min',
+                'title.unique'=>"Il titolo ''$request->title'' esiste già ",
+                'description.required'=>'Devi inserire la descrizione',
+                'description.min'=>'Il minimo dei carattere della descrizione deve essere di :min',
+                'n_rooms.required'=>'Devi il numero delle stanze',
+                'n_rooms.min'=>'Il numero delle stanze deve essere più di :min',
+                'n_beds.required'=>'Devi il numero dei letti',
+                'n_beds.min'=>'Il numero dei letti deve essere più di :min',
+                'n_floor.required'=>'Devi il numero dei piani',
+                'n_floor.min'=>'Il numero dei piani deve essere più di :min',
+                'n_bathrooms.required'=>'Devi il numero dei bagni',
+                'n_bathrooms.min'=>'Il numero dei bagni deve essere più di :min',
+                'sqr_meters.required'=>'Devi il numero dei mq',
+                'sqr_meters.min'=>'Il numero dei mq deve  essere più di :min',
+                'address.required'=>'Questo campo non più essere vuoto',
+                'price.required'=>'Devi il numero il prezzo',
+                'price.min'=>'Il prezzo non può essere inferiore a :min €',
+
             ]
         );
 
