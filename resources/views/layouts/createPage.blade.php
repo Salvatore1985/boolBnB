@@ -23,6 +23,7 @@
             </div>
         </div>
     </div>
+    @yield('script-content')
 </body>
 
 </html>

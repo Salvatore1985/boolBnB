@@ -1,20 +1,23 @@
 @extends('layouts.createPage')
 
 @section('form-content')
-    {{-- @dump(Auth::id()) --}}
+
     <form class="text-center" action="{{ route('user.apartments.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="title" class="form-label">Inserisci il titolo dell' appartamento</label>
 
-            <input type="text" class="form-control" id="title" name="title" id="title"
+            <input type="text"
+            class="form-control @error('title')
+                is-invalid
+            @enderror"
+            id="title" name="title" id="title"
                 value="{{ old('title') }}">
             @error('title')
-                <div class="alert alert-danger ">
+                <div class="text-start invalid-feedback">
                     {{ $message }}
                 </div>
             @enderror
-
         </div>
         <div class="mb-3">
             <label for="address">Inserisci la via</label>
@@ -132,14 +135,3 @@
         <button type="submit" class="btn btn-primary">Pubblica il tuo appartamento</button>
     </form>
 @endsection
-<script>
-    $(document).ready(function() {
-          $("#theForm").validate({
-
-              errorPlacement: function(error, element) {
-                  element.val(error[0].outerText);
-              },
-              debug: true
-          });
-      });
-      </script>
