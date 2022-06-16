@@ -38,5 +38,18 @@ class ApartmentController extends Controller
         return response('',204);
     }
 
+    public function search(Request $request)
+    {
+        $result = Apartment::where('title', 'LIKE', '%'. $request->title. '%')
+                            ->where('n_bathrooms', 'LIKE', '%'. $request->n_bathrooms. '%')
+        ->get();
+        if(count($result)){
+            return Response()->json($result);
+        }
+        else
+        {
+            return response()->json(['Result' => 'No Data not found'], 404);
+        }
+    }
 
 }

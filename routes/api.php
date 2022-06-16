@@ -24,5 +24,6 @@ Route::namespace('api')->group(function(){
     Route::delete('/posts/{post}','PostController@destroy'); /
 
     / **OPPURE**/
+    Route::get('/search', 'ApartmentController@search');
     Route::resource('apartments','ApartmentController');
 });
