@@ -74,7 +74,6 @@ class UserSeeder extends Seeder
             $newUser->phone_n = $users[$i]['phone_n'];
             $newUser->username = $users[$i]['username'];
             $newUser->date_of_birth = $users[$i]['date_of_birth'];
-            $newUser->profile_photo = $users[$i]['profile_photo'];
             $newUser->save();
         }
     }
