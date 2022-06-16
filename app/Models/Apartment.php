@@ -36,7 +36,8 @@ class Apartment extends Model
         'address',
         'lat',
         'long',
-        'user_id'
+        'user_id',
+        'is_visible'
     ];
 
 }
