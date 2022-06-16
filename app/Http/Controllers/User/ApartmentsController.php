@@ -29,9 +29,9 @@ class ApartmentsController extends Controller
      */
     public function create(Apartment $apartment, Service $service)
     {
- 
+
         $apartment= Apartment::all();
-        
+
 
         $services = Service::all();
         return view('User.apartments.create', ['services' => $services, 'apartment' => $apartment]);
@@ -56,9 +56,9 @@ class ApartmentsController extends Controller
                 'n_bathrooms' => 'required|numeric|min:1',
                 'sqr_meters' => 'required|numeric|min:1',
 
-                'street' => 'required|string',
+                'address' => 'required|string',
 
-                
+
                 'service' => 'required',
 
                 'price' => 'required|numeric|min:1',
@@ -80,7 +80,7 @@ class ApartmentsController extends Controller
                 'n_bathrooms.min'=>'Il numero dei bagni deve essere più di :min',
                 'sqr_meters.required'=>'Devi il numero dei mq',
                 'sqr_meters.min'=>'Il numero dei mq deve  essere più di :min',
-                'street.required'=>'Devi il numero dei mq',
+                'address.required'=>'Devi il numero dei mq',
                 'price.required'=>'Devi il numero il prezzo',
                 'price.min'=>'Il prezzo non può essere inferiore a :min €',
 
@@ -93,7 +93,7 @@ class ApartmentsController extends Controller
         $data['user_id'] = Auth::id();
 
 
-     
+
 
         $address = $data['address'];
 
