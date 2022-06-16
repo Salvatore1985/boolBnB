@@ -17,7 +17,7 @@ class ApartmentServiceTableSeeder extends Seeder
         $serviceIds = Service::pluck('id')->toArray();
         $apartments = Apartment::all();
         foreach ($apartments as $apartment) {
-            $apartment->services()->sync($faker->randomElements($serviceIds, 2));
+            $apartment->services()->attach($faker->randomElements($serviceIds, 2));
         }
     }
 }
