@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Apartment;
+use App\Models\Service;
 use Illuminate\Support\Facades\Http;
 
 class ApartmentsController extends Controller
@@ -95,12 +96,14 @@ class ApartmentsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     * @param Service $services
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Service $services)
     {
+        $services = Service::all();
         $apartment = Apartment::findOrFail($id);
-        return view('user.apartments.edit', ['apartment' => $apartment]);
+        return view('user.apartments.edit', ['apartment' => $apartment, 'services' => $services]);
     }
 
     /**
@@ -112,6 +115,20 @@ class ApartmentsController extends Controller
      */
     public function update(Request $request, Apartment $apartment)
     {
+        $request->validate(
+            [
+                'title' => 'required|string',
+                'description' => 'required|string|min:10',
+                'n_rooms' => 'required|numeric|min:1',
+                'n_beds' => 'required|numeric|min:1',
+                'n_floor' => 'required|numeric|min:1',
+                'n_bathrooms' => 'required|numeric|min:1',
+                'sqr_meters' => 'required|numeric|min:1',
+                'address'=>'required|string',
+                'price' => 'required|numeric|min:1'
+            ]
+        );
+
         $data = $request->all();
 
         $address = $data['street'] . ' ' . $data['house_number'] . ' ' . $data['city'];
