@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Queste credenziali non corrispondono ai nostri record.',
+    'failed' => 'l\'email o la password non corrispondono al Login',
     'throttle' => 'Troppi tentativi di accesso. Riprova tra :secondi secondi.',
 
 ];

@@ -10962,3 +10962,14 @@ a.text-dark:focus {
   }
 }
 
+:-ms-input-placeholder {
+  color: red;
+}
+
+::placeholder,
+:-ms-input-placeholder,
+::-webkit-input-placeholder,
+::-moz-placeholder {
+  color: red;
+}
+
