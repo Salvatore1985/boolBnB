@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-@include('layouts.partials.head')
+@extends('layouts.app')
 
-<body>
-    {{-- <div class="container-fluid background-image-form ">
-        <div class="row ">
-            <div class="col-12 py-3"> --}}
-    @yield('form-content')
-    {{-- </div>
+
+
+@section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6 py-3">
+                @yield('form-content')
+            </div>
         </div>
-    </div> --}}
-    @yield('script-content')
-</body>
+    </div>
+@endsection
 
-</html>
+
