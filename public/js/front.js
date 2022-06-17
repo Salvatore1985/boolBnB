@@ -2057,6 +2057,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderIndex",
   props: ["apartment"],
@@ -38874,55 +38876,67 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c(
-      "div",
-      {
-        staticClass: "card mb-3 rounded",
-        staticStyle: { "max-width": "540px" },
-      },
-      [
-        _c("div", { staticClass: "row no-gutters" }, [
-          _c("div", { staticClass: "col-md-4" }, [
-            _c("img", {
-              staticClass: "w-100 h-100 rounded-left",
-              attrs: {
-                src: _vm.apartment.images[0].link,
-                alt: "img to" + _vm.apartment.title,
-              },
-            }),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-8" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("h5", { staticClass: "card-title" }, [
-                _vm._v(_vm._s(_vm.apartment.title)),
+    _vm.apartment.is_visible === 1
+      ? _c(
+          "div",
+          {
+            staticClass: "card mb-3 rounded",
+            staticStyle: { "max-width": "540px" },
+          },
+          [
+            _c("div", { staticClass: "row no-gutters" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("img", {
+                  staticClass: "w-100 h-100 rounded-left",
+                  attrs: {
+                    src: _vm.apartment.images[0].link,
+                    alt: "img to" + _vm.apartment.title,
+                  },
+                }),
               ]),
               _vm._v(" "),
-              _c("p", { staticClass: "card-text" }, [
-                _vm._v(
-                  "\n            " +
-                    _vm._s(_vm.apartment.description) +
-                    "\n          "
-                ),
-              ]),
-              _vm._v(" "),
-              _c("pre", [
-                _vm._v("numeri letti " + _vm._s(_vm.apartment.n_beds)),
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "card-text" }, [
-                _c("small", { staticClass: "text-muted" }, [
-                  _vm._v(
-                    "Creato il: " +
-                      _vm._s(_vm.getFormattedDate(_vm.apartment.created_at))
-                  ),
-                ]),
-              ]),
+              _vm.apartment.is_visible === 1
+                ? _c("div", { staticClass: "col-md-8" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("h5", { staticClass: "card-title" }, [
+                        _vm._v(_vm._s(_vm.apartment.title)),
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _vm._v(
+                          "\n            " +
+                            _vm._s(_vm.apartment.description) +
+                            "\n          "
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("pre", [
+                        _vm._v("numeri letti " + _vm._s(_vm.apartment.n_beds)),
+                      ]),
+                      _vm._v(" "),
+                      _c("pre", [
+                        _vm._v(
+                          "visibilità " + _vm._s(_vm.apartment.is_visible)
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-text" }, [
+                        _c("small", { staticClass: "text-muted" }, [
+                          _vm._v(
+                            "Creato il: " +
+                              _vm._s(
+                                _vm.getFormattedDate(_vm.apartment.created_at)
+                              )
+                          ),
+                        ]),
+                      ]),
+                    ]),
+                  ])
+                : _vm._e(),
             ]),
-          ]),
-        ]),
-      ]
-    ),
+          ]
+        )
+      : _c("div"),
   ])
 }
 var staticRenderFns = []
@@ -55670,7 +55684,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Boolean\boolBnB\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Classe55\boolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
