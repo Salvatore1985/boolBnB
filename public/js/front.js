@@ -2411,7 +2411,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -39402,7 +39401,15 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    [_c("Header"), _vm._v(" "), _c("Main"), _vm._v(" "), _c("Footer")],
+    [
+      _c("h1", [_vm._v("Questo è la FRONT OFFICE")]),
+      _vm._v(" "),
+      _c("Header"),
+      _vm._v(" "),
+      _c("Main"),
+      _vm._v(" "),
+      _c("Footer"),
+    ],
     1
   )
 }
@@ -55663,7 +55670,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\final-project\boolBnB\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Boolean\boolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

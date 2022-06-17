@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home Page</title>
-    
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-</head>
-<body>
+@extends('layouts.app')
 
-    
-    <div id="root">
+@section('content')
+<div id="root"></div>
+@endsection
 
-    </div>
+@section('js-files')
+<script src="{{ asset('js/front.js') }}" ></script>
+@endsection
 
-    <script src="{{ asset('js/front.js') }}" ></script>
-</body>
-</html>
