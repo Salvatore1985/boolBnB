@@ -1,7 +1,10 @@
 @extends('layouts.createPage')
 
 @section('form-content')
-    <div class=" p-3 ">
+
+
+    <div class="background-image-form height-main-form p-3 h-100">
+
         <section class="container ">
             <form class="text-center bg-light  rounded p-5" action="{{ route('user.apartments.store') }}" method="POST"
                 enctype="multipart/form-data">
@@ -18,7 +21,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="form-group col-md-6">
+                    {{-- <div class="form-group col-md-6">
                         <label for="address" class="form-label">La via</label>
                         <input type="text" class="form-control @error('address') is-invalid @enderror" name="address"
                             id="address" placeholder="* campo richiesto" value="{{ old('address') }}" />
@@ -27,7 +30,25 @@
                                 {{ $message }}
                             </div>
                         @enderror
-                    </div>
+                    </div> --}}
+                    {{-- testing --}}
+        <div class="form-group col-md-6">
+            <label for="address">inserisci la via:</label>
+            <input class="w-100" type="text" name="address" id="address" value="{{ old('address') ?? ''}}" required>
+            @error('address')
+                <div class="alert alert-danger mt-2">
+                    Il nome della via
+                    {{ $message }}
+                </div>
+            @enderror
+                <ul class="list-group d-none" id="results">
+                    <li class="list-group-item active" id="1-result"></li>
+                    <li class="list-group-item active" id="2-result"></li>
+                    <li class="list-group-item active" id="3-result"></li>
+                    <li class="list-group-item active" id="4-result"></li>
+                    <li class="list-group-item active" id="5-result"></li>
+                </ul>
+        </div>
                     <div class="form-group col-md-3">
                         <label for="n_floor" class="form-label"> Numero dei piani</label>
                         <input type="text" class="form-control @error('title') is-invalid @enderror" id="n_floor"
@@ -153,4 +174,37 @@
             </form>
         </section>
     </div>
+@endsection
+@section('js-files')
+<script defer>
+    let address = document.getElementById('address');
+    address.addEventListener('keyup', logKey);
+    function logKey() {
+            let newAdress = address.value.replace(/ /g, "%20");
+            let search ='https://api.tomtom.com/search/2/search/' + newAdress + '.json?countrySet=IT&lat=37.337&lon=-121.89&extendedPostalCodesFor=Str&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=SsllzLi6J5XLezFkwzq7gpR0xOCwBOzL&countrySet=Italia';
+            let request = new XMLHttpRequest(); // Create a request variable and assign a new XMLHttpRequest object to it.
+            request.open('GET', search); // Open a new connection, using the GET request on the URL endpoint
+            request.send();
+            if(address.value == ""){
+                        document.getElementById("results").classList.add("d-none");
+            }
+
+            let tips;
+            request.onload = async function () {
+                const data = JSON.parse(this.response);
+                for (let index = 0; index < 5; index++) {
+                    let id=index+1+"-result";
+                    let li=document.getElementById(id);
+                    if(data["results"][index]["address"]["freeformAddress"] != undefined && data["results"][index]["address"]["countryCode"] != undefined ){
+                        li.innerHTML = data["results"][index]["address"]["freeformAddress"] + " " +data["results"][index]["address"]["countryCode"];
+                    }
+                    li.addEventListener('click', function(){
+                        address.value = this.innerHTML;
+                        document.getElementById("results").classList.add("d-none");
+                    });
+                    document.getElementById("results").classList.remove("d-none");
+                }
+            }
+        }
+</script>
 @endsection
