@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+
 class RegisterController extends Controller
 {
     /*
@@ -49,10 +50,22 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone_n'=>['required', 'string','numeric'],
+            'userName'=>['required','unique:users']
+        ],[
+            'email.required' =>"devi inserire l'email ",
+            'email.max'=>"Il nome no può essere più di :max",
+            'email.unique'=>"Email e già registrata",
+            'password.confirmed'=>"La tua password non è esatta",
+            'password_confirmation.confirmed'=>"La password non è uguale",
+            'phone_n.numeric'=>"Inserisci il numero di tel",
+            'userName.required'=>"Inserisci il tuo Username",
+            'userName.unique'=>"questo username e già stato preso"
         ]);
     }
 
@@ -71,8 +84,8 @@ class RegisterController extends Controller
             'phone_n' => $data['phone_n'],
             'userName' => $data['userName'],
             'date_of_birth' => $data['date_of_birth'],
-            'profile_photo' => $data['profile_photo'],
-            /* 'user_address' => $data['user_address'], */
+
+
         ]);
     }
 }

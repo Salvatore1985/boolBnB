@@ -1,7 +1,6 @@
 @extends('layouts.createPage')
 
 @section('form-content')
-
     <form class="text-center" action="{{ route('user.apartments.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="col-12 mb-3">
@@ -19,7 +18,6 @@
                 </div>
             @enderror
         </div>
-
         <div class="col-12 mb-3">
             <label for="address" class="form-label">Inserisci la via<sup>*</sup></label>
             <input
@@ -35,7 +33,6 @@
                 </div>
             @enderror
         </div>
-
         <div class="col-12 mb-3">
             <label for="n_rooms" class="form-label">Inserisci il numero delle stanze<sup>*</sup></label>
             <input
@@ -51,16 +48,16 @@
                 </div>
             @enderror
         </div>
-
         <div class="col-12 mb-3">
             <label for="description" class="form-label">Inserisci la descrizione dell'appartamento<sup>*</sup></label>
             <textarea
                 rows="8"
-                class="form-control"
+                class="form-control  @error('description') is-invalid @enderror"
                 name="description"
                 id="description"
                 value="{{ old('description') }}">
-                    {{{ old('description') }}}
+                    {{-- da sistemare --}}
+                    {{-- {{{ old('description') }}} --}}
             </textarea>
             @error('description')
                 <div class="text-start invalid-feedback">
@@ -68,7 +65,6 @@
                 </div>
             @enderror
         </div>
-
         <div class="col-12 mb-3">
             <label for="sqr_meters" class="form-label">Inserisci i metri dell'appartamento<sup>*</sup></label>
             <input
@@ -76,7 +72,6 @@
                 class="form-control @error('sqr_meters') is-invalid @enderror"
                 id="sqr_meters"
                 name="sqr_meters"
-                id="sqr_meters"
                 value="{{ old('sqr_meters') }}"
             />
             @error('sqr_meters')
@@ -86,12 +81,12 @@
             @enderror
         </div>
 
+        
         <div class="col-12 mb-3">
             <label for="n_beds" class="form-label">Inserisci numero dei letti<sup>*</sup></label>
             <input
                 type="text"
                 class="form-control @error('n_beds') is-invalid @enderror"
-                id="n_beds"
                 name="n_beds"
                 id="n_beds"
                 value="{{ old('n_beds') }}"
@@ -102,7 +97,6 @@
                 </div>
             @enderror
         </div>
-
         <div class="col-12 mb-3">
             <label for="n_bathrooms" class="form-label">Inserisci il numero dei bagni<sup>*</sup></label>
             <input
@@ -110,7 +104,6 @@
                 class="form-control @error('n_bathrooms') is-invalid @enderror"
                 id="n_bathrooms"
                 name="n_bathrooms"
-                id="n_bathrooms"
                 value="{{ old('n_bathrooms') }}"
             />
             @error('n_bathrooms')
@@ -119,13 +112,11 @@
                 </div>
             @enderror
         </div>
-
         <div class="col-12 mb-3">
             <label for="n_floor" class="form-label">Inserisci il numero dei piani<sup>*</sup></label>
             <input
                 type="text"
                 class="form-control @error('n_floor') is-invalid @enderror"
-                id="n_floor"
                 name="n_floor"
                 id="n_floor"
                 value="{{ old('n_floor') }}"
@@ -136,13 +127,11 @@
                 </div>
             @enderror
         </div>
-
         <div class="col-12 mb-3">
             <label for="price" class="form-label">Inserisci il prezzo<sup>*</sup></label>
             <input
                 type="text"
                 class="form-control @error('price') is-invalid @enderror"
-                id="price"
                 name="price"
                 id="price"
                 value="{{ old('price') }}"
