@@ -7,7 +7,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm height-header-form">
             <div class="container">
                 <img id="logo" src="https://static.cdnlogo.com/logos/a/94/airbnb.png" alt="Logo">
-                <a class="navbar-brand" href="@if(Auth::user()) {{ route('user.home') }} @else {{url('/')}}@endif">
+                <a class="navbar-brand" href="{{url('/')}}">
                     BoolBnB
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
