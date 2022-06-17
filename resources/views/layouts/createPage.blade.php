@@ -3,26 +3,13 @@
 @include('layouts.partials.head')
 
 <body>
-    <div class="container">
-        <div class="row justify-content-center">
-            {{-- @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>
-                                {{$error}}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif --}}
-
-            <div class="col-6 py-3">
-
-                @yield('form-content')
-            </div>
+    {{-- <div class="container-fluid background-image-form ">
+        <div class="row ">
+            <div class="col-12 py-3"> --}}
+    @yield('form-content')
+    {{-- </div>
         </div>
-    </div>
+    </div> --}}
     @yield('script-content')
 </body>
 
