@@ -21,7 +21,9 @@ use Illuminate\Support\Facades\Mail;
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', function(){
+    return view('guests.home');
+});
 
 Route::middleware('auth')
 ->namespace('User')
@@ -46,6 +48,6 @@ Route::post('/contact', 'guest\ContactController@contactMailSender')->name('gues
 Route::get('/thanks', 'guest\ContactController@thanks')->name('guest.thanks');
 
 Route::get('{any?}',function(){
-    return view('guests.home');
+    return view('404');
 })->where('any','.*');
 
