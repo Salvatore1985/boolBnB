@@ -173,7 +173,7 @@
         </section>
     </div>
 @endsection
-@section('script-content')
+@section('js-files')
 <script defer>
     let address = document.getElementById('address');
     address.addEventListener('keyup', logKey);
