@@ -10,7 +10,7 @@ use App\Models\Service;
 use App\Models\Image;
 
 use Illuminate\Support\Facades\Storage;
- 
+
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Rule;
@@ -60,7 +60,7 @@ class ApartmentsController extends Controller
                 'n_bathrooms' => 'required|numeric|min:1',
                 'sqr_meters' => 'required|numeric|min:1',
                 'address' => 'required|string',
-                'service' => 'required',
+                /* 'service' => 'required', */
                 'price' => 'required|numeric|min:1',
             ] ,
             [
@@ -83,7 +83,7 @@ class ApartmentsController extends Controller
                 'address.required'=>'Devi il numero dei mq',
                 'price.required'=>'Devi il numero il prezzo',
                 'price.min'=>'Il prezzo non può essere inferiore a :min €',
-                'images' => 'required'
+               /*  'images' => 'required' */
             ]
         );
 
