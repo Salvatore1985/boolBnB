@@ -6,7 +6,7 @@
             <form class="text-center bg-light rounded p-5 height-main-form " action="{{ route('user.apartments.store') }}"
                 method="POST" enctype="multipart/form-data">
                 @csrf
-
+                {{-- Apartment Title --}}
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label for="title" class="form-label">Titolo dell' appartamento</label>
@@ -18,6 +18,7 @@
                             </div>
                         @enderror
                     </div>
+                    {{-- Apartment Address --}}
                     <div class="form-group col-md-6">
                         <label for="address" class="form-label">La via</label>
                         <input type="text" class="form-control @error('address') is-invalid @enderror" name="address"
@@ -28,6 +29,7 @@
                             </div>
                         @enderror
                     </div>
+                    {{-- Apartment n_floor --}}
                     <div class="form-group col-md-3">
                         <label for="n_floor" class="form-label"> Numero dei piani</label>
                         <input type="text" class="form-control @error('title') is-invalid @enderror" id="n_floor"
@@ -37,9 +39,9 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                        </div>
                     </div>
-                </div>
-                {{--  --}}
+                {{-- Apartment n_rooms --}}
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label for="n_rooms" class="form-label "> Numero delle stanze</label>
@@ -52,6 +54,7 @@
                             </div>
                         @enderror
                     </div>
+                    {{-- Apartment srq_meters --}}
                     <div class="form-group col-md-6">
                         <label for="sqr_meters" class="form-label">Metri dell'appartamento</label>
                         <input type="text" class="form-control @error('sqr_meters') is-invalid @enderror" id="sqr_meters"
@@ -62,6 +65,7 @@
                             </div>
                         @enderror
                     </div>
+                    {{-- Apartment n_beds --}}
                     <div class="form-group col-md-3">
                         <label for="n_beds" class="form-label">Numero dei letti</label>
                         <input type="text" class="form-control @error('n_beds') is-invalid @enderror" name="n_beds"
@@ -73,10 +77,12 @@
                         @enderror
                     </div>
                 </div>
-                {{--  --}}
-                <div class="form-group col-md-3">
-
+                {{-- Apartment Images --}}
+                <div class="input-group mb-3">
+                    <span class="input-group-text">post image</span>
+                    <input type="file" id="images" name="images">
                 </div>
+                {{-- Apartment Description --}}
                 <div class="form-group ">
                     <label for="description" class="form-label">Descrizione dell'appartamento</label>
                     <textarea rows="1.5" class="form-control  @error('description') is-invalid @enderror" name="description"
@@ -89,6 +95,7 @@
                         </div>
                     @enderror
                 </div>
+                {{-- Apartment n_bathrooms --}}
                 <div class="form-row">
                     <div class="form-group col-md-3">
                         <label for="n_bathrooms" class="form-label">Il numero dei bagni</label>
@@ -101,6 +108,7 @@
                             </div>
                         @enderror
                     </div>
+                    {{-- Apartment Services --}}
                     <div class="form-group col-md-3">
                         <div class="col-sm-2">Servizi</div>
                         <div class="col-sm-10 text-left h-50 overflow-auto">
@@ -115,6 +123,7 @@
                             @endforeach
                         </div>
                     </div>
+                    {{-- Apartment visibility --}}
                     <fieldset class="form-group col-md-3">
                         <div class="row">
                             <div class="col-sm-10">
@@ -136,6 +145,7 @@
                             </div>
                         </div>
                     </fieldset>
+                    {{-- Apartment price --}}
                     <div class="form-group col-md-3">
                         <label for="price" class="form-label">Inserisci il prezzo</label>
                         <input type="text" class="form-control @error('price') is-invalid @enderror" name="price"

@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Apartment;
 use App\Models\Service;
+use App\Models\Image;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Rule;
 
@@ -32,8 +34,6 @@ class ApartmentsController extends Controller
     {
 
         $apartment= Apartment::all();
-
-
         $services = Service::all();
         return view('User.apartments.create', ['services' => $services, 'apartment' => $apartment]);
     }
@@ -80,7 +80,7 @@ class ApartmentsController extends Controller
                 'address.required'=>'Devi il numero dei mq',
                 'price.required'=>'Devi il numero il prezzo',
                 'price.min'=>'Il prezzo non può essere inferiore a :min €',
-
+                'images' => 'required'
             ]
         );
 
@@ -88,13 +88,7 @@ class ApartmentsController extends Controller
         // ***********
         $data = $request->all();
         $data['user_id'] = Auth::id();
-
-
-
-
         $address = $data['address'];
-
-
         // TOMTOM api
         $response = Http::get("https://api.tomtom.com/search/2/geocode/$address.json", [
             'key' => 'SsllzLi6J5XLezFkwzq7gpR0xOCwBOzL',
@@ -107,10 +101,18 @@ class ApartmentsController extends Controller
         // creation new apartment
         $newApartment = new Apartment();
         $newApartment->fill($data);
-        //$newApartment->is_visible = true;
         $newApartment->save();
-        // $service= Service::find($data['service_']);
-        $newApartment->services()->attach($data['service']);
+        if (array_key_exists('services', $data))
+        $apartment->services()->attach($data['services']);
+
+
+        // creating new Images
+        if(array_key_exists('images', $data))
+        $newImage = new Image();
+        $newImage->apartment_id = $newApartment->id;
+        $newImage->link= Storage::put('upload', $data['images']);
+        $newImage->save();
+
         return redirect()->route('user.apartments.show', $newApartment->id)->with('message', $data['title']. " è stato pubblicato con successo.");
     }
 
@@ -135,6 +137,7 @@ class ApartmentsController extends Controller
      */
     public function edit($id, Service $services)
     {
+
         $services = Service::all();
         $apartment = Apartment::findOrFail($id);
         return view('user.apartments.edit', ['apartment' => $apartment, 'services' => $services]);
