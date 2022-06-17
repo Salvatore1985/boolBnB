@@ -22,9 +22,9 @@ class CreateApartmentsTable extends Migration
             $table->tinyInteger('n_beds')->default(1);
             $table->tinyInteger('n_bathrooms')->default(1);
             $table->tinyInteger('n_floor')->nullable();
-            $table->float('lat', 6, 4);
-            $table->float('long', 6, 4);
-            $table->string('title',50)->nullable();
+            $table->string('lat');
+            $table->string('long');
+            $table->string('title',100)->nullable();
             $table->boolean('is_visible');
             $table->float('price', 8, 2)->nullable(true);
             $table->timestamps();

@@ -1,10 +1,10 @@
 @extends('layouts.createPage')
 
 @section('form-content')
-    <div class="background-image-form height-main-form p-3 h-100">
+    <div class=" p-3 ">
         <section class="container ">
-            <form class="text-center bg-light rounded p-5 height-main-form " action="{{ route('user.apartments.store') }}"
-                method="POST" enctype="multipart/form-data">
+            <form class="text-center bg-light  rounded p-5" action="{{ route('user.apartments.store') }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-row">
