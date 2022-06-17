@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="card mb-3 rounded" style="max-width: 540px">
+    <div class="card mb-3 rounded" style="max-width: 540px" v-if="apartment.is_visible===1">
       <div class="row no-gutters">
         <div class="col-md-4">
           <img
@@ -10,13 +10,14 @@
           />
         </div>
         <!--   <pre class="text-darger">{{ apartment.images[0].link }}</pre> -->
-        <div class="col-md-8">
-          <div class="card-body">
+        <div class="col-md-8" v-if="apartment.is_visible===1">
+          <div class="card-body" >
             <h5 class="card-title">{{ apartment.title }}</h5>
             <p class="card-text">
               {{ apartment.description }}
             </p>
             <pre>numeri letti {{ apartment.n_beds }}</pre>
+            <pre>visibilità {{ apartment.is_visible }}</pre>
             <p class="card-text">
               <small class="text-muted"
                 >Creato il: {{ getFormattedDate(apartment.created_at) }}</small
@@ -26,6 +27,7 @@
         </div>
       </div>
     </div>
+          <div v-else></div>
   </div>
 </template>
 
