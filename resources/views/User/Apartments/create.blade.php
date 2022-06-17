@@ -29,10 +29,10 @@
                         @enderror
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="title" class="form-label"> Titolo dell' appartamento</label>
-                        <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
-                            name="title" placeholder="* campo richiesto" value="{{ old('title') }}" />
-                        @error('title')
+                        <label for="n_floor" class="form-label"> Numero dei piani</label>
+                        <input type="text" class="form-control @error('title') is-invalid @enderror" id="n_floor"
+                            name="n_floor" placeholder="* campo richiesto" value="{{ old('n_floor') }}" />
+                        @error('n_floor')
                             <div class="text-start invalid-feedback">
                                 {{ $message }}
                             </div>
