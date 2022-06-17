@@ -21,7 +21,7 @@
             @enderror
         </div>
         {{-- campo indirizzo --}}
-        <div class="col-12 mb-3">
+        {{-- <div class="col-12 mb-3">
             <label for="address" class="form-label">Inserisci la via</label>
             <input
                 type="text"
@@ -31,11 +31,33 @@
                 placeholder="* campo richiesto"
                 value="{{ old('address') }}"
             />
+
+            <button id="address-search">
+                Cerca il tuo indirizzo
+            </button>
             @error('address')
                 <div class="text-start invalid-feedback">
                     {{ $message }}
                 </div>
             @enderror
+        </div> --}}
+        {{-- testing --}}
+        <div class="col-12">
+            <label for="address">inserisci la via:</label>
+            <input class="w-100" type="text" name="address" id="address" value="{{ old('address') ?? ''}}" required>
+            @error('address')
+                <div class="alert alert-danger mt-2">
+                    Il nome della via
+                    {{ $message }}
+                </div>
+            @enderror
+                <ul class="list-group d-none" id="results">
+                    <li class="list-group-item active" id="1-result"></li>
+                    <li class="list-group-item active" id="2-result"></li>
+                    <li class="list-group-item active" id="3-result"></li>
+                    <li class="list-group-item active" id="4-result"></li>
+                    <li class="list-group-item active" id="5-result"></li>
+                </ul>
         </div>
         {{-- campo stanze --}}
         <div class="col-12 mb-3">
@@ -189,4 +211,31 @@
         </div>
         <button type="submit" class="btn btn-primary">Pubblica il tuo appartamento</button>
     </form>
+@endsection
+@section('script-content')
+<script defer>
+    let address = document.getElementById('address');
+    address.addEventListener('keyup', logKey);
+    function logKey() {
+            let newAdress = address.value.replace(/ /g, "%20");
+            let search ='https://api.tomtom.com/search/2/search/' + newAdress + '.json?countrySet=IT&lat=37.337&lon=-121.89&extendedPostalCodesFor=Str&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=SsllzLi6J5XLezFkwzq7gpR0xOCwBOzL&countrySet=Italia';
+            let request = new XMLHttpRequest(); // Create a request variable and assign a new XMLHttpRequest object to it.
+            request.open('GET', search); // Open a new connection, using the GET request on the URL endpoint
+            request.send();
+
+            let tips;
+            request.onload = async function () {
+                const data = JSON.parse(this.response);
+                for (let index = 0; index < 5; index++) {
+                    let id=index+1+"-result";
+                    let li=document.getElementById(id);
+                    if(data["results"][index]["address"]["freeformAddress"] != undefined && data["results"][index]["address"]["countryCode"] != undefined ){
+                        li.innerHTML = data["results"][index]["address"]["freeformAddress"] + " " +data["results"][index]["address"]["countryCode"];
+                    }
+                    document.getElementById("results").classList.remove("d-none");
+                    // document.getElementById("results").classList.add("d-none");
+                }
+            }
+        }
+</script>
 @endsection
