@@ -30,7 +30,7 @@
                         @enderror
                     </div> --}}
                     {{-- testing --}}
-        <div class="col-12">
+        <div class="form-group col-md-6">
             <label for="address">inserisci la via:</label>
             <input class="w-100" type="text" name="address" id="address" value="{{ old('address') ?? ''}}" required>
             @error('address')
@@ -173,7 +173,7 @@
         </section>
     </div>
 @endsection
-@section('script-content')
+@section('js-files')
 <script defer>
     let address = document.getElementById('address');
     address.addEventListener('keyup', logKey);
@@ -183,6 +183,9 @@
             let request = new XMLHttpRequest(); // Create a request variable and assign a new XMLHttpRequest object to it.
             request.open('GET', search); // Open a new connection, using the GET request on the URL endpoint
             request.send();
+            if(address.value == ""){
+                        document.getElementById("results").classList.add("d-none");
+            }
 
             let tips;
             request.onload = async function () {
@@ -193,8 +196,11 @@
                     if(data["results"][index]["address"]["freeformAddress"] != undefined && data["results"][index]["address"]["countryCode"] != undefined ){
                         li.innerHTML = data["results"][index]["address"]["freeformAddress"] + " " +data["results"][index]["address"]["countryCode"];
                     }
+                    li.addEventListener('click', function(){
+                        address.value = this.innerHTML;
+                        document.getElementById("results").classList.add("d-none");
+                    });
                     document.getElementById("results").classList.remove("d-none");
-                    // document.getElementById("results").classList.add("d-none");
                 }
             }
         }
