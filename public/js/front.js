@@ -55663,7 +55663,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\final-project\boolBnB\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Boolean\boolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
