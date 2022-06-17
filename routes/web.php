@@ -25,6 +25,10 @@ Route::get('/', function(){
     return view('guests.home');
 });
 
+Route::get('/home', function(){
+    return view('User.home');
+})->name('user.home');
+
 Route::middleware('auth')
 ->namespace('User')
 ->name('user.')

@@ -1,10 +1,9 @@
 <template>
     <div>
+        <h1>Questo è la FRONT OFFICE</h1>
         <Header/>
         <Main/>
         <Footer/>
-        
-        
     </div>
 </template>
 
@@ -21,7 +20,7 @@ export default {
     }
 }
 </script>
-    
+
 
 <style lang="scss">
 

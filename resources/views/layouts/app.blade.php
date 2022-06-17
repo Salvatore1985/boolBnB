@@ -3,10 +3,12 @@
 @include('layouts.partials.head')
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <header class="height-header-form">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm height-header-form">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <img id="logo" src="https://static.cdnlogo.com/logos/a/94/airbnb.png" alt="Logo">
+                <a class="navbar-brand" href="{{url('/')}}">
+                    BoolBnB
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -14,9 +16,19 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
+                    @if (Auth::user())
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.home') }}">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.apartments.index') }}">I tuoi Appartmenti</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.apartments.create') }}">Diventa Host</a>
+                            </li>
+                        </ul>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -53,11 +65,14 @@
                 </div>
             </div>
         </nav>
+    </header>
+</div>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+
+    <main class="py-4">
+        @yield('content')
+    </main>
+
     @yield('js-files')
 </body>
 </html>
