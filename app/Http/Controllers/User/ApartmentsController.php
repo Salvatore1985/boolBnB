@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\Image;
+
 use Illuminate\Support\Facades\Storage;
+ 
+
 use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Rule;
 
@@ -122,10 +125,11 @@ class ApartmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Image $images)
     {
         $apartment = Apartment::findOrFail($id);
-        return view('user.apartments.show', ['apartment' => $apartment]);
+        $images = Image::where($images->apartment_id, $id);
+        return view('user.apartments.show', ['apartment' => $apartment, 'images' => $images]);
     }
 
     /**
