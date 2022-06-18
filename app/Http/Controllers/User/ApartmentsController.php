@@ -66,6 +66,7 @@ class ApartmentsController extends Controller
             [
                 /* 'required' => 'Devi riempire il campo :attribute', */
                 'title.required'=>'Devi inserire il titolo',
+                'image.*' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'title.min'=>'Il minimo dei carattere del titolo deve essere di :min',
                 'title.unique'=>"Il titolo ''$request->title'' esiste già ",
                 'description.required'=>'Devi inserire la descrizione',
@@ -83,7 +84,7 @@ class ApartmentsController extends Controller
                 'address.required'=>'Devi il numero dei mq',
                 'price.required'=>'Devi il numero il prezzo',
                 'price.min'=>'Il prezzo non può essere inferiore a :min €',
-               /*  'images' => 'required' */
+                'images' => 'required'
             ]
         );
 
@@ -110,11 +111,15 @@ class ApartmentsController extends Controller
 
 
         // creating new Images
-        if(array_key_exists('images', $data))
-        $newImage = new Image();
-        $newImage->apartment_id = $newApartment->id;
-        $newImage->link= Storage::put('upload', $data['images']);
-        $newImage->save();
+        $images=array();
+        if($files=$request->file('images')){
+            foreach($files as $file){
+                $newImage = new Image();
+                $newImage->apartment_id = $newApartment->id;
+                $newImage->link=Storage::put('uploads',$file);
+                $newImage->save();
+            }
+        }
 
         return redirect()->route('user.apartments.show', $newApartment->id)->with('message', $data['title']. " è stato pubblicato con successo.");
     }
