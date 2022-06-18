@@ -219,6 +219,15 @@ class ApartmentsController extends Controller
         else
         $apartment->services()->sync($data['services']);
         $apartment->save();
+        $images=array();
+        if($files=$request->file('images')){
+            foreach($files as $file){
+                $newImage = new Image();
+                $newImage->apartment_id = $apartment->id;
+                $newImage->link=Storage::put('uploads',$file);
+                $newImage->save();
+            }
+        }
         return redirect()->route('user.apartments.show', $apartment->id)->with('message', $data['title']. " è stato pubblicato con successo.");
     }
 

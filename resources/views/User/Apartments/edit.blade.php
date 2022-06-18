@@ -49,7 +49,11 @@
                                 </div>
                             @enderror
                         </div>
-
+                        {{-- Apartment images --}}
+                        <div class="col-12">
+                            <label for="image[]">inserisci altre foto del tuo appartamento</label>
+                            <input type="file" class="form-control" name="images[]" id="image[]" multiple>
+                        </div>
                         <div class="form-group col-md-6">
                             <label for="address">inserisci la via:</label>
                             <input class="w-100" type="text" name="address" id="address" value="{{ old('address', $apartment->address) }}" required>
