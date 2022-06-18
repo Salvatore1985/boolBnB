@@ -5,8 +5,8 @@
     background-repeat: repeat;
     background-position: center;
     background-size: cover;
-
-} */
+}
+*/
 
 img#logo {
   height: 5rem;
@@ -22,6 +22,28 @@ img#logo {
 
 .border_black {
   border: 1px solid black;
+}
+
+.my-rounded-1 {
+  border-radius: 1rem;
+}
+
+.img-apartment {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 230px;
+  width: 350px;
+}
+
+.myp {
+  height: 50px;
+  overflow: auto;
+}
+
+.avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
 }
 
 /*!

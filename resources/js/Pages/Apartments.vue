@@ -1,26 +1,30 @@
 <template>
   <section id="apartiment-list">
-    <h2>I miei appartamenti</h2>
+    <!-- <h2>I miei appartamenti</h2> -->
 
-    <TomTomMap />
-    <Search @search="search" />
+    <!--  <TomTomMap /> -->
+    <!-- <Search @search="search" /> -->
     <Loader v-if="isLoading" />
     <div v-else>
-      <Pagination
+      <!--   <Pagination
         :currentPage="pagination.currentPage"
         :lastPage="pagination.lastPage"
         @onPageChange="changePage"
-      />
-      <Apartment
-        v-for="apartment in apartments"
-        :key="apartment.index"
-        :apartment="apartment"
-      />
-      <Pagination
+      /> -->
+      <section class="container">
+        <div class="row">
+          <Apartment
+            v-for="apartment in apartments"
+            :key="apartment.index"
+            :apartment="apartment"
+          />
+        </div>
+      </section>
+      <!--    <Pagination
         :currentPage="pagination.currentPage"
         :lastPage="pagination.lastPage"
         @onPageChange="getApartments(page)"
-      />
+      /> -->
     </div>
   </section>
 </template>
@@ -29,7 +33,7 @@
 import Pagination from "../components/Pagination.vue";
 import Loader from "../components/Loader.vue";
 import Apartment from "../components/Apartment.vue";
-import TomTomMap from "../components/TomTomMap.vue";
+/* import TomTomMap from "../components/TomTomMap.vue"; */
 import Search from "../components/Search.vue";
 
 export default {
@@ -38,7 +42,7 @@ export default {
     Pagination,
     Loader,
     Apartment,
-    TomTomMap,
+    /* TomTomMap, */
     Search,
   },
   data() {
