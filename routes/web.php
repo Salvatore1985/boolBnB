@@ -35,8 +35,8 @@ Route::middleware('auth')
 ->prefix('user')
 ->group(function () {
     Route::resource('apartments', ApartmentsController::class);
+    Route::delete('/image/{id}', 'ImagesController@destroy')->name("image.destroy");
 });
-
 
 Route::get('/send-mail', function () {
 

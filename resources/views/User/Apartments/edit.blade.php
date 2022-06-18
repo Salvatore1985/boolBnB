@@ -3,6 +3,35 @@
     <section>
         <div class="background-image-form height-main-form p-3 h-100">
             <section class="container ">
+                <div class="col-12 d-flex flex-wrap mb-4">
+                    @foreach ($apartment->images as $image)
+                    <div class="col-4 p-1 position-relative">
+                        <div class="delete position-absolute">
+                            <form action="{{route('user.image.destroy', $image)}}" method="POST" class="image-destroyer" onclick="return confirm('Sei sicuro di voler eliminare la seguente foto?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="rounded-1 delete">
+                                    &#10006;
+                                </button>
+                            </form>
+                        </div>
+                        {{--  --}}
+                        {{-- <form action="{{route('user.apartments.destroy', $apartment)}}" method="POST" class="apartment-destroyer" apartment-name="{{ucfirst($apartment->title)}}">
+                            @csrf
+                            @method('DELETE')
+                                <button class="btn btn-md btn-delete btn-outline-danger" type="submit">
+
+                                </button>
+                        </form> --}}
+                        {{--  --}}
+                        @if (str_starts_with($apartment->image, 'https://') || str_starts_with($apartment->image, 'http://'))
+                            <img class="rounded-1" src="{{$image->link}}" alt="apartment img" >
+                        @else
+                            <img class="rounded-1" src="{{ asset('/storage') . '/' . $image->link }}" alt="">
+                        @endif
+                    </div>
+                    @endforeach
+                </div>
                 <form class="text-center bg-light rounded p-5 height-main-form "
                     action="{{ route('user.apartments.update', $apartment->id) }}" method="POST"
                     enctype="multipart/form-data">
@@ -20,7 +49,11 @@
                                 </div>
                             @enderror
                         </div>
-
+                        {{-- Apartment images --}}
+                        <div class="col-12">
+                            <label for="image[]">inserisci altre foto del tuo appartamento</label>
+                            <input type="file" class="form-control" name="images[]" id="image[]" multiple>
+                        </div>
                         <div class="form-group col-md-6">
                             <label for="address">inserisci la via:</label>
                             <input class="w-100" type="text" name="address" id="address" value="{{ old('address', $apartment->address) }}" required>
