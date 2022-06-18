@@ -87,9 +87,11 @@
                     </div>
                 </div>
                 {{-- Apartment Images --}}
-                <div class="input-group mb-3">
-                    <span class="input-group-text">post image</span>
-                    <input type="file" id="images" name="images" accept="image/png, image/jpeg" multiple>
+                <div class="col-12">
+                    <div class="col-12">
+                        <label for="image[]">inserisci le foto del tuo appartamento</label>
+                        <input type="file" class="form-control" name="images[]" id="image[]"  multiple>
+                    </div>
                 </div>
                 {{-- Apartment Description --}}
                 <div class="form-group ">
