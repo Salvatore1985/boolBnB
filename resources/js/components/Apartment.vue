@@ -22,37 +22,6 @@
       </div>
       <h5 class="px-3">{{ apartment.price }} €/Notte</h5>
     </div>
-
-    <!--   <div class="container">
-    <div class="card mb-3 rounded" style="max-width: 540px" v-if="apartment.is_visible===1">
-      <div class="row no-gutters">
-        <div class="col-md-4">
-          <img
-            class="w-100 h-100 rounded-left"
-            :src="apartment.images[0].link"
-            :alt="'img to' + apartment.title"
-          />
-        </div>
-
-        <div class="col-md-8" v-if="apartment.is_visible===1">
-          <div class="card-body" >
-            <h5 class="card-title">{{ apartment.title }}</h5>
-            <p class="card-text">
-              {{ apartment.description }}
-            </p>
-            <pre>numeri letti {{ apartment.n_beds }}</pre>
-            <pre>visibilità {{ apartment.is_visible }}</pre>
-            <p class="card-text">
-              <small class="text-muted"
-                >Creato il: {{ getFormattedDate(apartment.created_at) }}</small
-              >
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-          <div v-else></div>
-  </div> -->
   </div>
 </template>
 

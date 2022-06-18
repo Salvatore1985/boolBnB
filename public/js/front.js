@@ -2046,37 +2046,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderIndex",
   props: ["apartment"],
@@ -38710,21 +38679,45 @@ var render = function () {
     [
       _vm.isLoading
         ? _c("Loader")
-        : _c("div", [
-            _c("section", { staticClass: "container" }, [
-              _c(
-                "div",
-                { staticClass: "row" },
-                _vm._l(_vm.apartments, function (apartment) {
-                  return _c("Apartment", {
-                    key: apartment.index,
-                    attrs: { apartment: apartment },
-                  })
-                }),
-                1
-              ),
-            ]),
-          ]),
+        : _c(
+            "div",
+            [
+              _c("Pagination", {
+                attrs: {
+                  currentPage: _vm.pagination.currentPage,
+                  lastPage: _vm.pagination.lastPage,
+                },
+                on: { onPageChange: _vm.changePage },
+              }),
+              _vm._v(" "),
+              _c("section", { staticClass: "container" }, [
+                _c(
+                  "div",
+                  { staticClass: "row" },
+                  _vm._l(_vm.apartments, function (apartment) {
+                    return _c("Apartment", {
+                      key: apartment.index,
+                      attrs: { apartment: apartment },
+                    })
+                  }),
+                  1
+                ),
+              ]),
+              _vm._v(" "),
+              _c("Pagination", {
+                attrs: {
+                  currentPage: _vm.pagination.currentPage,
+                  lastPage: _vm.pagination.lastPage,
+                },
+                on: {
+                  onPageChange: function ($event) {
+                    return _vm.getApartments(_vm.page)
+                  },
+                },
+              }),
+            ],
+            1
+          ),
     ],
     1
   )

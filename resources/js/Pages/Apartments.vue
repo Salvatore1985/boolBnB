@@ -6,11 +6,11 @@
     <!-- <Search @search="search" /> -->
     <Loader v-if="isLoading" />
     <div v-else>
-      <!--   <Pagination
+      <Pagination
         :currentPage="pagination.currentPage"
         :lastPage="pagination.lastPage"
         @onPageChange="changePage"
-      /> -->
+      />
       <section class="container">
         <div class="row">
           <Apartment
@@ -20,11 +20,11 @@
           />
         </div>
       </section>
-      <!--    <Pagination
+      <Pagination
         :currentPage="pagination.currentPage"
         :lastPage="pagination.lastPage"
         @onPageChange="getApartments(page)"
-      /> -->
+      />
     </div>
   </section>
 </template>
