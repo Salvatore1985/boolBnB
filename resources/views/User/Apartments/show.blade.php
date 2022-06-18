@@ -5,18 +5,22 @@
 
 @section('form-content')
 
-    @dump($images)
-
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <h1 class="display-1">{{$apartment->title}}</h1>
                 <h2>{{$apartment->address}}</h2>
             </div>
-            <div class="col-12">
-                {{-- le immagini qui! --}}
-                {{--{{$apartment->image}}--}}
+            @foreach ($apartment->images as $image)
+            <div class="col-8 show-img mb-3">
+                @if (str_starts_with($image->link, 'https://') || str_starts_with($image->link, 'http://'))
+                    <img class="rounded-1 w-100" src="{{ $image->link }}" alt="{{ $apartment->title }}">
+                @else
+                    <img class="rounded-1 w-100" src="{{ asset('/storage') . '/' . $image->link }}" alt="{{ $apartment->title }}">
+                @endif
             </div>
+
+            @endforeach
             <div class="col-8">
                 <p>{{$apartment->description}}</p>
 
@@ -27,6 +31,7 @@
                     <li class="list-group-item">N. Bagni: {{$apartment->n_bathrooms}}</li>
                     <li class="list-group-item">N. Letti: {{$apartment->n_beds}}</li>
                     <li class="list-group-item">N. Price: {{$apartment->price}}</li>
+
                 </ul>
 
             </div>

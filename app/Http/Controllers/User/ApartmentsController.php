@@ -133,8 +133,8 @@ class ApartmentsController extends Controller
     public function show($id, Image $images)
     {
         $apartment = Apartment::findOrFail($id);
-        $images = Image::where($images->apartment_id, $id);
-        return view('user.apartments.show', ['apartment' => $apartment, 'images' => $images]);
+        // $images = Image::where($images->apartment_id, $id);
+        return view('user.apartments.show', ['apartment' => $apartment]);
     }
 
     /**

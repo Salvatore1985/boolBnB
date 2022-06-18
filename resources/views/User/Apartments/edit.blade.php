@@ -15,15 +15,6 @@
                                 </button>
                             </form>
                         </div>
-                        {{--  --}}
-                        {{-- <form action="{{route('user.apartments.destroy', $apartment)}}" method="POST" class="apartment-destroyer" apartment-name="{{ucfirst($apartment->title)}}">
-                            @csrf
-                            @method('DELETE')
-                                <button class="btn btn-md btn-delete btn-outline-danger" type="submit">
-
-                                </button>
-                        </form> --}}
-                        {{--  --}}
                         @if (str_starts_with($apartment->image, 'https://') || str_starts_with($apartment->image, 'http://'))
                             <img class="rounded-1" src="{{$image->link}}" alt="apartment img" >
                         @else
@@ -54,6 +45,7 @@
                             <label for="image[]">inserisci altre foto del tuo appartamento</label>
                             <input type="file" class="form-control" name="images[]" id="image[]" multiple>
                         </div>
+                        {{-- Apartment Address --}}
                         <div class="form-group col-md-6">
                             <label for="address">inserisci la via:</label>
                             <input class="w-100" type="text" name="address" id="address" value="{{ old('address', $apartment->address) }}" required>
