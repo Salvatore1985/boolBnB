@@ -2068,6 +2068,13 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return "".concat(day, "/").concat(month, "/").concat(year);
+    },
+    limitOverview: function limitOverview(apartment) {
+      if (apartment.description.length > 150) {
+        return apartment.description.slice(0, 100) + "...";
+      } else {
+        return apartment.description;
+      }
     }
   },
   created: function created() {}
@@ -38762,8 +38769,8 @@ var render = function () {
         _vm._v(_vm._s(_vm.apartment.title)),
       ]),
       _vm._v(" "),
-      _c("p", { staticClass: "card-text myp" }, [
-        _vm._v("\n    " + _vm._s(_vm.apartment.description) + "\n  "),
+      _c("p", { staticClass: "card-text" }, [
+        _vm._v("\n    " + _vm._s(_vm.limitOverview(_vm.apartment)) + "\n  "),
       ]),
       _vm._v(" "),
       _c("pre", [

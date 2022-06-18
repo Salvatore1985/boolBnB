@@ -7,8 +7,8 @@
     />
     <h6 class="py-2">stelline</h6>
     <h5 class="card-title">{{ apartment.title }}</h5>
-    <p class="card-text myp">
-      {{ apartment.description }}
+    <p class="card-text">
+      {{ limitOverview(apartment) }}
     </p>
     <pre>Creato il: {{ getFormattedDate(apartment.created_at) }}</pre>
     <div class="d-flex justify-content-between">
@@ -45,6 +45,13 @@ export default {
         month = "0" + month;
       }
       return `${day}/${month}/${year}`;
+    },
+    limitOverview(apartment) {
+      if (apartment.description.length > 150) {
+        return apartment.description.slice(0, 100) + "...";
+      } else {
+        return apartment.description;
+      }
     },
   },
   created() {},
