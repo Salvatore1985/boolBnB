@@ -15,10 +15,10 @@
                                 </button>
                             </form>
                         </div>
-                        @if (str_starts_with($apartment->image, 'https://') || str_starts_with($apartment->image, 'http://'))
-                            <img class="rounded-1" src="{{$image->link}}" alt="apartment img" >
+                        @if (str_starts_with($image->link, 'https://') || str_starts_with($image->link, 'http://'))
+                            <img class="rounded-1 w-100" src="{{ $image->link }}" alt="{{ $apartment->title }}">
                         @else
-                            <img class="rounded-1" src="{{ asset('/storage') . '/' . $image->link }}" alt="">
+                            <img class="rounded-1 w-100" src="{{ asset('/storage') . '/' . $image->link }}" alt="{{ $apartment->title }}">
                         @endif
                     </div>
                     @endforeach
