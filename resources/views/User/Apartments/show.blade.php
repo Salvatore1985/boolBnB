@@ -31,7 +31,15 @@
                     <li class="list-group-item">N. Bagni: {{$apartment->n_bathrooms}}</li>
                     <li class="list-group-item">N. Letti: {{$apartment->n_beds}}</li>
                     <li class="list-group-item">N. Price: {{$apartment->price}}</li>
+                </ul>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        servizi:
+                        @foreach ($apartment->services as $service)
+                            <pre class="me-2">{{$service->name}}</pre>
+                        @endforeach
 
+                    </li>
                 </ul>
 
             </div>
