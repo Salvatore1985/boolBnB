@@ -2046,6 +2046,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderIndex",
   props: ["apartment"],
@@ -38755,13 +38770,20 @@ var render = function () {
     "div",
     { staticClass: "col-md-6 col-lg-4 col-sm-12 justify-content-between py-4" },
     [
-      _c("img", {
-        staticClass: "my-rounded-1 img-apartment",
-        attrs: {
-          src: _vm.apartment.images[0].link,
-          alt: "img to" + _vm.apartment.title,
-        },
-      }),
+      _c("div", [
+        _vm.apartment.images.startsWith("https://")
+          ? _c("div", { staticClass: "img-wrapper bg-dark text-center mb-3" }, [
+              _c("img", {
+                attrs: {
+                  src: _vm.apartment.images.link[0],
+                  alt: _vm.apartment.title,
+                },
+              }),
+            ])
+          : _c("div", { staticClass: "img-wrapper bg-dark text-center mb-3" }, [
+              _vm._v("\n              Image not found\n          "),
+            ]),
+      ]),
       _vm._v(" "),
       _c("h6", { staticClass: "py-2" }, [_vm._v("stelline")]),
       _vm._v(" "),
@@ -38770,7 +38792,9 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "card-text" }, [
-        _vm._v("\n    " + _vm._s(_vm.limitOverview(_vm.apartment)) + "\n  "),
+        _vm._v(
+          "\n          " + _vm._s(_vm.limitOverview(_vm.apartment)) + "\n      "
+        ),
       ]),
       _vm._v(" "),
       _c("pre", [
@@ -38861,7 +38885,7 @@ var render = function () {
           _c(
             "router-link",
             { staticClass: "nav-link", attrs: { to: { name: "apartments" } } },
-            [_vm._v("\n        Apartments\n      ")]
+            [_vm._v("\n        Apartments\n        ")]
           ),
         ],
         1

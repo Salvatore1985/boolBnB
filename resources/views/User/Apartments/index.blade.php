@@ -63,7 +63,8 @@
                             </td>
                             <td>
                                 {{-- delete form --}}
-                                <form action="{{route('user.apartments.destroy', $apartment)}}" method="POST" class="apartment-destroyer" apartment-name="{{ucfirst($apartment->title)}}">
+                                <form action="{{route('user.apartments.destroy', $apartment)}}" method="POST" class="apartment-destroyer" apartment-name="{{ucfirst($apartment->title)}}"
+                                onclick="return confirm('Sei sicuro di voler eliminare {{$apartment->title}}?')">
                                     @csrf
                                     @method('DELETE')
                                         <button class="btn btn-md btn-delete btn-outline-danger" type="submit">
@@ -91,20 +92,5 @@
     </div>
 </div>
 
-@endsection
-@section('js-files')
-    <script defer>
-        const deleteForms = document.querySelectorAll('.apartment-destroyer');
-        console.log(deleteForms);
-        deleteForms.forEach(singleForm => {
-            singleForm.addEventListener('submit', function (event) {
-                event.preventDefault();
-                userConfirmation = window.confirm(`Sei sicuro di voler eliminare ${this.getAttribute('apartment-title')}?` );
-                if (userConfirmation) {
-                    this.submit();
-                }
-            })
-        });
-    </script>
 @endsection
 

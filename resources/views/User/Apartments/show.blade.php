@@ -33,13 +33,17 @@
                     <li class="list-group-item">N. Price: {{$apartment->price}}</li>
                 </ul>
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        servizi:
-                        @foreach ($apartment->services as $service)
-                            <pre class="me-2">{{$service->name}}</pre>
-                        @endforeach
+                    @if (count($apartment->services) !== 0)
+                        <li class="list-group-item">
+                            servizi:
+                            @foreach ($apartment->services as $service)
+                                <pre class="me-2">{{$service->name}}</pre>
+                            @endforeach
+                        </li>
 
-                    </li>
+                    @else
+                        Non ci sono servizi
+                    @endif
                 </ul>
 
             </div>

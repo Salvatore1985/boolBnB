@@ -60,7 +60,6 @@ class ApartmentsController extends Controller
                 'n_bathrooms' => 'required|numeric|min:1',
                 'sqr_meters' => 'required|numeric|min:1',
                 'address' => 'required|string',
-                /* 'service' => 'required', */
                 'price' => 'required|numeric|min:1',
             ] ,
             [
@@ -106,8 +105,9 @@ class ApartmentsController extends Controller
         $newApartment = new Apartment();
         $newApartment->fill($data);
         $newApartment->save();
-        if (array_key_exists('services', $data))
-        $apartment->services()->attach($data['services']);
+        if (array_key_exists('service', $data)){
+            $newApartment->services()->attach($data['service']);
+        };
 
 
         // creating new Images
@@ -148,7 +148,8 @@ class ApartmentsController extends Controller
 
         $services = Service::all();
         $apartment = Apartment::findOrFail($id);
-        return view('user.apartments.edit', ['apartment' => $apartment, 'services' => $services]);
+        $service_ids = $apartment->services->pluck('id')->toArray();
+        return view('user.apartments.edit', ['apartment' => $apartment, 'services' => $services, 'service_id' => $service_ids]);
     }
 
     /**
@@ -162,7 +163,7 @@ class ApartmentsController extends Controller
     {
         $request->validate(
             [
-                'title' => ['required', 'string', Rule::unique('apartments')->ignore($apartment->id), 'min:3'],
+                'title' => ['required', 'string','min:3'],
                 'description' => 'required|string|min:10',
                 'n_rooms' => 'required|numeric|min:1',
                 'n_beds' => 'required|numeric|min:1',
@@ -170,14 +171,13 @@ class ApartmentsController extends Controller
                 'n_bathrooms' => 'required|numeric|min:1',
                 'sqr_meters' => 'required|numeric|min:1',
                 'address' => 'required|string',
-                'service' => 'required',
                 'price' => 'required|numeric|min:1',
             ] ,
             [
                 /* 'required' => 'Devi riempire il campo :attribute', */
                 'title.required'=>'Questo campo non più essere vuoto',
                 'title.min'=>'Il minimo dei carattere del titolo deve essere di :min',
-                'title.unique'=>"Il titolo ''$request->title'' esiste già ",
+                // 'title.unique'=>"Il titolo ''$request->title'' esiste già ",
                 'description.required'=>'Devi inserire la descrizione',
                 'description.min'=>'Il minimo dei carattere della descrizione deve essere di :min',
                 'n_rooms.required'=>'Devi il numero delle stanze',
@@ -210,13 +210,15 @@ class ApartmentsController extends Controller
         $data['lat'] = $coordinates['lat'];
         $data['long'] = $coordinates['lon'];
         $data['address'] = $address;
-        // $apartment->is_visible = $data['is_visible'];
+
         // creation new apartment
         $apartment->fill($data);
-        if (!array_key_exists('services', $data) && $apartment->services)
-            $apartment->services()->detach();
-        else
-        $apartment->services()->sync($data['services']);
+        if (!array_key_exists('services', $data) && $apartment->services) $apartment->services()->detach();
+        else $apartment->services()->sync($data['services']);
+        // }else if(){
+            //
+        // $apartment->services()->sync($data['service']);
+
         $apartment->save();
         $images=array();
         if($files=$request->file('images')){
@@ -239,7 +241,7 @@ class ApartmentsController extends Controller
     public function destroy(Apartment $apartment)
     {
         $apartment->delete();
-        return redirect()->route("user.apartments.index", $apartment)->with("alert-message","Apartment è stato eliminato con successo!")->with('alter-type', 'warning');
+        return redirect()->route("user.apartments.index", $apartment)->with("alert-message", $apartment->title . " è stato eliminato con successo!")->with('alter-type', 'warning');
 
     }
 }

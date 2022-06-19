@@ -143,13 +143,10 @@
                         <div class="form-group col-md-3">
                             <div class="col-sm-2">Servizi</div>
                             <div class="col-sm-10 text-left h-50 overflow-auto">
-                                @foreach ($services as $service)
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck1" name="service[]"
-                                            value="{{ $service->id }}">
-                                        <label class="form-check-label" for="gridCheck1">
-                                            {{ $service->name }}
-                                        </label>
+                                @foreach($services as $service)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="service-{{ $service->id }}" value="{{ $service->id }}" name="services[]" @if(in_array($service->id, old('services', $service_id))) checked @endif>
+                                        <label class="form-check-label" for="service-{{ $service->id }}">{{$service->name}}</label>
                                     </div>
                                 @endforeach
                             </div>
