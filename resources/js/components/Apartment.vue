@@ -1,23 +1,18 @@
 <template>
   <div class="col-md-6 col-lg-4 col-sm-12 justify-content-between py-4">
         <div>
-            <!-- <div v-if="apartment.images.link[0].startsWith('https://') || apartment.images.link[0].startsWith('http://')">
-            <img class="rounded-1 w-100" :src="apartment.images.link[0]" :alt="apartment.title">
-            </div>
-            <div v-else>
-                <img class="rounded-1 w-100" :src="apartment.images.link[0]" :alt="apartment.title">
-            </div> -->
             <div class="img-wrapper bg-dark text-center mb-3"
-                v-if = "(apartment.images.startsWith('https://'))">
-                    <img
-                    :src="apartment.images.link[0]"
-                    :alt="apartment.title">
+            v-if="apartment.images[0].link.startsWith('https://')">
+                <img
+                :src="apartment.images[0].link"
+                :alt="apartment.title">
             </div>
-            <div class="img-wrapper bg-dark text-center mb-3" v-else>
-                <!-- <img
-                :src="`storage/${post.post_image}`"
-                :alt="post.title"> -->
-                Image not found
+            <div class="img-wrapper bg-dark text-center mb-3"
+            v-else>
+                <img
+                class="w-100"
+                :src="`storage/${apartment.images[0].link}`"
+                :alt="apartment.title">
             </div>
         </div>
         <h6 class="py-2">stelline</h6>
