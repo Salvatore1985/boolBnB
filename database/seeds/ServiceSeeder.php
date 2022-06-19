@@ -13,18 +13,18 @@ class ServiceSeeder extends Seeder
     public function run()
     {
         $services = [
-            'has_elevator',
-            'has_tv',
-            'has_hotTub',
-            'has_kitchen',
-            'has_wifi',
-            'car_parking',
-            'has_swimming_pool',
-            'has_sauna',
-            'has_gym',
-            'sea_view',
-            'allows_animals',
-            'has_reception'
+            'Accensore',
+            'Tv',
+            'Vasca idromassaggio',
+            'Cucina',
+            'Wifi',
+            'Parcheggio auto',
+            'Piscina',
+            'Sauna',
+            'Palestra',
+            'Vista sul mare',
+            'permette Animali',
+            'Portineria'
         ];
 
         for ($i=0; $i < count($services); $i++){
