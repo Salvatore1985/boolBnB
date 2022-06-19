@@ -2056,11 +2056,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderIndex",
   props: ["apartment"],
@@ -38771,17 +38766,23 @@ var render = function () {
     { staticClass: "col-md-6 col-lg-4 col-sm-12 justify-content-between py-4" },
     [
       _c("div", [
-        _vm.apartment.images.startsWith("https://")
+        _vm.apartment.images[0].link.startsWith("https://")
           ? _c("div", { staticClass: "img-wrapper bg-dark text-center mb-3" }, [
               _c("img", {
                 attrs: {
-                  src: _vm.apartment.images.link[0],
+                  src: _vm.apartment.images[0].link,
                   alt: _vm.apartment.title,
                 },
               }),
             ])
           : _c("div", { staticClass: "img-wrapper bg-dark text-center mb-3" }, [
-              _vm._v("\n              Image not found\n          "),
+              _c("img", {
+                staticClass: "w-100",
+                attrs: {
+                  src: "storage/" + _vm.apartment.images[0].link,
+                  alt: _vm.apartment.title,
+                },
+              }),
             ]),
       ]),
       _vm._v(" "),
