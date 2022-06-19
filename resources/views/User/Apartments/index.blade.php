@@ -4,9 +4,9 @@
     <div class="container w-75 mx-auto">
         <div class="row">
             {{-- Create Apartment Button --}}
-            <div class="col-12 text-end">
+            <div class="col-12 text-end my-4">
                 {{-- Enter route --}}
-                @if (!count($apartments)==0)
+                @if (!count($apartments) == 0)
                     <a href="{{ route('user.apartments.create') }} " class="btn btn-sm btn-success">
                         Aggiungi un appartamento
                     </a>
@@ -28,8 +28,8 @@
             @forelse ($apartments as $apartment)
                 <div class="col-6 ">
                     <div class="card-deck">
-                        <div class="card">
-                            @foreach ($apartment->images as $image)
+                        <div class="card mb-5">
+                            {{-- @foreach ($apartment->images as $image)
                                 @if (str_starts_with($image->link, 'https://') || str_starts_with($image->link, 'http://'))
                                     <img class="card-img-top img-apartment" src="{{ $image->link }}"
                                         alt="{{ $apartment->title }}">
@@ -38,17 +38,56 @@
                                         src="{{ asset('/storage') . '/' . $image->link }}"
                                         alt="{{ $apartment->title }}">
                                 @endif
-                            @endforeach
-                            <div class="card-body ">
-                                <div>
-                                    <h5 class="card-title">{{ $apartment->title }}</h5>
-                                    <p class="card-text">Descrizione: {{ $apartment->description }}</p>
-                                    <p class="card-text">Numero di stanze: {{ $apartment->n_rooms }}</p>
-                                    <p class="card-text">Numero di letti: {{ $apartment->n_beds }}</p>
-                                    <p class="card-text">Numero di bagni: {{ $apartment->n_bathrooms }}</p>
-                                    <p class="card-text">Creato il: {{ $apartment->created_at }}</p>
-                                </div>
-                                <div>
+                            @endforeach --}}
+                            @if (str_starts_with($apartment->images[0]->link, 'https://') || str_starts_with($apartment->images[0]->link, 'http://'))
+                                <img class="card-img-top img-apartment" src="{{ $apartment->images[0]->link }}"
+                                    alt="{{ $apartment->title }}">
+                            @else
+                                <img class="card-img-top img-apartment"
+                                    src="{{ asset('/storage') . '/' . $apartment->images[0]->link }}"
+                                    alt="{{ $apartment->title }}">
+                            @endif
+                            {{-- @dump($apartment->images[0]->link) --}}
+                            <div class="card-body shadow rounded p-4">
+                                <h1 class="card-title  text-muted ">{{ $apartment->title }}</h1>
+                                <hr>
+                                <p class="card-text ">Descrizione: {{ $apartment->description }}</p>
+                                <section class="d-flex justify-content-between shadow rounded">
+                                    <div class="p-4">
+                                        <pre class="card-text ">Numero di stanze: {{ $apartment->n_rooms }}</pre>
+                                        <pre class="card-text">Numero di letti: {{ $apartment->n_beds }}</pre>
+                                        <pre class="card-text">Numero di bagni: {{ $apartment->n_bathrooms }}</pre>
+                                        <pre class="card-text">Numero di piani: {{ $apartment->n_floor }}</pre>
+                                        <pre class="card-text">Metri quadri: {{ $apartment->sqr_meters }}</pre>
+                                        <pre class="card-text">Prezzo: {{ $apartment->price }} €</pre>
+                                        <pre class="card-text">Creato il: {{ $apartment->created_at }}</pre>
+                                    </div>
+                                    <div class="d-block">
+                                        <ul class="list-group p-4">
+                                            <li class="card-text list-style-type-circle">Servizi: </li>
+                                            @forelse ($apartment->services as $service)
+                                                <li class="list-style-type-none">
+                                                    <pre>{{ $service->name }}</pre>
+                                                </li>
+
+                                            @empty
+                                                <p class="card-text">nessun servizio Extra</p>
+                                            @endforelse
+                                        </ul>
+
+                                    </div>
+                                </section>
+                                @if ($apartment->is_visible)
+                                    <h4 class="card-text py-4 "><small class="text-muted font-weight-bold">Visibile</small>
+                                    </h4>
+                                @else
+                                    <h4 class="card-text py-4 "><small class="text-muted font-weight-bold">Non
+                                            Visibile</small></h4>
+                                @endif
+                                <div class="d-flex justify-content-between">
+                                    <a href="{{ route('user.apartments.edit', $apartment) }} "class="btn btn-warning">
+                                        &#9998; Modifica
+                                    </a>
                                     {{-- delete form --}}
                                     <form action="{{ route('user.apartments.destroy', $apartment) }}" method="POST"
                                         class="apartment-destroyer" apartment-name="{{ ucfirst($apartment->title) }}"
@@ -56,29 +95,24 @@
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-md btn-delete btn-outline-danger" type="submit">
-                                            &#10006;
+                                            &#10006; Elimina
                                         </button>
                                     </form>
                                 </div>
-                                @if ($apartment->is_visible)
-                                    <p class="card-text"><small class="text-muted">Visibile</small></p>
-                                @else
-                                    <p class="card-text"><small class="text-muted">Non Visibile</small></p>
-                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
-                @empty
-                    <h2>
-                        Non hai nessun appartamenti
-                    </h2>
-                @endforelse
-                <div class="col-12">
-                    <div class=" d-flex justify-content-center text-center p-3">
-                        {{ $apartments->links() }}
-                    </div>
+            @empty
+                <h2>
+                    Non hai nessun appartamenti
+                </h2>
+            @endforelse
+            <div class="col-12">
+                <div class=" d-flex justify-content-center text-center p-3">
+                    {{ $apartments->links() }}
                 </div>
+            </div>
         </div>
     </div>
 @endsection

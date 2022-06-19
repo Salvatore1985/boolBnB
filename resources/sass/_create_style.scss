@@ -30,8 +30,16 @@ img#logo {
     object-fit: cover;
     height: 230px;
     width: 350px;
+
 }
 
+.list-style-type-circle {
+    list-style-type: circle
+}
+
+.list-style-type-none {
+    list-style-type: none;
+}
 
 
 .avatar {
