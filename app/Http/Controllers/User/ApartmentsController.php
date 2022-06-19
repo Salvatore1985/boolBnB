@@ -106,8 +106,7 @@ class ApartmentsController extends Controller
         $newApartment = new Apartment();
         $newApartment->fill($data);
         $newApartment->save();
-        if (array_key_exists('services', $data))
-        $apartment->services()->attach($data['services']);
+        $newApartment->services()->sync($data['service']);
 
 
         // creating new Images
@@ -213,10 +212,7 @@ class ApartmentsController extends Controller
         // $apartment->is_visible = $data['is_visible'];
         // creation new apartment
         $apartment->fill($data);
-        if (!array_key_exists('services', $data) && $apartment->services)
-            $apartment->services()->detach();
-        else
-        $apartment->services()->sync($data['services']);
+        $apartment->services()->sync($data['service']);
         $apartment->save();
         $images=array();
         if($files=$request->file('images')){
@@ -239,7 +235,7 @@ class ApartmentsController extends Controller
     public function destroy(Apartment $apartment)
     {
         $apartment->delete();
-        return redirect()->route("user.apartments.index", $apartment)->with("alert-message","Apartment è stato eliminato con successo!")->with('alter-type', 'warning');
+        return redirect()->route("user.apartments.index", $apartment)->with("alert-message", $apartment->title . " è stato eliminato con successo!")->with('alter-type', 'warning');
 
     }
 }
