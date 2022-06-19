@@ -1,20 +1,19 @@
 <template>
   <div class="col-md-6 col-lg-4 col-sm-12 justify-content-between py-4">
-        <div>
-            <div class="img-wrapper bg-dark text-center mb-3"
+            <div class="bg-dark text-center mb-3"
             v-if="apartment.images[0].link.startsWith('https://')">
                 <img
+                class="img-apartment"
                 :src="apartment.images[0].link"
                 :alt="apartment.title">
             </div>
-            <div class="img-wrapper bg-dark text-center mb-3"
+            <div class=" bg-dark text-center mb-3"
             v-else>
                 <img
-                class="w-100"
+                class="img-apartment"
                 :src="`storage/${apartment.images[0].link}`"
                 :alt="apartment.title">
             </div>
-        </div>
         <h6 class="py-2">stelline</h6>
         <h5 class="card-title">{{ apartment.title }}</h5>
         <p class="card-text">
