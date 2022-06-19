@@ -86,8 +86,11 @@
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
+
                                         name="password_confirmation" autocomplete="new-password"
                                         placeholder="* campo richiesto">
+
+
                                 </div>
                             </div>
                             {{-- date_of_birth --}}

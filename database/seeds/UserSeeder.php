@@ -21,7 +21,6 @@ class UserSeeder extends Seeder
             'date_of_birth' => '1995-01-20',
             'profile_photo' => 'https://www.alamy.it/paperina-image69979434.html',
             'username' => 'SalvoImpro',
-            'phone_n' => '3336584526',
             ],
             [
             'name' => 'Feli',
@@ -31,7 +30,6 @@ class UserSeeder extends Seeder
             'date_of_birth' => '1995-01-20',
             'profile_photo' => 'https://www.alamy.it/paperina-image69979434.html',
             'username' => 'Filly22',
-            'phone_n' => '3336581546',
             ],
             [
                 'name' => 'Airowl',
@@ -41,7 +39,6 @@ class UserSeeder extends Seeder
                 'date_of_birth' => '1995-01-20',
                 'profile_photo' => 'https://www.alamy.it/paperina-image69979434.html',
                 'username' => 'Airowl-Owls',
-                'phone_n' => '3345810546',
             ],
             [
                 'name' => 'Thom',
@@ -51,7 +48,6 @@ class UserSeeder extends Seeder
                 'date_of_birth' => '1995-01-20',
                 'profile_photo' => 'https://www.alamy.it/paperina-image69979434.html',
                 'username' => 'Thom_Train',
-                'phone_n' => '5445810546',
             ],
             [
                 'name' => 'Simone',
@@ -61,7 +57,6 @@ class UserSeeder extends Seeder
                 'date_of_birth' => '1995-01-20',
                 'profile_photo' => 'https://www.alamy.it/paperina-image69979434.html',
                 'username' => 'Jesù-Christ',
-                'phone_n' => '5445811680',
             ]
         ];
 
