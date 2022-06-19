@@ -66,7 +66,6 @@ class UserSeeder extends Seeder
             $newUser->surname = $users[$i]['surname'];
             $newUser->email = $users[$i]['email'];
             $newUser->password = Hash::make($users[$i]['password'] . $i);
-            $newUser->username = $users[$i]['username'];
             $newUser->date_of_birth = $users[$i]['date_of_birth'];
             $newUser->save();
         }

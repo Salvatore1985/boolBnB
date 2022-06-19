@@ -22,7 +22,7 @@
                         @if (Auth::user())
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('user.home') }}">Dashboard</a>
+                                    <a class="nav-link" href="{{ route('user.home') }}">Pannello di controllo</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('user.apartments.index') }}">I tuoi
