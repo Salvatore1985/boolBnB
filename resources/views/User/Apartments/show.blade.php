@@ -1,5 +1,8 @@
 <style>
-    #map-div { width: 100%; height: 30rem; }
+    #map-div {
+        width: 100%;
+        height: 30rem;
+    }
 </style>
 @extends('layouts.createPage')
 
@@ -8,39 +11,38 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="display-1">{{$apartment->title}}</h1>
-                <h2>{{$apartment->address}}</h2>
+                <h1 class="display-1">{{ $apartment->title }}</h1>
+                <h2>{{ $apartment->address }}</h2>
             </div>
             @foreach ($apartment->images as $image)
-            <div class="col-8 show-img mb-3">
-                @if (str_starts_with($image->link, 'https://') || str_starts_with($image->link, 'http://'))
-                    <img class="rounded-1 w-100" src="{{ $image->link }}" alt="{{ $apartment->title }}">
-                @else
-                    <img class="rounded-1 w-100" src="{{ asset('/storage') . '/' . $image->link }}" alt="{{ $apartment->title }}">
-                @endif
-            </div>
-
+                <div class="col-8 show-img mb-3">
+                    @if (str_starts_with($image->link, 'https://') || str_starts_with($image->link, 'http://'))
+                        <img class="rounded-1 w-100" src="{{ $image->link }}" alt="{{ $apartment->title }}">
+                    @else
+                        <img class="rounded-1 w-100" src="{{ asset('/storage') . '/' . $image->link }}"
+                            alt="{{ $apartment->title }}">
+                    @endif
+                </div>
             @endforeach
             <div class="col-8">
-                <p>{{$apartment->description}}</p>
+                <p>{{ $apartment->description }}</p>
 
                 <ul class="list-group">
-                    <li class="list-group-item">Metri quadri: {{$apartment->sqr_meters}}</li>
-                    <li class="list-group-item">N. Camere: {{$apartment->n_rooms}}</li>
-                    <li class="list-group-item">N. Piani: {{$apartment->n_floor}}</li>
-                    <li class="list-group-item">N. Bagni: {{$apartment->n_bathrooms}}</li>
-                    <li class="list-group-item">N. Letti: {{$apartment->n_beds}}</li>
-                    <li class="list-group-item">N. Price: {{$apartment->price}}</li>
+                    <li class="list-group-item">Metri quadri: {{ $apartment->sqr_meters }}</li>
+                    <li class="list-group-item">N. Camere: {{ $apartment->n_rooms }}</li>
+                    <li class="list-group-item">N. Piani: {{ $apartment->n_floor }}</li>
+                    <li class="list-group-item">N. Bagni: {{ $apartment->n_bathrooms }}</li>
+                    <li class="list-group-item">N. Letti: {{ $apartment->n_beds }}</li>
+                    <li class="list-group-item">N. Price: {{ $apartment->price }}</li>
                 </ul>
                 <ul class="list-group">
                     @if (count($apartment->services) !== 0)
                         <li class="list-group-item">
                             servizi:
                             @foreach ($apartment->services as $service)
-                                <pre class="me-2">{{$service->name}}</pre>
+                                <pre class="me-2">{{ $service->name }}</pre>
                             @endforeach
                         </li>
-
                     @else
                         Non ci sono servizi
                     @endif
@@ -48,20 +50,22 @@
 
             </div>
             <div class="col-4">
-                <a href="{{route('user.apartments.edit', $apartment)}} "class="btn btn-warning">
+                <a href="{{ route('user.apartments.edit', $apartment) }} "class="btn btn-warning">
                     &#9998; Edit
                 </a>
 
-                <form action="{{route('user.apartments.destroy', $apartment)}}" method="POST" class="apartment-destroyer" apartment-name="{{ucfirst($apartment->title)}}">
+                <form action="{{ route('user.apartments.destroy', $apartment) }}" method="POST"
+                    class="apartment-destroyer" apartment-name="{{ ucfirst($apartment->title) }}"
+                    onclick="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
                     @csrf
                     @method('DELETE')
-                        <button class="btn btn-md btn-delete btn-outline-danger" type="submit">
-                            &#10006; Delete
-                        </button>
+                    <button class="btn btn-md btn-delete btn-outline-danger" type="submit">
+                        &#10006;
+                    </button>
                 </form>
             </div>
             <div class="col-12">
-                <div id="map-div" lat="{{$apartment->lat}}" log="{{$apartment->long}}"></div>
+                <div id="map-div" lat="{{ $apartment->lat }}" log="{{ $apartment->long }}"></div>
             </div>
         </div>
     </div>
@@ -79,22 +83,24 @@
         const title = document.querySelector('h1');
 
         //tt.setProductInfo(APPLICATION_NAME, APPLICATION_VERSION);
-        const positions = [
-            { lat: lat, lng: long },
-        ];
+        const positions = [{
+            lat: lat,
+            lng: long
+        }, ];
 
         const map = tt.map({
-        key: API_KEY,
-        container: 'map-div',
-        center: positions[0],
-        zoom: 15
+            key: API_KEY,
+            container: 'map-div',
+            center: positions[0],
+            zoom: 15
         });
 
         positions.forEach((position) => {
             const marker = new tt.Marker().setLngLat(position).addTo(map);
-            const popup = new tt.Popup({ anchor: 'top' }).setText(title.innerHTML)
+            const popup = new tt.Popup({
+                anchor: 'top'
+            }).setText(title.innerHTML)
             marker.setPopup(popup).togglePopup()
         });
-
     </script>
 @endsection

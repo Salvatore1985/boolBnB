@@ -1943,6 +1943,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1966,26 +1978,39 @@ __webpack_require__.r(__webpack_exports__);
       isLoading: false,
       pagination: {},
       isActive: 0,
-      searchApartment: []
+      searchApartment: "",
+      nBath: "",
+      nRooms: "",
+      nBeds: "",
+      nFloor: "",
+      nPrice: ""
     };
   },
   methods: {
-    getApartments: function getApartments(page) {
+    getApartments: function getApartments(title, nBath, nRooms, nBeds, nFloor, nPrice) {
       var _this = this;
 
       this.isLoading = true;
-      axios.get("".concat(this.baseUri, "/api/apartments?page=").concat(page)).then(function (res) {
-        var _res$data = res.data,
-            data = _res$data.data,
-            current_page = _res$data.current_page,
-            last_page = _res$data.last_page;
+      var params = new URLSearchParams();
+      params.append("title", title);
+      params.append("n_bathrooms", nBath);
+      params.append("n_rooms", nRooms);
+      params.append("n_beds", nBeds);
+      params.append("n_floor", nFloor);
+      params.append("price", nPrice);
+      var request = {
+        params: params
+      };
+      axios.get("".concat(this.baseUri, "/api/apartments/search?"), request).then(function (res) {
+        var data = res.data,
+            current_page = res.current_page,
+            last_page = res.last_page;
         _this.apartments = data;
         _this.pagination = {
           currentPage: current_page,
           lastPage: last_page
         };
-        console.log(_this.apartments);
-        console.log(_this.apartments[1].images[0].link);
+        console.log(_this.apartments); //console.log(this.apartments[1].images[0].link);
       })["catch"](function (err) {
         console.error(err);
       }).then(function () {
@@ -2003,8 +2028,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     /* this.getApartments(); */
   },
-  mounted: function mounted() {
-    this.getApartments();
+  mounted: function mounted() {//this.getApartments();
   }
 });
 
@@ -2019,7 +2043,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -38694,47 +38717,243 @@ var render = function () {
     "section",
     { attrs: { id: "apartiment-list" } },
     [
+      _c("nav", { staticClass: "navbar navbar-light bg-light" }, [
+        _c("form", { staticClass: "form-inline" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.searchApartment,
+                expression: "searchApartment",
+              },
+            ],
+            staticClass: "form-control mr-sm-2",
+            attrs: {
+              type: "search",
+              placeholder: "Search",
+              "aria-label": "Search",
+            },
+            domProps: { value: _vm.searchApartment },
+            on: {
+              keyup: function ($event) {
+                return _vm.getApartments(
+                  _vm.searchApartment,
+                  _vm.nBath,
+                  _vm.nRooms,
+                  _vm.nBeds,
+                  _vm.nFloor,
+                  _vm.nPrice
+                )
+              },
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.searchApartment = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.nBath,
+                expression: "nBath",
+              },
+            ],
+            staticClass: "form-control mr-sm-2",
+            attrs: {
+              type: "search",
+              placeholder: "nBath",
+              "aria-label": "nBath",
+            },
+            domProps: { value: _vm.nBath },
+            on: {
+              keyup: function ($event) {
+                return _vm.getApartments(
+                  _vm.searchApartment,
+                  _vm.nBath,
+                  _vm.nRooms,
+                  _vm.nBeds,
+                  _vm.nFloor,
+                  _vm.nPrice
+                )
+              },
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.nBath = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.nRooms,
+                expression: "nRooms",
+              },
+            ],
+            staticClass: "form-control mr-sm-2",
+            attrs: {
+              type: "search",
+              placeholder: "nRooms",
+              "aria-label": "nRooms",
+            },
+            domProps: { value: _vm.nRooms },
+            on: {
+              keyup: function ($event) {
+                return _vm.getApartments(
+                  _vm.searchApartment,
+                  _vm.nBath,
+                  _vm.nRooms,
+                  _vm.nBeds,
+                  _vm.nFloor,
+                  _vm.nPrice
+                )
+              },
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.nRooms = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.nBeds,
+                expression: "nBeds",
+              },
+            ],
+            staticClass: "form-control mr-sm-2",
+            attrs: {
+              type: "search",
+              placeholder: "nBeds",
+              "aria-label": "nBeds",
+            },
+            domProps: { value: _vm.nBeds },
+            on: {
+              keyup: function ($event) {
+                return _vm.getApartments(
+                  _vm.searchApartment,
+                  _vm.nBath,
+                  _vm.nRooms,
+                  _vm.nBeds,
+                  _vm.nFloor,
+                  _vm.nPrice
+                )
+              },
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.nBeds = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.nFloor,
+                expression: "nFloor",
+              },
+            ],
+            staticClass: "form-control mr-sm-2",
+            attrs: {
+              type: "search",
+              placeholder: "nFloor",
+              "aria-label": "nFloor",
+            },
+            domProps: { value: _vm.nFloor },
+            on: {
+              keyup: function ($event) {
+                return _vm.getApartments(
+                  _vm.searchApartment,
+                  _vm.nBath,
+                  _vm.nRooms,
+                  _vm.nBeds,
+                  _vm.nFloor,
+                  _vm.nPrice
+                )
+              },
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.nFloor = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.nPrice,
+                expression: "nPrice",
+              },
+            ],
+            staticClass: "form-control mr-sm-2",
+            attrs: {
+              type: "search",
+              placeholder: "nPrice",
+              "aria-label": "nPrice",
+            },
+            domProps: { value: _vm.nPrice },
+            on: {
+              keyup: function ($event) {
+                return _vm.getApartments(
+                  _vm.searchApartment,
+                  _vm.nBath,
+                  _vm.nRooms,
+                  _vm.nBeds,
+                  _vm.nFloor,
+                  _vm.nPrice
+                )
+              },
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.nPrice = $event.target.value
+              },
+            },
+          }),
+        ]),
+      ]),
+      _vm._v(" "),
       _vm.isLoading
         ? _c("Loader")
-        : _c(
-            "div",
-            [
-              _c("Pagination", {
-                attrs: {
-                  currentPage: _vm.pagination.currentPage,
-                  lastPage: _vm.pagination.lastPage,
-                },
-                on: { onPageChange: _vm.changePage },
-              }),
-              _vm._v(" "),
-              _c("section", { staticClass: "container" }, [
-                _c(
-                  "div",
-                  { staticClass: "row" },
-                  _vm._l(_vm.apartments, function (apartment) {
-                    return _c("Apartment", {
-                      key: apartment.index,
-                      attrs: { apartment: apartment },
-                    })
-                  }),
-                  1
-                ),
-              ]),
-              _vm._v(" "),
-              _c("Pagination", {
-                attrs: {
-                  currentPage: _vm.pagination.currentPage,
-                  lastPage: _vm.pagination.lastPage,
-                },
-                on: {
-                  onPageChange: function ($event) {
-                    return _vm.getApartments(_vm.page)
-                  },
-                },
-              }),
-            ],
-            1
-          ),
+        : _c("div", [
+            _c("section", { staticClass: "container" }, [
+              _c(
+                "div",
+                { staticClass: "row" },
+                _vm._l(_vm.apartments, function (apartment) {
+                  return _c("Apartment", {
+                    key: apartment.index,
+                    attrs: { apartment: apartment },
+                  })
+                }),
+                1
+              ),
+            ]),
+          ]),
     ],
     1
   )
@@ -38765,26 +38984,25 @@ var render = function () {
     "div",
     { staticClass: "col-md-6 col-lg-4 col-sm-12 justify-content-between py-4" },
     [
-      _c("div", [
-        _vm.apartment.images[0].link.startsWith("https://")
-          ? _c("div", { staticClass: "img-wrapper bg-dark text-center mb-3" }, [
-              _c("img", {
-                attrs: {
-                  src: _vm.apartment.images[0].link,
-                  alt: _vm.apartment.title,
-                },
-              }),
-            ])
-          : _c("div", { staticClass: "img-wrapper bg-dark text-center mb-3" }, [
-              _c("img", {
-                staticClass: "w-100",
-                attrs: {
-                  src: "storage/" + _vm.apartment.images[0].link,
-                  alt: _vm.apartment.title,
-                },
-              }),
-            ]),
-      ]),
+      _vm.apartment.images[0].link.startsWith("https://")
+        ? _c("div", { staticClass: "bg-dark text-center mb-3" }, [
+            _c("img", {
+              staticClass: "img-apartment",
+              attrs: {
+                src: _vm.apartment.images[0].link,
+                alt: _vm.apartment.title,
+              },
+            }),
+          ])
+        : _c("div", { staticClass: " bg-dark text-center mb-3" }, [
+            _c("img", {
+              staticClass: "img-apartment",
+              attrs: {
+                src: "storage/" + _vm.apartment.images[0].link,
+                alt: _vm.apartment.title,
+              },
+            }),
+          ]),
       _vm._v(" "),
       _c("h6", { staticClass: "py-2" }, [_vm._v("stelline")]),
       _vm._v(" "),
@@ -55443,7 +55661,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\final-project\boolBnB\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Boolean\boolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

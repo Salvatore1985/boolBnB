@@ -23,7 +23,7 @@
                     <div class="form-group col-md-6">
                         <label for="address">inserisci la via:</label>
                         <input class="w-100" type="text" name="address" id="address"
-                            value="{{ old('address') ?? '' }}" required>
+                            value="{{ old('address') ?? '' }}">
                         @error('address')
                             <div class="alert alert-danger mt-2">
                                 Il nome della via
@@ -90,14 +90,14 @@
                 <div class="col-12">
                     <div class="col-12">
                         <label for="image[]">inserisci le foto del tuo appartamento</label>
-                        <input type="file" class="form-control" name="images[]" id="image[]"  multiple>
+                        <input type="file" class="form-control" name="images[]" id="image[]" multiple>
                     </div>
                 </div>
                 {{-- Apartment Description --}}
                 <div class="form-group ">
                     <label for="description" class="form-label">Descrizione dell'appartamento</label>
                     <textarea rows="1.5" class="form-control  @error('description') is-invalid @enderror" name="description"
-                        id="description" placeholder="* campo richiesto" value="{{ old('description') }}">
+                        id="description" value="{{ old('description') }}">
                     {{ old('description') }}
                 </textarea>
                     @error('description')
@@ -121,7 +121,7 @@
                     </div>
                     {{-- Apartment Services --}}
                     <div class="form-group col-md-3">
-                        <div class="col-sm-2">Servizi</div>
+                        <div class="col-sm-2">Servizi aggiuntivi</div>
                         <div class="col-sm-10 text-left h-50 overflow-auto">
                             {{-- <input class="form-check-input" type="checkbox" id="gridCheck1" name="service[]"
                             value="null"> --}}
