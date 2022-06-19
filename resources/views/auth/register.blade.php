@@ -71,40 +71,6 @@
                                         name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>
-                            {{-- phone_n --}}
-                            <div class="form-group row">
-                                <label for="phone_n"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('phone_n') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="phone_n" type="text"
-                                        class="form-control @error('phone_n') is-invalid @enderror" name="phone_n"
-                                        value="{{ old('phone_n') }}" required autocomplete="phone_n" autofocus>
-
-                                    @error('phone_n')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            {{--  --}}
-                            {{-- <div class="form-group row">
-                                <label for="phone_n"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('phone_n') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="phone_n" type="string"
-                                        class="form-control @error('phone_n') is-invalid @enderror" name="phone_n"
-                                        value="{{ old('phone_n') }}" required>
-
-                                    @error('phone_n')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div> --}}
                             {{-- date_of_birth --}}
                             <div class="form-group row">
                                 <label for="date_of_birth"
