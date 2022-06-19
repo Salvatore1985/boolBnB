@@ -55,17 +55,22 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone_n'=>['required', 'string','numeric'],
-            'userName'=>['required','unique:users']
+            'surname'=>['required','string'],
+            'date_of_birth'=>['required','date']
         ],[
-            'email.required' =>"devi inserire l'email ",
+            'name.required' =>"Inserire il tuo Nome ",
+
+            'email.required' =>"Inserire La tua Email ",
             'email.max'=>"Il nome no può essere più di :max",
             'email.unique'=>"Email e già registrata",
             'password.confirmed'=>"La tua password non è esatta",
+            'password.required'=>"Inserisci la tua Password",
             'password_confirmation.confirmed'=>"La password non è uguale",
-            'phone_n.numeric'=>"Inserisci il numero di tel",
-            'userName.required'=>"Inserisci il tuo Username",
-            'userName.unique'=>"questo username e già stato preso"
+            'surname.required'=>"Inserisci il tuo Cognome",
+            'surname.unique'=>"questo username e già stato preso",
+            'date_of_birth.date'=>"Inserisci la data di nascita",
+            'date_of_birth.required'=>"Inserisci la data di nascita",
+
         ]);
     }
 
@@ -81,8 +86,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'phone_n' => $data['phone_n'],
-            'userName' => $data['userName'],
+            'surname' => $data['surname'],
             'date_of_birth' => $data['date_of_birth'],
 
 
