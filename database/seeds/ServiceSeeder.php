@@ -13,7 +13,7 @@ class ServiceSeeder extends Seeder
     public function run()
     {
         $services = [
-            'Accensore',
+            'Ascensore',
             'Tv',
             'Vasca idromassaggio',
             'Cucina',

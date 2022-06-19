@@ -2047,6 +2047,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderIndex",
   props: ["apartment"],
@@ -38748,8 +38762,76 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
-var staticRenderFns = []
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "col-md-6 col-lg-4 col-sm-12 justify-content-between py-4" },
+    [
+      _c("div", [
+        _vm.apartment.images.startsWith("https://")
+          ? _c("div", { staticClass: "img-wrapper bg-dark text-center mb-3" }, [
+              _c("img", {
+                attrs: {
+                  src: _vm.apartment.images.link[0],
+                  alt: _vm.apartment.title,
+                },
+              }),
+            ])
+          : _c("div", { staticClass: "img-wrapper bg-dark text-center mb-3" }, [
+              _vm._v("\n              Image not found\n          "),
+            ]),
+      ]),
+      _vm._v(" "),
+      _c("h6", { staticClass: "py-2" }, [_vm._v("stelline")]),
+      _vm._v(" "),
+      _c("h5", { staticClass: "card-title" }, [
+        _vm._v(_vm._s(_vm.apartment.title)),
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "card-text" }, [
+        _vm._v(
+          "\n          " + _vm._s(_vm.limitOverview(_vm.apartment)) + "\n      "
+        ),
+      ]),
+      _vm._v(" "),
+      _c("pre", [
+        _vm._v(
+          "Creato il: " + _vm._s(_vm.getFormattedDate(_vm.apartment.created_at))
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex justify-content-between" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("h5", { staticClass: "px-3" }, [
+          _vm._v(_vm._s(_vm.apartment.price) + " €/Notte"),
+        ]),
+      ]),
+    ]
+  )
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex avatar" }, [
+      _c("img", {
+        staticClass: "img-fluid rounded-circle",
+        attrs: {
+          src: "https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg",
+          alt: "",
+        },
+      }),
+      _vm._v(" "),
+      _c("span", { staticClass: "px-3" }, [_vm._v("Nome host")]),
+    ])
+  },
+]
+render._withStripped = true
 
 
 
@@ -38803,7 +38885,7 @@ var render = function () {
           _c(
             "router-link",
             { staticClass: "nav-link", attrs: { to: { name: "apartments" } } },
-            [_vm._v("\n        Apartments\n      ")]
+            [_vm._v("\n        Apartments\n        ")]
           ),
         ],
         1
