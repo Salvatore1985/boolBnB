@@ -47,7 +47,8 @@ class ApartmentController extends Controller
                             ->where('n_beds', 'LIKE', '%'. $request->n_beds. '%')
                             ->where('n_floor', 'LIKE', '%'. $request->n_floor. '%')
                             ->where('price', 'LIKE', '%'. $request->price. '%')
-                            ->whereBetween('latitude', [1, 100])->whereBetween('longitude', [200, 300])
+                            ->with('images')
+                            //->whereBetween('latitude', [1, 100])->whereBetween('longitude', [200, 300])
 
         ->get();
         if(count($result)){
