@@ -7,7 +7,7 @@
         <header class="height-header-form">
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm height-header-form">
                 <div class="container">
-                    <img id="logo" src="https://static.cdnlogo.com/logos/a/94/airbnb.png" alt="Logo">
+                    <img id="logo" src="{{asset('images/boolBnB-mini-logo.png')}}" alt="BoolBnB Logo">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         BoolBnB
                     </a>
@@ -28,9 +28,9 @@
                                     <a class="nav-link" href="{{ route('user.apartments.index') }}">I tuoi
                                         Appartmenti</a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link" href="{{ route('user.apartments.create') }}">Diventa Host</a>
-                                </li>
+                                </li> --}}
                             </ul>
                         @endif
 

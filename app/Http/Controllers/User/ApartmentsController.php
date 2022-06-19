@@ -28,6 +28,12 @@ class ApartmentsController extends Controller
         return view('user.apartments.index', compact('apartments'));
     }
 
+    public function dashboard()
+    {
+        $apartments = Apartment::where('user_id',  Auth::user()->id)->orderBy('id', 'desc')->paginate(10);
+        return view('user.home', compact('apartments'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

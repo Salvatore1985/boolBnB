@@ -25,9 +25,10 @@ Route::get('/', function(){
     return view('guests.home');
 });
 
-Route::get('/home', function(){
-    return view('User.home');
-})->name('user.home');
+Route::get('/home', "User\ApartmentsController@dashboard")->name('user.home');
+//function(){
+//     return view('User.home');
+// })->name('user.home');
 
 Route::middleware('auth')
 ->namespace('User')
