@@ -100,10 +100,7 @@
                 {{-- Apartment Description --}}
                 <div class="form-group ">
                     <label for="description" class="form-label">Descrizione dell'appartamento</label>
-                    <textarea rows="3" class="form-control  @error('description') is-invalid @enderror" name="description"
-                        id="description" value="{{ old('description') }}">
-                    {{ old('description') }}
-                </textarea>
+                    <textarea rows="3" class="form-control  @error('description') is-invalid @enderror" name="description" placeholder="* campo richiesto" id="description" value="{{ old('description') }}">{{ old('description') }}</textarea>
                 @error('description')
                     <div class="text-start invalid-feedback">
                         {{ $message }}
