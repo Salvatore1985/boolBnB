@@ -60,6 +60,7 @@ class ApartmentsController extends Controller
                 'n_bathrooms' => 'required|numeric|min:1',
                 'sqr_meters' => 'required|numeric|min:1',
                 'address' => 'required|string',
+                'images' => 'required|min:1',
                 'price' => 'required|numeric|min:1',
             ] ,
             [
@@ -80,10 +81,10 @@ class ApartmentsController extends Controller
                 'n_bathrooms.min'=>'Il numero dei bagni deve essere più di :min',
                 'sqr_meters.required'=>'Devi il numero dei mq',
                 'sqr_meters.min'=>'Il numero dei mq deve  essere più di :min',
-                'address.required'=>'Devi il numero dei mq',
+                'address.required'=>'Devi inserire la via',
                 'price.required'=>'Devi il numero il prezzo',
                 'price.min'=>'Il prezzo non può essere inferiore a :min €',
-                'images' => 'required'
+                'images.required' => 'Devi inserire almeno una foto :min'
             ]
         );
 

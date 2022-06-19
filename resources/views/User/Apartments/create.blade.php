@@ -19,14 +19,13 @@
                             </div>
                         @enderror
                     </div>
-                    {{-- testing --}}
+                    {{-- Apartment address --}}
                     <div class="form-group col-md-6">
                         <label for="address">inserisci la via:</label>
-                        <input class="w-100" type="text" name="address" id="address"
-                            value="{{ old('address') ?? '' }}">
-                        @error('address')
-                            <div class="alert alert-danger mt-2">
-                                Il nome della via
+                        <input class="form-control @error('address') is-invalid @enderror" type="text" name="address" id="address"
+                            value="{{ old('address') ?? '' }}" placeholder="* campo richiesto">
+                            @error('address')
+                            <div class="text-start invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
@@ -87,24 +86,29 @@
                     </div>
                 </div>
                 {{-- Apartment Images --}}
-                <div class="col-12">
+                <div class="col-12 mb-3">
                     <div class="col-12">
                         <label for="image[]">inserisci le foto del tuo appartamento</label>
-                        <input type="file" class="form-control" name="images[]" id="image[]" multiple>
+                        <input type="file" class="form-control @error('images') is-invalid @enderror" name="images[]" id="image[]" placeholder="* campo richiesto" multiple>
                     </div>
+                    @error('images')
+                            <div class="text-start invalid-feedback">
+                                {{ $message }}
+                            </div>
+                    @enderror
                 </div>
                 {{-- Apartment Description --}}
                 <div class="form-group ">
                     <label for="description" class="form-label">Descrizione dell'appartamento</label>
-                    <textarea rows="1.5" class="form-control  @error('description') is-invalid @enderror" name="description"
+                    <textarea rows="3" class="form-control  @error('description') is-invalid @enderror" name="description"
                         id="description" value="{{ old('description') }}">
                     {{ old('description') }}
                 </textarea>
-                    @error('description')
-                        <div class="text-start invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                @error('description')
+                    <div class="text-start invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
                 </div>
                 {{-- Apartment n_bathrooms --}}
                 <div class="form-row">
