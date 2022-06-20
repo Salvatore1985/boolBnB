@@ -67,6 +67,7 @@ class ApartmentsController extends Controller
                 'sqr_meters' => 'required|numeric|min:1',
                 'address' => 'required|string',
                 'images' => 'required|min:1',
+                'service' => 'required|min:1',
                 'price' => 'required|numeric|min:1',
             ] ,
             [
@@ -91,7 +92,8 @@ class ApartmentsController extends Controller
                 'address.required'=>'Devi inserire la via',
                 'price.required'=>'Devi inserire il numero il prezzo',
                 'price.min'=>'Il prezzo non può essere inferiore a :min €',
-                'images.required' => 'Devi inserire almeno una foto :min'
+                'images.required' => 'Devi inserire almeno una foto :min',
+                'service.required' => 'Devi inserire almeno un servizio :min'
             ]
         );
 
@@ -113,9 +115,7 @@ class ApartmentsController extends Controller
         $newApartment = new Apartment();
         $newApartment->fill($data);
         $newApartment->save();
-        if (array_key_exists('service', $data)){
-            $newApartment->services()->attach($data['service']);
-        };
+        $newApartment->services()->attach($data['service']);
 
 
         // creating new Images
@@ -179,6 +179,7 @@ class ApartmentsController extends Controller
                 'n_bathrooms' => 'required|numeric|min:1',
                 'sqr_meters' => 'required|numeric|min:1',
                 'address' => 'required|string',
+                // 'service' => 'required|min:1',
                 'price' => 'required|numeric|min:1',
             ] ,
             [
@@ -202,7 +203,7 @@ class ApartmentsController extends Controller
                 'address.required'=>'Questo campo non più essere vuoto',
                 'price.required'=>'Devi inserire il numero il prezzo',
                 'price.min'=>'Il prezzo non può essere inferiore a :min €',
-
+                // 'service' => 'Devi inserire almeno un servizio :min'
             ]
         );
 
@@ -222,11 +223,8 @@ class ApartmentsController extends Controller
 
         // creation new apartment
         $apartment->fill($data);
-        if (!array_key_exists('services', $data) && $apartment->services) $apartment->services()->detach();
-        else $apartment->services()->sync($data['services']);
-        // }else if(){
-            //
-        // $apartment->services()->sync($data['service']);
+
+        $apartment->services()->sync($data['services']);
 
         $apartment->save();
         $images=array();
