@@ -26,7 +26,10 @@
                 @endif
             </div>
             @forelse ($apartments as $apartment)
-                <div class="col-6 ">
+                <div class="col-6
+                @if ($apartment->is_visible == false)
+                    bg-warning
+                @endif">
                     <div class="card-deck">
                         <div class="card mb-5">
                             @foreach ($apartment->images as $image)

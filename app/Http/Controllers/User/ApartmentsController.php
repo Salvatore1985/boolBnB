@@ -179,7 +179,7 @@ class ApartmentsController extends Controller
                 'n_bathrooms' => 'required|numeric|min:1',
                 'sqr_meters' => 'required|numeric|min:1',
                 'address' => 'required|string',
-                'service' => 'required|min:1',
+                // 'service' => 'required|min:1',
                 'price' => 'required|numeric|min:1',
             ] ,
             [
@@ -203,7 +203,7 @@ class ApartmentsController extends Controller
                 'address.required'=>'Questo campo non più essere vuoto',
                 'price.required'=>'Devi inserire il numero il prezzo',
                 'price.min'=>'Il prezzo non può essere inferiore a :min €',
-                'service' => 'Devi inserire almeno un servizio :min'
+                // 'service' => 'Devi inserire almeno un servizio :min'
             ]
         );
 
