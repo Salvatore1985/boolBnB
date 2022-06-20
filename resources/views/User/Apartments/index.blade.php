@@ -39,14 +39,14 @@
                                         alt="{{ $apartment->title }}">
                                 @endif
                             @endforeach --}}
-                            @if (str_starts_with($apartment->images[0]->link, 'https://') || str_starts_with($apartment->images[0]->link, 'http://'))
+                            {{--@if (str_starts_with($apartment->images[0]->link, 'https://') || str_starts_with($apartment->images[0]->link, 'http://'))
                                 <img class="card-img-top img-apartment" src="{{ $apartment->images[0]->link }}"
                                     alt="{{ $apartment->title }}">
                             @else
                                 <img class="card-img-top img-apartment"
                                     src="{{ asset('/storage') . '/' . $apartment->images[0]->link }}"
                                     alt="{{ $apartment->title }}">
-                            @endif
+                            @endif--}}
                             {{-- @dump($apartment->images[0]->link) --}}
                             <div class="card-body shadow rounded p-4">
                                 <h1 class="card-title  text-muted ">{{ $apartment->title }}</h1>
