@@ -66,7 +66,7 @@
 
                         <div class="form-group col-md-3">
                             <label for="n_floor" class="form-label"> Nmero di piani</label>
-                            <input type="text" class="form-control @error('n_floor') is-invalid @enderror" id="n_floor"
+                            <input type="number" class="form-control @error('n_floor') is-invalid @enderror" id="n_floor"
                                 name="n_floor" placeholder="* campo richiesto"
                                 value="{{ old('n_floor', $apartment->n_floor) }}" />
                             @error('n_floor')
@@ -80,7 +80,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for="n_rooms" class="form-label "> Numero delle stanze</label>
-                            <input type="text" class="form-control @error('n_rooms') is-invalid @enderror" name="n_rooms"
+                            <input type="number" class="form-control @error('n_rooms') is-invalid @enderror" name="n_rooms"
                                 id="n_rooms" placeholder="* campo richiesto"
                                 value="{{ old('n_rooms', $apartment->n_rooms) }}" placeholder="* campo richiesto" />
                             @error('n_rooms')
@@ -91,7 +91,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="sqr_meters" class="form-label">Metri dell'appartamento</label>
-                            <input type="text" class="form-control @error('sqr_meters') is-invalid @enderror"
+                            <input type="number" class="form-control @error('sqr_meters') is-invalid @enderror"
                                 id="sqr_meters" name="sqr_meters" placeholder="* campo richiesto"
                                 value="{{ old('sqr_meters', $apartment->sqr_meters) }}" />
                             @error('sqr_meters')
@@ -102,7 +102,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="n_beds" class="form-label">Numero dei letti</label>
-                            <input type="text" class="form-control @error('n_beds') is-invalid @enderror" name="n_beds"
+                            <input type="number" class="form-control @error('n_beds') is-invalid @enderror" name="n_beds"
                                 id="n_beds" placeholder="* campo richiesto"
                                 value="{{ old('n_beds', $apartment->n_beds) }}" />
                             @error('n_beds')
@@ -128,7 +128,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for="n_bathrooms" class="form-label">Il numero dei bagni</label>
-                            <input type="text" class="form-control @error('n_bathrooms') is-invalid @enderror"
+                            <input type="number" class="form-control @error('n_bathrooms') is-invalid @enderror"
                                 id="n_bathrooms" name="n_bathrooms" placeholder="* campo richiesto"
                                 value="{{ old('n_bathrooms', $apartment->n_bathrooms) }}" />
                             @error('n_bathrooms')
@@ -171,7 +171,7 @@
                         </fieldset>
                         <div class="form-group col-md-3">
                             <label for="price" class="form-label">Inserisci il prezzo</label>
-                            <input type="text" class="form-control @error('price') is-invalid @enderror"
+                            <input type="number" class="form-control @error('price') is-invalid @enderror"
                                 name="price" id="price" placeholder="* campo richiesto"
                                 value="{{ old('price', $apartment->price) }}" />
                             @error('price')
