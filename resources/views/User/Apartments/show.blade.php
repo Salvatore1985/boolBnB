@@ -1,75 +1,124 @@
 <style>
     #map-div {
-        width: 100%;
-        height: 30rem;
+        width: 30vw;
+        height: 50vh;
     }
 </style>
 @extends('layouts.createPage')
 
 @section('form-content')
-
-    <div class="container">
+    <div class="container py-5">
         <div class="row">
-            <div class="col-12">
-                <h1 class="display-1">{{ $apartment->title }}</h1>
-                <h2>{{ $apartment->address }}</h2>
+            <div class="col-6 d-flex">
+                <div>
+                    <h1>{{ $apartment->title }}</h1>
+                    <h2>{{ $apartment->address }}</h2>
+                </div>
+
             </div>
-            @foreach ($apartment->images as $image)
-                <div class="col-8 show-img mb-3">
+            <div class="col-6 d-flex flex-column align-items-end">
+                <div class="py-2">
+
+                    <a href="{{ route('user.apartments.edit', $apartment) }} "class="btn btn-warning">
+                        &#9998; Modifica
+                    </a>
+                </div>
+                {{-- delete form --}}
+                <div>
+
+                    <form action="{{ route('user.apartments.destroy', $apartment) }}" method="POST"
+                        class="apartment-destroyer" apartment-name="{{ ucfirst($apartment->title) }}"
+                        onclick="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-md btn-delete btn-outline-danger" type="submit">
+                            &#10008; Elimina
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+            <div class="col-6 ">
+                @foreach ($apartment->images as $image)
                     @if (str_starts_with($image->link, 'https://') || str_starts_with($image->link, 'http://'))
-                        <img class="rounded-1 w-100" src="{{ $image->link }}" alt="{{ $apartment->title }}">
+                        <img class="rounded-1 w-100 " src="{{ $image->link }}" alt="{{ $apartment->title }}">
                     @else
-                        <img class="rounded-1 w-100" src="{{ asset('/storage') . '/' . $image->link }}"
+                        <img class="rounded-1 w-100 " src="{{ asset('/storage') . '/' . $image->link }}"
                             alt="{{ $apartment->title }}">
                     @endif
-                </div>
-            @endforeach
-            <div class="col-8">
-                <p>{{ $apartment->description }}</p>
-
-                <ul class="list-group">
-                    <li class="list-group-item">Metri quadri: {{ $apartment->sqr_meters }}</li>
-                    <li class="list-group-item">N. Camere: {{ $apartment->n_rooms }}</li>
-                    <li class="list-group-item">N. Piani: {{ $apartment->n_floor }}</li>
-                    <li class="list-group-item">N. Bagni: {{ $apartment->n_bathrooms }}</li>
-                    <li class="list-group-item">N. Letti: {{ $apartment->n_beds }}</li>
-                    <li class="list-group-item">N. Price: {{ $apartment->price }}</li>
-                </ul>
-                <ul class="list-group">
-                    @if (count($apartment->services) !== 0)
-                        <li class="list-group-item">
-                            servizi:
-                            @foreach ($apartment->services as $service)
-                                <pre class="me-2">{{ $service->name }}</pre>
-                            @endforeach
-                        </li>
-                    @else
-                        Non ci sono servizi
-                    @endif
-                </ul>
-
+                @endforeach
             </div>
-            <div class="col-4">
-                <a href="{{ route('user.apartments.edit', $apartment) }} "class="btn btn-warning">
-                    &#9998; Edit
-                </a>
-
-                <form action="{{ route('user.apartments.destroy', $apartment) }}" method="POST"
-                    class="apartment-destroyer" apartment-name="{{ ucfirst($apartment->title) }}"
-                    onclick="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-md btn-delete btn-outline-danger" type="submit">
-                        &#10006;
-                    </button>
-                </form>
-            </div>
-            <div class="col-12">
+            <div class="col-6">
                 <div id="map-div" lat="{{ $apartment->lat }}" log="{{ $apartment->long }}"></div>
+                <div>
+                    <h1>{{ $apartment->description }}</h1>
+
+                    <ul class="list-group">
+                        <li class="list-group-item">Metri quadri: {{ $apartment->sqr_meters }}</li>
+                        <li class="list-group-item">N. Camere: {{ $apartment->n_rooms }}</li>
+                        <li class="list-group-item">N. Piani: {{ $apartment->n_floor }}</li>
+                        <li class="list-group-item">N. Bagni: {{ $apartment->n_bathrooms }}</li>
+                        <li class="list-group-item">N. Letti: {{ $apartment->n_beds }}</li>
+                        <li class="list-group-item">N. Price: {{ $apartment->price }}</li>
+                    </ul>
+                    <ul class="list-group">
+                        @if (count($apartment->services) !== 0)
+                            <li class="list-group-item">
+                                servizi:
+                                @foreach ($apartment->services as $service)
+                                    <pre class="me-2">{{ $service->name }}</pre>
+                                @endforeach
+                            </li>
+                        @else
+                            Non ci sono servizi
+                        @endif
+                    </ul>
+
+                </div>
             </div>
+            {{-- <section class="d-flex ">
+                @foreach ($apartment->images as $image)
+                    <div class="col-6 show-img mb-3">
+                        @if (str_starts_with($image->link, 'https://') || str_starts_with($image->link, 'http://'))
+                            <img class="rounded-1 w-100" src="{{ $image->link }}" alt="{{ $apartment->title }}">
+                        @else
+                            <img class="rounded-1 w-100" src="{{ asset('/storage') . '/' . $image->link }}"
+                                alt="{{ $apartment->title }}">
+                        @endif
+                    </div>
+                @endforeach
+                <div>
+                    <p>{{ $apartment->description }}</p>
+
+                    <ul class="list-group">
+                        <li class="list-group-item">Metri quadri: {{ $apartment->sqr_meters }}</li>
+                        <li class="list-group-item">N. Camere: {{ $apartment->n_rooms }}</li>
+                        <li class="list-group-item">N. Piani: {{ $apartment->n_floor }}</li>
+                        <li class="list-group-item">N. Bagni: {{ $apartment->n_bathrooms }}</li>
+                        <li class="list-group-item">N. Letti: {{ $apartment->n_beds }}</li>
+                        <li class="list-group-item">N. Price: {{ $apartment->price }}</li>
+                    </ul>
+                    <ul class="list-group">
+                        @if (count($apartment->services) !== 0)
+                            <li class="list-group-item">
+                                servizi:
+                                @foreach ($apartment->services as $service)
+                                    <pre class="me-2">{{ $service->name }}</pre>
+                                @endforeach
+                            </li>
+                        @else
+                            Non ci sono servizi
+                        @endif
+                    </ul>
+
+                </div>
+            </section> --}}
+
+            {{-- <div class="col-5">
+                <div id="map-div" lat="{{ $apartment->lat }}" log="{{ $apartment->long }}"></div>
+            </div> --}}
         </div>
     </div>
-
 @endsection
 
 @section('js-files')
