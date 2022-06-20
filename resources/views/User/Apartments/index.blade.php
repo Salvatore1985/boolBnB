@@ -30,7 +30,7 @@
                 @if ($apartment->is_visible == false) bg-warning @endif">
                     <div class="card-deck">
                         <div class="card mb-5">
-                            @foreach ($apartment->images as $image)
+                            {{-- @foreach ($apartment->images as $image)
                                 @if (str_starts_with($image->link, 'https://') || str_starts_with($image->link, 'http://'))
                                     <img class="card-img-top img-apartment" src="{{ $image->link }}"
                                         alt="{{ $apartment->title }}">
@@ -39,15 +39,15 @@
                                         src="{{ asset('/storage') . '/' . $image->link }}"
                                         alt="{{ $apartment->title }}">
                                 @endif
-                            @endforeach
-                            {{-- @if (str_starts_with($apartment->images[0]->link, 'https://') || str_starts_with($apartment->images[0]->link, 'http://'))
+                            @endforeach --}}
+                            @if (str_starts_with($apartment->images[0]->link, 'https://') or str_starts_with($apartment->images[0]->link, 'http://'))
                                 <img class="card-img-top img-apartment" src="{{ $apartment->images[0]->link }}"
                                     alt="{{ $apartment->title }}">
                             @else
                                 <img class="card-img-top img-apartment"
                                     src="{{ asset('/storage') . '/' . $apartment->images[0]->link }}"
                                     alt="{{ $apartment->title }}">
-                            @endif --}}
+                            @endif
                             <div class="card-body shadow rounded p-4">
                                 <h1 class="card-title  text-muted ">{{ $apartment->title }}</h1>
                                 <hr>
