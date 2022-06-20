@@ -40,9 +40,6 @@ export default {
             //};
         },
         addMarker(map) {
-            //const tt = window.tt;
-            //var location = [this.lon, this.lat];
-            //var popupOffset = 25;
             this.positions.forEach((position) => {
             const marker = new tt.Marker().setLngLat(position).addTo(map);
             const popup = new tt.Popup({ anchor: 'top' }).setText('Apartment')
