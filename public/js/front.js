@@ -1955,6 +1955,60 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1973,7 +2027,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      baseUri: "http://localhost:8000",
+      baseUri: "http://127.0.0.1:8000",
       apartments: [],
       isLoading: false,
       pagination: {},
@@ -1987,7 +2041,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    getApartments: function getApartments(title, nBath, nRooms, nBeds, nFloor, nPrice) {
+    getApartments: function getApartments(title, nBath, nRooms, nBeds, nPrice) {
       var _this = this;
 
       this.isLoading = true;
@@ -1996,7 +2050,6 @@ __webpack_require__.r(__webpack_exports__);
       params.append("n_bathrooms", nBath);
       params.append("n_rooms", nRooms);
       params.append("n_beds", nBeds);
-      params.append("n_floor", nFloor);
       params.append("price", nPrice);
       var request = {
         params: params
@@ -2043,6 +2096,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -38994,7 +39050,7 @@ var render = function () {
               },
             }),
           ])
-        : _c("div", { staticClass: " bg-dark text-center mb-3" }, [
+        : _c("div", { staticClass: "bg-dark text-center mb-3" }, [
             _c("img", {
               staticClass: "img-apartment",
               attrs: {
@@ -39011,9 +39067,7 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "card-text" }, [
-        _vm._v(
-          "\n          " + _vm._s(_vm.limitOverview(_vm.apartment)) + "\n      "
-        ),
+        _vm._v("\n    " + _vm._s(_vm.limitOverview(_vm.apartment)) + "\n  "),
       ]),
       _vm._v(" "),
       _c("pre", [
