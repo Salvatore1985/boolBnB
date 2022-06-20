@@ -19,7 +19,7 @@
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
                                         value="{{ old('name') }}" autocomplete="name" autofocus
-                                        placeholder="* campo richiesto">
+                                        placeholder="* campo richiesto" required autocomplete="on">
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
                                     <input id="surname" type="text"
                                         class="form-control @error('surname') is-invalid @enderror" name="surname"
                                         value="{{ old('surname') }}" autocomplete="surname"
-                                        placeholder="* campo richiesto">
+                                        placeholder="* campo richiesto" required autocomplete="on">
 
                                     @error('surname')
                                         <span class="invalid-feedback" role="alert">
@@ -53,7 +53,7 @@
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" autocomplete="email" placeholder="* campo richiesto">
+                                        value="{{ old('email') }}" autocomplete="email" placeholder="* campo richiesto" required autocomplete="on">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -70,7 +70,7 @@
                                 <div class="col-md-6">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
-                                        autocomplete="new-password" placeholder="* campo richiesto">
+                                        autocomplete="new-password" placeholder="* campo richiesto" required autocomplete="on">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -87,7 +87,7 @@
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" autocomplete="new-password"
-                                        placeholder="* campo richiesto">
+                                        placeholder="* campo richiesto" required autocomplete="on">
 
 
                                 </div>
@@ -101,7 +101,7 @@
                                     <input id="date_of_birth" type="date"
                                         class="form-control @error('date_of_birth') is-invalid @enderror"
                                         name="date_of_birth" value="{{ old('date_of_birth') }}"
-                                        autocomplete="date_of_birth" placeholder="* campo richiesto">
+                                        autocomplete="date_of_birth" placeholder="* campo richiesto" required autocomplete="on">
 
                                     @error('date_of_birth')
                                         <span class="invalid-feedback" role="alert">
