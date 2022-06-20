@@ -20,6 +20,9 @@
     <h6 class="py-2">stelline</h6>
     <h5 class="card-title">{{ apartment.title }}</h5>
     <p class="card-text">
+        <!-- <span class="px-3">
+            {{apartment.service.name}}
+        </span> -->
       {{ limitOverview(apartment) }}
     </p>
     <pre>Creato il: {{ getFormattedDate(apartment.created_at) }}</pre>
@@ -30,9 +33,17 @@
           src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg"
           alt=""
         />
-        <span class="px-3">Nome host</span>
+        <span class="px-3">
+            {{apartment.user.name}}
+        </span>
       </div>
       <h5 class="px-3">{{ apartment.price }} €/Notte</h5>
+    </div>
+    <div>
+        <router-link
+        :to="{ name: 'apartment', params: {id : apartment.id} }" >
+            Leggi questo post
+        </router-link>
     </div>
   </div>
 </template>
