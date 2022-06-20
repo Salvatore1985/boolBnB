@@ -24,7 +24,16 @@ class ApartmentsController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::where('user_id',  Auth::user()->id)->orderBy('id', 'desc')->paginate(10);
+        $user_id = Auth::id();
+
+        if ($user_id == 1) {
+            $apartments = Apartment::paginate(10);
+        } else {
+            $apartments = Apartment::where('user_id', $user_id)->paginate(10);
+        }
+
+        // return view('admin.apartments.index', compact('apartments'));
+        // $apartments = Apartment::where('user_id',  Auth::user()->id)->orderBy('id', 'desc')->paginate(10);
         return view('user.apartments.index', compact('apartments'));
     }
 
@@ -137,8 +146,16 @@ class ApartmentsController extends Controller
      */
     public function show($id, Image $images)
     {
+        $user_id = Auth::id();
+
         $apartment = Apartment::findOrFail($id);
-        return view('user.apartments.show', ['apartment' => $apartment]);
+        if ($user_id == 1 or $user_id == $apartment->user_id) {
+
+
+            return view('user.apartments.show', ['apartment' => $apartment]);
+        } else {
+            return redirect()->route('user.home');
+        }
     }
 
     /**
@@ -150,11 +167,18 @@ class ApartmentsController extends Controller
      */
     public function edit($id, Service $services)
     {
+        $user_id = Auth::id();
 
-        $services = Service::all();
         $apartment = Apartment::findOrFail($id);
-        $service_ids = $apartment->services->pluck('id')->toArray();
-        return view('user.apartments.edit', ['apartment' => $apartment, 'services' => $services, 'service_id' => $service_ids]);
+        if ($user_id == 1 or $user_id == $apartment->user_id) {
+            $services = Service::all();
+
+            $service_ids = $apartment->services->pluck('id')->toArray();
+
+            return view('user.apartments.edit', ['apartment' => $apartment, 'services' => $services, 'service_id' => $service_ids]);
+        } else {
+            return redirect()->route('user.home');
+        }
     }
 
     /**
