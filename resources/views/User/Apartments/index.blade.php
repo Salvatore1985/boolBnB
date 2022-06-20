@@ -27,9 +27,7 @@
             </div>
             @forelse ($apartments as $apartment)
                 <div class="col-6
-                @if ($apartment->is_visible == false)
-                    bg-warning
-                @endif">
+                @if ($apartment->is_visible == false) bg-warning @endif">
                     <div class="card-deck">
                         <div class="card mb-5">
                             @foreach ($apartment->images as $image)
@@ -57,11 +55,8 @@
                                 <section class="d-flex justify-content-between shadow rounded">
                                     <div class="p-4">
                                         <pre class="card-text ">Numero di stanze: {{ $apartment->n_rooms }}</pre>
-
                                         <pre class="card-text">Numero di letti: {{ $apartment->n_beds }}</pre>
-
                                         <pre class="card-text">Numero di bagni: {{ $apartment->n_bathrooms }}</pre>
-                                        <pre class="card-text">Numero di piani: {{ $apartment->n_floor }}</pre>
                                         <pre class="card-text">Metri quadrati: {{ $apartment->sqr_meters }}</pre>
                                         <pre class="card-text">Prezzo: {{ $apartment->price }} €</pre>
                                         <pre class="card-text">Creato il: {{ $apartment->created_at }}</pre>

@@ -56,7 +56,6 @@
                     <ul class="list-group">
                         <li class="list-group-item">Metri quadri: {{ $apartment->sqr_meters }}</li>
                         <li class="list-group-item">N. Camere: {{ $apartment->n_rooms }}</li>
-                        <li class="list-group-item">N. Piani: {{ $apartment->n_floor }}</li>
                         <li class="list-group-item">N. Bagni: {{ $apartment->n_bathrooms }}</li>
                         <li class="list-group-item">N. Letti: {{ $apartment->n_beds }}</li>
                         <li class="list-group-item">N. Price: {{ $apartment->price }}</li>
