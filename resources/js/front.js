@@ -18,7 +18,7 @@ import SingleApartment from "./Pages/SingleApartment";
 
 Vue.use(VueRouter)
 const router = new VueRouter({
-    mode: 'history',
+    // mode: 'history',
 
     routes: [
         {
