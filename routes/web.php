@@ -45,7 +45,7 @@ Route::middleware('auth')
 ->group(function () {
     Route::resource('apartments', ApartmentsController::class);
     Route::resource('users', UsersController::class);
-
+    Route::resource('sponsorships', SponsorshipsController::class);
     Route::delete('/image/{id}', 'ImagesController@destroy')->name("image.destroy");
 });
 

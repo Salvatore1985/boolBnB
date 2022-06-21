@@ -37,8 +37,7 @@ class ServicesController extends Controller
         $user_id = Auth::id();
 
         if ($user_id == 1) {
-            $service = new Service();
-            return view('admin.services.create', compact('service'));
+            return view('admin.services.create');
         } else {
             return redirect()->route('admin.dashboard');
         }
@@ -133,11 +132,10 @@ class ServicesController extends Controller
      */
     public function destroy(Service $service)
     {
-        // $user_id = Auth::id();
-
-        // if ($user_id == 1) {
-        // $service->delete();
-        // return redirect()->route('admin.services.index')->with('alert-message', 'Servizio eliminato con successo.')->with('alert-type', 'success');
-        // }
+        $user_id = Auth::id();
+        if ($user_id == 1) {
+        $service->delete();
+        return redirect()->route('admin.services.index')->with('alert-message', 'Servizio eliminato con successo.')->with('alert-type', 'success');
+        }
     }
 }

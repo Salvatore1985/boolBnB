@@ -31,7 +31,7 @@
                                     <a href="{{ route('admin.services.edit', $service) }} "class="btn btn-warning">
                                         &#9998; Modifica
                                     </a>
-                                <form action="{{ route('user.users.destroy', $service) }}" method="POST"
+                                <form action="{{ route('admin.services.destroy', $service) }}" method="POST"
                                     class="service-destroyer" service-name="{{ ucfirst($service->name) }}"
                                     onclick="return confirm('Sei sicuro di voler eliminare {{ $service->name }}?')">
                                     @csrf

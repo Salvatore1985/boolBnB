@@ -38,6 +38,11 @@
                                         Utenti
                                     </a>
                                 </li>
+                                <li class="nav-item" @if (Auth::user()->id == 1) @endif>
+                                    <a class="nav-link" href="{{ route('user.sponsorships.index') }}">
+                                        Sponsorizzazioni
+                                    </a>
+                                </li>
                                 {{-- <li class="nav-item">
                                     <a class="nav-link" href="{{ route('user.apartments.create') }}">Diventa Host</a>
                                 </li> --}}
