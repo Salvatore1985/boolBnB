@@ -6,29 +6,28 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Apartment;
 use App\Models\Image;
+use Illuminate\Support\Facades\Http;
 /* use App\Models\Service;
 use App\Models\Sponsorship; */
 
 
 class ApartmentController extends Controller
 {
-    public function index(Apartment $apartmen)
+    public function index(Apartment $apartment)
     {
-        // $apartments = Apartment::with(['image','service', 'sponsorship' ])
-            $apartments = Apartment::with('images')
-       /*  ->inRandomOrder() */
-        ->paginate(6);
+        $apartments = Apartment::with(['images', 'services', 'user'])->paginate(20);
         return response()->json($apartments);
     }
+
     public function show($id)
     {
-        $post = Apartment::with('images')->findOrFail($id);
+        $apartment = Apartment::with(['images', 'services', 'user'])->findOrFail($id);
         return response()->json(
             [
                 'success' => true,
                 'results' => $apartment,
                 'services' => $apartment->service_id,
-                // 'comments' => $post->comments,
+                'user_id' => $apartment->users,
             ]);
     }
     public function destroy($id)
@@ -40,18 +39,37 @@ class ApartmentController extends Controller
 
     public function search(Request $request)
     {
-        $result = Apartment::where('title', 'LIKE', '%'. $request->title. '%')
-                            ->where('n_bathrooms', 'LIKE', '%'. $request->n_bathrooms. '%')
+        //$apiTomTom = Http::get("https://api.tomtom.com/search/2/geocode/$request->address.json?key=SsllzLi6J5XLezFkwzq7gpR0xOCwBOzL")->json();
+        //$resultTomTom = $apiTomTom['results'][0]['position'];
+        //if ($distance == 5) {
+        //    $range_lat = (1 / 111) * 5;
+        //    $range_lon = (1 / 85) * 5;
+        //} else if ($distance == 10) {
+        //    $range_lat = (1 / 111) * 10;
+        //    $range_lon = (1 / 85) * 10;
+        //} else if ($distance == 20) {
+        //    $range_lat = (1 / 111) * 20;
+        //    $range_lon = (1 / 85) * 20;
+        //} else if ($distance == 50) {
+        //    $range_lat = (1 / 111) * 50;
+        //    $range_lon = (1 / 85) * 50;
+        //} else {
+        //    $range_lat = (1 / 111) * 10;
+        //    $range_lon = (1 / 85) * 10;
+        //}
+        //$min_lat = $lat - $range_lat;
+        //$max_lat = $lat + $range_lat;
+        //$min_lon = $lon - $range_lon;
+        //$max_lon = $lon + $range_lon;
+        $result = Apartment::where('address', 'LIKE', '%'. $request->address. '%')
                             ->where('n_rooms', 'LIKE', '%'. $request->n_rooms. '%')
-                            ->where('sqr_meters', 'LIKE', '%'. $request->sqr_meters. '%')
                             ->where('n_beds', 'LIKE', '%'. $request->n_beds. '%')
-                            ->where('price', 'LIKE', '%'. $request->price. '%')
                             ->with('images')
                             //->whereBetween('latitude', [1, 100])->whereBetween('longitude', [200, 300])
 
         ->get();
         if(count($result)){
-            return Response()->json($result);
+            return Response()->json([$result]);
         }
         else
         {
