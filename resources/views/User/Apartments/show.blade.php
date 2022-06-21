@@ -7,6 +7,7 @@
 @extends('layouts.createPage')
 
 @section('form-content')
+
     <div class="container py-5">
         <div class="row">
             <div class="col-6 d-flex">
@@ -73,9 +74,22 @@
                             Non ci sono servizi
                         @endif
                     </ul>
+                    <div>
+                        @forelse ($apartment->messages as $message)
+                        <div class="card-body border-bottom">
+                        <h5 class="card-title h6"><span class="font-italic">E-mail:</span> {{ $message->email }}</h5>
+                        <p class="card-text"><span class="font-italic">Messaggio:</span> {{ $message->email_content }}</p>
+                        </div>
+                    @empty
+                        <div class="card-body border-bottom">Non ci sono messaggi</div>
+                    @endforelse
+                    </div>
 
                 </div>
+                
+            
             </div>
+
             {{-- <section class="d-flex ">
                 @foreach ($apartment->images as $image)
                     <div class="col-6 show-img mb-3">

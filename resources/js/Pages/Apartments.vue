@@ -48,6 +48,7 @@ import Apartment from "../components/Apartment.vue";
 /* import TomTomMap from "../components/TomTomMap.vue"; */
 import Search from "../components/Search.vue";
 
+
 export default {
     name: "Apartments",
     components: {

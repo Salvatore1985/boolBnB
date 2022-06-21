@@ -26,5 +26,6 @@ Route::namespace('api')->group(function(){
     / **OPPURE**/
     Route::get('/apartments/search', 'ApartmentController@search');
     Route::get('/service','ServicesController@index');
+    Route::get('/messages','MessaggesController@store');
     Route::resource('apartments','ApartmentController');
 });

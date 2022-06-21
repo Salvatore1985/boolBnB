@@ -2079,6 +2079,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderIndex",
   props: ["apartment"],
@@ -39047,6 +39048,10 @@ var staticRenderFns = [
       }),
       _vm._v(" "),
       _c("span", { staticClass: "px-3" }, [_vm._v("Nome host")]),
+      _vm._v(" "),
+      _c("a", { attrs: { href: "/contact" } }, [
+        _vm._v("Contatta l'inserzionista"),
+      ]),
     ])
   },
 ]
@@ -55661,7 +55666,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Boolean\boolBnB\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Classe55\boolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

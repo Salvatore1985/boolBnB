@@ -17,6 +17,7 @@
                 @endif
             </div>
 
+
             {{-- Delete Apartment Message --}}
             <div class="col-12">
                 @if (session('alert-message'))
