@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\Sponsorship;
-use App\User;
 
-
-class SponsorshipsController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,17 +15,7 @@ class SponsorshipsController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::id();
-
-        if ($user_id == 1) {
-            $sponsorships = Sponsorship::paginate(10);
-        } else {
-            $apartments = Apartment::where('user_id', $user_id)->paginate(10);
-        }
-
-        // return view('admin.apartments.index', compact('apartments'));
-        // $apartments = Apartment::where('user_id',  Auth::user()->id)->orderBy('id', 'desc')->paginate(10);
-        return view('admin.sponsorships.index', compact('sponsorships'));
+        return view('Admin.home');
     }
 
     /**

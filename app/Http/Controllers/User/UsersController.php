@@ -4,12 +4,10 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use App\Models\Sponsorship;
 use App\User;
+use Illuminate\Http\Request;
 
-
-class SponsorshipsController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,14 +19,11 @@ class SponsorshipsController extends Controller
         $user_id = Auth::id();
 
         if ($user_id == 1) {
-            $sponsorships = Sponsorship::paginate(10);
+            $users = User::all();
+            return view('admin.users.index', compact('users'));
         } else {
-            $apartments = Apartment::where('user_id', $user_id)->paginate(10);
+            return redirect()->route('admin.dashboard');
         }
-
-        // return view('admin.apartments.index', compact('apartments'));
-        // $apartments = Apartment::where('user_id',  Auth::user()->id)->orderBy('id', 'desc')->paginate(10);
-        return view('admin.sponsorships.index', compact('sponsorships'));
     }
 
     /**
@@ -60,7 +55,13 @@ class SponsorshipsController extends Controller
      */
     public function show($id)
     {
-        //
+        $user_id = Auth::id();
+
+        if ($user_id == 1) {
+            return view('admin.users.show', compact('user'));
+        } else {
+            return redirect()->route('admin.dashboard');
+        }
     }
 
     /**
@@ -89,11 +90,17 @@ class SponsorshipsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user_id = Auth::id();
+
+        if ($user_id == 1) {
+            $user->delete();
+            return redirect()->route('user.users.index')->with('alert-message', 'Utente eliminato con successo.')->with('alert-type', 'success');
+        }
+
     }
 }

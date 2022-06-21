@@ -28,6 +28,16 @@
                                     <a class="nav-link" href="{{ route('user.apartments.index') }}">I tuoi
                                         Appartmenti</a>
                                 </li>
+                                <li class="nav-item" @if (Auth::user()->id == 1) @endif>
+                                    <a class="nav-link" href="{{ route('admin.services.index') }}">
+                                        Servizi
+                                    </a>
+                                </li>
+                                <li class="nav-item" @if (Auth::user()->id == 1) @endif>
+                                    <a class="nav-link" href="{{ route('user.users.index') }}">
+                                        Utenti
+                                    </a>
+                                </li>
                                 {{-- <li class="nav-item">
                                     <a class="nav-link" href="{{ route('user.apartments.create') }}">Diventa Host</a>
                                 </li> --}}
