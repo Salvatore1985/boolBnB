@@ -2123,6 +2123,96 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SingleApartment",
   data: function data() {
@@ -39110,23 +39200,143 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container w-75" }, [
-    _vm._v("\n    Single Apartment\n    "),
-    _c("div", { staticClass: "col-6 p-4" }, [
-      _c("h1", [
-        _vm._v("\n            " + _vm._s(_vm.apartment.title) + "\n        "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12 p-3" }, [
+        _vm._v("\n        Single Apartment\n        "),
       ]),
       _vm._v(" "),
-      _c("h6", [
-        _vm._v("\n            " + _vm._s(_vm.apartment.address) + "\n        "),
+      _c("div", { staticClass: "col-12 p-3" }, [
+        _c("h1", [
+          _vm._v(
+            "\n                " +
+              _vm._s(_vm.apartment.title) +
+              "\n            "
+          ),
+        ]),
+        _vm._v(" "),
+        _c("h6", [
+          _vm._v(
+            "\n                " +
+              _vm._s(_vm.apartment.address) +
+              "\n            "
+          ),
+        ]),
       ]),
       _vm._v(" "),
-      _c("p", [
-        _vm._v("\n            " + _vm._s(_vm.apartment.n_beds) + "\n        "),
+      _c("div", { staticClass: "col-6 p-1" }, [
+        _c("img", {
+          staticClass: "rounded-left w-100 p-1",
+          attrs: { src: _vm.apartment.images[0].link, alt: "" },
+        }),
       ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6 d-flex p-1 flex-wrap" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6 d-flex  justify-content-between" }, [
+        _c("div", [
+          _c("h3", [_vm._v(" Host: " + _vm._s(_vm.apartment.user.name) + " ")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-flex" }, [
+            _c("div", {}, [
+              _vm._v(
+                " " + _vm._s(_vm.apartment.n_rooms) + " camera da letto - "
+              ),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ml-1" }, [
+              _vm._v(" " + _vm._s(_vm.apartment.n_beds) + " letti - "),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ml-1" }, [
+              _vm._v(" " + _vm._s(_vm.apartment.n_bathrooms) + " bagni"),
+            ]),
+          ]),
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-6 d-flex" }, [
+        _c("span", [_vm._v(_vm._s(_vm.apartment.price) + "€ /notte")]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-6" }, [
+        _c("h4", [_vm._v("Cosa troverai")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-50" }, [
+          _vm._v(" " + _vm._s(_vm.apartment.services[0].name) + " "),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c("h4", [_vm._v("Info")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-50" }, [
+          _vm._v(" " + _vm._s(_vm.apartment.description) + " "),
+        ]),
+      ]),
+      _vm._v(" "),
+      _vm._m(2),
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex avatar" }, [
+      _c("img", {
+        staticClass: "img-fluid rounded-circle",
+        attrs: {
+          src: "https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg",
+          alt: "",
+        },
+      }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-6" }, [
+        _c("p", [
+          _vm._v(
+            "Ogni prenotazione include una protezione gratuita in caso di cancellazione da parte dell'host, di inesattezze dell'annuncio e di altri problemi come le difficoltà in fase di check-in."
+          ),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 text-end my-4" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-sm btn-success",
+          attrs: { href: "http://127.0.0.1:8000/user/apartments/create " },
+        },
+        [_vm._v("\n            Contatta Host\n            ")]
+      ),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -55797,7 +56007,7 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  mode: 'history',
+  // mode: 'history',
   routes: [{
     path: "/",
     name: "apartments",
@@ -55909,7 +56119,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\final-project\boolBnB\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/tommasoriccobono/Desktop/BOOLEAN/boolBnB/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })
