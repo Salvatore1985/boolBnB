@@ -9,6 +9,8 @@ import App from "./view/App";
 Vue.use(VueRouter);
 
 import Apartments from "./Pages/Apartments";
+import SingleApartment from "./Pages/SingleApartment";
+
 // import Posts from "./pages/Posts";
 // import Contacts from "./pages/Contacts";
 // import About from "./pages/About";
@@ -20,9 +22,14 @@ const router = new VueRouter({
 
     routes: [
         {
-            path: "/apartments",
+            path: "/",
             name: "apartments",
             component: Apartments
+        },
+        {
+            path: "/apartments/:id",
+            name: "apartment",
+            component: SingleApartment
         },
 
         //         {
