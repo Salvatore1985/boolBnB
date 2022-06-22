@@ -5431,20 +5431,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SingleApartment",
   data: function data() {
     return {
       apartment: [],
       images: [],
-      services: []
+      services: [],
+      emailName: '',
+      email: '',
+      emailContent: '',
+      callResponse: '',
+      baseURI: 'http://127.0.0.1:8000/api'
     };
   },
   methods: {
     getSingleApartment: function getSingleApartment(apartmentId) {
       var _this = this;
 
-      axios.get("http://127.0.0.1:8000/api/apartments/".concat(apartmentId)).then(function (results) {
+      axios.get("".concat(this.baseURI, "/apartments/").concat(apartmentId)).then(function (results) {
         // console.log(results.data.results)
         _this.apartment = results.data.results;
         _this.images = results.data.results.images;
@@ -5456,9 +5480,21 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.warn(error);
       });
+    },
+    sendMessage: function sendMessage(emailName, email, emailContent) {
+      var _this2 = this;
+
+      if (emailName != '' && email != '' && emailContent != '') {
+        axios.post("".concat(this.baseURI, "/messages/?name=").concat(this.emailName, "&email=").concat(this.email, "&email_content=").concat(this.emailContent, "&apartment_id=").concat(this.apartment.id)).then(function (res) {
+          console.log(res);
+          _this2.callResponse = "Messaggio inviato con successo";
+        })["catch"](function () {
+          _this2.callResponse = "Messaggio non inviato";
+        });
+      }
     }
   },
-  created: function created() {
+  mounted: function mounted() {
     console.warn(this.$route.params.id);
     this.getSingleApartment(this.$route.params.id);
   }
@@ -42692,288 +42728,273 @@ var render = function () {
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-12" }, [
-            _c("nav", { staticClass: "navbar navbar-light bg-light" }, [
-              _c(
-                "form",
-                { staticClass: "form-inline" },
-                [
+            _c(
+              "nav",
+              { staticClass: "navbar navbar-light bg-light" },
+              [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.searchAddress,
+                      expression: "searchAddress",
+                    },
+                  ],
+                  staticClass: "form-control mr-sm-2",
+                  attrs: {
+                    type: "search",
+                    placeholder: "Search",
+                    "aria-label": "Search",
+                  },
+                  domProps: { value: _vm.searchAddress },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.searchAddress = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.nRooms,
+                      expression: "nRooms",
+                    },
+                  ],
+                  staticClass: "form-control mr-sm-2",
+                  attrs: {
+                    type: "number",
+                    placeholder: "Numero Stanze",
+                    "aria-label": "nRooms",
+                  },
+                  domProps: { value: _vm.nRooms },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.nRooms = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.nBeds,
+                      expression: "nBeds",
+                    },
+                  ],
+                  staticClass: "form-control mr-sm-2",
+                  attrs: {
+                    type: "number",
+                    placeholder: "Numero Letti",
+                    "aria-label": "nBeds",
+                  },
+                  domProps: { value: _vm.nBeds },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.nBeds = $event.target.value
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-check form-check-inline" }, [
                   _c("input", {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.searchAddress,
-                        expression: "searchAddress",
+                        value: _vm.nKm,
+                        expression: "nKm",
                       },
                     ],
-                    staticClass: "form-control mr-sm-2",
+                    staticClass: "form-check-input",
                     attrs: {
-                      type: "search",
-                      placeholder: "Search",
-                      "aria-label": "Search",
+                      type: "radio",
+                      name: "nKm",
+                      id: "nKm",
+                      value: "5",
                     },
-                    domProps: { value: _vm.searchAddress },
+                    domProps: { checked: _vm._q(_vm.nKm, "5") },
                     on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.searchAddress = $event.target.value
+                      change: function ($event) {
+                        _vm.nKm = "5"
                       },
                     },
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.nRooms,
-                        expression: "nRooms",
-                      },
-                    ],
-                    staticClass: "form-control mr-sm-2",
-                    attrs: {
-                      type: "number",
-                      placeholder: "Numero Stanze",
-                      "aria-label": "nRooms",
-                    },
-                    domProps: { value: _vm.nRooms },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.nRooms = $event.target.value
-                      },
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.nBeds,
-                        expression: "nBeds",
-                      },
-                    ],
-                    staticClass: "form-control mr-sm-2",
-                    attrs: {
-                      type: "number",
-                      placeholder: "Numero Letti",
-                      "aria-label": "nBeds",
-                    },
-                    domProps: { value: _vm.nBeds },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.nBeds = $event.target.value
-                      },
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-check form-check-inline" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.nKm,
-                          expression: "nKm",
-                        },
-                      ],
-                      staticClass: "form-check-input",
-                      attrs: {
-                        type: "radio",
-                        name: "nKm",
-                        id: "nKm",
-                        value: "5",
-                      },
-                      domProps: { checked: _vm._q(_vm.nKm, "5") },
-                      on: {
-                        change: function ($event) {
-                          _vm.nKm = "5"
-                        },
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "form-check-label",
-                        attrs: { for: "nKm" },
-                      },
-                      [_vm._v("5 Km")]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-check form-check-inline" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.nKm,
-                          expression: "nKm",
-                        },
-                      ],
-                      staticClass: "form-check-input",
-                      attrs: {
-                        type: "radio",
-                        name: "nKm",
-                        id: "nKm",
-                        value: "10",
-                      },
-                      domProps: { checked: _vm._q(_vm.nKm, "10") },
-                      on: {
-                        change: function ($event) {
-                          _vm.nKm = "10"
-                        },
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "form-check-label",
-                        attrs: { for: "nKm" },
-                      },
-                      [_vm._v("10 Km")]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "form-check form-check-inline" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.nKm,
-                          expression: "nKm",
-                        },
-                      ],
-                      staticClass: "form-check-input",
-                      attrs: {
-                        type: "radio",
-                        name: "nKm",
-                        id: "nKm",
-                        value: "20",
-                        checked: "",
-                      },
-                      domProps: { checked: _vm._q(_vm.nKm, "20") },
-                      on: {
-                        change: function ($event) {
-                          _vm.nKm = "20"
-                        },
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "label",
-                      {
-                        staticClass: "form-check-label",
-                        attrs: { for: "nKm" },
-                      },
-                      [_vm._v("20 Km")]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.services, function (service, index) {
-                    return _c(
-                      "div",
-                      { key: index, staticClass: "form-check" },
-                      [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.checkedServices,
-                              expression: "checkedServices",
-                            },
-                          ],
-                          staticClass: "form-check-input",
-                          attrs: {
-                            type: "checkbox",
-                            id: "gridCheck1",
-                            name: service.name,
-                          },
-                          domProps: {
-                            value: service.name,
-                            checked: Array.isArray(_vm.checkedServices)
-                              ? _vm._i(_vm.checkedServices, service.name) > -1
-                              : _vm.checkedServices,
-                          },
-                          on: {
-                            change: function ($event) {
-                              var $$a = _vm.checkedServices,
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = service.name,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 &&
-                                    (_vm.checkedServices = $$a.concat([$$v]))
-                                } else {
-                                  $$i > -1 &&
-                                    (_vm.checkedServices = $$a
-                                      .slice(0, $$i)
-                                      .concat($$a.slice($$i + 1)))
-                                }
-                              } else {
-                                _vm.checkedServices = $$c
-                              }
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-check-label",
-                            attrs: {
-                              for: "gridCheck1",
-                              required: "",
-                              autocomplete: "on",
-                            },
-                          },
-                          [
-                            _vm._v(
-                              "\n                                " +
-                                _vm._s(service.name) +
-                                "\n                            "
-                            ),
-                          ]
-                        ),
-                      ]
-                    )
                   }),
                   _vm._v(" "),
                   _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-outline-success my-2 my-sm-0",
-                      on: {
-                        click: function ($event) {
-                          return _vm.getApartments(
-                            _vm.searchAddress,
-                            _vm.nRooms,
-                            _vm.nBeds,
-                            _vm.nKm
-                          )
-                        },
+                    "label",
+                    { staticClass: "form-check-label", attrs: { for: "nKm" } },
+                    [_vm._v("5 Km")]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-check form-check-inline" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.nKm,
+                        expression: "nKm",
+                      },
+                    ],
+                    staticClass: "form-check-input",
+                    attrs: {
+                      type: "radio",
+                      name: "nKm",
+                      id: "nKm",
+                      value: "10",
+                    },
+                    domProps: { checked: _vm._q(_vm.nKm, "10") },
+                    on: {
+                      change: function ($event) {
+                        _vm.nKm = "10"
                       },
                     },
-                    [_vm._v("Search")]
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    { staticClass: "form-check-label", attrs: { for: "nKm" } },
+                    [_vm._v("10 Km")]
                   ),
-                ],
-                2
-              ),
-            ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-check form-check-inline" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.nKm,
+                        expression: "nKm",
+                      },
+                    ],
+                    staticClass: "form-check-input",
+                    attrs: {
+                      type: "radio",
+                      name: "nKm",
+                      id: "nKm",
+                      value: "20",
+                      checked: "",
+                    },
+                    domProps: { checked: _vm._q(_vm.nKm, "20") },
+                    on: {
+                      change: function ($event) {
+                        _vm.nKm = "20"
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    { staticClass: "form-check-label", attrs: { for: "nKm" } },
+                    [_vm._v("20 Km")]
+                  ),
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.services, function (service, index) {
+                  return _c("div", { key: index, staticClass: "form-check" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.checkedServices,
+                          expression: "checkedServices",
+                        },
+                      ],
+                      staticClass: "form-check-input",
+                      attrs: {
+                        type: "checkbox",
+                        id: "gridCheck1",
+                        name: service.name,
+                      },
+                      domProps: {
+                        value: service.name,
+                        checked: Array.isArray(_vm.checkedServices)
+                          ? _vm._i(_vm.checkedServices, service.name) > -1
+                          : _vm.checkedServices,
+                      },
+                      on: {
+                        change: function ($event) {
+                          var $$a = _vm.checkedServices,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = service.name,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                (_vm.checkedServices = $$a.concat([$$v]))
+                            } else {
+                              $$i > -1 &&
+                                (_vm.checkedServices = $$a
+                                  .slice(0, $$i)
+                                  .concat($$a.slice($$i + 1)))
+                            }
+                          } else {
+                            _vm.checkedServices = $$c
+                          }
+                        },
+                      },
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-check-label",
+                        attrs: {
+                          for: "gridCheck1",
+                          required: "",
+                          autocomplete: "on",
+                        },
+                      },
+                      [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(service.name) +
+                            "\n                            "
+                        ),
+                      ]
+                    ),
+                  ])
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-success my-2 my-sm-0",
+                    on: {
+                      click: function ($event) {
+                        return _vm.getApartments(
+                          _vm.searchAddress,
+                          _vm.nRooms,
+                          _vm.nBeds,
+                          _vm.nKm
+                        )
+                      },
+                    },
+                  },
+                  [_vm._v("Search")]
+                ),
+              ],
+              2
+            ),
           ]),
         ]),
       ]),
@@ -43044,6 +43065,16 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container border border-danger" }, [
+    _c(
+      "div",
+      {
+        staticClass: "alert",
+        class: _vm.alert,
+        attrs: { id: "alert-message" },
+      },
+      [_vm._v("\n       " + _vm._s(_vm.callResponse) + "\n   ")]
+    ),
+    _vm._v(" "),
     _c("h1", { staticClass: "py-4" }, [
       _vm._v("\n     " + _vm._s(_vm.apartment.title) + "\n   "),
     ]),
@@ -43078,6 +43109,105 @@ var render = function () {
           ])
         }),
         0
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c("h3", { staticClass: "mt-5 h2" }, [
+        _vm._v("Contatta il proprietario"),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "mail" } }, [_vm._v("Il tuo nome")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.emailName,
+              expression: "emailName",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { type: "email", id: "mail" },
+          domProps: { value: _vm.emailName },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.emailName = $event.target.value
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "mail" } }, [_vm._v("Indirizzo mail")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.email,
+              expression: "email",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { type: "email", id: "mail" },
+          domProps: { value: _vm.email },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.email = $event.target.value
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "emailContent" } }, [
+          _vm._v("Example textarea"),
+        ]),
+        _vm._v(" "),
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.emailContent,
+              expression: "emailContent",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { id: "emailContent", rows: "5" },
+          domProps: { value: _vm.emailContent },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.emailContent = $event.target.value
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-dark",
+          on: {
+            click: function ($event) {
+              return _vm.sendMessage(_vm.emailName, _vm.email, _vm.emailContent)
+            },
+          },
+        },
+        [_vm._v("Invia")]
       ),
     ]),
   ])
@@ -43248,10 +43378,6 @@ var staticRenderFns = [
       }),
       _vm._v(" "),
       _c("span", { staticClass: "px-3" }, [_vm._v("Nome host")]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "/contact" } }, [
-        _vm._v("Contatta l'inserzionista"),
-      ]),
     ])
   },
 ]

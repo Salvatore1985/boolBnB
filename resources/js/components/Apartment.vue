@@ -28,7 +28,7 @@
                 alt=""
                 />
                 <span class="px-3">Nome host</span>
-                <a href="/contact">Contatta l'inserzionista</a>
+                <!-- <a href="/contact">Contatta l'inserzionista</a> -->
             </div>
             <h5 class="px-3">{{ apartment.price }} €/Notte</h5>
         </div>
