@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Message;
 
-class MessaggesController extends Controller
+class MessagesController extends Controller
 {
     /**
   * Display a listing of the resource.
@@ -27,7 +27,8 @@ public function index()
   */
 public function create()
 {
-     //
+    $message = new Message();
+    return view('apartments.index');
 }
 
 /**
@@ -38,29 +39,46 @@ public function create()
   */
 public function store(Request $request)
 {
-        // CHECK VALIDAZIONE
-$validator = Validator::make($request->all(), [
-    'name' => 'required',
-    'email' => 'required|email',
-    'message' =>'required',
-]);
-$message->apartment_id = $data['apartment_id'];
-      // se non fallisce
-    if( $validator->fails()) {
-        return response()->json([
-            'errors' => $validator->errors()
-        ]); 
-    }
+    $request->validate(
+        [
+            'email' => 'string',
+            'email_content' => 'string',
+            'name' => 'string'
+        ]
+    );
 
     $data = $request->all();
-
-        // SALVATAGGIO NEL DB
-    $new_message = new Message();
-    $new_message->fill($data); 
-    $new_message->save();
-
-    return response()->json($data);  
+    $message = new Message();
+    $message->name = $data['name'];
+    $message->email = $data['email'];
+    $message->email_content = $data['email_content'];
+    $message->apartment_id = $data['apartment_id'];
+    $message->save();
 }
+// {
+//         // CHECK VALIDAZIONE
+// $validator = Validator::make($request->all(), [
+//     'name' => 'required',
+//     'email' => 'required|email',
+//     'message' =>'required',
+// ]);
+// $message->apartment_id = $data['apartment_id'];
+//       // se non fallisce
+//     if( $validator->fails()) {
+//         return response()->json([
+//             'errors' => $validator->errors()
+//         ]); 
+//     }
+
+//     $data = $request->all();
+
+//         // SALVATAGGIO NEL DB
+//     $new_message = new Message();
+//     $new_message->fill($data); 
+//     $new_message->save();
+
+//     return response()->json($data);  
+// }
 
 /**
   * Display the specified resource.

@@ -34,7 +34,7 @@
                                     </a>
                                     </div>
 
-                                    <form action="{{ route('user.message.destroy', $message->id) }}" method="POST"
+                                    {{-- <form action="{{ route('user.message.destroy', $message->id) }}" method="POST"
                                         class="messagge-destroyer" message-email_content="{{ ucfirst($message->email_content) }}"
                                         onclick="return confirm('Sei sicuro di voler eliminare il messaggio di {{ $message->name }}?')">
                                         @csrf
@@ -42,7 +42,7 @@
                                         <button class="btn btn-md btn-delete btn-outline-danger" type="submit">
                                             &#10008; Elimina
                                         </button>
-                                    </form>                                        
+                                    </form>                                         --}}
                                     @endforeach
                                 @empty
                                     <div class="card-body border-bottom">Non ci sono messaggi</div>

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Rule;
 
-class MessaggesController extends Controller
+class MessagesController extends Controller
 {
     /**
      * Display a listing of the resource.
