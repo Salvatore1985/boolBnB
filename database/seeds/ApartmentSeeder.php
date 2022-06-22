@@ -74,30 +74,6 @@ class ApartmentSeeder extends Seeder
                 'title'=>"Antica casa sul lungolago di Giuditta Pasta"
             ],
             [
-                'address'=>'Corso Como',
-                'lat' =>'45.462129414164934',
-                'long'=>'9.190990579397749',
-                "description"=>"All'interno del Castello di Lierna, romantico luogo ricco di storia e rinomata meta turistica
-                                per la splendida 'Riva Bianca', offriamo ai nostri ospiti, la porzione meridionale di una casa nobiliare del
-                                1600.
-                                La casa è un piccolo gioiello pied dans l'eau di pace e tranquillità, con una vista mozzafiato: ogni finestra
-                                si affaccia sul lago ed offre un piccolo dipinto unico in ogni stagione dell'anno ; gode di un’incantevole
-                                posizione soleggiata direttamente affacciata sulla riva.",
-                'title'=>"Immergiti nell'elegante vasca autoportante di un'ex stalla chic"
-
-            ],
-            [
-                'address'=>'Lauro, Avellino, Italia',
-                'lat' =>'40.87972',
-                'long'=>'14.63013',
-                "description"=>"Appartamento con i piedi nell'acqua, vicino al lago di Annecy ! Il luogo è ideale per rilassarsi tra laghi e montagne.
-                                Pista ciclabile di fronte alla casa.
-                                Spiagge nelle vicinanze: spiaggia Balmette a 50 metri e spiaggia Angon (sorvegliata) a 500 metri.
-                                Piste da sci 40 minuti (La Clusaz e Le Grand Bornand) e 1 ora il comprensorio sciistico più grande
-                                del mondo: Les 3 Vallées (Courchevel_Méribel_Val Thorens)",
-                "title" => "Terrazza Lauro"
-             ],
-            [
                 'address'=>'via Roma 12, Via Dieci Giugno, 29121 Piacenza PC, Italia',
                 'lat' =>'45.0534182',
                 'long'=>'9.6959195',

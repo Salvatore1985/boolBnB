@@ -20,8 +20,6 @@ class ImageSeeder extends Seeder
             "https://www.wilderkaiser.info/feratel/room/appartment-nina-maximilian1.jpg",
             "https://cf.bstatic.com/images/hotel/840x460/336/336786379.jpg",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZUaX5tNY0G-SgemEIK5IS88tn1iYCoF-hiUco6m1XwotrKulT_IGP-CTpQ9jmZhhKpbw&usqp=CAU",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMDpC--rYtGrZAcPwC70CPgJJmmV67-XfpZg&usqp=CAU",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVz8TncxlY7MuaHjvdOE6kycszYhUtKTcQTA&usqp=CAU",
             "https://homeworlddesign.com/wp-content/uploads/2016/04/Habitat-67-Minimalist-Apartment-Design-in-Montreal-5.jpg",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJATQ3QLWqILvddZqUpk-6KsnI42yKtPcrCg&usqp=CAU",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc69qe3UqYQhmEqR7vMyjyRoPGcWXoEJk0qQ&usqp=CAU",

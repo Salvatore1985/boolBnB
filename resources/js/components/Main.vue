@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Apartments from "../Pages/Apartments.vue";
+//import Apartments from "../Pages/Apartments.vue";
 export default {
   name: "MainIndex",
 };

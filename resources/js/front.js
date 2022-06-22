@@ -18,8 +18,7 @@ import SingleApartment from "./Pages/SingleApartment";
 
 Vue.use(VueRouter)
 const router = new VueRouter({
-    // mode: 'history',
-
+    //mode: 'history',
     routes: [
         {
             path: "/",
@@ -31,6 +30,7 @@ const router = new VueRouter({
             name: "apartment",
             component: SingleApartment
         },
+
 
         //         {
         //             path:"/about-us",
