@@ -27,9 +27,9 @@
                 @endif
             </div>
             @forelse ($apartments as $apartment)
-                <div class="col-6 card-group">
+                <div class="col-6 card-group ">
                     
-                    <div class="card mb-5 position-relative">
+                    <div class="card mb-5 position-relative ">
                         {{-- @foreach ($apartment->images as $image)
                             @if (str_starts_with($image->link, 'https://') || str_starts_with($image->link, 'http://'))
                                 <img class="card-img-top img-apartment" src="{{ $image->link }}"
@@ -53,41 +53,55 @@
                                 src="{{ asset('/storage') . '/' . $apartment->images[0]->link }}"
                                 alt="{{ $apartment->title }}">
                         @endif
-                        <div class="card-body d-flex flex-column justify-content-between shadow rounded p-4">
-                            <h2 class="card-title  text-muted ">{{ $apartment->title }}</h2>
+
+                        <div class="card-body p-4">
+                            <div class="d-block"><h2 class="card-title  text-muted ">{{ $apartment->title }}</h2></div>
+                            
                             <hr>
-                            <p class="card-text">Descrizione: {{ $apartment->description }}</p>
-                            <section class="d-flex justify-content-between shadow rounded">
-                                <div class="p-4">
-                                    <pre class="card-text">Numero di stanze: {{ $apartment->n_rooms }}</pre>
-                                    <pre class="card-text">Numero di letti: {{ $apartment->n_beds }}</pre>
-                                    <pre class="card-text">Numero di bagni: {{ $apartment->n_bathrooms }}</pre>
-                                    <pre class="card-text">Metri quadrati: {{ $apartment->sqr_meters }}</pre>
-                                    <pre class="card-text">Prezzo: {{ $apartment->price }} €</pre>
-                                    <pre class="card-text">Creato il: {{ $apartment->created_at }}</pre>
+                            <div class="d-block"><p class="card-text">Descrizione: {{ $apartment->description }}</p></div>
+                        </div>
+                        <div class="card-body shadow rounded p-4 d-flex flex-column justify-content-end">
+                            
+                            
+                            <div class="d-flex flex-column justify-content-between">
+                                <hr>
+                                <div>
+                                    <section class="d-flex justify-content-between shadow rounded">
+                                        <div class="p-4">
+                                            <pre class="card-text">Numero di stanze: {{ $apartment->n_rooms }}</pre>
+                                            <pre class="card-text">Numero di letti: {{ $apartment->n_beds }}</pre>
+                                            <pre class="card-text">Numero di bagni: {{ $apartment->n_bathrooms }}</pre>
+                                            <pre class="card-text">Metri quadrati: {{ $apartment->sqr_meters }}</pre>
+                                            <pre class="card-text">Prezzo: {{ $apartment->price }} €</pre>
+                                            <pre class="card-text">Creato il: {{ $apartment->created_at }}</pre>
+                                        </div>
+                                        <div class="">
+                                            <ul class="list-group p-4">
+                                                <li class="card-text list-style-type-circle">Servizi: </li>
+                                                @forelse ($apartment->services as $service)
+                                                    <li class="list-style-type-none">
+                                                        <pre>{{ $service->name }}</pre>
+                                                    </li>
+        
+                                                @empty
+                                                    <p class="card-text">nessun servizio Extra</p>
+                                                @endforelse
+                                            </ul>
+        
+                                        </div>
+                                    </section>
                                 </div>
-                                <div class="d-block">
-                                    <ul class="list-group p-4">
-                                        <li class="card-text list-style-type-circle">Servizi: </li>
-                                        @forelse ($apartment->services as $service)
-                                            <li class="list-style-type-none">
-                                                <pre>{{ $service->name }}</pre>
-                                            </li>
-
-                                        @empty
-                                            <p class="card-text">nessun servizio Extra</p>
-                                        @endforelse
-                                    </ul>
-
+                                
+                                <div>
+                                    @if ($apartment->is_visible)
+                                    <h4 class="card-text py-4 "><small class="text-muted font-weight-bold">Publicato</small>
+                                    </h4>
+                                    @else
+                                        <h4 class="card-text py-4 "><small class="text-muted font-weight-bold">Non
+                                                Publicato</small></h4>
+                                    @endif
                                 </div>
-                            </section>
-                            @if ($apartment->is_visible)
-                                <h4 class="card-text py-4 "><small class="text-muted font-weight-bold">Publicato</small>
-                                </h4>
-                            @else
-                                <h4 class="card-text py-4 "><small class="text-muted font-weight-bold">Non
-                                        Publicato</small></h4>
-                            @endif
+                                
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('user.apartments.edit', $apartment) }} "class="btn btn-warning">
                                     &#9998; Modifica
@@ -105,6 +119,9 @@
                                         &#10008; Elimina
                                     </button>
                                 </form>
+                            </div>
+                            
+                            
                             </div>
                         </div>
                     </div>
