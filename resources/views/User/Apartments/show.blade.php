@@ -37,7 +37,9 @@
                         </button>
                     </form>
                 </div>
-
+                <a href="{{ route('user.sponsorships.purchase', $apartment) }} "class="btn btn-primary">
+                    Sponsorizza
+                </a>
             </div>
             <div class="col-6 ">
                 @foreach ($apartment->images as $image)
@@ -85,8 +87,8 @@
                     </div>
 
                 </div>
-                
-            
+
+
             </div>
 
             {{-- <section class="d-flex ">
