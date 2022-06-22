@@ -9,9 +9,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/user.js') }}"></script>
-    
-    
-    {{-- <script src="{{ asset('js/front.js') }}"></script> --}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
