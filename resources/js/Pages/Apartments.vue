@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-12">
                     <nav class="navbar navbar-light bg-light">
-                        <form class="form-inline">
+                        <!--<form class="form-inline">-->
                             <input
                             class="form-control mr-sm-2"
                             type="search"
@@ -49,7 +49,7 @@
                             </div>
 
                             <button class="btn btn-outline-success my-2 my-sm-0" @click="getApartments(searchAddress, nRooms, nBeds, nKm)">Search</button>
-                        </form>
+                        <!--</form>-->
                     </nav>
                 </div>
             </div>
