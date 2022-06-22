@@ -27,6 +27,7 @@ Route::namespace('api')->group(function(){
     Route::get('/apartments/search', 'ApartmentController@search');
     Route::get('/services','ServicesController@index');
     Route::get('/messages','MessaggesController@store');
+    Route::get('payments/token', 'PaymentController@token');
     Route::get('/user','UsersController@index');
     Route::resource('apartments','ApartmentController');
 });
