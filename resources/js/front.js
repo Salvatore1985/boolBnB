@@ -9,7 +9,6 @@ import App from "./view/App";
 Vue.use(VueRouter);
 
 import Apartments from "./Pages/Apartments";
-import searchApartments from "./Pages/searchApartments";
 // import Posts from "./pages/Posts";
 // import Contacts from "./pages/Contacts";
 // import About from "./pages/About";
@@ -24,11 +23,6 @@ const router = new VueRouter({
             path: "/apartments",
             name: "apartments",
             component: Apartments
-        },
-        {
-            path: "/search/apartments",
-            name: "searchApartments",
-            component: searchApartments
         },
         //         {
         //             path:"/about-us",
