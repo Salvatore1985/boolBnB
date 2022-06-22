@@ -32,9 +32,7 @@
             </div>
             <h5 class="px-3">{{ apartment.price }} €/Notte</h5>
         </div>
-
-    </div>
-    <div class="bg-dark text-center mb-3" v-else>
+    <div class="bg-dark text-center mb-3">
       <img
         class="img-apartment"
         :src="`storage/${apartment.images[0].link}`"
