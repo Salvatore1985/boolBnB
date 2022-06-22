@@ -14,8 +14,16 @@ class PaymentsController extends Controller
 {
     public function index(Apartment $apartment, Sponsorship $sponsorship)
     {
+        $gateway = new \Braintree\Gateway([
+            'environment' => config('services.braintree.environment'),
+            'merchantId' => config('services.braintree.merchantId'),
+            'publicKey' => config('services.braintree.publicKey'),
+            'privateKey' => config('services.braintree.privateKey')
+        ]);
 
-        return view('user.payments', compact('apartment', 'sponsorship'));
+        $token = $gateway->clientToken()->generate();
+
+        return view('user.payments', compact('apartment', 'sponsorship', 'token'));
     }
 
     public function transaction(Request $request,Apartment $apartment, $id)
