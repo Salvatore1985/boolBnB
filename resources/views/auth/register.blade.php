@@ -13,13 +13,13 @@
 
                             <div class="form-group row">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome *') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
                                         value="{{ old('name') }}" autocomplete="name" autofocus
-                                        placeholder="* campo richiesto">
+                                        placeholder="* campo richiesto" required autocomplete="on">
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -31,13 +31,13 @@
                             {{-- userName --}}
                             <div class="form-group row">
                                 <label for="surname"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Cognome') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Cognome *') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="surname" type="text"
                                         class="form-control @error('surname') is-invalid @enderror" name="surname"
                                         value="{{ old('surname') }}" autocomplete="surname"
-                                        placeholder="* campo richiesto">
+                                        placeholder="* campo richiesto" required autocomplete="on">
 
                                     @error('surname')
                                         <span class="invalid-feedback" role="alert">
@@ -48,12 +48,12 @@
                             </div>
                             <div class="form-group row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail *') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" autocomplete="email" placeholder="* campo richiesto">
+                                        value="{{ old('email') }}" autocomplete="email" placeholder="* campo richiesto" required autocomplete="on">
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -65,12 +65,12 @@
 
                             <div class="form-group row">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Password *') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
-                                        autocomplete="new-password" placeholder="* campo richiesto">
+                                        autocomplete="new-password" placeholder="* campo richiesto" required autocomplete="on">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -82,12 +82,12 @@
 
                             <div class="form-group row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password *') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" autocomplete="new-password"
-                                        placeholder="* campo richiesto">
+                                        placeholder="* campo richiesto" required autocomplete="on">
 
 
                                 </div>
@@ -95,13 +95,13 @@
                             {{-- date_of_birth --}}
                             <div class="form-group row">
                                 <label for="date_of_birth"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('data di nascita') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('data di nascita *') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="date_of_birth" type="date"
                                         class="form-control @error('date_of_birth') is-invalid @enderror"
                                         name="date_of_birth" value="{{ old('date_of_birth') }}"
-                                        autocomplete="date_of_birth" placeholder="* campo richiesto">
+                                        autocomplete="date_of_birth" placeholder="* campo richiesto" required autocomplete="on">
 
                                     @error('date_of_birth')
                                         <span class="invalid-feedback" role="alert">

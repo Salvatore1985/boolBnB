@@ -34,7 +34,8 @@ class ImageSeeder extends Seeder
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH2BGkDv0C_dh3HuBhBh6uNZ88-CUqen6ehfVFjxEQfJSgRoZKap05AeNahuyMnfBUGhs&usqp=CAU",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjlN2P7dE4gKiZ-qclUJ5tujDPLcJnNwXmqw&usqp=CAU",
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVqNMndpIhl-T_Ng_2Z21Gb60VOBdgrTiSPg&usqp=CAU",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiG61xboDzruzHuDBjuTIM1pwCMSwRVodcHg&usqp=CAU"
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiG61xboDzruzHuDBjuTIM1pwCMSwRVodcHg&usqp=CAU",
+
 
 
 
@@ -44,7 +45,7 @@ class ImageSeeder extends Seeder
         for ($i=0; $i < Count($photos); $i++) {
             $newImage = new Image;
             $newImage->link = $photos[$i] ;
-            $newImage->apartment_id = $faker->randomElement($apartmentIds);
+            $newImage->apartment_id = $apartmentIds[$i];
             $newImage->save();
         }
     }

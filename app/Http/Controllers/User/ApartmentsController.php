@@ -24,7 +24,16 @@ class ApartmentsController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::where('user_id',  Auth::user()->id)->orderBy('id', 'desc')->paginate(10);
+        $user_id = Auth::id();
+
+        if ($user_id == 1) {
+            $apartments = Apartment::paginate(10);
+        } else {
+            $apartments = Apartment::where('user_id', $user_id)->paginate(10);
+        }
+
+        // return view('admin.apartments.index', compact('apartments'));
+        // $apartments = Apartment::where('user_id',  Auth::user()->id)->orderBy('id', 'desc')->paginate(10);
         return view('user.apartments.index', compact('apartments'));
     }
 
@@ -62,11 +71,11 @@ class ApartmentsController extends Controller
                 'description' => 'required|string|min:10',
                 'n_rooms' => 'required|numeric|min:1',
                 'n_beds' => 'required|numeric|min:1',
-                'n_floor' => 'required|numeric|min:1',
                 'n_bathrooms' => 'required|numeric|min:1',
                 'sqr_meters' => 'required|numeric|min:1',
                 'address' => 'required|string',
                 'images' => 'required|min:1',
+                'service' => 'required|min:1',
                 'price' => 'required|numeric|min:1',
             ] ,
             [
@@ -81,8 +90,6 @@ class ApartmentsController extends Controller
                 'n_rooms.min'=>'Il numero delle stanze deve essere almeno di :min',
                 'n_beds.required'=>'Devi inserire il numero dei letti',
                 'n_beds.min'=>'Il numero dei letti deve essere almeno di :min',
-                'n_floor.required'=>'Devi inserire il numero dei piani',
-                'n_floor.min'=>'Il numero dei piani deve essere almeno :min',
                 'n_bathrooms.required'=>'Devi inserire il numero dei bagni',
                 'n_bathrooms.min'=>'Il numero dei bagni deve essere almeno :min',
                 'n_bathrooms.number'=>'Il numero dei bagni deve essere un numero',
@@ -91,7 +98,8 @@ class ApartmentsController extends Controller
                 'address.required'=>'Devi inserire la via',
                 'price.required'=>'Devi inserire il numero il prezzo',
                 'price.min'=>'Il prezzo non può essere inferiore a :min €',
-                'images.required' => 'Devi inserire almeno una foto :min'
+                'images.required' => 'Devi inserire almeno una foto :min',
+                'service.required' => 'Devi inserire almeno un servizio :min'
             ]
         );
 
@@ -113,9 +121,7 @@ class ApartmentsController extends Controller
         $newApartment = new Apartment();
         $newApartment->fill($data);
         $newApartment->save();
-        if (array_key_exists('service', $data)){
-            $newApartment->services()->attach($data['service']);
-        };
+        $newApartment->services()->attach($data['service']);
 
 
         // creating new Images
@@ -140,8 +146,16 @@ class ApartmentsController extends Controller
      */
     public function show($id, Image $images)
     {
+        $user_id = Auth::id();
+
         $apartment = Apartment::findOrFail($id);
-        return view('user.apartments.show', ['apartment' => $apartment]);
+        if ($user_id == 1 or $user_id == $apartment->user_id) {
+
+
+            return view('user.apartments.show', ['apartment' => $apartment]);
+        } else {
+            return redirect()->route('user.home');
+        }
     }
 
     /**
@@ -153,11 +167,18 @@ class ApartmentsController extends Controller
      */
     public function edit($id, Service $services)
     {
+        $user_id = Auth::id();
 
-        $services = Service::all();
         $apartment = Apartment::findOrFail($id);
-        $service_ids = $apartment->services->pluck('id')->toArray();
-        return view('user.apartments.edit', ['apartment' => $apartment, 'services' => $services, 'service_id' => $service_ids]);
+        if ($user_id == 1 or $user_id == $apartment->user_id) {
+            $services = Service::all();
+
+            $service_ids = $apartment->services->pluck('id')->toArray();
+
+            return view('user.apartments.edit', ['apartment' => $apartment, 'services' => $services, 'service_id' => $service_ids]);
+        } else {
+            return redirect()->route('user.home');
+        }
     }
 
     /**
@@ -175,10 +196,10 @@ class ApartmentsController extends Controller
                 'description' => 'required|string|min:10',
                 'n_rooms' => 'required|numeric|min:1',
                 'n_beds' => 'required|numeric|min:1',
-                'n_floor' => 'required|numeric|min:1',
                 'n_bathrooms' => 'required|numeric|min:1',
                 'sqr_meters' => 'required|numeric|min:1',
                 'address' => 'required|string',
+                // 'service' => 'required|min:1',
                 'price' => 'required|numeric|min:1',
             ] ,
             [
@@ -193,8 +214,6 @@ class ApartmentsController extends Controller
                 'n_rooms.min'=>'Il numero delle stanze deve essere almeno :min',
                 'n_beds.required'=>'Devi inserire il numero dei letti',
                 'n_beds.min'=>'Il numero dei letti deve essere almeno :min',
-                'n_floor.required'=>'Devi inserire il numero dei piani',
-                'n_floor.min'=>'Il numero dei piani deve essere almeno :min',
                 'n_bathrooms.required'=>'Devi inserire il numero dei bagni',
                 'n_bathrooms.min'=>'Il numero dei bagni deve essere più di :min',
                 'sqr_meters.required'=>'Devi inserire il numero dei mq',
@@ -202,7 +221,7 @@ class ApartmentsController extends Controller
                 'address.required'=>'Questo campo non più essere vuoto',
                 'price.required'=>'Devi inserire il numero il prezzo',
                 'price.min'=>'Il prezzo non può essere inferiore a :min €',
-
+                // 'service' => 'Devi inserire almeno un servizio :min'
             ]
         );
 
@@ -222,11 +241,8 @@ class ApartmentsController extends Controller
 
         // creation new apartment
         $apartment->fill($data);
-        if (!array_key_exists('services', $data) && $apartment->services) $apartment->services()->detach();
-        else $apartment->services()->sync($data['services']);
-        // }else if(){
-            //
-        // $apartment->services()->sync($data['service']);
+
+        $apartment->services()->sync($data['services']);
 
         $apartment->save();
         $images=array();

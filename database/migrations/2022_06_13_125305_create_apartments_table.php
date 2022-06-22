@@ -21,7 +21,6 @@ class CreateApartmentsTable extends Migration
             $table->float('sqr_meters', 10, 2);
             $table->tinyInteger('n_beds')->default(1);
             $table->tinyInteger('n_bathrooms')->default(1);
-            $table->tinyInteger('n_floor')->nullable();
             $table->string('lat');
             $table->string('long');
             $table->string('title',100)->nullable();

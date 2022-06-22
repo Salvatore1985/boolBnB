@@ -232,12 +232,21 @@ class ApartmentSeeder extends Seeder
                                 Rilassatevi sul balcone a colazione o con un aperitivo a fine giornata.",
                 "title" => "MIRALAGO B&B A BELLAGIO camera doppia"
             ],
+            [
+                'address'=>'Via Pinto, 15057 Tortona AL, Italia',
+                'lat' =>'44.8979367',
+                'long'=>'8.8707767',
+                "description"=>"Concediti un po' di lusso affacciato sul pittoresco borgo di Sala Comacina,
+                                situato sulla premier sponda centro-occidentale del Lago di Como.
+                                Rilassatevi sul balcone a colazione o con un aperitivo a fine giornata.",
+                "title" => "MIRALAGO B&B A BELLAGIO camera doppia"
+            ],
 
         ];
 
         $userIds = User::pluck('id')->toArray();
 
-        for ($i=1; $i < count($addresses) ; $i++) {
+        for ($i=0; $i < count($addresses) ; $i++) {
             $newApartment = new Apartment;
             $newApartment->user_id = $faker->randomElement($userIds);
             $newApartment->n_rooms=$faker->numberBetween(1, 5);
@@ -245,7 +254,6 @@ class ApartmentSeeder extends Seeder
             $newApartment->sqr_meters= $faker->numberBetween(10, 500);
             $newApartment->n_beds= $faker->numberBetween(1, 10);
             $newApartment->n_bathrooms= $faker->numberBetween(1, 5);
-            $newApartment->n_floor= $faker->numberBetween(1, 3);
             $newApartment->title=$addresses[$i]['title'];
             $newApartment->is_visible= $faker->boolean();
             $newApartment->address = $addresses[$i]['address'];

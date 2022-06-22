@@ -14,13 +14,21 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
+                'name' => 'Admin',
+                'surname' => 'User',
+                'email' => 'AdminBoolBnB@gmail.com',
+                'password' => 'boolBnB',
+                'date_of_birth' => '2022-06-12',
+                'profile_photo' => 'https://www.alamy.it/paperina-image69979434.html',
+            ],
+            [
             'name' => 'Salvo',
             'surname' => 'surname',
             'email' => 'sal@gmail.com',
             'password' => 'boolBnB',
             'date_of_birth' => '1995-01-20',
             'profile_photo' => 'https://www.alamy.it/paperina-image69979434.html',
-            'username' => 'SalvoImpro',
+
             ],
             [
             'name' => 'Feli',
@@ -29,7 +37,6 @@ class UserSeeder extends Seeder
             'password' => 'boolBnB',
             'date_of_birth' => '1995-01-20',
             'profile_photo' => 'https://www.alamy.it/paperina-image69979434.html',
-            'username' => 'Filly22',
             ],
             [
                 'name' => 'Airowl',
@@ -38,7 +45,6 @@ class UserSeeder extends Seeder
                 'password' => 'boolBnB',
                 'date_of_birth' => '1995-01-20',
                 'profile_photo' => 'https://www.alamy.it/paperina-image69979434.html',
-                'username' => 'Airowl-Owls',
             ],
             [
                 'name' => 'Thom',
@@ -47,7 +53,6 @@ class UserSeeder extends Seeder
                 'password' => 'boolBnB',
                 'date_of_birth' => '1995-01-20',
                 'profile_photo' => 'https://www.alamy.it/paperina-image69979434.html',
-                'username' => 'Thom_Train',
             ],
             [
                 'name' => 'Simone',
@@ -56,7 +61,6 @@ class UserSeeder extends Seeder
                 'password' => 'boolBnB',
                 'date_of_birth' => '1995-01-20',
                 'profile_photo' => 'https://www.alamy.it/paperina-image69979434.html',
-                'username' => 'Jesù-Christ',
             ]
         ];
 

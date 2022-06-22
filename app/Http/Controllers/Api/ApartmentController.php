@@ -15,20 +15,20 @@ class ApartmentController extends Controller
     public function index(Apartment $apartmen)
     {
         // $apartments = Apartment::with(['image','service', 'sponsorship' ])
-            $apartments = Apartment::with('images')
+            $apartments = Apartment::with(['images', 'services', 'user'])
        /*  ->inRandomOrder() */
         ->paginate(6);
         return response()->json($apartments);
     }
     public function show($id)
     {
-        $post = Apartment::with('images')->findOrFail($id);
+        $apartment = Apartment::with(['images', 'services', 'user'])->findOrFail($id);
         return response()->json(
             [
                 'success' => true,
                 'results' => $apartment,
                 'services' => $apartment->service_id,
-                // 'comments' => $post->comments,
+                'user_id' => $apartment->users,
             ]);
     }
     public function destroy($id)
@@ -45,7 +45,6 @@ class ApartmentController extends Controller
                             ->where('n_rooms', 'LIKE', '%'. $request->n_rooms. '%')
                             ->where('sqr_meters', 'LIKE', '%'. $request->sqr_meters. '%')
                             ->where('n_beds', 'LIKE', '%'. $request->n_beds. '%')
-                            ->where('n_floor', 'LIKE', '%'. $request->n_floor. '%')
                             ->where('price', 'LIKE', '%'. $request->price. '%')
                             ->with('images')
                             //->whereBetween('latitude', [1, 100])->whereBetween('longitude', [200, 300])
