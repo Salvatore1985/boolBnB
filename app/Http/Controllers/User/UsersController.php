@@ -4,19 +4,10 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use App\Models\Message;
-use App\Models\Apartment;
 use App\User;
+use Illuminate\Http\Request;
 
-
-use Illuminate\Support\Facades\Storage;
-
-
-use Illuminate\Support\Facades\Http;
-use Illuminate\Validation\Rule;
-
-class MessaggesController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,25 +17,14 @@ class MessaggesController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $apartments = Apartment::all();
-            if ($user_id == 1 or $user_id == $apartment->user_id) {    
-                return view('user.home', ['apartment' => $apartment]);
-            } else {
-                return redirect()->route('user.home');
-            }
+
+        if ($user_id == 1) {
+            $users = User::all();
+            return view('admin.users.index', compact('users'));
+        } else {
+            return redirect()->route('admin.dashboard');
+        }
     }
-    
-        // $user_id = Auth::id();
-
-        // if ($user_id == 1) {
-        //     $apartments = Apartment::all();
-        // } else {
-        //     $apartments = Apartment::where('user_id', $user_id)->get();
-        // }
-
-        // return view('user.messagges.index', compact('apartments'));
-    
-    
 
     /**
      * Show the form for creating a new resource.
@@ -77,13 +57,12 @@ class MessaggesController extends Controller
     {
         $user_id = Auth::id();
 
-        $apartment = Apartment::findOrFail($id);
-        if ($user_id == 1 or $user_id == $apartment->user_id) {
-            return view('user.home', ['apartment' => $apartment]);
+        if ($user_id == 1) {
+            return view('admin.users.show', compact('user'));
         } else {
-            return redirect()->route('user.404');
+            return redirect()->route('admin.dashboard');
+        }
     }
-}
 
     /**
      * Show the form for editing the specified resource.
@@ -111,14 +90,17 @@ class MessaggesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $message = Message::findOrFail($id);
-        $message->delete();
+        $user_id = Auth::id();
 
-        return redirect()->route('user.home')->with("alert-message", $message->email_content . " è stato eliminato con successo!")->with('alter-type', 'warning');
+        if ($user_id == 1) {
+            $user->delete();
+            return redirect()->route('user.users.index')->with('alert-message', 'Utente eliminato con successo.')->with('alert-type', 'success');
+        }
+
     }
 }

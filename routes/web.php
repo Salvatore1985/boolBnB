@@ -26,17 +26,28 @@ Route::get('/', function(){
 });
 
 Route::get('/home', "User\ApartmentsController@dashboard")->name('user.home');
+
 //function(){
 //     return view('User.home');
 // })->name('user.home');
-
+Route::middleware('auth')
+->namespace('Admin')
+->name('admin.')
+->prefix('admin')
+->group(function () {
+    Route::get('/home', "AdminController@index")->name('admin.home');
+    Route::resource('services', ServicesController::class);
+});
 Route::middleware('auth')
 ->namespace('User')
 ->name('user.')
 ->prefix('user')
 ->group(function () {
     Route::resource('apartments', ApartmentsController::class);
+    Route::resource('users', UsersController::class);
+    Route::resource('sponsorships', SponsorshipsController::class);
     Route::delete('/image/{id}', 'ImagesController@destroy')->name("image.destroy");
+    Route::delete('/messages/{id}', 'MessaggesController@destroy')->name("message.destroy");
 });
 
 Route::get('/send-mail', function () {

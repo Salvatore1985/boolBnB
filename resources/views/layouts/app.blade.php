@@ -32,8 +32,26 @@
                                     <a class="nav-link" href="{{ route('user.apartments.create') }}">Diventa Host</a>
                                 </li> --}}
                             </ul>
-                        @endif
-
+                            @endif
+                            {{-- @if (Auth::user()->id == 1)
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item" >
+                                    <a class="nav-link" href="{{ route('admin.services.index') }}">
+                                        Servizi
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('user.users.index') }}">
+                                        Utenti
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('user.sponsorships.index') }}">
+                                        Sponsorizzazioni
+                                    </a>
+                                </li>
+                            </ul>
+                            @endif --}}
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->

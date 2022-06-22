@@ -85,7 +85,9 @@ import Loader from "../components/Loader.vue";
 import Apartment from "../components/Apartment.vue";
 import ApartmentSearch from '../components/ApartmentSearch.vue';
 
+
 export default {
+
     name: "Apartments",
     components: {
         Loader,
@@ -194,6 +196,7 @@ export default {
         this.getServices();
         console.log(this.nKm);
     }
+
 };
 </script>
 

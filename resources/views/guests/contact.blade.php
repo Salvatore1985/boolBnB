@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Contact Us</title>
+    <title>Contattaci </title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
@@ -16,7 +16,7 @@
 
                     <div class="mb-3">
                         <label for="apartment_id" class="form-label">apartment_id</label>
-                        <input type="text" class="form-control" name="apartment_id" id="apartment_id">
+                        <input type="text" class="form-control" name="apartment_id" id="apartment_id" value="">
                     </div>
 
                     <div class="mb-3">

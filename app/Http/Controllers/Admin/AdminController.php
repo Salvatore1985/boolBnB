@@ -1,22 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\Message;
-use App\Models\Apartment;
-use App\User;
 
-
-use Illuminate\Support\Facades\Storage;
-
-
-use Illuminate\Support\Facades\Http;
-use Illuminate\Validation\Rule;
-
-class MessaggesController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,26 +15,8 @@ class MessaggesController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::id();
-        $apartments = Apartment::all();
-            if ($user_id == 1 or $user_id == $apartment->user_id) {    
-                return view('user.home', ['apartment' => $apartment]);
-            } else {
-                return redirect()->route('user.home');
-            }
+        return view('Admin.home');
     }
-    
-        // $user_id = Auth::id();
-
-        // if ($user_id == 1) {
-        //     $apartments = Apartment::all();
-        // } else {
-        //     $apartments = Apartment::where('user_id', $user_id)->get();
-        // }
-
-        // return view('user.messagges.index', compact('apartments'));
-    
-    
 
     /**
      * Show the form for creating a new resource.
@@ -75,15 +47,8 @@ class MessaggesController extends Controller
      */
     public function show($id)
     {
-        $user_id = Auth::id();
-
-        $apartment = Apartment::findOrFail($id);
-        if ($user_id == 1 or $user_id == $apartment->user_id) {
-            return view('user.home', ['apartment' => $apartment]);
-        } else {
-            return redirect()->route('user.404');
+        //
     }
-}
 
     /**
      * Show the form for editing the specified resource.
@@ -116,9 +81,6 @@ class MessaggesController extends Controller
      */
     public function destroy($id)
     {
-        $message = Message::findOrFail($id);
-        $message->delete();
-
-        return redirect()->route('user.home')->with("alert-message", $message->email_content . " è stato eliminato con successo!")->with('alter-type', 'warning');
+        //
     }
 }

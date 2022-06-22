@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\Sponsorship;
+use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Models\Service;
 
-
-class SponsorshipsController extends Controller
+class ServicesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +20,8 @@ class SponsorshipsController extends Controller
         $user_id = Auth::id();
 
         if ($user_id == 1) {
-            $sponsorships = Sponsorship::all();
-            return view('admin.sponsorships.index', compact('sponsorships'));
+            $services = Service::orderBy('id', 'desc')->paginate('10');
+            return view('admin.services.index', compact('services'));
         } else {
             return redirect()->route('admin.dashboard');
         }
@@ -38,7 +37,7 @@ class SponsorshipsController extends Controller
         $user_id = Auth::id();
 
         if ($user_id == 1) {
-            return view('admin.sponsorships.create');
+            return view('admin.services.create');
         } else {
             return redirect()->route('admin.dashboard');
         }
@@ -53,24 +52,19 @@ class SponsorshipsController extends Controller
     public function store(Request $request)
     {
         $request->validate(
-            ['name' => ['required', 'string','min:3'],
-            'period' => ['required', 'string','min:3'],
-            'price' => ['required','min:3'],
-            ['name.required' =>'Questo campo non più essere vuoto',
-            'nperiod' =>'Devi inserire le max ore',
-            'price' =>'Questo campo non più essere vuoto']
-        ]);
+                ['name' => ['required', 'string','min:3'],
+                'name.required' =>'Questo campo non più essere vuoto']);
         $user_id = Auth::id();
 
         if ($user_id == 1) {
             $data = $request->all();
 
-            $sponsorship = new sponsorship();
-            $sponsorship->fill($data);
+            $service = new Service();
+            $service->fill($data);
 
-            $sponsorship->save();
+            $service->save();
 
-            return redirect()->route('user.sponsorships.index');
+            return redirect()->route('admin.services.index');
         } else {
             return redirect()->route('admin.dashboard');
         }
@@ -90,16 +84,15 @@ class SponsorshipsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Sponsorship $sponsorship
+     * @param  Service $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sponsorship $sponsorship)
+    public function edit(Service $service)
     {
         $user_id = Auth::id();
 
         if ($user_id == 1) {
-            $spnsorship;
-            return view('admin.sponsorships.edit', compact('sponsorship'));
+            return view('admin.services.edit', compact('service'));
         } else {
             return redirect()->route('admin.dashboard');
         }
@@ -109,45 +102,40 @@ class SponsorshipsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Sponsorship $sponsorship
+     * @param  Service $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sponsorship $sponsorship)
+    public function update(Request $request, Service $service)
     {
         $request->validate(
             ['name' => ['required', 'string','min:3'],
-            'period' => ['required', 'string','min:3'],
-            'price' => ['required','min:3'],
-            ['name.required' =>'Questo campo non più essere vuoto',
-            'nperiod' =>'Devi inserire le max ore',
-            'price' =>'Questo campo non più essere vuoto']
-        ]);
+            'name.required' =>'Questo campo non più essere vuoto']);
         $user_id = Auth::id();
 
         if ($user_id == 1) {
             $data = $request->all();
-            $sponsorship->fill($data);
+            $service->fill($data);
 
-            $sponsorship->save();
+            $service->save();
 
-            return redirect()->route('user.sponsorships.index');
+            return redirect()->route('admin.services.index');
         } else {
-            return redirect()->route('user.dashboard');
+            return redirect()->route('admin.dashboard');
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Sponsorship $sponsorship
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sponsorship $sponsorship)
+    public function destroy(Service $service)
     {
         $user_id = Auth::id();
         if ($user_id == 1) {
-        $sponsorship->delete();
-        return redirect()->route('user.sponsorships.index')->with('alert-message', 'la sponsorrizzazione è stato eliminato con successo.')->with('alert-type', 'success');
+        $service->delete();
+        return redirect()->route('admin.services.index')->with('alert-message', 'Servizio eliminato con successo.')->with('alert-type', 'success');
         }
     }
 }

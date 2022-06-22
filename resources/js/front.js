@@ -9,6 +9,8 @@ import App from "./view/App";
 Vue.use(VueRouter);
 
 import Apartments from "./Pages/Apartments";
+import SingleApartment from "./Pages/SingleApartment";
+
 // import Posts from "./pages/Posts";
 // import Contacts from "./pages/Contacts";
 // import About from "./pages/About";
@@ -17,13 +19,19 @@ import Apartments from "./Pages/Apartments";
 Vue.use(VueRouter)
 const router = new VueRouter({
     //mode: 'history',
-
     routes: [
         {
-            path: "/apartments",
+            path: "/",
             name: "apartments",
             component: Apartments
         },
+        {
+            path: "/apartments/:id",
+            name: "apartment",
+            component: SingleApartment
+        },
+
+
         //         {
         //             path:"/about-us",
         //             name: "about",
