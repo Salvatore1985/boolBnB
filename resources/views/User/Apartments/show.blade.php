@@ -10,6 +10,13 @@
 
     <div class="container py-5">
         <div class="row">
+            <div class="col-12">
+                @if (session('alert-message'))
+                    <div class="alert alert-{{ session('alert-type') }}">
+                        {{ session('alert-message') }}
+                    </div>
+                @endif
+            </div>
             <div class="col-6 d-flex">
                 <div>
                     <h1>{{ $apartment->title }}</h1>
@@ -37,7 +44,9 @@
                         </button>
                     </form>
                 </div>
-
+                <a href="{{ route('user.sponsorships.purchase', $apartment) }} "class="btn btn-primary">
+                    Sponsorizza
+                </a>
             </div>
             <div class="col-6 ">
                 @foreach ($apartment->images as $image)
@@ -85,8 +94,8 @@
                     </div>
 
                 </div>
-                
-            
+
+
             </div>
 
             {{-- <section class="d-flex ">
