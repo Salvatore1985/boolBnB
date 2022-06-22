@@ -19,6 +19,7 @@
     </div>
     <h6 class="py-2">stelline</h6>
     <h5 class="card-title">{{ apartment.title }}</h5>
+    <p class="card-title">{{ apartment.address }}</p>
     <p class="card-text">
       {{ limitOverview(apartment) }}
     </p>

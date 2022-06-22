@@ -6,11 +6,6 @@
                     All Apartments
                 </router-link>
             </li>
-            <li class="nav-item">
-                <router-link class="nav-link" :to="{ name: 'searchApartments' }">
-                    Search Apartments
-                </router-link>
-            </li>
         </ul>
     </header>
 </template>
