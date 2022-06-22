@@ -14,17 +14,17 @@ class SponsorshipSeeder extends Seeder
         $sponsorships = [
             [
                 'name' => 'Bronze Sponsor',
-                'period' => '24 ore',
-                'price' => 9.99
+                'period' => 24,
+                'price' => 2.99
             ],
             [
                 'name' => 'Silver Sponsor',
-                'period' => '72 ore',
+                'period' => 72,
                 'price' => 5.99
             ],
             [
                 'name' => 'Gold Sponsor',
-                'period' => '144 ore',
+                'period' => 144,
                 'price' => 9.99
             ],
         ];
