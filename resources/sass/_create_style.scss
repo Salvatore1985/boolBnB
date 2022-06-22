@@ -10,8 +10,12 @@ img#logo {
 
 }
 
+.background_navbar {
+    background-color: #45BBF9;
+}
+
 .height-header-form {
-    height: 10vh
+    height: 15vh
 }
 
 .height-main-form {
@@ -54,4 +58,9 @@ img#logo {
 
 .my-rounded-1 {
     border-radius: 0.5rem;
+}
+
+.color-primary {
+    background-color: #45BBF9;
+    color: white;
 }
