@@ -2237,13 +2237,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SingleApartment",
   data: function data() {
     return {
       apartment: [],
       images: [],
-      services: []
+      services: [],
+      eMail: '',
+      message: '',
+      callResponse: '',
+      callFlag: 0,
+      alertStatus: ''
     };
   },
   methods: {
@@ -2262,6 +2282,31 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.warn(error);
       });
+    },
+    sendMessage: function sendMessage(message, eMail) {
+      var _this2 = this;
+
+      if (message != '' && eMail != '') {
+        axios.post("http://127.0.0.1:8000/api/message/?email=".concat(this.eMail, "&text=").concat(this.message, "&apartment_id=").concat(this.apartment.apartment.id)).then(function (res) {
+          console.log(res);
+
+          if (res.status == 200) {
+            _this2.callResponse = "Messaggio inviato con successo";
+            _this2.alertStatus = 'alert-success';
+            _this2.callFlag = 1;
+            setTimeout(function () {
+              _this2.callFlag = 0;
+            }, 10000);
+          }
+        })["catch"](function () {
+          _this2.callResponse = "Messaggio non inviato";
+          _this2.alertStatus = 'alert-danger';
+          _this2.callFlag = 1;
+          setTimeout(function () {
+            _this2.callFlag = 0;
+          }, 10000);
+        });
+      }
     }
   },
   created: function created() {
@@ -39228,6 +39273,79 @@ var render = function () {
         0
       ),
     ]),
+    _vm._v(" "),
+    _c("div", [
+      _c("h3", { staticClass: "mt-5 h2" }, [
+        _vm._v("Contatta il proprietario"),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "mail" } }, [_vm._v("Indirizzo mail")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.eMail,
+              expression: "eMail",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { type: "email", id: "mail" },
+          domProps: { value: _vm.eMail },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.eMail = $event.target.value
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "message" } }, [
+          _vm._v("Example textarea"),
+        ]),
+        _vm._v(" "),
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.message,
+              expression: "message",
+            },
+          ],
+          staticClass: "form-control",
+          attrs: { id: "message", rows: "5" },
+          domProps: { value: _vm.message },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.message = $event.target.value
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-dark",
+          on: {
+            click: function ($event) {
+              return _vm.sendMessage(_vm.message, _vm.eMail)
+            },
+          },
+        },
+        [_vm._v("Invia")]
+      ),
+    ]),
   ])
 }
 var staticRenderFns = [
@@ -55790,7 +55908,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\final-project\boolBnB\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Classe55\boolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

@@ -47,7 +47,8 @@ Route::middleware('auth')
     Route::resource('users', UsersController::class);
     Route::resource('sponsorships', SponsorshipsController::class);
     Route::delete('/image/{id}', 'ImagesController@destroy')->name("image.destroy");
-    Route::delete('/messages/{id}', 'MessaggesController@destroy')->name("message.destroy");
+    //Route::delete('/messages/{id}', 'MessaggesController@destroy')->name("message.destroy");
+    Route::resource('/messages', 'MessaggesController');
 });
 
 Route::get('/send-mail', function () {
@@ -57,7 +58,6 @@ Route::get('/send-mail', function () {
     return 'A message has been sent to Mailtrap!';
 
 });
-
 
 Route::get('/contact', 'guest\ContactController@contact')->name('guest.contact');
 Route::post('/contact', 'guest\ContactController@contactMailSender')->name('guest.send');

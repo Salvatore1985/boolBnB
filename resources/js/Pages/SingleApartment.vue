@@ -82,6 +82,21 @@
         </li>
       </ul>
     </div>
+
+    <div>
+            <h3 class="mt-5 h2">Contatta il proprietario</h3>
+              <div class="form-group">
+                <label for="mail">Indirizzo mail</label>
+                <input type="email" class="form-control" id="mail" v-model="eMail">
+              </div>
+              <div class="form-group">
+                <label for="message">Example textarea</label>
+                <textarea class="form-control" id="message" rows="5" v-model="message"></textarea>
+              </div>
+              <button class="btn btn-dark" @click="sendMessage(message, eMail)">Invia</button>
+        </div>
+
+
     <!--   <div class="row">
       <div class="col-6">
         <p>
@@ -126,6 +141,11 @@ export default {
       apartment: [],
       images: [],
       services: [],
+      eMail: '',
+      message: '',
+      callResponse: '',
+      callFlag: 0,
+      alertStatus: '',
     };
   },
   methods: {
@@ -147,7 +167,31 @@ export default {
           console.warn(error);
         });
     },
-  },
+
+    sendMessage(message, eMail) {
+            if(message != '' && eMail != '') {
+                axios.post( `http://127.0.0.1:8000/api/message/?email=${this.eMail}&text=${this.message}&apartment_id=${this.apartment.apartment.id}`).then(res => {
+                    console.log(res);
+                    if(res.status == 200) {
+                        this.callResponse = "Messaggio inviato con successo";
+                        this.alertStatus = 'alert-success'
+                        this.callFlag = 1;
+                        setTimeout(() =>{
+                            this.callFlag = 0;
+                        }, 10000)
+                        }
+                }).catch(() => {
+                            this.callResponse = "Messaggio non inviato";
+                            this.alertStatus = 'alert-danger';
+                            this.callFlag = 1;
+                        setTimeout(() =>{
+                            this.callFlag = 0;
+                        }, 10000)
+                        
+                })
+            }
+        }
+    },
   created() {
     console.warn(this.$route.params.id);
     this.getSingleApartment(this.$route.params.id);
