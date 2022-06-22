@@ -50,7 +50,7 @@ Route::middleware('auth')
     Route::post('payments/{apartment}/{sponsorship}/transaction', 'PaymentsController@transaction')->name('payments.transaction');
     Route::get('sponsorships/purchase/{apartment}', 'SponsorshipsController@purchase')->name('sponsorships.purchase');
     Route::delete('/image/{id}', 'ImagesController@destroy')->name("image.destroy");
-    Route::delete('/messages/{id}', 'MessaggesController@destroy')->name("message.destroy");
+    Route::resource('/messages', 'MessagesController');
 });
 
 Route::get('/send-mail', function () {

@@ -27,10 +27,9 @@
                 @endif
             </div>
             @forelse ($apartments as $apartment)
-                <div class="col-6 card-group
-                @if ($apartment->is_visible == false) bg-warning @endif">
+                <div class="col-6 card-group">
                     
-                    <div class="card mb-5">
+                    <div class="card mb-5 position-relative">
                         {{-- @foreach ($apartment->images as $image)
                             @if (str_starts_with($image->link, 'https://') || str_starts_with($image->link, 'http://'))
                                 <img class="card-img-top img-apartment" src="{{ $image->link }}"
@@ -44,18 +43,23 @@
                         @if (str_starts_with($apartment->images[0]->link, 'https://') or str_starts_with($apartment->images[0]->link, 'http://'))
                             <img class="card-img-top img-apartment" src="{{ $apartment->images[0]->link }}"
                                 alt="{{ $apartment->title }}">
+                            @if ($apartment->is_visible == true)
+                            <div class="my-position bg-warning my-rounded-1"><h4 class="card-text"><small class="text-muted font-weight-bold">Publicato</small>
+                            </h4></div>
+                            
+                            @endif
                         @else
                             <img class="card-img-top img-apartment"
                                 src="{{ asset('/storage') . '/' . $apartment->images[0]->link }}"
                                 alt="{{ $apartment->title }}">
                         @endif
                         <div class="card-body d-flex flex-column justify-content-between shadow rounded p-4">
-                            <h1 class="card-title  text-muted ">{{ $apartment->title }}</h1>
+                            <h2 class="card-title  text-muted ">{{ $apartment->title }}</h2>
                             <hr>
-                            <p class="card-text ">Descrizione: {{ $apartment->description }}</p>
+                            <p class="card-text">Descrizione: {{ $apartment->description }}</p>
                             <section class="d-flex justify-content-between shadow rounded">
                                 <div class="p-4">
-                                    <pre class="card-text ">Numero di stanze: {{ $apartment->n_rooms }}</pre>
+                                    <pre class="card-text">Numero di stanze: {{ $apartment->n_rooms }}</pre>
                                     <pre class="card-text">Numero di letti: {{ $apartment->n_beds }}</pre>
                                     <pre class="card-text">Numero di bagni: {{ $apartment->n_bathrooms }}</pre>
                                     <pre class="card-text">Metri quadrati: {{ $apartment->sqr_meters }}</pre>

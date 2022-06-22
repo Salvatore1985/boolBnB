@@ -1,13 +1,14 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;
 
+500;600;700&family=Lobster&family=Noto+Sans+HK:wght@100;300;400;500;700;900&display=swap);@charset "UTF-8";
 /* .background-image-form {
-    background-image: url('https://static.bimago.pl/mediacache/catalog/product/cache/8/7/107178/image/750x1120/be97cf49a5a90b4dfd2ad7042bec5838/107178_4.jpg');
-    background-repeat: repeat;
-    background-position: center;
-    background-size: cover;
+  background-image: url('https://static.bimago.pl/mediacache/catalog/product/cache/8/7/107178/image/750x1120/be97cf49a5a90b4dfd2ad7042bec5838/107178_4.jpg');
+  background-repeat: repeat;
+  background-position: center;
+  background-size: cover;
 }
-*/
 
+*/
 img#logo {
   height: 5rem;
 }
@@ -56,6 +57,13 @@ img#logo {
 
 .my-rounded-1 {
   border-radius: 0.5rem;
+}
+
+.my-position {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
 }
 
 /*!
