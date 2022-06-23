@@ -1,58 +1,59 @@
 <template>
     <div>
-        <div id="map-div"></div>
+        <div id="map" ref="mapRef"></div>
     </div>
 </template>
 
 <script>
-import tt from '@tomtom-international/web-sdk-maps';
+import tt from "@tomtom-international/web-sdk-maps";
 
 export default {
     name: 'TomTomMap',
-    props: ['mainPosition'],
+    props: ['long', 'lat', 'address'],
     data: function(){
         return{
             'API_KEY': 'tlI6fGKvUCfBh91AG1PKyRZwhaxoGIWp',
             'APPLICATION_NAME': 'My Application',
             'APPLICATION_VERSION': '1.0',
-            'positions': [
-                { lat: 6.4434, lng: 3.3553 },
-                { lat: 6.4442, lng: 3.3561 },
-                { lat: 6.4451, lng: 3.3573 },
-                { lat: 6.4459, lng: 3.3520 }
-            ],
-            'searchPosition': this.mainPosition
+            'positions': {
+                lng: this.long,
+                lat : this.lat,
+                },
+                popupOffsets: {
+                    top: [0, 0],
+                    bottom: [0, -40],
+                    'bottom-right': [0, -70],
+                    'bottom-left': [0, -70],
+                    left: [25, -35],
+                    right: [-25, -35]
+                },
+            // 'searchPosition': this.mainPosition,
+            'apartAddress' : this.address,
         }
     },
     methods: {
         getMap(){
-            let mainCenter;
-            if(this.searchPosition === null){
-                mainCenter = { lat: 6.4434, lng: 3.3553 }
-            } else {
-                mainCenter = this.searchPosition
-            }
             const map = tt.map({
-            key: this.API_KEY,
-            container: 'map-div',
-            center: mainCenter,
-            zoom: 14
+                key: this.API_KEY,
+            container: this.$refs.mapRef,
+            center: this.positions,
+            zoom: 20,
             });
-            //this.addMarker(map)
+            console.log(this.positions),
+            this.Object.freeze(map)
+            
         },
-        addMarker(map) {
-            this.positions.forEach((position) => {
-            const marker = new tt.Marker().setLngLat(position).addTo(map);
-            const popup = new tt.Popup({ anchor: 'top' }).setText('Apartment')
+        addMarker(map, address) {
+            const marker = new tt.Marker().setLngLat(this.positions).addTo(map);
+            const popup = new tt.Popup({offset: this.popupOffsets}).setHTML(address);
             marker.setPopup(popup).togglePopup()
-        });
         },
     },
     mounted(){
-        if(this.searchPosition === null){
+        // if(this.searchPosition === null){
             this.getMap();
-            console.warn(this.searchPosition);
-        }
+        //     console.warn(this.searchPosition);
+        // }
     }
 }
 </script>

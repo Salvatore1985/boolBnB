@@ -5,7 +5,6 @@
         <div class="row">
             {{-- Create Apartment Button --}}
             <div class="col-12 text-end my-4">
-                {{-- Enter route --}}
                 @if (!count($apartments) == 0)
                     <a href="{{ route('user.apartments.create') }} " class="btn btn-sm btn-success">
                         Aggiungi un appartamento
@@ -16,8 +15,6 @@
                     </a>
                 @endif
             </div>
-
-
             {{-- Delete Apartment Message --}}
             <div class="col-12">
                 @if (session('alert-message'))
@@ -26,7 +23,10 @@
                     </div>
                 @endif
             </div>
+        </div>
+        <div class="row">
             @forelse ($apartments as $apartment)
+
                 <div class="col-6 card-group">
 
                     <div class="card mb-5 position-relative">
@@ -132,6 +132,7 @@
                         <h2>
                             Non hai nessun appartamenti
                         </h2>
+
             @endforelse
             <div class="col-12">
                 <div class=" d-flex justify-content-center text-center p-3">

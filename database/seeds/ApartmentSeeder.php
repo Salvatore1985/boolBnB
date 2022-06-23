@@ -221,7 +221,7 @@ class ApartmentSeeder extends Seeder
         ];
 
         $userIds = User::pluck('id')->toArray();
-
+        array_splice($userIds, 0, 1);
         for ($i=0; $i < count($addresses) ; $i++) {
             $newApartment = new Apartment;
             $newApartment->user_id = $faker->randomElement($userIds);

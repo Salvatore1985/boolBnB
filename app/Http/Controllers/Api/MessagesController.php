@@ -27,8 +27,6 @@ public function index()
   */
 public function create()
 {
-    $message = new Message();
-    return view('apartments.index');
 }
 
 /**
@@ -39,21 +37,34 @@ public function create()
   */
 public function store(Request $request)
 {
-    $request->validate(
-        [
-            'email' => 'string',
-            'email_content' => 'string',
-            'name' => 'string'
-        ]
-    );
 
     $data = $request->all();
+
+    $validator = Validator::make($data, [
+
+        'apartment_id' => 'required',
+        'name' => 'required|max:20',
+        'email' => 'required|email',
+        'email_content' => 'required'
+    ]);
+
+    if ($validator->fails()) {
+
+        return response()->json([
+            'success' => false,
+            'errors' => $validator->errors()
+        ]);
+    }
     $message = new Message();
     $message->name = $data['name'];
     $message->email = $data['email'];
     $message->email_content = $data['email_content'];
     $message->apartment_id = $data['apartment_id'];
     $message->save();
+
+    return response()->json([
+        'success' => true,
+    ]);
 }
 // {
 //         // CHECK VALIDAZIONE
