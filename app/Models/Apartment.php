@@ -18,7 +18,7 @@ class Apartment extends Model
         return $this->hasMany('App\Models\Image');
     }
     public function sponsorships(){
-        return $this->belongsToMany('App\Models\Sponsorship');
+        return $this->belongsToMany('App\Models\Sponsorship', 'apartment_sponsorship')->withPivot('start_date', 'end_date');
     }
     public function services(){
         return $this->belongsToMany('App\Models\Service');

@@ -17,6 +17,20 @@ class ApartmentController extends Controller
     {
 
         $apartments = Apartment::with(['images', 'services', 'user'])
+                                //->with(['sponsorships' => function ($q) {$q->orderBy('apartment_sponsorship.start_date', 'asc');}])
+                                //->join('apartment_sponsorship', 'apartment.id', '=', 'product_categories.apartment_id')
+                                ->where('is_visible', 1)
+                                ->paginate(8);
+
+        return response()->json($apartments);
+    }
+
+    public function apartmentsSponsor()
+    {
+
+        $apartments = Apartment::with(['images', 'services', 'user'])
+                                //->with(['sponsorships' => function ($q) {$q->orderBy('apartment_sponsorship.start_date', 'asc');}])
+                                //->join('apartment_sponsorship', 'apartment.id', '=', 'product_categories.apartment_id')
                                 ->where('is_visible', 1)
                                 ->paginate(8);
 
@@ -34,6 +48,7 @@ class ApartmentController extends Controller
                 'user_id' => $apartment->users,
             ]);
     }
+
     public function destroy($id)
     {
         //ROTTE  delete the resource
