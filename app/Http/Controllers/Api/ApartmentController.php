@@ -16,9 +16,7 @@ class ApartmentController extends Controller
     public function index(Apartment $apartment)
     {
 
-        $apartments = Apartment::join('sponsorships', 'apartment.sponsorship_id', '=', 'sponsoship.id')
-                                ->orderBy('sponsorship.start_date', 'desc')
-                                ->with(['images', 'services', 'user'])
+        $apartments = Apartment::with(['images', 'services', 'user'])
                                 ->where('is_visible', 1)
                                 ->paginate(8);
 
