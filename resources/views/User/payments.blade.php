@@ -53,28 +53,33 @@ crossorigin="anonymous"
 }
 </style>
 
-<script>
-    const button = document.getElementById('submit-button');
-    const form = document.getElementById('payment-form');
-    axios
-    .get(`http://127.0.0.1:8000/api/payments/token`)
-    .then(res => {
-        const token = res.data.token;
+<script src="https://js.braintreegateway.com/web/dropin/1.33.2/js/dropin.min.js"></script>
+    <script>
+        const form = document.querySelector('#payment-form');
+        const client_token = "{{ $token }}";
+
         braintree.dropin.create({
-            authorization: token,
+            authorization: client_token,
             container: '#dropin-container'
-        },
-        (error, dropinInstance) => {
-            if (error) console.error(error);
-            form.addEventListener('submit', event => {
+            }, function (createErr, instance) {
+            if (createErr) {
+                console.log('Create Error', createErr);
+                return;
+            }
+            form.addEventListener('submit', function (event) {
                 event.preventDefault();
-                dropinInstance.requestPaymentMethod((error, payload) => {
-                    if (error) console.error(error);
-                    document.getElementById('nonce').value = payload.nonce;
-                    form.submit();
+
+                instance.requestPaymentMethod(function (err, payload) {
+                if (err) {
+                    console.log('Request Payment Method Error', err);
+                    return;
+                }
+
+                // Add the nonce to the form and submit
+                document.querySelector('#nonce').value = payload.nonce;
+                form.submit();
                 });
             });
         });
-    });
 </script>
 @endsection
