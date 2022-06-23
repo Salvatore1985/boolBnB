@@ -68,8 +68,7 @@ class ApartmentController extends Controller
                             ->where('n_rooms', 'LIKE', '%'. $request->n_rooms. '%')
                             ->where('n_beds', 'LIKE', '%'. $request->n_beds. '%')
                             ->where('is_visible', 1)
-                            ->with('services')
-                            ->with('images')
+                            ->with(['images', 'services', 'user'])
                             ->get();
 
         if(count($result)){
