@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Rule;
 
-class MessaggesController extends Controller
+class MessagesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,11 +24,12 @@ class MessaggesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {      
         $user_id = Auth::id();
         $apartments = Apartment::all();
+        $messages = Message::all();
             if ($user_id == 1 or $user_id == $apartment->user_id) {    
-                return view('user.home', ['apartment' => $apartment]);
+                return view('user.home', ['apartment' => $apartment] , ['messages' => $messages]);
             } else {
                 return redirect()->route('user.home');
             }
