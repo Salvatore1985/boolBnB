@@ -18,7 +18,11 @@
           :alt="apartment.tile"
         />
       </div>
-      <div class="col-6 border border-danger">Inseriamo il tomtom</div>
+      <div class="col-6 border border-danger">
+        <TomTomMap
+        :coordinates = 'coordinates'
+        :address = 'address'/>
+      </div>
       <div class="row">
         <div class="col-12"></div>
       </div>
@@ -138,8 +142,12 @@
 </template>
 
 <script>
+import TomTomMap from '../components/TomTomMap.vue';
 export default {
   name: "SingleApartment",
+  components : {
+    TomTomMap,
+  },
   data: function () {
     return {
         apartment: [],
@@ -149,8 +157,10 @@ export default {
         email: '',
         emailContent: '',
         callResponse: '',
-        baseURI : 'http://127.0.0.1:8000/api'
-    };
+        baseURI : 'http://127.0.0.1:8000/api',
+        coordinates: [],
+        address: '',
+    }
   },
   methods: {
     getSingleApartment(apartmentId) {
@@ -159,6 +169,11 @@ export default {
         .then((results) => {
           // console.log(results.data.results)
           this.apartment = results.data.results;
+          console.warn(this.apartment);
+          this.coordinates.push(results.data.results.lat);
+          this.coordinates.push(results.data.results.long);
+          this.address = results.data.results.address;
+          console.log(this.coordinates);
           this.images = results.data.results.images;
           this.services = results.data.results.services;
           console.log("images: ", this.images);
@@ -177,7 +192,7 @@ export default {
                 console.log(res);
                     this.callResponse = "Messaggio inviato con successo";
             }).catch(() => {
-                        this.callResponse = "Messaggio non inviato";  
+                        this.callResponse = "Messaggio non inviato";
             })
         }
     }
