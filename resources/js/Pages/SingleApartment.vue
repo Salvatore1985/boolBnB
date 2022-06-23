@@ -171,8 +171,8 @@ export default {
           // console.log(results.data.results)
           this.apartment = results.data.results;
           console.warn(this.apartment);
-          this.coordinates.push(results.data.results.lat);
           this.coordinates.push(results.data.results.long);
+          this.coordinates.push(results.data.results.lat);
           this.address = results.data.results.address;
           console.log(this.coordinates);
           this.images = results.data.results.images;
