@@ -37,20 +37,21 @@
 
               <div class="d-block">
                 <pre>Creato il: {{ getFormattedDate(apartment.created_at) }}</pre>
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex avatar">
+                <div class="d-flex justify-content-between ">
+                    <div class="d-flex avatar align-self-end">
 
                       <!-- src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg" -->
-                    <img
-                        class="img-fluid rounded-circle"
-                        src="https://previews.123rf.com/images/bearsky23/bearsky231608/bearsky23160800005/61158485-standard-user-icon-set-di-uomini-donne-e-pi%C3%B9-persone.jpg"
-                        alt=""
-                    />
-                    <span class="px-3">
-                        {{ apartment.user.name }}
-                    </span>
-                    <h5 class="px-3">{{ apartment.price }}€/Notte</h5>
+                      <img
+                          class="img-fluid rounded-circle"
+                          src="https://previews.123rf.com/images/bearsky23/bearsky231608/bearsky23160800005/61158485-standard-user-icon-set-di-uomini-donne-e-pi%C3%B9-persone.jpg"
+                          alt=""
+                      />
+                      <span class="px-3">
+                          {{ apartment.user.name }}
+                      </span>
+                      <h5 class="px-3">{{ apartment.price }}€/Notte</h5>
                     </div>
+                    
                     
                 </div>
               
