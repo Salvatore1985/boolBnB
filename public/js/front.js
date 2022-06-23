@@ -5266,6 +5266,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5310,7 +5333,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get("".concat(this.baseUri, "/api/services")).then(function (results) {
-        console.log(results.data);
         _this.services = results.data;
       })["catch"](function (error) {
         console.warn(error);
@@ -5340,11 +5362,12 @@ __webpack_require__.r(__webpack_exports__);
         _this2.isLoading = false;
       });
     },
-    getPagination: function getPagination(page) {
+    getAllApartments: function getAllApartments(page) {
       var _this3 = this;
 
+      this.isLoading = true;
       axios.get("".concat(this.baseUri, "/api/apartments?page=").concat(page)).then(function (results) {
-        console.log("pagine", results.data.data);
+        console.log(results.data);
         var _results$data = results.data,
             data = _results$data.data,
             current_page = _results$data.current_page,
@@ -5354,23 +5377,17 @@ __webpack_require__.r(__webpack_exports__);
           currentPage: current_page,
           lastPage: last_page
         };
-        console.log("pagine", _this3.apartments);
       })["catch"](function (error) {
         console.warn(error);
+      }).then(function () {
+        _this3.isLoading = false;
       });
     },
-    getAllApartments: function getAllApartments() {
-      var _this4 = this;
-
-      axios.get("".concat(this.baseUri, "/api/apartments")).then(function (results) {
-        console.log(results.data.data);
-        _this4.apartments = results.data.data;
-      })["catch"](function (error) {
-        console.warn(error);
-      });
+    changePage: function changePage(page) {
+      this.getAllApartments(page);
     },
     filteredApartments: function filteredApartments() {
-      var _this5 = this;
+      var _this4 = this;
 
       var filteredApartments = [];
 
@@ -5378,10 +5395,10 @@ __webpack_require__.r(__webpack_exports__);
         this.apartmentsSearch.forEach(function (apartment) {
           var counter = 0;
           apartment.services.forEach(function (service) {
-            if (_this5.checkedServices.includes(service.name)) {
+            if (_this4.checkedServices.includes(service.name)) {
               counter++;
 
-              if (!filteredApartments.includes(apartment) && counter == _this5.checkedServices.length) {
+              if (!filteredApartments.includes(apartment) && counter == _this4.checkedServices.length) {
                 filteredApartments.push(apartment);
               }
             }
@@ -5390,7 +5407,6 @@ __webpack_require__.r(__webpack_exports__);
         this.apartmentsSearch = filteredApartments;
       } else {
         this.getApartments(this.searchAddress, this.nRooms, this.nBeds);
-        console.log("qui funziona!");
       }
     },
     getBtbActive: function getBtbActive() {
@@ -5403,10 +5419,13 @@ __webpack_require__.r(__webpack_exports__);
       console.log(this.btnActive);
     }
   },
+  created: function created() {
+    //this.getAllApartments();
+    setTimeout(this.getAllApartments(), 3000);
+  },
   mounted: function mounted() {
-    this.getAllApartments();
+    //this.getAllApartments();
     this.getServices();
-    console.log(this.nKm);
   }
 });
 
@@ -5673,11 +5692,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-<<<<<<< HEAD
-//
-//
-=======
->>>>>>> b0c48b1a0b2e3b6705d0632fda0ef30a6cd9fc46
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderIndex",
   props: ["apartment"],
@@ -42925,18 +42939,6 @@ var render = function () {
     "section",
     { attrs: { id: "apartiment-list " } },
     [
-      _c("Pagination", {
-        attrs: {
-          currentPage: _vm.pagination.currentPage,
-          lastPage: _vm.pagination.lastPage,
-        },
-        on: {
-          onPageChange: function ($event) {
-            return _vm.getPagination(_vm.page)
-          },
-        },
-      }),
-      _vm._v(" "),
       _c("div", { staticClass: "container" }, [
         _c("nav", { staticClass: "navbar navbar-light text-primary" }, [
           _c(
@@ -43031,7 +43033,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "\n            col-12 col-lg-5\n            py-3\n            d-flex\n            justify-content-around\n            align-items-center\n          ",
+                    "\n          col-12 col-lg-5\n          py-3\n          d-flex\n          justify-content-around\n          align-items-center\n        ",
                 },
                 [
                   _c("label", { staticClass: "form-check-label" }, [
@@ -43165,7 +43167,7 @@ var render = function () {
                       },
                     },
                   },
-                  [_vm._v("\n            Cerca\n          ")]
+                  [_vm._v("\n          Cerca\n        ")]
                 ),
               ]),
             ]
@@ -43262,9 +43264,9 @@ var render = function () {
                         },
                         [
                           _vm._v(
-                            "\n              " +
+                            "\n            " +
                               _vm._s(service.name) +
-                              "\n            "
+                              "\n          "
                           ),
                         ]
                       ),
@@ -43277,6 +43279,27 @@ var render = function () {
           ]
         ),
       ]),
+      _vm._v(" "),
+      !_vm.isSearch
+        ? _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                { staticClass: "col-12" },
+                [
+                  _c("Pagination", {
+                    attrs: {
+                      currentPage: _vm.pagination.currentPage,
+                      lastPage: _vm.pagination.lastPage,
+                    },
+                    on: { onPageChange: _vm.changePage },
+                  }),
+                ],
+                1
+              ),
+            ]),
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _vm.isLoading
         ? _c("Loader")
@@ -43298,7 +43321,7 @@ var render = function () {
                   _vm.isEmpty
                     ? _c("h1", [
                         _vm._v(
-                          "\n        Nessun appartamento disponibile nell'indirizzo indicato\n      "
+                          "\n        Nessun appartamento disponibile nell'indirizzo indicato\n        "
                         ),
                       ])
                     : _vm._e(),
@@ -43317,6 +43340,31 @@ var render = function () {
                   ),
                 ]),
           ]),
+      _vm._v(" "),
+      !_vm.isSearch
+        ? _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                { staticClass: "col-12" },
+                [
+                  _c("Pagination", {
+                    attrs: {
+                      currentPage: _vm.pagination.currentPage,
+                      lastPage: _vm.pagination.lastPage,
+                    },
+                    on: {
+                      onPageChange: function ($event) {
+                        return _vm.getAllApartments(_vm.page)
+                      },
+                    },
+                  }),
+                ],
+                1
+              ),
+            ]),
+          ])
+        : _vm._e(),
     ],
     1
   )
@@ -43523,13 +43571,10 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "section",
-    {
-      staticClass:
-        "col-md-6 col-lg-4 col-sm-12 justify-content-between py-4 card-group",
-    },
+    "div",
+    { staticClass: "col-md-6 col-lg-4 col-sm-12 justify-content-between py-4" },
     [
-      _c("div", { staticClass: "my-rounded-1 p-3 card" }, [
+      _c("section", { staticClass: "my-rounded-1 p-3" }, [
         _vm.apartment.images[0].link.startsWith("https://")
           ? _c("div", { staticClass: "text-center mb-3" }, [
               _c("img", {
@@ -43550,19 +43595,15 @@ var render = function () {
               }),
             ]),
         _vm._v(" "),
-        _c("h6", { staticClass: "py-2" }, [
-          _vm._v("\n            stelline\n        "),
-        ]),
+        _c("h6", { staticClass: "py-2" }, [_vm._v("stelline")]),
         _vm._v(" "),
         _c("h5", { staticClass: "card-title" }, [
-          _vm._v("\n            " + _vm._s(_vm.apartment.title) + "\n        "),
+          _vm._v("\n      " + _vm._s(_vm.apartment.title) + "\n    "),
         ]),
         _vm._v(" "),
         _c("p", { staticClass: "card-text" }, [
           _vm._v(
-            "\n            " +
-              _vm._s(_vm.limitOverview(_vm.apartment)) +
-              "\n        "
+            "\n      " + _vm._s(_vm.limitOverview(_vm.apartment)) + "\n    "
           ),
         ]),
         _vm._v(" "),
@@ -43585,9 +43626,7 @@ var render = function () {
             _vm._v(" "),
             _c("span", { staticClass: "px-3" }, [
               _vm._v(
-                "\n                " +
-                  _vm._s(_vm.apartment.user.name) +
-                  "\n            "
+                "\n          " + _vm._s(_vm.apartment.user.name) + "\n        "
               ),
             ]),
           ]),
@@ -43607,7 +43646,7 @@ var render = function () {
                   to: { name: "apartment", params: { id: _vm.apartment.id } },
                 },
               },
-              [_vm._v("\n                Leggi questo post\n            ")]
+              [_vm._v("\n        Leggi questo post\n      ")]
             ),
           ],
           1
@@ -43798,11 +43837,11 @@ var render = function () {
             )
           : _vm._e(),
         _vm._v(" "),
-        _vm._l(_vm.lastPage, function (page) {
+        _vm._l(_vm.lastPage, function (page, index) {
           return _c(
             "li",
             {
-              key: page,
+              key: index,
               staticClass: "page-item",
               class: page === _vm.currentPage ? "active" : "",
               on: {
