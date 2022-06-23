@@ -1,66 +1,53 @@
 <template>
   <div class="container">
-    <div class="row mb-3 justify-content-around">
-      <div
-        class="
-          col-5
-          d-flex
-          align-items-center
-          shadow
-          my-rounded-1 my-bg-card-info
-        "
-      >
-        <section>
-          <div :class="alert" class="alert" id="alert-message">
-            {{ callResponse }}
+    <div class="row my-4 justify-content-between">
+      <div class="col-lg-6 shadow my-rounded-1 my-bg-card-info">
+        <!--    <div :class="alert" class="alert" id="alert-message">
+          {{ callResponse }}
+        </div> -->
+        <div class="row">
+          <div class="col-12">
+            <div class="d-flex">
+              <h1 class="py-4">
+                {{ apartment.title }}
+              </h1>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="avatar">
+                <img
+                  class="img-fluid rounded-circle"
+                  src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg"
+                  alt=""
+                />
+              </div>
+              <h4 class="px-3">Host: {{ apartment.user.name }}</h4>
+            </div>
+            <h5 class="py-4">
+              <span class="font-weight-bold">Sito in via:</span>
+              <span>{{ apartment.address }}</span>
+            </h5>
+            <h5 class="py-4">Servizi</h5>
           </div>
-          <h1 class="py-4">
-            {{ apartment.title }}
-          </h1>
-          <span>{{ apartment.price }}€ /notte</span>
-          <div class="d-flex avatar">
-            <img
-              class="img-fluid rounded-circle"
-              src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg"
-              alt=""
-            />
-            <h5>Host: {{ apartment.user.name }}</h5>
-          </div>
-
-          <h6>
-            <span class="font-weight-bold">Sito in via:</span>
-            <span>{{ apartment.address }}</span>
-          </h6>
-        </section>
-      </div>
-      <div
-        class="
-          col-5
-          d-flex
-          align-items-center
-          shadow
-          my-rounded-1 my-bg-card-info
-        "
-      >
-        <!-- service\ -->
-        <div>
-          <h5>Servizi</h5>
-          <ul>
-            <li v-for="(service, index) in services" :key="index">
-              <h5>{{ service.name }}</h5>
-            </li>
-          </ul>
+          <!--  <div class="col-6 d-flex">
+            <h1 class="py-4">{{ apartment.price }}€ /notte</h1>
+          </div> -->
         </div>
-        <div class="col-12">
-          <div class="">{{ apartment.n_rooms }} camera da letto -</div>
-          <div class="ml-1">{{ apartment.n_beds }} letti -</div>
-          <div class="ml-1">{{ apartment.n_bathrooms }} bagni</div>
+      </div>
+      <div class="col-12 col-lg-5 my-3 d-flex align-items-center">
+        <div>
+          <div class="d-flex align-items-center justify-content-between">
+            <h2>Info</h2>
+            <h3 class="py-4">{{ apartment.price }}€ /notte</h3>
+          </div>
+          <div>
+            <p>{{ apartment.description }}</p>
+          </div>
         </div>
       </div>
     </div>
     <!-- Img primary -->
     <div class="row">
-      <div class="col-6">
+      <div class="col-12 col-lg-6">
         <div>
           <img
             class="my-rounded-1 w-100"
@@ -70,11 +57,15 @@
         </div>
       </div>
       <!-- tomtom -->
-      <div class="col-6 border border-danger">Inseriamo il tomtom</div>
+      <div class="my-tom col-12 col-lg-6 shadow my-rounded-1">
+        <div class="map h-100" id="map" ref="mapRef">
+          <!--  Inseriamo il tomtom -->
+        </div>
+      </div>
       <!-- Img secondary -->
-      <div class="row mt-2 shadow">
+      <div class="row mt-2">
         <div
-          class="col-3 g-3 d-flex"
+          class="col-3 g-3 pb-3 d-flex"
           v-for="(image, index) in images"
           :key="index"
         >
@@ -95,15 +86,9 @@
         </div>
       </div>
     </div>
-
-    <div class="row mt-3">
-      <div class="col-5 d-flex align-items-center">
-        <div>
-          <h4>Info</h4>
-          <div>{{ apartment.description }}</div>
-        </div>
-      </div>
-      <div class="col-6 shadow my-rounded-1">
+    <!-- message -->
+    <div class="row my-3 justify-content-between">
+      <div class="col-12 col-lg-6 shadow my-rounded-1 p-3">
         <div>
           <h3 class="mt-5 h2">Contatta il proprietario</h3>
           <div class="form-group">
@@ -124,7 +109,7 @@
               v-model="email"
             />
           </div>
-          <div class="form-group">
+          <div class="form-group mb-3">
             <label for="emailContent">Example textarea</label>
             <textarea
               class="form-control"
@@ -141,19 +126,12 @@
           </button>
         </div>
       </div>
-      <!--  <div class="col-12 text-end my-4">
-        <a
-          class="btn btn-sm btn-success"
-          href="http://127.0.0.1:8000/user/apartments/create "
-        >
-          Contatta Host
-        </a>
-      </div> -->
     </div>
   </div>
 </template>
 
 <script>
+import tt from "@tomtom-international/web-sdk-maps";
 export default {
   name: "SingleApartment",
   data: function () {
@@ -177,6 +155,7 @@ export default {
           this.apartment = results.data.results;
           this.images = results.data.results.images;
           this.services = results.data.results.services;
+          this.initializeMap(this.apartment.lat, this.apartment.long);
           console.log("images: ", this.images);
           console.log("service: ", this.service);
           // console.log(this.posts)
@@ -186,6 +165,16 @@ export default {
         .catch((error) => {
           console.warn(error);
         });
+    },
+    initializeMap(lat, lon) {
+      const map = tt.map({
+        key: "tlI6fGKvUCfBh91AG1PKyRZwhaxoGIWp",
+        container: this.$refs.mapRef,
+        center: [lon, lat],
+        zoom: 9,
+      });
+      new tt.Marker().setLngLat([lon, lat]).addTo(map);
+      this.map = Object.freeze(map);
     },
     sendMessage(emailName, email, emailContent) {
       if (emailName != "" && email != "" && emailContent != "") {
@@ -211,4 +200,7 @@ export default {
 </script>
 
 <style>
+.my-tom {
+  height: 420px;
+}
 </style>
