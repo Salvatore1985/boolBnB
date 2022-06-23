@@ -1,5 +1,9 @@
 <template>
-  <div class="col-md-6 col-lg-4 col-sm-12 justify-content-between py-4">
+  <!-- <Apartment /> -->
+  <!--
+  <div
+    class="col-md-6 card-group col-lg-4 col-sm-12 justify-content-between py-4"
+  >
     <div class="mb-3" v-if="apartment.images[0].link.startsWith('https://')">
       <img
         class="img-apartment my-rounded-1"
@@ -28,18 +32,24 @@
           src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg"
           alt=""
         />
-        <span class="px-3">Nome host</span>
+        <span class="px-3"> {{ apartment.user.name }}</span>
       </div>
       <h5 class="px-3">{{ apartment.price }} €/Notte</h5>
     </div>
-  </div>
+  </div> -->
+  <section>
+    <Apartment :apartment="apartment" />
+  </section>
 </template>
 
+
 <script>
+import Apartment from "./Apartment.vue";
 export default {
   name: "HeaderIndex",
+  components: { Apartment },
   props: ["apartment"],
-  methods: {
+  /*   methods: {
     getFormattedDate(data) {
       //*creao una funzione per convertire la data dal database
       const apartmentdate = new Date(data);
@@ -63,10 +73,9 @@ export default {
         return apartment.description;
       }
     },
-  },
-  created() {},
+  }, */
+  /*  created() {}, */
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+

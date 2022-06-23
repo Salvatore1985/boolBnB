@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-2 mb-2">
     <div class="row justify-content-center ">
         <div class="col-12">
             <div class="card custom-container">
@@ -14,71 +14,59 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-
                         <h4>Login effettuato con successo!</h4>
-
-
-
-                        {{-- <h5> @if($messages) Messaggio : @else Non ci sono messaggi  @endif</h5>  --}}
-                        {{-- @dd($messages) --}}
-                        {{-- @dd($message) --}}
-
-
-                        {{-- {{ $messages ? "Messaggi" : "Nessun Messaggio" }} --}}
-                                        {{-- Delete User Message --}}
-                                <div class="col-12 my-container ">
-                                    @if (session('alert-message'))
-                                        <div class="alert alert-{{ session('alert-type') }}">
-                                            {{ session('alert-message') }}
-                                        </div>
-                                    @endif
-                                @forelse ($apartments  as $apartment)
-                                    @foreach ($apartment->messages as $message)
-                                    <div class="d-flex justify-content-between mb-2 align-items-center p-2 border-bottom  ">
-                                        <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus"
-                                        title="{{$message->created_at}}"
-                                        data-content="{{ $message->email_content }}"> Ricevuto da: {{$message->email}}
-                                        </a>
-
-                                    <form action="{{ route('user.message.destroy', $message->id) }}" method="POST"
-                                        class="messagge-destroyer" message-email_content="{{ ucfirst($message->email_content) }}"
-                                        onclick="return confirm('Sei sicuro di voler eliminare il messaggio di {{ $message->name }}?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-pink btn-md btn-delete btn-outline-danger" type="submit">
-                                            &#10008; Elimina
-                                        </button>
-                                    </form>
-                                    </div>
-                                    @endforeach
-                                    @empty
-                                    <div class="card-body border-bottom">Non ci sono messaggi</div>
-                                    @endforelse
+                        <h6>Messaggi:</h6>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+                        {{-- Delete User Message --}}
+    <div class="col-12 my-container container ">
+    @if (session('alert-message'))
+        <div class="alert alert-{{ session('alert-type') }}">
+                {{ session('alert-message') }}
+        </div>
+    @endif
+    <div class="row">
+        @forelse ($apartments  as $apartment)
+                @foreach ($apartment->messages as $message)
+                    <div class="col-6 d-flex justify-content-center box">
+                        <div class="card chat " style="width: 18rem;">
+                            <div class="card-body ">
+                                <h5 class="card-title">Da: {{$message->email}}</h5>
+                                    <div ><p class="card-text my-scroll">{{$message->email_content}} </p></div>
+                                        <p class="card-text">{{$message->created_at}}</p>
+                                        <form action="{{ route('user.message.destroy', $message->id) }}" method="POST"
+                                            class="messagge-destroyer" message-email_content="{{ ucfirst($message->email_content) }}"
+                                                onclick="return confirm('Sei sicuro di voler eliminare il messaggio di {{ $message->name }}?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-pink btn-md btn-delete btn-outline-danger" type="submit">
+                                                &#10008; Elimina
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                                                                                                              
+                    </div>
+                @endforeach
+            @empty
+        <div class="card-body border-bottom">Non ci sono messaggi</div>
+    @endforelse
 @endsection
 
 @section('js-files')
 
 <script defer>
-$('.popover-dismiss').popover({
-    trigger: 'focus'
-})
 
-$(function () {
-    $('[data-toggle="popover"]').popover()
-})
 </script>
 
 <style scoped lang="scss">
-
 div.custom-container{
     border: 3px solid rgb(217, 239, 251);
+    height: 100%;
 
 }
 .btn-pink {
@@ -89,10 +77,38 @@ div.custom-container{
     transition: all 0.3s !important;
 }
 .btn-pink:hover {
-        color: #ff385c !important;
-        background-color: transparent !important;
-        box-shadow: 0 0 6px 0 #ff385c !important;
+    color: #ff385c !important;
+    background-color: transparent !important;
+    box-shadow: 0 0 6px 0 #ff385c !important;
     }
+
+.chat  {
+    padding:5px 6px 8px 6px;
+    border-radius: 6px;
+    margin-right: 40px;
+    color:black;
+    background-color: rgb(226, 238, 252);
+    position: relative;
+}
+.chat:after {
+content: "";
+position:absolute;
+margin-top:-12px;
+margin-left:-5px;
+border-left: 12px solid transparent;
+border-right: 12px solid transparent;
+border-bottom: 12px solid rgb(226, 238, 252);
+transform:rotate(-225deg);
+left: -6px; 
+bottom: -2px;
+}
+.card{
+    border: none;
+}
+.box:nth-child(even) {
+margin-top: 1rem;
+}
+
 </style>
 
 @endsection
