@@ -5433,7 +5433,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_TomTomMap_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/TomTomMap.vue */ "./resources/js/components/TomTomMap.vue");
+/* harmony import */ var _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tomtom-international/web-sdk-maps */ "./node_modules/@tomtom-international/web-sdk-maps/dist/maps.min.js");
+/* harmony import */ var _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5582,9 +5588,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SingleApartment",
-  components: {
-    TomTomMap: _components_TomTomMap_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
   data: function data() {
     return {
       apartment: [],
@@ -5595,9 +5598,7 @@ __webpack_require__.r(__webpack_exports__);
       emailContent: '',
       callResponse: '',
       baseURI: 'http://127.0.0.1:8000/api',
-      "long": '',
-      lat: '',
-      address: ''
+      isSent: false
     };
   },
   methods: {
@@ -5605,34 +5606,58 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get("".concat(this.baseURI, "/apartments/").concat(apartmentId)).then(function (results) {
-        // console.log(results.data.results)
         _this.apartment = results.data.results;
         console.warn(_this.apartment);
-        _this["long"] = results.data.results["long"];
-        _this.lat = results.data.results.lat;
-        _this.address = results.data.results.address;
-        console.log(_this.lat, _this["long"]);
+
+        _this.initializeMap(_this.apartment.lat, _this.apartment["long"]);
+
         _this.images = results.data.results.images;
         _this.services = results.data.results.services;
         console.log("images: ", _this.images);
-        console.log("service: ", _this.service); // console.log(this.posts)
-        // const { current_page, last_page } = results.data;
-        // this.activePage = {currentPage : current_page, lastPage : last_page};
+        console.log("service: ", _this.services);
       })["catch"](function (error) {
         console.warn(error);
       });
     },
-    sendMessage: function sendMessage(emailName, email, emailContent) {
+    initializeMap: function initializeMap(lat, lon) {
+      var map = _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.map({
+        key: "tlI6fGKvUCfBh91AG1PKyRZwhaxoGIWp",
+        container: this.$refs.mapRef,
+        center: [lon, lat],
+        zoom: 9
+      });
+      new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.Marker().setLngLat([lon, lat]).addTo(map);
+      this.map = Object.freeze(map);
+    },
+    sendEmail: function sendEmail() {
       var _this2 = this;
 
-      if (emailName != '' && email != '' && emailContent != '') {
-        axios.post("".concat(this.baseURI, "/messages/?name=").concat(this.emailName, "&email=").concat(this.email, "&email_content=").concat(this.emailContent, "&apartment_id=").concat(this.apartment.id)).then(function (res) {
-          console.log(res);
-          _this2.callResponse = "Messaggio inviato con successo";
-        })["catch"](function () {
-          _this2.callResponse = "Messaggio non inviato";
-        });
-      }
+      axios.post('/api/messages', {
+        'name': this.emailName,
+        'email': this.email,
+        'email_content': this.emailContent,
+        'apartment_id': this.apartment.id
+      }).then(function (response) {
+        if (!response.data.success) {
+          _this2.errors = response.data.errors;
+          console.warn(_this2.errors);
+        } else {
+          _this2.isSent = true, _this2.emailName = "", _this2.email = '';
+          _this2.emailContent = '';
+        } // })
+        // if(emailName != '' && email != '' && emailContent != '') {
+        //     axios.post( `${this.baseURI}/messages/?name=${this.emailName}&email=${this.email}&email_content=${this.emailContent}&apartment_id=${this.apartment.id}`).then(response => {
+        //         if(!response.data.success) {
+        //         this.errors = response.data.errors;
+        //     } else {
+        //         this.isSent= true,
+        //         this.name = "",
+        //         this.surname = "",
+        //         this.email = '';
+        //         this.message_content = '';
+        //     }
+
+      });
     }
   },
   mounted: function mounted() {
@@ -5961,67 +5986,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Pagination",
   props: ["currentPage", "lastPage"]
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TomTomMap.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TomTomMap.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tomtom-international/web-sdk-maps */ "./node_modules/@tomtom-international/web-sdk-maps/dist/maps.min.js");
-/* harmony import */ var _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'TomTomMap',
-  props: ['long', 'lat', 'address'],
-  data: function data() {
-    return {
-      'API_KEY': 'tlI6fGKvUCfBh91AG1PKyRZwhaxoGIWp',
-      'APPLICATION_NAME': 'My Application',
-      'APPLICATION_VERSION': '1.0',
-      'positions': {
-        lat: this.lat,
-        lng: this["long"]
-      },
-      // 'searchPosition': this.mainPosition,
-      'apartmentAddress': this.address
-    };
-  },
-  methods: {
-    getMap: function getMap(mainCenter) {
-      var map = _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.map({
-        key: this.API_KEY,
-        container: 'map-div',
-        center: mainCenter,
-        zoom: 14
-      });
-      this.addMarker(map, this.apartmentAddress);
-    },
-    addMarker: function addMarker(map, address) {
-      var marker = new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.Marker().setLngLat(this.positions).addTo(map);
-      var popup = new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.Popup({
-        anchor: 'top'
-      }).setText(address);
-      marker.setPopup(popup).togglePopup();
-    }
-  },
-  mounted: function mounted() {
-    // if(this.searchPosition === null){
-    this.getMap(this.positions); //     console.warn(this.searchPosition);
-    // }
-  }
 });
 
 /***/ }),
@@ -11117,25 +11081,6 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, ".page-item[data-v-d7acf176] {\n  cursor: pointer;\n}", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TomTomMap.vue?vue&type=style&index=0&id=3e3df6c1&lang=scss&scoped=true&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TomTomMap.vue?vue&type=style&index=0&id=3e3df6c1&lang=scss&scoped=true& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-exports.push([module.i, "@import url(https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css);", ""]);
-
-// module
-exports.push([module.i, "#map-div[data-v-3e3df6c1] {\n  width: 40vw;\n  height: 50vh;\n}", ""]);
 
 // exports
 
@@ -42418,36 +42363,6 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TomTomMap.vue?vue&type=style&index=0&id=3e3df6c1&lang=scss&scoped=true&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/sass-loader/dist/cjs.js??ref--7-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TomTomMap.vue?vue&type=style&index=0&id=3e3df6c1&lang=scss&scoped=true& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./TomTomMap.vue?vue&type=style&index=0&id=3e3df6c1&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TomTomMap.vue?vue&type=style&index=0&id=3e3df6c1&lang=scss&scoped=true&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -43470,10 +43385,6 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container border border-danger" }, [
-    _c("div", { staticClass: "alert", attrs: { id: "alert-message" } }, [
-      _vm._v("\n       " + _vm._s(_vm.callResponse) + "\n   "),
-    ]),
-    _vm._v(" "),
     _c("h1", { staticClass: "py-4" }, [
       _vm._v("\n     " + _vm._s(_vm.apartment.title) + "\n   "),
     ]),
@@ -43487,13 +43398,18 @@ var render = function () {
     _c("div", { staticClass: "row" }, [
       _c(
         "div",
-        { staticClass: "col-6 border border-danger" },
+        {
+          staticClass: "col-6 border border-danger",
+          staticStyle: { height: "600px" },
+        },
         [
-          _c("TomTomMap", {
-            attrs: { long: _vm.long, lat: _vm.lat, address: _vm.address },
+          _c("div", {
+            ref: "mapRef",
+            staticClass: "map",
+            staticStyle: { height: "100%" },
+            attrs: { id: "map" },
           }),
-        ],
-        1
+        ]
       ),
       _vm._v(" "),
       _vm._m(0),
@@ -43555,98 +43471,124 @@ var render = function () {
         _vm._v("Contatta il proprietario"),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "mail" } }, [_vm._v("Il tuo nome")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.emailName,
-              expression: "emailName",
-            },
-          ],
-          staticClass: "form-control",
-          attrs: { type: "email", id: "mail" },
-          domProps: { value: _vm.emailName },
-          on: {
-            input: function ($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.emailName = $event.target.value
-            },
-          },
-        }),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "mail" } }, [_vm._v("Indirizzo mail")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.email,
-              expression: "email",
-            },
-          ],
-          staticClass: "form-control",
-          attrs: { type: "email", id: "mail" },
-          domProps: { value: _vm.email },
-          on: {
-            input: function ($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.email = $event.target.value
-            },
-          },
-        }),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "emailContent" } }, [
-          _vm._v("Example textarea"),
-        ]),
-        _vm._v(" "),
-        _c("textarea", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.emailContent,
-              expression: "emailContent",
-            },
-          ],
-          staticClass: "form-control",
-          attrs: { id: "emailContent", rows: "5" },
-          domProps: { value: _vm.emailContent },
-          on: {
-            input: function ($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.emailContent = $event.target.value
-            },
-          },
-        }),
-      ]),
-      _vm._v(" "),
       _c(
-        "button",
+        "form",
         {
-          staticClass: "btn btn-dark",
           on: {
-            click: function ($event) {
-              return _vm.sendMessage(_vm.emailName, _vm.email, _vm.emailContent)
+            submit: function ($event) {
+              $event.preventDefault()
+              return _vm.sendEmail.apply(null, arguments)
             },
           },
         },
-        [_vm._v("Invia")]
+        [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "emailName" } }, [
+              _vm._v("Il tuo nome"),
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.emailName,
+                  expression: "emailName",
+                },
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                id: "emailName",
+                placehold: "Nome",
+                required: "",
+              },
+              domProps: { value: _vm.emailName },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.emailName = $event.target.value
+                },
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "email" } }, [
+              _vm._v("Indirizzo mail"),
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.email,
+                  expression: "email",
+                },
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "email",
+                id: "email",
+                placehold: "email@gmail.com",
+                required: "",
+              },
+              domProps: { value: _vm.email },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.email = $event.target.value
+                },
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "emailContent" } }, [
+              _vm._v("Example textarea"),
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.emailContent,
+                  expression: "emailContent",
+                },
+              ],
+              staticClass: "form-control",
+              attrs: { id: "emailContent", rows: "5", required: "" },
+              domProps: { value: _vm.emailContent },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.emailContent = $event.target.value
+                },
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-dark", attrs: { type: "submit" } },
+            [_vm._v("\n                   Invia\n               ")]
+          ),
+        ]
       ),
+      _vm._v(" "),
+      this.isSent === true
+        ? _c("div", [
+            _vm._v("\n           Il tuo email è stato inviato\n       "),
+          ])
+        : _vm._e(),
     ]),
   ])
 }
@@ -44056,37 +43998,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TomTomMap.vue?vue&type=template&id=3e3df6c1&scoped=true&":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TomTomMap.vue?vue&type=template&id=3e3df6c1&scoped=true& ***!
-  \************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("div", { attrs: { id: "map-div" } })])
-  },
-]
 render._withStripped = true
 
 
@@ -60190,93 +60101,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pagination_vue_vue_type_template_id_d7acf176_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pagination_vue_vue_type_template_id_d7acf176_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/TomTomMap.vue":
-/*!***********************************************!*\
-  !*** ./resources/js/components/TomTomMap.vue ***!
-  \***********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _TomTomMap_vue_vue_type_template_id_3e3df6c1_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TomTomMap.vue?vue&type=template&id=3e3df6c1&scoped=true& */ "./resources/js/components/TomTomMap.vue?vue&type=template&id=3e3df6c1&scoped=true&");
-/* harmony import */ var _TomTomMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TomTomMap.vue?vue&type=script&lang=js& */ "./resources/js/components/TomTomMap.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _TomTomMap_vue_vue_type_style_index_0_id_3e3df6c1_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TomTomMap.vue?vue&type=style&index=0&id=3e3df6c1&lang=scss&scoped=true& */ "./resources/js/components/TomTomMap.vue?vue&type=style&index=0&id=3e3df6c1&lang=scss&scoped=true&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _TomTomMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _TomTomMap_vue_vue_type_template_id_3e3df6c1_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _TomTomMap_vue_vue_type_template_id_3e3df6c1_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "3e3df6c1",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/TomTomMap.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/TomTomMap.vue?vue&type=script&lang=js&":
-/*!************************************************************************!*\
-  !*** ./resources/js/components/TomTomMap.vue?vue&type=script&lang=js& ***!
-  \************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TomTomMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TomTomMap.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TomTomMap.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TomTomMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/TomTomMap.vue?vue&type=style&index=0&id=3e3df6c1&lang=scss&scoped=true&":
-/*!*********************************************************************************************************!*\
-  !*** ./resources/js/components/TomTomMap.vue?vue&type=style&index=0&id=3e3df6c1&lang=scss&scoped=true& ***!
-  \*********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TomTomMap_vue_vue_type_style_index_0_id_3e3df6c1_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--7-2!../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../node_modules/vue-loader/lib??vue-loader-options!./TomTomMap.vue?vue&type=style&index=0&id=3e3df6c1&lang=scss&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TomTomMap.vue?vue&type=style&index=0&id=3e3df6c1&lang=scss&scoped=true&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TomTomMap_vue_vue_type_style_index_0_id_3e3df6c1_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TomTomMap_vue_vue_type_style_index_0_id_3e3df6c1_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TomTomMap_vue_vue_type_style_index_0_id_3e3df6c1_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_TomTomMap_vue_vue_type_style_index_0_id_3e3df6c1_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-/***/ }),
-
-/***/ "./resources/js/components/TomTomMap.vue?vue&type=template&id=3e3df6c1&scoped=true&":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/components/TomTomMap.vue?vue&type=template&id=3e3df6c1&scoped=true& ***!
-  \******************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TomTomMap_vue_vue_type_template_id_3e3df6c1_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TomTomMap.vue?vue&type=template&id=3e3df6c1&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TomTomMap.vue?vue&type=template&id=3e3df6c1&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TomTomMap_vue_vue_type_template_id_3e3df6c1_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TomTomMap_vue_vue_type_template_id_3e3df6c1_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

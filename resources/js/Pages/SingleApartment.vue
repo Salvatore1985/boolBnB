@@ -1,8 +1,5 @@
 <template>
   <div class="container border border-danger">
-    <div class="alert" id="alert-message">
-        {{callResponse}}
-    </div>
     <h1 class="py-4">
       {{ apartment.title }}
     </h1>
@@ -19,11 +16,12 @@
         />
       </div> -->
 
-      <div class="col-6 border border-danger">
-        <TomTomMap
+      <div class="col-6 border border-danger" style="height: 600px">
+        <!-- <TomTomMap
         :long = 'long'
         :lat = 'lat'
-        :address = 'address'/>
+        :address = 'address'/> -->
+        <div class="map" id="map" ref="mapRef" style="height: 100%"></div>
       </div>
       <div class="row">
         <div class="col-12"></div>
@@ -126,30 +124,35 @@
     </div> -->
     <div>
         <h3 class="mt-5 h2">Contatta il proprietario</h3>
-        <div class="form-group">
-            <label for="mail">Il tuo nome</label>
-            <input type="email" class="form-control" id="mail" v-model="emailName">
-            </div>
-            <div class="form-group">
-            <label for="mail">Indirizzo mail</label>
-            <input type="email" class="form-control" id="mail" v-model="email">
-            </div>
-            <div class="form-group">
-            <label for="emailContent">Example textarea</label>
-            <textarea class="form-control" id="emailContent" rows="5" v-model="emailContent"></textarea>
-            </div>
-            <button class="btn btn-dark" @click="sendMessage(emailName,email,emailContent)">Invia</button>
+        <form @submit.prevent="sendEmail">
+                <div class="form-group">
+                <label for="emailName">Il tuo nome</label>
+                    <input type="text" class="form-control" id="emailName" v-model="emailName" placehold="Nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Indirizzo mail</label>
+                    <input type="email" class="form-control" id="email" v-model="email" placehold="email@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="emailContent">Example textarea</label>
+                    <textarea class="form-control" id="emailContent" rows="5" v-model="emailContent" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-dark">
+                    Invia
+                </button>
+        </form>
+        <div v-if="this.isSent === true">
+            Il tuo email è stato inviato
         </div>
+    </div>
   </div>
 </template>
 
 <script>
-import TomTomMap from '../components/TomTomMap.vue';
+import tt from "@tomtom-international/web-sdk-maps";
+
 export default {
   name: "SingleApartment",
-  components : {
-    TomTomMap,
-  },
   data: function () {
     return {
         apartment: [],
@@ -160,9 +163,8 @@ export default {
         emailContent: '',
         callResponse: '',
         baseURI : 'http://127.0.0.1:8000/api',
-        long: '',
-        lat : '',
-        address: '',
+
+        isSent : false,
     }
   },
   methods: {
@@ -170,40 +172,65 @@ export default {
       axios
         .get(`${this.baseURI}/apartments/${apartmentId}`)
         .then((results) => {
-          // console.log(results.data.results)
           this.apartment = results.data.results;
           console.warn(this.apartment);
-          this.long = results.data.results.long;
-          this.lat = results.data.results.lat;
-          this.address = results.data.results.address;
-          console.log(this.lat, this.long);
+          this.initializeMap(this.apartment.lat,this.apartment.long);
           this.images = results.data.results.images;
           this.services = results.data.results.services;
           console.log("images: ", this.images);
           console.log("service: ", this.services);
-          // console.log(this.posts)
-          // const { current_page, last_page } = results.data;
-          // this.activePage = {currentPage : current_page, lastPage : last_page};
         })
         .catch((error) => {
           console.warn(error);
         });
     },
-    sendMessage(emailName, email, emailContent) {
-        if(emailName != '' && email != '' && emailContent != '') {
-            axios.post( `${this.baseURI}/messages/?name=${this.emailName}&email=${this.email}&email_content=${this.emailContent}&apartment_id=${this.apartment.id}`).then(res => {
-                console.log(res);
-                    this.callResponse = "Messaggio inviato con successo";
-            }).catch(() => {
-                        this.callResponse = "Messaggio non inviato";
-            })
-        }
+    initializeMap(lat,lon) {
+        const map = tt.map({
+          key: "tlI6fGKvUCfBh91AG1PKyRZwhaxoGIWp",
+          container: this.$refs.mapRef,
+          center: [lon, lat],
+          zoom: 9,
+    });
+        new tt.Marker()
+        .setLngLat([lon, lat])
+        .addTo(map);
+        this.map = Object.freeze(map);
+    },
+    sendEmail() {
+        axios.post('/api/messages', {
+          'name':this.emailName,
+          'email':this.email,
+          'email_content':this.emailContent,
+          'apartment_id':this.apartment.id,
+        }).then((response) => {
+          if(!response.data.success) {
+              this.errors = response.data.errors;
+              console.warn(this.errors)
+          } else {
+              this.isSent= true,
+              this.emailName = "",
+              this.email = '';
+              this.emailContent = '';
+          }
+        // })
+        // if(emailName != '' && email != '' && emailContent != '') {
+        //     axios.post( `${this.baseURI}/messages/?name=${this.emailName}&email=${this.email}&email_content=${this.emailContent}&apartment_id=${this.apartment.id}`).then(response => {
+        //         if(!response.data.success) {
+        //         this.errors = response.data.errors;
+        //     } else {
+        //         this.isSent= true,
+        //         this.name = "",
+        //         this.surname = "",
+        //         this.email = '';
+        //         this.message_content = '';
+        //     }
+        })
     }
-  },
-  beforeMount() {
-    console.warn(this.$route.params.id);
-    this.getSingleApartment(this.$route.params.id);
-  },
+    },
+    mounted() {
+        console.warn(this.$route.params.id);
+        this.getSingleApartment(this.$route.params.id);
+    },
 };
 </script>
 

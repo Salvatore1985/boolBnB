@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div id="map"></div>
+        <div id="map" ref="mapRef"></div>
     </div>
 </template>
 
 <script>
-import tt from '@tomtom-international/web-sdk-maps';
+import tt from "@tomtom-international/web-sdk-maps";
 
 export default {
     name: 'TomTomMap',
@@ -19,6 +19,14 @@ export default {
                 lng: this.long,
                 lat : this.lat,
                 },
+                popupOffsets: {
+                    top: [0, 0],
+                    bottom: [0, -40],
+                    'bottom-right': [0, -70],
+                    'bottom-left': [0, -70],
+                    left: [25, -35],
+                    right: [-25, -35]
+                },
             // 'searchPosition': this.mainPosition,
             'apartAddress' : this.address,
         }
@@ -27,16 +35,17 @@ export default {
         getMap(){
             const map = tt.map({
                 key: this.API_KEY,
-            container: 'map',
+            container: this.$refs.mapRef,
             center: this.positions,
             zoom: 20,
             });
             console.log(this.positions),
-            this.addMarker(map, this.apartAddress)
+            this.Object.freeze(map)
+            
         },
         addMarker(map, address) {
-            const marker = new tt.Marker().setLngLat(this.positions[0]).addTo(map);
-            const popup = new tt.Popup({ anchor: 'top' }).setHTML(address);
+            const marker = new tt.Marker().setLngLat(this.positions).addTo(map);
+            const popup = new tt.Popup({offset: this.popupOffsets}).setHTML(address);
             marker.setPopup(popup).togglePopup()
         },
     },
