@@ -204,7 +204,7 @@ export default {
       axios
         .get(`${this.baseUri}/api/services`)
         .then((results) => {
-          console.log(results.data);
+        //  console.log(results.data);
           this.services = results.data;
         })
         .catch((error) => {
@@ -225,7 +225,19 @@ export default {
       axios
         .get(`${this.baseUri}/api/apartments/search?`, request)
         .then((res) => {
-          this.apartmentsSearch = res.data[0];
+        //  this.apartmentsSearch = res.data[0];
+          res.data[0].forEach((apartment) => {
+            if(apartment.sponsorships[0]){
+                this.apartmentsSearch = [];
+                this.apartmentsSearch.push(apartment)
+                console.log(this.apartmentsSearch);
+            } else {
+                this.apartmentsSearch.push(apartment)
+            }
+          });
+          if(res.data[0][0].sponsorships){
+            console.log('bellahhh');
+          }
           this.isEmpty = false;
         })
         .catch((err) => {
@@ -256,7 +268,7 @@ export default {
       axios
         .get(`${this.baseUri}/api/apartments`)
         .then((results) => {
-          console.log(results.data.data);
+        //  console.log(results.data.data);
           this.apartments = results.data.data;
         })
         .catch((error) => {
@@ -298,7 +310,6 @@ export default {
   mounted() {
     this.getAllApartments();
     this.getServices();
-    console.log(this.nKm);
   },
 };
 </script>
