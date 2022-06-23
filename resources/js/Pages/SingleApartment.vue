@@ -26,11 +26,17 @@
               <span class="font-weight-bold">Sito in via:</span>
               <span>{{ apartment.address }}</span>
             </h5>
-            <h5 class="py-4">Servizi</h5>
+            <div class="d-flex align-items-center">
+              <h4>Servizi:</h4>
+              <h5
+                class="ps-2"
+                v-for="(service, index) in services"
+                :key="index"
+              >
+                {{ service.name }},
+              </h5>
+            </div>
           </div>
-          <!--  <div class="col-6 d-flex">
-            <h1 class="py-4">{{ apartment.price }}€ /notte</h1>
-          </div> -->
         </div>
       </div>
       <div class="col-12 col-lg-5 my-3 d-flex align-items-center">
