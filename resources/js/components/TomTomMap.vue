@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="map-div"></div>
+        <div id="map"></div>
     </div>
 </template>
 
@@ -16,32 +16,33 @@ export default {
             'APPLICATION_NAME': 'My Application',
             'APPLICATION_VERSION': '1.0',
             'positions': {
+                lng: this.long,
                 lat : this.lat,
-                lng: this.long
                 },
             // 'searchPosition': this.mainPosition,
-            'apartmentAddress' : this.address,
+            'apartAddress' : this.address,
         }
     },
     methods: {
-        getMap(mainCenter){
+        getMap(){
             const map = tt.map({
-            key: this.API_KEY,
-            container: 'map-div',
-            center: mainCenter,
-            zoom: 14
+                key: this.API_KEY,
+            container: 'map',
+            center: this.positions,
+            zoom: 20,
             });
-            this.addMarker(map, this.apartmentAddress)
+            console.log(this.positions),
+            this.addMarker(map, this.apartAddress)
         },
         addMarker(map, address) {
-            const marker = new tt.Marker().setLngLat(this.positions).addTo(map);
-            const popup = new tt.Popup({ anchor: 'top' }).setText(address);
+            const marker = new tt.Marker().setLngLat(this.positions[0]).addTo(map);
+            const popup = new tt.Popup({ anchor: 'top' }).setHTML(address);
             marker.setPopup(popup).togglePopup()
         },
     },
     mounted(){
         // if(this.searchPosition === null){
-            this.getMap(this.positions);
+            this.getMap();
         //     console.warn(this.searchPosition);
         // }
     }

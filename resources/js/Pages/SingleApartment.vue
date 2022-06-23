@@ -180,7 +180,7 @@ export default {
           this.images = results.data.results.images;
           this.services = results.data.results.services;
           console.log("images: ", this.images);
-          console.log("service: ", this.service);
+          console.log("service: ", this.services);
           // console.log(this.posts)
           // const { current_page, last_page } = results.data;
           // this.activePage = {currentPage : current_page, lastPage : last_page};
@@ -200,7 +200,7 @@ export default {
         }
     }
   },
-  mounted() {
+  beforeMount() {
     console.warn(this.$route.params.id);
     this.getSingleApartment(this.$route.params.id);
   },
