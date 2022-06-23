@@ -32,4 +32,5 @@ Route::namespace('api')->group(function(){
     Route::resource('/messages', 'MessagesController');
     Route::get('/user','UsersController@index');
     Route::resource('apartments','ApartmentController');
+    Route::get('/sponsor','ApartmentController@apartmentsSponsor');
 });

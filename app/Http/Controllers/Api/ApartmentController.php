@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Apartment;
 use App\Models\Image;
+use App\Models\Sponsorship;
 use Illuminate\Support\Facades\Http;
 use App\Models\Service;
 //use App\Models\Sponsorship;
@@ -28,13 +29,9 @@ class ApartmentController extends Controller
     public function apartmentsSponsor()
     {
 
-        $apartments = Apartment::with(['images', 'services', 'user'])
-                                //->with(['sponsorships' => function ($q) {$q->orderBy('apartment_sponsorship.start_date', 'asc');}])
-                                //->join('apartment_sponsorship', 'apartment.id', '=', 'product_categories.apartment_id')
-                                ->where('is_visible', 1)
-                                ->paginate(8);
+        $sponsorships = Sponsorship::with('apartments')->get();
 
-        return response()->json($apartments);
+        return response()->json($sponsorships);
     }
 
     public function show($id)
@@ -86,6 +83,7 @@ class ApartmentController extends Controller
                             ->where('n_beds', 'LIKE', '%'. $request->n_beds. '%')
                             ->where('is_visible', 1)
                             ->with('services')
+                            ->with('sponsorships')
                             ->with('images')
                             ->get();
 
