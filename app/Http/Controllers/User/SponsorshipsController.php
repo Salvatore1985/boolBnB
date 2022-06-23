@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Sponsorship;
+use App\Models\Apartment;
 use App\User;
 
 
@@ -149,5 +150,11 @@ class SponsorshipsController extends Controller
         $sponsorship->delete();
         return redirect()->route('user.sponsorships.index')->with('alert-message', 'la sponsorrizzazione è stato eliminato con successo.')->with('alert-type', 'success');
         }
+    }
+
+    public function purchase(Apartment $apartment)
+    {
+        $sponsorships = Sponsorship::all();
+        return view('user.sponsorships.purchase', compact('sponsorships', 'apartment'));
     }
 }
