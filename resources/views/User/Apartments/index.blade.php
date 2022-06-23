@@ -31,6 +31,15 @@
 
                     <div class="card mb-5 position-relative">
                         {{-- @foreach ($apartment->images as $image)
+                <div class="col-6 card-group
+                @if ($apartment->is_visible == false) bg-warning @endif">
+
+                    <div class="card mb-5">
+
+                        <div class="col-6 card-group">
+
+                            <div class="card mb-5 position-relative">
+                                {{-- @foreach ($apartment->images as $image)
                             @if (str_starts_with($image->link, 'https://') || str_starts_with($image->link, 'http://'))
                                 <img class="card-img-top img-apartment" src="{{ $image->link }}"
                                     alt="{{ $apartment->title }}">
@@ -40,12 +49,10 @@
                                     alt="{{ $apartment->title }}">
                             @endif
                         @endforeach --}}
-
                         <div class="col-6 card-group
                 @if ($apartment->is_visible == false) bg-warning @endif">
 
                             <div class="card mb-5">
-
                                 @if (str_starts_with($apartment->images[0]->link, 'https://') or str_starts_with($apartment->images[0]->link, 'http://'))
                                     <img class="card-img-top img-apartment" src="{{ $apartment->images[0]->link }}"
                                         alt="{{ $apartment->title }}">
