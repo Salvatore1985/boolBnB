@@ -171,7 +171,7 @@ export default {
           console.warn(error);
         });
     },
-     sendMessage(emailName, email, emailContent) {
+    sendMessage(emailName, email, emailContent) {
         if(emailName != '' && email != '' && emailContent != '') {
             axios.post( `${this.baseURI}/messages/?name=${this.emailName}&email=${this.email}&email_content=${this.emailContent}&apartment_id=${this.apartment.id}`).then(res => {
                 console.log(res);

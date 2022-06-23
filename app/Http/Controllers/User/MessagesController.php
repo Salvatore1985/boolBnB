@@ -24,11 +24,12 @@ class MessagesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {      
         $user_id = Auth::id();
         $apartments = Apartment::all();
+        $messages = Message::all();
             if ($user_id == 1 or $user_id == $apartment->user_id) {    
-                return view('user.home', ['apartment' => $apartment]);
+                return view('user.home', ['apartment' => $apartment] , ['messages' => $messages]);
             } else {
                 return redirect()->route('user.home');
             }
