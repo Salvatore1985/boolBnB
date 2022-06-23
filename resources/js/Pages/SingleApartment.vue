@@ -1,6 +1,6 @@
 <template>
   <div class="container border border-danger">
-    <div :class="alert" class="alert" id="alert-message">
+    <div class="alert" id="alert-message">
         {{callResponse}}
     </div>
     <h1 class="py-4">
@@ -11,13 +11,14 @@
       <span>{{ apartment.address }}</span>
     </h6>
     <div class="row">
-      <div class="col-6">
+      <!-- <div class="col-6">
         <img
           class="my-rounded-1 w-100"
           :src="apartment.images[0].link"
           :alt="apartment.tile"
         />
-      </div>
+      </div> -->
+
       <div class="col-6 border border-danger">
         <TomTomMap
         :coordinates = 'coordinates'
@@ -27,7 +28,7 @@
         <div class="col-12"></div>
       </div>
       <!-- img secondary -->
-      <!--  <div class="col-6">
+       <div class="col-6">
         <div class="row h-100">
           <div class="col-12 h-100">
             <div class="row h-100">
@@ -57,7 +58,7 @@
           </div>
         </div>
       </div>
- -->
+
       <!--  <div class="col-6 d-flex justify-content-between">
         <div>
           <h3>Host: {{ apartment.user.name }}</h3>
@@ -137,7 +138,7 @@
             <textarea class="form-control" id="emailContent" rows="5" v-model="emailContent"></textarea>
             </div>
             <button class="btn btn-dark" @click="sendMessage(emailName,email,emailContent)">Invia</button>
-    </div>
+        </div>
   </div>
 </template>
 

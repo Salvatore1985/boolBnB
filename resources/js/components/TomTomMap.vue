@@ -15,7 +15,7 @@ export default {
             'API_KEY': 'tlI6fGKvUCfBh91AG1PKyRZwhaxoGIWp',
             'APPLICATION_NAME': 'My Application',
             'APPLICATION_VERSION': '1.0',
-            'positions': this.coordinates,
+            'positions': ["45.4442769", "9.0941081"],
             // 'searchPosition': this.mainPosition,
             'apartmentAddress' : this.address,
         }
