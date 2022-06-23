@@ -237,21 +237,21 @@ export default {
           this.isLoading = false;
         });
     },
-    getPagination(page) {
-      axios
-        .get(`${this.baseUri}/api/apartments?page=${page}`)
-        .then((results) => {
-          console.log("pagine", results.data.data);
+    //getPagination(page) {
+    //  axios
+    //    .get(`${this.baseUri}/api/apartments?page=${page}`)
+    //    .then((results) => {
+    //      console.log("pagine", results.data.data);
 
-          const { data, current_page, last_page } = results.data;
-          this.apartments = data;
-          this.pagination = { currentPage: current_page, lastPage: last_page };
-          console.log("pagine", this.apartments);
-        })
-        .catch((error) => {
-          console.warn(error);
-        });
-    },
+    //      const { data, current_page, last_page } = results.data;
+    //      this.apartments = data;
+    //      this.pagination = { currentPage: current_page, lastPage: last_page };
+    //      console.log("pagine", this.apartments);
+    //    })
+    //    .catch((error) => {
+    //      console.warn(error);
+    //    });
+    //},
     getAllApartments() {
       axios
         .get(`${this.baseUri}/api/apartments`)
