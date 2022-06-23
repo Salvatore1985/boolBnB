@@ -37335,13 +37335,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! C:\Boolean\boolBnB\resources\js\user.js */"./resources/js/user.js");
-module.exports = __webpack_require__(/*! C:\Boolean\boolBnB\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
 __webpack_require__(/*! /Users/tommasoriccobono/Desktop/BOOLEAN/boolBnB/resources/js/user.js */"./resources/js/user.js");
 module.exports = __webpack_require__(/*! /Users/tommasoriccobono/Desktop/BOOLEAN/boolBnB/resources/sass/app.scss */"./resources/sass/app.scss");
->>>>>>> master
 
 
 /***/ })

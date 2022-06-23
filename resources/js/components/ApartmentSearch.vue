@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-6 col-lg-4 col-sm-12 justify-content-between py-4">
+  <!-- <div class="col-md-6 col-lg-4 col-sm-12 justify-content-between py-4">
     <div class="mb-3" v-if="apartment.images[0].link.startsWith('https://')">
       <img
         class="img-apartment my-rounded-1"
@@ -32,39 +32,43 @@
       </div>
       <h5 class="px-3">{{ apartment.price }} €/Notte</h5>
     </div>
-  </div>
+  </div> -->
+    <Apartment :apartment="apartment" />
+
 </template>
 
 <script>
+import Apartment from "./Apartment.vue";
 export default {
   name: "HeaderIndex",
+  components: { Apartment },
   props: ["apartment"],
-  methods: {
-    getFormattedDate(data) {
-      //*creao una funzione per convertire la data dal database
-      const apartmentdate = new Date(data);
-      let day = apartmentdate.getDate();
-      let month = apartmentdate.getMonth() + 1; //* sggiungo +1 perche il mesi vengono considerati come un array per questo aggiungo 1
-      const year = apartmentdate.getFullYear();
-      //? aggiungo una condistione in caso il giorno e minore di 10
-      if (day < 10) {
-        day = "0" + day;
-      }
-      //? aggiungo una condistione in caso il mese e minore di 10
-      if (month < 10) {
-        month = "0" + month;
-      }
-      return `${day}/${month}/${year}`;
-    },
-    limitOverview(apartment) {
-      if (apartment.description.length > 150) {
-        return apartment.description.slice(0, 100) + "...";
-      } else {
-        return apartment.description;
-      }
-    },
-  },
-  created() {},
+  // methods: {
+  //   getFormattedDate(data) {
+  //     //*creao una funzione per convertire la data dal database
+  //     const apartmentdate = new Date(data);
+  //     let day = apartmentdate.getDate();
+  //     let month = apartmentdate.getMonth() + 1; //* sggiungo +1 perche il mesi vengono considerati come un array per questo aggiungo 1
+  //     const year = apartmentdate.getFullYear();
+  //     //? aggiungo una condistione in caso il giorno e minore di 10
+  //     if (day < 10) {
+  //       day = "0" + day;
+  //     }
+  //     //? aggiungo una condistione in caso il mese e minore di 10
+  //     if (month < 10) {
+  //       month = "0" + month;
+  //     }
+  //     return `${day}/${month}/${year}`;
+  //   },
+  //   limitOverview(apartment) {
+  //     if (apartment.description.length > 150) {
+  //       return apartment.description.slice(0, 100) + "...";
+  //     } else {
+  //       return apartment.description;
+  //     }
+  //   },
+  // },
+  // created() {},
 };
 </script>
 

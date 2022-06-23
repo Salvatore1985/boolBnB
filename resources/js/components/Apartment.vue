@@ -2,52 +2,65 @@
     <div class="col-md-6 col-lg-4 col-sm-12 justify-content-between py-4">
         <section class="my-rounded-1 p-3">
             <!-- Image Apartment -->
-            <div
-                class="text-center mb-3"
-                v-if="apartment.images[0].link.startsWith('https://')"
-            >
-                <img
-                class="img-apartment my-rounded-1"
-                :src="apartment.images[0].link"
-                :alt="apartment.title"
-                />
-            </div>
-            <div class="text-center mb-3" v-else>
-                <img
-                class="img-apartment my-rounded-1"
-                :src="`storage/${apartment.images[0].link}`"
-                :alt="apartment.title"
-                />
-            </div>
-            <!-- info Apartment -->
-            <h6 class="py-2">
-                stelline
-            </h6>
-            <h5 class="card-title">
-                {{ apartment.title }}
-            </h5>
-            <p class="card-text">
-                {{ limitOverview(apartment) }}
-            </p>
-            <pre>Creato il: {{ getFormattedDate(apartment.created_at) }}</pre>
-            <div class="d-flex justify-content-between">
-                <div class="d-flex avatar">
-                <img
-                    class="img-fluid rounded-circle"
-                    src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg"
-                    alt=""
-                />
-                <span class="px-3">
-                    {{ apartment.user.name }}
-                </span>
+            <div class="card-group">
+              <div class="card">
+                <div
+                    class="text-center mb-3"
+                    v-if="apartment.images[0].link.startsWith('https://')"
+                >
+                    <img
+                    class="card-img-top img-apartment"
+                    :src="apartment.images[0].link"
+                    :alt="apartment.title"
+                    />
                 </div>
+                <div class="text-center mb-3" v-else>
+                    <img
+                    class="card-img-top img-apartment"
+                    :src="`storage/${apartment.images[0].link}`"
+                    :alt="apartment.title"
+                    />
+                </div>
+                <!-- info Apartment -->
+                <div class="card-body d-flex flex-column justify-content-between shadow rounded p-4">
+                    <h6 class="py-2">
+                        stelline
+                    </h6>
+                    <h5 class="card-title">
+                        {{ apartment.title }}
+                    </h5>
+                    <p class="card-text">
+                        {{ limitOverview(apartment) }}
+                    </p>
+                    <pre>Creato il: {{ getFormattedDate(apartment.created_at) }}</pre>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex avatar">
+                        <img
+                            class="img-fluid rounded-circle"
+                            src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg"
+                            alt=""
+                        />
+                        <span class="px-3">
+                            {{ apartment.user.name }}
+                        </span>
+                        
+                        </div>
+                        <h5 class="px-3">{{ apartment.price }}€ /Notte</h5>
+                    </div>
+                  
+                    
+                    <div>
+                    <router-link :to="{ name: 'apartment', params: { id: apartment.id } }">
+                        Leggi questo post
+                    </router-link>
+                    </div>
+                </div>
+              </div>
             </div>
-            <h5 class="px-3">{{ apartment.price }} €/Notte</h5>
-            <div>
-                <router-link :to="{ name: 'apartment', params: { id: apartment.id } }">
-                    Leggi questo post
-                </router-link>
-            </div>
+
+            
+
+
         </section>
     </div>
 </template>
