@@ -29,18 +29,8 @@
             @forelse ($apartments as $apartment)
                 <div class="col-6 card-group
                 @if ($apartment->is_visible == false) bg-warning @endif">
-                    
+
                     <div class="card mb-5">
-                        {{-- @foreach ($apartment->images as $image)
-                            @if (str_starts_with($image->link, 'https://') || str_starts_with($image->link, 'http://'))
-                                <img class="card-img-top img-apartment" src="{{ $image->link }}"
-                                    alt="{{ $apartment->title }}">
-                            @elseif (!str_starts_with($image->link, 'https://') || !str_starts_with($image->link, 'http://'))
-                                <img class="card-img-top img-apartment"
-                                    src="{{ asset('/storage') . '/' . $image->link }}"
-                                    alt="{{ $apartment->title }}">
-                            @endif
-                        @endforeach --}}
                         @if (str_starts_with($apartment->images[0]->link, 'https://') or str_starts_with($apartment->images[0]->link, 'http://'))
                             <img class="card-img-top img-apartment" src="{{ $apartment->images[0]->link }}"
                                 alt="{{ $apartment->title }}">
@@ -104,7 +94,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             @empty
                 <h2>

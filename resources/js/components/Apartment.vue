@@ -1,6 +1,8 @@
 <template>
-  <div class="col-md-6 col-lg-4 col-sm-12 justify-content-between py-4">
-    <section class="my-rounded-1 p-3">
+  <section
+    class="col-md-6 col-lg-4 col-sm-12 justify-content-between py-4 card-group"
+  >
+    <div class="my-rounded-1 p-3 card">
       <!-- Image Apartment -->
       <div
         class="text-center mb-3"
@@ -44,8 +46,8 @@
           Leggi questo post
         </router-link>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </template>
 
 <script>
