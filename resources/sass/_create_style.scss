@@ -11,11 +11,24 @@ img#logo {
 }
 
 .background_navbar {
-    background-color: #45BBF9;
+    // background-color: #45BBF9;
+    background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 0), #1D7EFF, #1D7EFF, #1D7EFF);
+
+}
+
+.background_card_apartment {
+    // background-color: #45BBF9;
+    background-image: linear-gradient(to top, rgba(255, 0, 0, 0), rgba(255, 0, 0, 0), yellow, #1D7EFF, #1D7EFF, #1D7EFF, #1D7EFF, #1D7EFF);
+
+}
+
+.navbar {
+    font-family: 'Montserrat', sans-serif;
+
 }
 
 .height-header-form {
-    height: 15vh
+    height: 10vh
 }
 
 .height-main-form {
@@ -34,6 +47,7 @@ img#logo {
     object-fit: cover;
     height: 230px;
     width: 350px;
+
 
 }
 
@@ -61,6 +75,9 @@ img#logo {
 }
 
 .color-primary {
-    background-color: #45BBF9;
-    color: white;
+    color: red;
+}
+
+.btn-active {
+    display: none;
 }

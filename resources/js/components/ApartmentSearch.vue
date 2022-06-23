@@ -1,18 +1,15 @@
 <template>
   <div class="col-md-6 col-lg-4 col-sm-12 justify-content-between py-4">
-    <div
-      class="bg-dark text-center mb-3"
-      v-if="apartment.images[0].link.startsWith('https://')"
-    >
+    <div class="mb-3" v-if="apartment.images[0].link.startsWith('https://')">
       <img
-        class="img-apartment"
+        class="img-apartment my-rounded-1"
         :src="apartment.images[0].link"
         :alt="apartment.title"
       />
     </div>
-    <div class="bg-dark text-center mb-3" v-else>
+    <div class="mb-3" v-else>
       <img
-        class="img-apartment"
+        class="img-apartment my-rounded-1"
         :src="`storage/${apartment.images[0].link}`"
         :alt="apartment.title"
       />

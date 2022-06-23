@@ -1,18 +1,22 @@
 <template>
-  <section id="apartiment-list">
+  <section id="apartiment-list ">
+    <Pagination
+      :currentPage="pagination.currentPage"
+      :lastPage="pagination.lastPage"
+      @onPageChange="getPagination(page)"
+    />
+
     <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <nav class="navbar navbar-light text-primary">
+      <nav class="navbar navbar-light text-primary">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-12 col-lg-6">
+            <!-- group input search -->
             <section>
               <div class="input-group">
-                <!--  <span class="input-group-text"
-                  >Città | Numero stanze | numero letti</span
-                > -->
                 <input
                   type="text"
                   aria-label="First name"
-                  class="form-control"
+                  class="form-control w-25"
                   v-model="searchAddress"
                   placeholder="Città"
                 />
@@ -21,76 +25,87 @@
                   aria-label="Last name"
                   class="form-control"
                   v-model="nRooms"
-                  placeholder="Numero Stanze"
+                  placeholder="N. Stanze"
                 />
                 <input
                   type="number"
                   aria-label="Last name"
                   class="form-control"
                   v-model="nBeds"
-                  placeholder="Numero Letti"
+                  placeholder="N. Letti"
                 />
               </div>
-              <!--         <input
-                class="form-control mr-sm-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                v-model="searchAddress"
-              />
-              <input
-                class="form-control mr-sm-2"
-                type="number"
-                placeholder="Numero Stanze"
-                aria-label="nRooms"
-                v-model="nRooms"
-              />
-              <input
-                class="form-control mr-sm-2"
-                type="number"
-                placeholder="Numero Letti"
-                aria-label="nBeds"
-                v-model="nBeds"
-              /> -->
             </section>
-
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="nKm"
-                id="nKm"
-                value="5"
-                v-model="nKm"
-              />
-              <label class="form-check-label" for="nKm">5 Km</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="nKm"
-                id="nKm"
-                value="10"
-                v-model="nKm"
-              />
-              <label class="form-check-label" for="nKm">10 Km</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="nKm"
-                id="nKm"
-                value="20"
-                v-model="nKm"
-                checked
-              />
-              <label class="form-check-label" for="nKm">20 Km</label>
-            </div>
-
-            <div
-              class="form-check"
+          </div>
+          <div
+            class="
+              col-12 col-lg-5
+              py-3
+              d-flex
+              justify-content-around
+              align-items-center
+            "
+          >
+            <label class="form-check-label">Seleziona il raggio dei Km</label>
+            <!--group input km -->
+            <section>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="nKm"
+                  id="nKm"
+                  value="5"
+                  v-model="nKm"
+                  checked="checked"
+                />
+                <label class="form-check-label" for="nKm">5 Km</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="nKm"
+                  id="nKm"
+                  value="10"
+                  v-model="nKm"
+                />
+                <label class="form-check-label" for="nKm">10 Km</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="nKm"
+                  id="nKm"
+                  value="20"
+                  v-model="nKm"
+                  checked
+                />
+                <label class="form-check-label" for="nKm">20 Km</label>
+              </div>
+            </section>
+          </div>
+          <div class="col-12 col-lg-1">
+            <button
+              class="btn btn-info my-2 my-sm-0"
+              @click="getApartments(searchAddress, nRooms, nBeds, nKm)"
+            >
+              Cerca
+            </button>
+          </div>
+        </div>
+      </nav>
+      <!--group input service -->
+      <a @click="getBtbActive()" class="btn text-info">
+        <h6 v-if="btnActive == false">Ricerca avanzata</h6>
+        <p v-else>Chiudi ricerca avanzata</p>
+      </a>
+      <div class="row" :class="btnActive == false ? 'd-none' : 'dblock'">
+        <section class="col-12 d-flex">
+          <ul class="d-lg-flex flex-wrap justify-content-start">
+            <li
+              class="form-check px-3 py-2"
               v-for="(service, index) in services"
               :key="index"
             >
@@ -110,17 +125,9 @@
               >
                 {{ service.name }}
               </label>
-            </div>
-
-            <button
-              class="btn btn-outline-success my-2 my-sm-0"
-              @click="getApartments(searchAddress, nRooms, nBeds, nKm)"
-            >
-              Search
-            </button>
-            <!--</form>-->
-          </nav>
-        </div>
+            </li>
+          </ul>
+        </section>
       </div>
     </div>
 
@@ -155,6 +162,7 @@
 import Loader from "../components/Loader.vue";
 import Apartment from "../components/Apartment.vue";
 import ApartmentSearch from "../components/ApartmentSearch.vue";
+import Pagination from "../components/Pagination.vue";
 
 export default {
   name: "Apartments",
@@ -162,6 +170,7 @@ export default {
     Loader,
     Apartment,
     ApartmentSearch,
+    Pagination,
   },
   data() {
     return {
@@ -179,6 +188,7 @@ export default {
       isEmpty: false,
       services: [],
       checkedServices: [],
+      btnActive: false,
     };
   },
   watch: {
@@ -227,6 +237,21 @@ export default {
           this.isLoading = false;
         });
     },
+    getPagination(page) {
+      axios
+        .get(`${this.baseUri}/api/apartments?page=${page}`)
+        .then((results) => {
+          console.log("pagine", results.data.data);
+
+          const { data, current_page, last_page } = results.data;
+          this.apartments = data;
+          this.pagination = { currentPage: current_page, lastPage: last_page };
+          console.log("pagine", this.apartments);
+        })
+        .catch((error) => {
+          console.warn(error);
+        });
+    },
     getAllApartments() {
       axios
         .get(`${this.baseUri}/api/apartments`)
@@ -260,6 +285,14 @@ export default {
         this.getApartments(this.searchAddress, this.nRooms, this.nBeds);
         console.log("qui funziona!");
       }
+    },
+    getBtbActive() {
+      if (this.btnActive) {
+        this.btnActive = false;
+      } else {
+        this.btnActive = true;
+      }
+      console.log(this.btnActive);
     },
   },
   mounted() {

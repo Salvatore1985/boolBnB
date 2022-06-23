@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;
 
-500;600;700&family=Lobster&family=Noto+Sans+HK:wght@100;300;400;500;700;900&display=swap);@charset "UTF-8";
+500;600;700&family=Lobster&family=Noto+Sans+HK:wght@100;300;400;500;700;900&display=swap);@import url(https://fonts.googleapis.com/css2?family=Lobster&display=swap);@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);@charset "UTF-8";
 /* .background-image-form {
   background-image: url('https://static.bimago.pl/mediacache/catalog/product/cache/8/7/107178/image/750x1120/be97cf49a5a90b4dfd2ad7042bec5838/107178_4.jpg');
   background-repeat: repeat;
@@ -14,11 +14,19 @@ img#logo {
 }
 
 .background_navbar {
-  background-color: #45BBF9;
+  background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(255, 0, 0, 0), #1D7EFF, #1D7EFF, #1D7EFF);
+}
+
+.background_card_apartment {
+  background-image: linear-gradient(to top, rgba(255, 0, 0, 0), rgba(255, 0, 0, 0), yellow, #1D7EFF, #1D7EFF, #1D7EFF, #1D7EFF, #1D7EFF);
+}
+
+.navbar {
+  font-family: "Montserrat", sans-serif;
 }
 
 .height-header-form {
-  height: 15vh;
+  height: 10vh;
 }
 
 .height-main-form {
@@ -64,8 +72,11 @@ img#logo {
 }
 
 .color-primary {
-  background-color: #45BBF9;
-  color: white;
+  color: red;
+}
+
+.btn-active {
+  display: none;
 }
 
 /*!
