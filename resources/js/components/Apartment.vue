@@ -1,8 +1,6 @@
 <template>
-  <section
-    class="col-md-6 col-lg-4 col-sm-12 justify-content-between py-4 card-group"
-  >
-    <div class="my-rounded-1 p-3 card">
+  <div class="col-md-6 col-lg-4 col-sm-12 justify-content-between py-4">
+    <section class="my-rounded-1 p-3">
       <!-- Image Apartment -->
       <div
         class="text-center mb-3"
@@ -23,7 +21,9 @@
       </div>
       <!-- info Apartment -->
       <h6 class="py-2">stelline</h6>
-      <h5 class="card-title">{{ apartment.title }}</h5>
+      <h5 class="card-title">
+        {{ apartment.title }}
+      </h5>
       <p class="card-text">
         {{ limitOverview(apartment) }}
       </p>
@@ -39,15 +39,15 @@
             {{ apartment.user.name }}
           </span>
         </div>
-        <h5 class="px-3">{{ apartment.price }} €/Notte</h5>
       </div>
+      <h5 class="px-3">{{ apartment.price }} €/Notte</h5>
       <div>
         <router-link :to="{ name: 'apartment', params: { id: apartment.id } }">
           Leggi questo post
         </router-link>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <script>

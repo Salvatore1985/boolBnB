@@ -1,5 +1,8 @@
 <template>
   <div class="container border border-danger">
+    <div :class="alert" class="alert" id="alert-message">
+        {{callResponse}}
+    </div>
     <h1 class="py-4">
       {{ apartment.title }}
     </h1>
@@ -115,6 +118,22 @@
         </a>
       </div>
     </div> -->
+    <div>
+        <h3 class="mt-5 h2">Contatta il proprietario</h3>
+        <div class="form-group">
+            <label for="mail">Il tuo nome</label>
+            <input type="email" class="form-control" id="mail" v-model="emailName">
+            </div>
+            <div class="form-group">
+            <label for="mail">Indirizzo mail</label>
+            <input type="email" class="form-control" id="mail" v-model="email">
+            </div>
+            <div class="form-group">
+            <label for="emailContent">Example textarea</label>
+            <textarea class="form-control" id="emailContent" rows="5" v-model="emailContent"></textarea>
+            </div>
+            <button class="btn btn-dark" @click="sendMessage(emailName,email,emailContent)">Invia</button>
+    </div>
   </div>
 </template>
 
@@ -123,15 +142,20 @@ export default {
   name: "SingleApartment",
   data: function () {
     return {
-      apartment: [],
-      images: [],
-      services: [],
+        apartment: [],
+        images: [],
+        services: [],
+        emailName: '',
+        email: '',
+        emailContent: '',
+        callResponse: '',
+        baseURI : 'http://127.0.0.1:8000/api'
     };
   },
   methods: {
     getSingleApartment(apartmentId) {
       axios
-        .get(`http://127.0.0.1:8000/api/apartments/${apartmentId}`)
+        .get(`${this.baseURI}/apartments/${apartmentId}`)
         .then((results) => {
           // console.log(results.data.results)
           this.apartment = results.data.results;
@@ -147,8 +171,18 @@ export default {
           console.warn(error);
         });
     },
+    sendMessage(emailName, email, emailContent) {
+        if(emailName != '' && email != '' && emailContent != '') {
+            axios.post( `${this.baseURI}/messages/?name=${this.emailName}&email=${this.email}&email_content=${this.emailContent}&apartment_id=${this.apartment.id}`).then(res => {
+                console.log(res);
+                    this.callResponse = "Messaggio inviato con successo";
+            }).catch(() => {
+                        this.callResponse = "Messaggio non inviato";  
+            })
+        }
+    }
   },
-  created() {
+  mounted() {
     console.warn(this.$route.params.id);
     this.getSingleApartment(this.$route.params.id);
   },

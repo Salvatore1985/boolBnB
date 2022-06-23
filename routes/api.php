@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Mail\MailtrapExample;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,7 @@ Route::namespace('api')->group(function(){
     Route::get('/apartments/search', 'ApartmentController@search');
     Route::get('/services','ServicesController@index');
     Route::get('/messages','MessaggesController@store');
+    Route::resource('/messages', 'MessagesController');
     Route::get('/user','UsersController@index');
     Route::resource('apartments','ApartmentController');
 });

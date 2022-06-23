@@ -46,8 +46,12 @@ Route::middleware('auth')
     Route::resource('apartments', ApartmentsController::class);
     Route::resource('users', UsersController::class);
     Route::resource('sponsorships', SponsorshipsController::class);
+    Route::get('payments/{apartment}/{sponsorship}', 'PaymentsController@index')->name('payments.index');
+    Route::post('payments/{apartment}/{sponsorship}/transaction', 'PaymentsController@transaction')->name('payments.transaction');
+    Route::get('sponsorships/purchase/{apartment}', 'SponsorshipsController@purchase')->name('sponsorships.purchase');
     Route::delete('/image/{id}', 'ImagesController@destroy')->name("image.destroy");
-    Route::delete('/messages/{id}', 'MessaggesController@destroy')->name("message.destroy");
+    Route::resource('/messages', 'MessagesController');
+    Route::delete('/messages/{id}', 'MessagesController@destroy')->name("message.destroy");
 });
 
 Route::get('/send-mail', function () {
