@@ -16,7 +16,7 @@ class ApartmentController extends Controller
     public function index(Apartment $apartment)
     {
 
-        $apartments = Apartment::with(['images', 'services', 'user'])->paginate(50);
+        $apartments = Apartment::with(['images', 'services', 'user'])->paginate(8);
 
         return response()->json($apartments);
     }
@@ -67,8 +67,8 @@ class ApartmentController extends Controller
         $result = Apartment::whereBetween('lat', [$min_lat, $max_lat])->whereBetween('long', [$min_lon, $max_lon])
                             ->where('n_rooms', 'LIKE', '%'. $request->n_rooms. '%')
                             ->where('n_beds', 'LIKE', '%'. $request->n_beds. '%')
-                            ->with('services')
-                            ->with('images')
+                            ->where('is_visible', 1)
+                            ->with(['images', 'services', 'user'])
                             ->get();
 
         if(count($result)){
