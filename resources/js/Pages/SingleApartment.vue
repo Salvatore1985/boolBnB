@@ -21,7 +21,8 @@
 
       <div class="col-6 border border-danger">
         <TomTomMap
-        :coordinates = 'coordinates'
+        :long = 'long'
+        :lat = 'lat'
         :address = 'address'/>
       </div>
       <div class="row">
@@ -159,7 +160,8 @@ export default {
         emailContent: '',
         callResponse: '',
         baseURI : 'http://127.0.0.1:8000/api',
-        coordinates: [],
+        long: '',
+        lat : '',
         address: '',
     }
   },
@@ -171,10 +173,10 @@ export default {
           // console.log(results.data.results)
           this.apartment = results.data.results;
           console.warn(this.apartment);
-          this.coordinates.push(results.data.results.long);
-          this.coordinates.push(results.data.results.lat);
+          this.long = results.data.results.long;
+          this.lat = results.data.results.lat;
           this.address = results.data.results.address;
-          console.log(this.coordinates);
+          console.log(this.lat, this.long);
           this.images = results.data.results.images;
           this.services = results.data.results.services;
           console.log("images: ", this.images);

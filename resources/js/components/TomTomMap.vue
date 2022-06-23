@@ -9,13 +9,16 @@ import tt from '@tomtom-international/web-sdk-maps';
 
 export default {
     name: 'TomTomMap',
-    props: ['coordinates', 'address'],
+    props: ['long', 'lat', 'address'],
     data: function(){
         return{
             'API_KEY': 'tlI6fGKvUCfBh91AG1PKyRZwhaxoGIWp',
             'APPLICATION_NAME': 'My Application',
             'APPLICATION_VERSION': '1.0',
-            'positions': ["45.4442769", "9.0941081"],
+            'positions': {
+                lat : this.lat,
+                lng: this.long
+                },
             // 'searchPosition': this.mainPosition,
             'apartmentAddress' : this.address,
         }
