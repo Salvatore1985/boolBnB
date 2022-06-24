@@ -1,14 +1,6 @@
 @import url(https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;
 
 500;600;700&family=Lobster&family=Noto+Sans+HK:wght@100;300;400;500;700;900&display=swap);@import url(https://fonts.googleapis.com/css2?family=Lobster&display=swap);@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);@charset "UTF-8";
-/* .background-image-form {
-  background-image: url('https://static.bimago.pl/mediacache/catalog/product/cache/8/7/107178/image/750x1120/be97cf49a5a90b4dfd2ad7042bec5838/107178_4.jpg');
-  background-repeat: repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-*/
 img#logo {
   height: 5rem;
 }
@@ -25,13 +17,13 @@ img#logo {
   font-family: "Montserrat", sans-serif;
 }
 
-.height-header-form {
-  height: 10vh;
+/* .height-header-form {
+    height: 10vh
 }
 
 .height-main-form {
-  height: 90vh;
-}
+    height: 90vh
+} */
 
 .border_black {
   border: 1px solid black;
@@ -63,8 +55,18 @@ img#logo {
 }
 
 .wraper-cover-apartment-small {
+  width: 100%;
+  height: 200px;
+  background-color: aliceblue;
+}
+
+.cover-apartment-small {
+  height: 100%;
+  width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
 }
 
 .my-rounded-1 {
@@ -86,8 +88,9 @@ img#logo {
   padding: 5px;
 }
 
-.my-img-wrapper {
-  width: 33.3333333333%;
+.my-bg-card-info {
+  background-color: #a7c0e1;
+  background: linear-gradient(to top right, white, white, white, white, white, white, white, white, white, #33ccff);
 }
 
 /*!
