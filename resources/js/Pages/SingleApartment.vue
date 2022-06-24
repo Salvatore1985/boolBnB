@@ -1,130 +1,92 @@
 <template>
-  <div class="container border border-danger">
-    <h1 class="py-4">
-      {{ apartment.title }}
-    </h1>
-    <h6>
-      <span class="font-weight-bold">Sito in via:</span>
-      <span>{{ apartment.address }}</span>
-    </h6>
-    <div class="row">
-      <!-- <div class="col-6">
-        <img
-          class="my-rounded-1 w-100"
-          :src="apartment.images[0].link"
-          :alt="apartment.tile"
-        />
-      </div> -->
-
-      <div class="col-6 border border-danger" style="height: 600px">
-        <!-- <TomTomMap
-        :long = 'long'
-        :lat = 'lat'
-        :address = 'address'/> -->
-        <div class="map" id="map" ref="mapRef" style="height: 100%"></div>
-      </div>
-      <div class="row">
-        <div class="col-12"></div>
-      </div>
-      <!-- img secondary -->
-       <div class="col-6">
-        <div class="row h-100">
-          <div class="col-12 h-100">
-            <div class="row h-100">
-              <div class="col-8 d-flex border-dark">
-                <div class="row">
-                  <div
-                    class="w-100 col-12 d-flex"
-                    v-for="(image, index) in images"
-                    :key="index"
-                  >
-                    <img
-                      v-if="image.link.startsWith('https://')"
-                      class="img-fluid mb-3"
-                      :src="image.link"
-                      :alt="apartment.title"
-                    />
-                    <img
-                      v-else
-                      class="img-fluid mb-3"
-                      :src="`storage/${image.link}`"
-                      :alt="apartment.title"
-                    />
-                  </div>
-                </div>
-              </div>
+  <div class="container">
+    <div class="row my-4 justify-content-between">
+      <div class="col-lg-6 shadow my-rounded-1 my-bg-card-info">
+        <div class="row">
+          <div class="col-12">
+            <div class="d-flex">
+              <h1 class="py-4">
+                {{ apartment.title }}
+              </h1>
             </div>
+            <div class="d-flex align-items-center">
+              <div class="avatar">
+                <img
+                  class="img-fluid rounded-circle"
+                  src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg"
+                  alt=""
+                />
+              </div>
+              <h4 class="px-3">Host: {{ apartment.user.name }}</h4>
+            </div>
+            <h5 class="py-4">
+              <span class="font-weight-bold">Sito in via:</span>
+              <span>{{ apartment.address }}</span>
+            </h5>
+            <h5 class="py-4">Servizi</h5>
+          </div>
+          <!--  <div class="col-6 d-flex">
+            <h1 class="py-4">{{ apartment.price }}€ /notte</h1>
+          </div> -->
+        </div>
+      </div>
+      <div class="col-12 col-lg-5 my-3 d-flex align-items-center">
+
+        <div>
+          <div class="d-flex align-items-center justify-content-between">
+            <h2>Info</h2>
+            <h3 class="py-4">{{ apartment.price }}€ /notte</h3>
+          </div>
+          <div>
+            <p>{{ apartment.description }}</p>
           </div>
         </div>
       </div>
-
-      <!--  <div class="col-6 d-flex justify-content-between">
+    </div>
+    <!-- Img primary -->
+    <div class="row">
+      <div class="col-12 col-lg-6">
         <div>
-          <h3>Host: {{ apartment.user.name }}</h3>
-          <div class="d-flex">
-            <div class="">{{ apartment.n_rooms }} camera da letto -</div>
-            <div class="ml-1">{{ apartment.n_beds }} letti -</div>
-            <div class="ml-1">{{ apartment.n_bathrooms }} bagni</div>
-          </div>
-        </div>
-
-        <div class="d-flex avatar">
           <img
-            class="img-fluid rounded-circle"
-            src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg"
-            alt=""
+            class="my-rounded-1 w-100"
+            :src="apartment.images[0].link"
+            :alt="apartment.tile"
           />
         </div>
       </div>
- -->
-      <!--   <div class="col-6 d-flex">
-        <span>{{ apartment.price }}€ /notte</span>
-      </div> -->
-    </div>
-    <!-- service\ -->
-    <div>
-      <ul>
-        <li v-for="(service, index) in services" :key="index">
-          <h5>{{ service.name }}</h5>
-        </li>
-      </ul>
-    </div>
-    <!--   <div class="row">
-      <div class="col-6">
-        <p>
-          Ogni prenotazione include una protezione gratuita in caso di
-          cancellazione da parte dell'host, di inesattezze dell'annuncio e di
-          altri problemi come le difficoltà in fase di check-in.
-        </p>
+      <!-- tomtom -->
+      <div class="col-6 border border-danger" style="height: 600px">
+        <div class="map" id="map" ref="mapRef" style="height: 100%"></div>
       </div>
-    </div> -->
-
-    <!--     <div class="row">
-      <div class="col-6">
-        <h4>Cosa troverai</h4>
-        <div class="w-50">{{ apartment.services[0].name }}</div>
-      </div>
-    </div> -->
-
-    <!--
-    <div class="row">
-      <div class="col-12">
-        <h4>Info</h4>
-        <div class="w-50">{{ apartment.description }}</div>
-      </div>
-
-      <div class="col-12 text-end my-4">
-        <a
-          class="btn btn-sm btn-success"
-          href="http://127.0.0.1:8000/user/apartments/create "
+      <!-- Img secondary -->
+      <div class="row mt-2">
+        <div
+          class="col-3 g-3 pb-3 d-flex"
+          v-for="(image, index) in images"
+          :key="index"
         >
-          Contatta Host
-        </a>
+          <div class="wraper-cover-apartment-small">
+            <img
+              v-if="image.link.startsWith('https://')"
+              class="cover-apartment-small my-rounded-1"
+              :src="image.link"
+              :alt="apartment.title"
+            />
+            <img
+              v-else
+              class="cover-apartment-small my-rounded-1"
+              :src="`storage/${image.link}`"
+              :alt="apartment.title"
+            />
+          </div>
+        </div>
       </div>
-    </div> -->
-    <div>
-        <h3 class="mt-5 h2">Contatta il proprietario</h3>
-        <form @submit.prevent="sendEmail">
+    </div>
+    <!-- message -->
+    <div class="row my-3 justify-content-between">
+      <div class="col-12 col-lg-6 shadow my-rounded-1 p-3">
+        <div>
+         <form @submit.prevent="sendEmail">
                 <div class="form-group">
                 <label for="emailName">Il tuo nome</label>
                     <input type="text" class="form-control" id="emailName" v-model="emailName" placehold="Nome" required>
@@ -144,6 +106,8 @@
         <div v-if="this.isSent === true">
             Il tuo email è stato inviato
         </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -155,6 +119,7 @@ export default {
   name: "SingleApartment",
   data: function () {
     return {
+
         apartment: [],
         images: [],
         services: [],
@@ -177,6 +142,7 @@ export default {
           this.initializeMap(this.apartment.lat,this.apartment.long);
           this.images = results.data.results.images;
           this.services = results.data.results.services;
+          this.initializeMap(this.apartment.lat, this.apartment.long);
           console.log("images: ", this.images);
           console.log("service: ", this.services);
         })
@@ -235,4 +201,7 @@ export default {
 </script>
 
 <style>
+.my-tom {
+  height: 420px;
+}
 </style>
