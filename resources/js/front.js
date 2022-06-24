@@ -1,8 +1,8 @@
 window.axios = require('axios');
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //
 window.Vue = require('vue');
-require('./bootstrap');
+import Vue from 'vue';
 import VueRouter from 'vue-router'
 import App from "./view/App";
 
@@ -30,23 +30,6 @@ const router = new VueRouter({
             name: "apartment",
             component: SingleApartment
         },
-
-
-        //         {
-        //             path:"/about-us",
-        //             name: "about",
-        //             component: About
-        //         },
-        //         {
-        //             path:"/posts",
-        //             name: "posts",
-        //             component: Posts
-        //         },
-        //         {
-        //             path:"/contacts",
-        //             name: "contacts",
-        //             component: Contacts
-        //         },
 
     ],
 
