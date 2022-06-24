@@ -89,8 +89,25 @@ img#logo {
 }
 
 .my-bg-card-info {
-  background-color: #a7c0e1;
+  background-color: #47BCFB;
   background: linear-gradient(to top right, white, white, white, white, white, white, white, white, white, #33ccff);
+}
+
+.my-page-text-color {
+  color: #004AAD;
+}
+
+.my-bg-color {
+  background-color: #004AAD;
+}
+
+.my-scroll-box {
+  height: 50px;
+  overflow-y: scroll;
+}
+
+.my-input-height {
+  height: 150px;
 }
 
 /*!
@@ -12294,5 +12311,9 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+body {
+  min-width: 400px;
 }
 

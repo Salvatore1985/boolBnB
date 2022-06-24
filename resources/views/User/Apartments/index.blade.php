@@ -4,13 +4,13 @@
     <div class="container w-75 mx-auto">
         <div class="row">
             {{-- Create Apartment Button --}}
-            <div class="col-12 text-end my-4">
+            <div class="col-12 text-start my-4 mt-5">
                 @if (!count($apartments) == 0)
-                    <a href="{{ route('user.apartments.create') }} " class="btn btn-sm btn-success ">
+                    <a href="{{ route('user.apartments.create') }} " class="btn btn-sm btn-outline-primary">
                         Aggiungi un appartamento
                     </a>
                 @else
-                    <a href="{{ route('user.apartments.create') }} " class="btn btn-sm btn-success ">
+                    <a href="{{ route('user.apartments.create') }} " class="btn btn-sm btn-outline-primary">
                         Diventa un Host
                     </a>
                 @endif
@@ -24,7 +24,7 @@
                 @endif
             </div>
         </div>
-        <div class="row">
+        <div class="row justify-content-center">
             @forelse ($apartments as $apartment)
                 <div class="col-6 card-group">
                     <div class="card mb-5">
@@ -50,13 +50,8 @@
                         <div class="card-body d-flex flex-column justify-content-between shadow rounded p-4">
                             <h2 class="card-title  text-muted ">{{ $apartment->title }}</h2>
                             <hr>
-                            <p class="card-text">Descrizione: {{ $apartment->description }}</p>
                             <section class="d-flex justify-content-between shadow rounded">
                                 <div class="p-4">
-                                    <pre class="card-text">Numero di stanze: {{ $apartment->n_rooms }}</pre>
-                                    <pre class="card-text">Numero di letti: {{ $apartment->n_beds }}</pre>
-                                    <pre class="card-text">Numero di bagni: {{ $apartment->n_bathrooms }}</pre>
-                                    <pre class="card-text">Metri quadrati: {{ $apartment->sqr_meters }}</pre>
                                     <pre class="card-text">Prezzo: {{ $apartment->price }} €</pre>
                                     <pre class="card-text">Creato il: {{ $apartment->created_at }}</pre>
                                 </div>
@@ -105,9 +100,11 @@
 
                 </div>
             @empty
-                <h2>
-                    Non hai nessun appartamenti
-                </h2>
+                <div class="col-12 d-flex justify-content-center shadow rounded my-3 my-bg-card-info">
+                    <h2 class="py-3 py-sm-4 my-page-text-color text-center">
+                        Non hai nessun appartamento
+                    </h2>
+                </div>
             @endforelse
             <div class="col-12">
                 <div class=" d-flex justify-content-center text-center p-3">

@@ -28,10 +28,11 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-// Body
-// body{
-// }
 
 // font-family: 'Dancing Script', cursive;
 // font-family: 'Lobster', cursive;
 // font-family: 'Noto Sans HK', sans-serif;
+body
+{
+    min-width: 400px;
+}

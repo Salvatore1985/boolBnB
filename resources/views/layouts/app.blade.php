@@ -9,7 +9,7 @@
     <main class="background-image-form height-main-form">
         @yield('content')
     </main>
-
+    @yield('layouts.partials.footer')
     @yield('js-files')
 </body>
 
