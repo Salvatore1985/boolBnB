@@ -61,7 +61,7 @@
         </div>
       </div>
       <!-- tomtom -->
-      <div class="col-6 border border-danger" style="height: 600px">
+      <div class="col-6 border border-danger" style="height: 450px">
         <div class="map" id="map" ref="mapRef" style="height: 100%"></div>
       </div>
       <!-- Img secondary -->
