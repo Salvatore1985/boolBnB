@@ -15,6 +15,7 @@
                   v-model="searchAddress"
                   @keyup.enter="getApartments(searchAddress, nRooms, nBeds, nKm)"
                   placeholder="Città"
+
                 />
                 <input
                   type="number"
@@ -155,7 +156,12 @@
             />
             </div>
             <h1 v-if="isEmpty">
-            Nessun appartamento disponibile nell'indirizzo indicato
+                <div v-if="!searchAddress == ''">
+                    Nessun appartamento disponibile nell'indirizzo indicato
+                </div>
+                <div v-else>
+                    Nessun appartamento disponibile nell'indirizzo indicato controllare i campi
+                </div>
             </h1>
         </section>
         <section class="container" v-else>
