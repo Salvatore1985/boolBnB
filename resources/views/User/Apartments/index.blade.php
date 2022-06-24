@@ -28,73 +28,76 @@
             @forelse ($apartments as $apartment)
                 <div class="col-6 card-group">
                     <div class="card mb-5">
-                        @if ($apartment->is_visible == true)
-                            <div class="my-position bg-warning my-rounded-1 ">
-                                <h4 class="m-0 my-auto"></h4>
+                        {{-- Image Slider --}}
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                            <div class="carousel-indicators">
+                                @for ($i = 0; $i < count($apartment->images); $i++)
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$i}}" class="active" aria-current="true" aria-label="Slide {{$i}}"></button>
+                                @endfor
                             </div>
-                        @endif
-                        @if (str_starts_with($apartment->images[0]->link, 'https://') or str_starts_with($apartment->images[0]->link, 'http://'))
-                            <img class="card-img-top img-apartment" src="{{ $apartment->images[0]->link }}"
-                                alt="{{ $apartment->title }}">
-                            @if ($apartment->is_visible == true)
-                                <div class="my-position bg-warning my-rounded-1">
-                                    <h4 class="card-text"><small class="text-muted font-weight-bold">Publicato</small>
-                                    </h4>
+                            <div class="carousel-inner">
+                                @foreach ($apartment->images as $image)
+                                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                        @if (str_starts_with($image->link, 'https://') || str_starts_with($image->link, 'http://'))
+                                            <img class="d-block w-100" src="{{ $image->link }}" alt="{{ $apartment->title }}">
+                                        @else
+                                            <img class="d-block w-100" src="{{ asset('/storage') . '/' . $image->link }}"
+                                                alt="{{ $apartment->title }}">
+                                        @endif
                                 </div>
-                            @endif
-                        @else
-                            <img class="card-img-top img-apartment"
-                                src="{{ asset('/storage') . '/' . $apartment->images[0]->link }}"
-                                alt="{{ $apartment->title }}">
-                        @endif
+                                @endforeach
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+
+                        {{-- Card body --}}
                         <div class="card-body d-flex flex-column justify-content-between shadow rounded p-4">
                             <h2 class="card-title  text-muted ">{{ $apartment->title }}</h2>
                             <hr>
-                            <section class="d-flex justify-content-between shadow rounded">
-                                <div class="p-4">
-                                    <pre class="card-text">Prezzo: {{ $apartment->price }} €</pre>
-                                    <pre class="card-text">Creato il: {{ $apartment->created_at }}</pre>
+                            <section>
+                                <div class="row">
+                                    <div class="col-12 p-4">
+                                        <p class="card-text">Creato il: {{ $apartment->created_at }}</p>
+                                    </div>
                                 </div>
-                                <div class="d-block">
-                                    <ul class="list-group p-4">
-                                        <li class="card-text list-style-type-circle">Servizi: </li>
-                                        @forelse ($apartment->services as $service)
-                                            <li class="list-style-type-none">
-                                                <pre>{{ $service->name }}</pre>
-                                            </li>
-
-                                        @empty
-                                            <p class="card-text">nessun servizio Extra</p>
-                                        @endforelse
-                                    </ul>
-
+                                <div class="row">
+                                    <div class="col-3">
+                                        @if ($apartment->is_visible)
+                                            <h4 class="card-text py-4 "><small class="text-muted font-weight-bold">Publicato</small>
+                                            </h4>
+                                        @else
+                                            <h4 class="card-text py-4 "><small class="text-muted font-weight-bold">Non
+                                                    Publicato</small></h4>
+                                        @endif
+                                    </div>
+                                    <div class="col-3 d-flex justify-content-evenly">
+                                    <a href="{{ route('user.apartments.edit', $apartment) }} "class="btn btn-warning">
+                                        &#9998; Modifica
+                                    </a>
+                                    <a href="{{ route('user.apartments.show', $apartment) }} "class="btn btn-primary">
+                                        &#10061; Visita
+                                    </a>
+                                    {{-- delete form --}}
+                                    <form action="{{ route('user.apartments.destroy', $apartment) }}" method="POST"
+                                        class="apartment-destroyer" apartment-name="{{ ucfirst($apartment->title) }}"
+                                        onclick="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-md btn-delete btn-outline-danger" type="submit">
+                                            &#10008; Elimina
+                                        </button>
+                                    </form>
+                                </div>
+                                    </div>
                                 </div>
                             </section>
-                            @if ($apartment->is_visible)
-                                <h4 class="card-text py-4 "><small class="text-muted font-weight-bold">Publicato</small>
-                                </h4>
-                            @else
-                                <h4 class="card-text py-4 "><small class="text-muted font-weight-bold">Non
-                                        Publicato</small></h4>
-                            @endif
-                            <div class="d-flex justify-content-between">
-                                <a href="{{ route('user.apartments.edit', $apartment) }} "class="btn btn-warning">
-                                    &#9998; Modifica
-                                </a>
-                                <a href="{{ route('user.apartments.show', $apartment) }} "class="btn btn-primary">
-                                    &#10061; Visita
-                                </a>
-                                {{-- delete form --}}
-                                <form action="{{ route('user.apartments.destroy', $apartment) }}" method="POST"
-                                    class="apartment-destroyer" apartment-name="{{ ucfirst($apartment->title) }}"
-                                    onclick="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-md btn-delete btn-outline-danger" type="submit">
-                                        &#10008; Elimina
-                                    </button>
-                                </form>
-                            </div>
                         </div>
                     </div>
 
@@ -113,4 +116,20 @@
             </div>
         </div>
     </div>
+
 @endsection
+{{-- @section('js-files')
+    <script>
+        // new Splide( '.splide' ).mount();
+        let elms = document.getElementsByClassName( 'splide' );
+            for ( let i = 0; i < elms.length; i++ ) {
+            new Splide( elms[ i ] ).mount();
+            }
+    </script>
+@endsection --}}
+{{-- is_visible --}}
+{{-- @if ($apartment->is_visible == true)
+                            <div class="my-position bg-warning my-rounded-1 ">
+                                <h4 class="m-0 my-auto"></h4>
+                            </div>
+                        @endif --}}
