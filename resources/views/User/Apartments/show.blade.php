@@ -27,6 +27,12 @@
             <div class="col-6 d-flex flex-column align-items-end">
                 <div class="py-2">
 
+                    <a href="{{ route('user.apartments.index') }} ">
+                        Torna all'appartamenti
+                    </a>
+                </div>
+                <div class="py-2">
+
                     <a href="{{ route('user.apartments.edit', $apartment) }} "class="btn btn-warning">
                         &#9998; Modifica
                     </a>
@@ -84,13 +90,15 @@
                     </ul>
                     <div>
                         @forelse ($apartment->messages as $message)
-                        <div class="card-body border-bottom">
-                        <h5 class="card-title h6"><span class="font-italic">E-mail:</span> {{ $message->email }}</h5>
-                        <p class="card-text"><span class="font-italic">Messaggio:</span> {{ $message->email_content }}</p>
-                        </div>
-                    @empty
-                        <div class="card-body border-bottom">Non ci sono messaggi</div>
-                    @endforelse
+                            <div class="card-body border-bottom">
+                                <h5 class="card-title h6"><span class="font-italic">E-mail:</span> {{ $message->email }}
+                                </h5>
+                                <p class="card-text"><span class="font-italic">Messaggio:</span>
+                                    {{ $message->email_content }}</p>
+                            </div>
+                        @empty
+                            <div class="card-body border-bottom">Non ci sono messaggi</div>
+                        @endforelse
                     </div>
 
                 </div>
