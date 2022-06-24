@@ -51,6 +51,9 @@
     </div>
     <!-- Img primary -->
     <div class="row">
+        <div class=" border-danger" style="height: 600px">
+        <div class="map" id="map" ref="mapRef" style="height: 100%"></div>
+      </div>
       <div class="col-12 col-lg-6">
         <div>
           <img
@@ -61,9 +64,7 @@
         </div>
       </div>
       <!-- tomtom -->
-      <!-- <div class="col-6 border border-danger" style="height: 600px">
-        <div class="map" id="map" ref="mapRef" style="height: 100%"></div>
-      </div> -->
+
       <!-- Img secondary -->
       <div class="row mt-2">
         <div
@@ -119,7 +120,7 @@
 </template>
 
 <script>
-// import tt from '@tomtom-international/web-sdk-maps';
+import tt from '@tomtom-international/web-sdk-maps';
 
 export default {
   name: "SingleApartment",
@@ -148,7 +149,7 @@ export default {
             // this.initializeMap(this.apartment.lat,this.apartment.long);
             this.images = results.data.results.images;
             this.services = results.data.results.services;
-            // this.initializeMap(this.apartment.lat, this.apartment.long);
+            this.initializeMap(this.apartment.lat, this.apartment.long);
             // console.log("images: ", this.images);
             // console.log("service: ", this.services);
         })
@@ -156,18 +157,18 @@ export default {
             console.warn(error);
         });
     },
-    // initializeMap(lat,lon) {
-    //     const map = tt.map({
-    //       key: "tlI6fGKvUCfBh91AG1PKyRZwhaxoGIWp",
-    //       container: this.$refs.mapRef,
-    //       center: [lon, lat],
-    //       zoom: 9,
-    // });
-    //     new tt.Marker()
-    //     .setLngLat([lon, lat])
-    //     .addTo(map);
-    //     this.map = Object.freeze(map);
-    // },
+    initializeMap(lat,lon) {
+        const map = tt.map({
+            key: "tlI6fGKvUCfBh91AG1PKyRZwhaxoGIWp",
+            container: this.$refs.mapRef,
+            center: [lon, lat],
+            zoom: 9,
+    });
+        new tt.Marker()
+        .setLngLat([lon, lat])
+        .addTo(map);
+        this.map = Object.freeze(map);
+    },
     sendEmail() {
         axios.post('/api/messages', {
           'name':this.emailName,
