@@ -13,6 +13,7 @@
                   aria-label="First name"
                   class="form-control w-25"
                   v-model="searchAddress"
+                  @keyup.enter="getApartments(searchAddress, nRooms, nBeds, nKm)"
                   placeholder="Città"
                 />
                 <input
@@ -21,6 +22,7 @@
                   class="form-control"
                   v-model="nRooms"
                   placeholder="N. Stanze"
+                  @keyup.enter="getApartments(searchAddress, nRooms, nBeds, nKm)"
                 />
                 <input
                   type="number"
@@ -28,6 +30,7 @@
                   class="form-control"
                   v-model="nBeds"
                   placeholder="N. Letti"
+                  @keyup.enter="getApartments(searchAddress, nRooms, nBeds, nKm)"
                 />
               </div>
             </section>
