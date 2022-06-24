@@ -3,16 +3,18 @@
     <section class="my-rounded-1 p-3">
       <!-- Image Apartment -->
       <div
-        class="text-center mb-3"
+        class="text-center mb-3 "
         v-if="apartment.images[0].link.startsWith('https://')"
       >
+     
         <img
           class="img-apartment my-rounded-1"
           :src="apartment.images[0].link"
           :alt="apartment.title"
         />
       </div>
-      <div class="text-center mb-3" v-else>
+      <div class="text-center mb-3 " v-else>
+       
         <img
           class="img-apartment my-rounded-1"
           :src="`storage/${apartment.images[0].link}`"
@@ -27,19 +29,25 @@
       <p class="card-text">
         {{ limitOverview(apartment) }}
       </p>
-      <pre>Creato il: {{ getFormattedDate(apartment.created_at) }}</pre>
-      <div class="d-flex justify-content-between">
-        <div class="d-flex avatar">
-          <img
+      <pre>Creato il: {{ getFormattedDate(apartment.created_at) }}</pre>      
+      <div class="d-flex ">
+        <div class=" avatar position-relative">
+          <div class="position-absolute initials">
+            {{initials(apartment)}}
+        </div>
+      </div>   
+      <div class="px-3 align-self-center">
+            {{ apartment.user.name }}
+          </div>
+      </div>      
+          <!-- <img
             class="img-fluid rounded-circle"
             src="https://i.pinimg.com/474x/4b/71/f8/4b71f8137985eaa992d17a315997791e.jpg"
             alt=""
-          />
-          <span class="px-3">
+          /> -->
+      <div class="px-3">
             {{ apartment.user.name }}
-          </span>
-        </div>
-      </div>
+          </div>      
       <h5 class="px-3">{{ apartment.price }} €/Notte</h5>
       <div>
         <router-link :to="{ name: 'apartment', params: { id: apartment.id } }">
@@ -78,6 +86,10 @@ export default {
         return apartment.description;
       }
     },
+    initials(apartment){
+      const name = apartment.user.name.split(' ')
+      return `${name[0].charAt(0)}`;
+    }
   },
 
   created() {},
@@ -85,4 +97,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.avatar{
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    @keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+}
+.initials{
+  top: 2%;
+  left: 30%;
+  font-size: 2rem;
+}
+
 </style>
