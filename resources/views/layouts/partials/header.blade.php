@@ -41,7 +41,7 @@
                 </div>
             </div>
         </nav> --}}
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light my-bg-card-map">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img id="logo" src="{{ asset('images/boolBnB-logo.png') }}" alt="BoolBnB Logo">
