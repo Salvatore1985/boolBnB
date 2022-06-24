@@ -46,6 +46,14 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img id="logo" src="{{ asset('images/boolBnB-logo.png') }}" alt="BoolBnB Logo">
                 </a>
+                <ul class="navbar-nav  mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
+                    </li>
+
+                </ul>
+
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
