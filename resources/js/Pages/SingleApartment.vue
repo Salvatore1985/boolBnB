@@ -119,7 +119,7 @@
 </template>
 
 <script>
-import tt from "@tomtom-international/web-sdk-maps";
+import tt from '@tomtom-international/web-sdk-maps';
 
 export default {
   name: "SingleApartment",
@@ -143,17 +143,17 @@ export default {
       axios
         .get(`${this.baseURI}/apartments/${apartmentId}`)
         .then((results) => {
-          this.apartment = results.data.results;
-          console.warn(this.apartment);
-          this.initializeMap(this.apartment.lat,this.apartment.long);
-          this.images = results.data.results.images;
-          this.services = results.data.results.services;
-          this.initializeMap(this.apartment.lat, this.apartment.long);
-          console.log("images: ", this.images);
-          console.log("service: ", this.services);
+            this.apartment = results.data.results;
+            console.warn(this.apartment);
+            // this.initializeMap(this.apartment.lat,this.apartment.long);
+            this.images = results.data.results.images;
+            this.services = results.data.results.services;
+            this.initializeMap(this.apartment.lat, this.apartment.long);
+            // console.log("images: ", this.images);
+            // console.log("service: ", this.services);
         })
         .catch((error) => {
-          console.warn(error);
+            console.warn(error);
         });
     },
     initializeMap(lat,lon) {
