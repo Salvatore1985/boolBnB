@@ -173,7 +173,7 @@
                 <Pagination
                     :currentPage="pagination.currentPage"
                     :lastPage="pagination.lastPage"
-                    @onPageChange="getAllApartments(page)"
+                    @onPageChange="changePage"
                 />
             </div>
         </div>
