@@ -24,12 +24,13 @@
                 @endif
             </div>
         </div>
-        <div class="row justify-content-center">
-            @forelse ($apartments as $apartment)
-                <div class="col-6 card-group">
-                    <div class="card mb-5">
+        {{-- Start of cards --}}
+        <div class="row">
+            <div class="col-12 d-flex flex-wrap justify-content-center position-relative">
+                    @forelse ($apartments as $apartment)
+                    <div class="card my-card-size mb-5 m-1">
                         {{-- Image Slider --}}
-                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                        <div id="carouselExampleIndicators" class="carousel slide w-100 position-relative" data-bs-ride="true">
                             <div class="carousel-indicators">
                                 @for ($i = 0; $i < count($apartment->images); $i++)
                                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$i}}" class="active" aria-current="true" aria-label="Slide {{$i}}"></button>
@@ -39,9 +40,9 @@
                                 @foreach ($apartment->images as $image)
                                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                                         @if (str_starts_with($image->link, 'https://') || str_starts_with($image->link, 'http://'))
-                                            <img class="d-block w-100" src="{{ $image->link }}" alt="{{ $apartment->title }}">
+                                            <img class="d-block w-100 img-height" src="{{ $image->link }}" alt="{{ $apartment->title }}">
                                         @else
-                                            <img class="d-block w-100" src="{{ asset('/storage') . '/' . $image->link }}"
+                                            <img class="d-block w-100 img-height" src="{{ asset('/storage') . '/' . $image->link }}"
                                                 alt="{{ $apartment->title }}">
                                         @endif
                                 </div>
@@ -56,20 +57,48 @@
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
+                        <div class="position-absolute my-card-position">
+                            @if ($apartment->is_visible)
+                                    <small class="text-muted font-weight-bold bg-primary">
+                                        Publicato
+                                    </small>
+                            @else
+                                <h4 class="card-text py-4 ">
+                                    <small class="text-muted font-weight-bold">
+                                        Non Publicato
+                                    </small>
+                                </h4>
+                            @endif
+                        </div>
 
                         {{-- Card body --}}
-                        <div class="card-body d-flex flex-column justify-content-between shadow rounded p-4">
+                        <div class="card-body shadow rounded p-4 position-relative">
                             <h2 class="card-title  text-muted ">{{ $apartment->title }}</h2>
                             <hr>
-                            <section>
-                                <div class="row">
-                                    <div class="col-12 p-4">
-                                        <p class="card-text">Creato il: {{ $apartment->created_at }}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3">
-                                        @if ($apartment->is_visible)
+                            <p class="card-text">Creato il: {{ $apartment->created_at }}</p>
+                        </div>
+                        {{-- <div class="position-absolute my-btn-positions d-flex flex-column">
+                            {{-- edit button
+                            <a href="{{ route('user.apartments.edit', $apartment) }} "class="btn btn-warning mb-2">
+                                    &#9998;
+                            </a>
+                            {{-- Visit button
+                            <a href="{{ route('user.apartments.show', $apartment) }} "class="btn btn-primary">
+                                &#10061;
+                            </a>
+                            {{-- delete form
+                            <form action="{{ route('user.apartments.destroy', $apartment) }}" method="POST"
+                            class="apartment-destroyer" apartment-name="{{ ucfirst($apartment->title) }}"
+                            onclick="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
+                            @csrf
+                            @method('DELETE')
+                                <button class="btn btn-md btn-delete btn-outline-danger" type="submit">
+                                    &#10008;
+                                </button>
+                            </form>
+                        </div> --}}
+                    </div>
+                                        {{-- @if ($apartment->is_visible)
                                             <h4 class="card-text py-4 "><small class="text-muted font-weight-bold">Publicato</small>
                                             </h4>
                                         @else
@@ -85,7 +114,7 @@
                                         &#10061; Visita
                                     </a>
                                     {{-- delete form --}}
-                                    <form action="{{ route('user.apartments.destroy', $apartment) }}" method="POST"
+                                    {{-- <form action="{{ route('user.apartments.destroy', $apartment) }}" method="POST"
                                         class="apartment-destroyer" apartment-name="{{ ucfirst($apartment->title) }}"
                                         onclick="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
                                         @csrf
@@ -97,23 +126,19 @@
                                 </div>
                                     </div>
                                 </div>
-                            </section>
-                        </div>
-                    </div>
-
-                </div>
+                            </section> --}}
             @empty
-                <div class="col-12 d-flex justify-content-center shadow rounded my-3 my-bg-card-info">
-                    <h2 class="py-3 py-sm-4 my-page-text-color text-center">
-                        Non hai nessun appartamento
-                    </h2>
-                </div>
-            @endforelse
-            <div class="col-12">
-                <div class=" d-flex justify-content-center text-center p-3">
-                    {{ $apartments->links() }}
-                </div>
+            <div class="col-12 d-flex justify-content-center shadow rounded my-3 my-bg-card-info">
+                <h2 class="py-3 py-sm-4 my-page-text-color text-center">
+                    Non hai nessun appartamento
+                </h2>
             </div>
+            @endforelse
+            @if (!$apartment->is_visible)
+            <div class="position-absolute w-100 h-100 my-ocapity-card">
+
+            </div>
+            @endif
         </div>
     </div>
 
