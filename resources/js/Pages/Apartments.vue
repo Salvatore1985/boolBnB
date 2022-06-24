@@ -160,7 +160,7 @@
                     Nessun appartamento disponibile nell'indirizzo indicato
                 </div>
                 <div v-else>
-                    Nessun appartamento disponibile nell'indirizzo indicato controllare i campi
+                    Controllare i campi
                 </div>
             </h1>
         </section>
