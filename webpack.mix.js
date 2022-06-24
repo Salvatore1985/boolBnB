@@ -12,7 +12,7 @@ const mix = require('laravel-mix');
  */
 
 
-mix.sass('resources/sass/app.scss', 'public/css').sourceMaps()
+mix.sass('resources/sass/app.scss', 'public/css')
     .options( {processCssUrl: false} );
-mix.js('resources/js/user.js', 'public/js').sourceMaps();
-mix.js('resources/js/front.js', 'public/js').sourceMaps();
+mix.js('resources/js/user.js', 'public/js');
+mix.js('resources/js/front.js', 'public/js');
