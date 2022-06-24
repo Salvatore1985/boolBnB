@@ -24,8 +24,6 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "@tomtom-international/web-sdk-maps": "^6.19.1",
-        "@tomtom-international/web-sdk-services": "^6.19.1",
         "vue-router": "^3.5.4"
     }
 }
