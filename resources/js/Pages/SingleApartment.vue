@@ -51,6 +51,9 @@
     </div>
     <!-- Img primary -->
     <div class="row">
+        <!-- <div class=" border-danger" style="height: 600px">
+        <div class="map" id="map" ref="mapRef" style="height: 100%"></div>
+      </div> -->
       <div class="col-12 col-lg-6">
         <div>
           <img
@@ -61,9 +64,9 @@
         </div>
       </div>
       <!-- tomtom -->
-      <!-- <div class="col-6 border border-danger" style="height: 600px">
-        <div class="map" id="map" ref="mapRef" style="height: 100%"></div>
-      </div> -->
+        <TomTomMap
+        :lon = 'lon'
+        :lat = 'lat'/>
       <!-- Img secondary -->
       <div class="row mt-2">
         <div
@@ -119,10 +122,13 @@
 </template>
 
 <script>
-// import tt from '@tomtom-international/web-sdk-maps';
-
+import tt from '@tomtom-international/web-sdk-maps';
+import TomTomMap from '../components/TomTomMap.vue';
 export default {
   name: "SingleApartment",
+  components: {
+    TomTomMap,
+  },
   data: function () {
     return {
 
@@ -134,7 +140,8 @@ export default {
         emailContent: '',
         callResponse: '',
         baseURI : 'http://127.0.0.1:8000/api',
-
+        lon : '',
+        lat:'',
         isSent : false,
     }
   },
@@ -148,6 +155,8 @@ export default {
             // this.initializeMap(this.apartment.lat,this.apartment.long);
             this.images = results.data.results.images;
             this.services = results.data.results.services;
+            this.lon = this.apartment.long;
+            this.lat = this.apartment.lat;
             // this.initializeMap(this.apartment.lat, this.apartment.long);
             // console.log("images: ", this.images);
             // console.log("service: ", this.services);
@@ -158,11 +167,11 @@ export default {
     },
     // initializeMap(lat,lon) {
     //     const map = tt.map({
-    //       key: "tlI6fGKvUCfBh91AG1PKyRZwhaxoGIWp",
-    //       container: this.$refs.mapRef,
-    //       center: [lon, lat],
-    //       zoom: 9,
-    // });
+    //         key: "tlI6fGKvUCfBh91AG1PKyRZwhaxoGIWp",
+    //         container: this.$refs.mapRef,
+    //         center: [lon, lat],
+    //         zoom: 9,
+    //     });
     //     new tt.Marker()
     //     .setLngLat([lon, lat])
     //     .addTo(map);
