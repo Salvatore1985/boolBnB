@@ -101,7 +101,11 @@
             </div>
             <button type="submit" class="btn btn-outline-primary">Invia</button>
           </form>
-          <div v-if="this.isSent === true">Il tuo email è stato inviato</div>
+          <div v-if="this.isSent === true">
+            <h1 class="text-center text-primary">
+              La tuo email è stato inviato
+            </h1>
+          </div>
         </div>
       </div>
       <div
