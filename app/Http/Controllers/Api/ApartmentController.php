@@ -66,15 +66,16 @@ class ApartmentController extends Controller
         $min_lon = $long - $range_lon;
         $max_lon = $long + $range_lon;
 
-        $result = DB::table('apartments')
-                            ->join('apartment_service', 'apartments.id', '=', 'apartment_service.apartment_id')
+        $result = Apartment::
+                            //->join('apartment_service', 'apartments.id', '=', 'apartment_service.apartment_id')
                             //->join('images', 'images.apartment_id', '=', 'apartments.id')
                             //->join('users', 'users.id', '=', 'apartments.user_id')
-                            ->whereIn('apartment_service.service_id', [1, 2])
-                            ->whereBetween('lat', [$min_lat, $max_lat])->whereBetween('long', [$min_lon, $max_lon])
+                            //->whereIn('apartment_service.service_id', [1, 2])
+                            whereBetween('lat', [$min_lat, $max_lat])->whereBetween('long', [$min_lon, $max_lon])
                             ->where('n_rooms', 'LIKE', '%'. $request->n_rooms. '%')
                             ->where('n_beds', 'LIKE', '%'. $request->n_beds. '%')
                             ->where('is_visible', 1)
+                            ->with('services')
                             ->get();
 
         if(count($result)){

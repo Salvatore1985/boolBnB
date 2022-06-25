@@ -21,7 +21,7 @@ class Apartment extends Model
         return $this->belongsToMany('App\Models\Sponsorship');
     }
     public function services(){
-        return $this->belongsToMany('App\Models\Service');
+        return $this->belongsToMany('App\Models\Service', 'apartment_service');
     }
 
     protected $fillable = [
