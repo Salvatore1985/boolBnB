@@ -42,54 +42,56 @@
             </div>
         </nav> --}}
         <nav class="navbar navbar-expand-lg navbar-light bg-light my-bg-card-map">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img id="logo" src="{{ asset('images/boolBnB-logo.png') }}" alt="BoolBnB Logo">
+
+                    <img class="logo" src="{{ asset('images/boolBnB-logo.png') }}" alt="BoolBnB Logo">
                 </a>
-                <ul class="navbar-nav  mb-2 mb-lg-0">
+                {{-- <ul class="navbar-nav  mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
                     </li>
-
-                </ul>
-
-
+                </ul> --}}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                    aria-expanded="true" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse flex-grow-0 " id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
+                    <ul class="navbar-nav me-auto m-2">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="{{ route('user.home') }}" id="navbarDropdown"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Pannello di controllo
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown"> --}}
                                 @if (Auth::user())
-                                    <li><a class="dropdown-item" href="{{ route('user.apartments.index') }}">I tuoi
-                                            Appartmenti</a></li>
+                                <li class="nav-item ms-auto p-2">
+                                    <a class="nav-link @if (Auth::id() === 1) d-none @endif" aria-current="page"
+                                        href="{{ route('user.apartments.index') }}">
+                                        I tuoi appartmenti
+                                    </a>
+                                </li>
                                     @if (Auth::id() === 1)
-                                        <li class="nav-item">
+                                        <li class="nav-item ms-auto p-2">
                                             <a class="nav-link" aria-current="page"
                                                 href="{{ route('user.apartments.index') }}">
                                                 I Appartmenti
                                             </a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item ms-auto p-2">
                                             <a class="nav-link" aria-current="page"
                                                 href="{{ route('admin.services.index') }}">
                                                 Servizi
                                             </a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item ms-auto p-2">
                                             <a class="nav-link" aria-current="page"
                                                 href="{{ route('user.users.index') }}">
                                                 Utenti
                                             </a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item ms-auto p-2">
                                             <a class="nav-link" aria-current="page"
                                                 href="{{ route('user.sponsorships.index') }}">
                                                 Sponsorizzazioni
@@ -97,7 +99,7 @@
                                         </li>
                                     @endif
                                     <hr class="dropdown-divider">
-                                    <li class="nav-item">
+                                    <li class="nav-item ms-auto p-2">
                                         <a class="nav-link" aria-current="page" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
@@ -110,13 +112,13 @@
                                     </li>
                                 @endif
                                 @guest
-                                    <li class="nav-item">
+                                    <li class="nav-item ms-auto p-2">
                                         <a class="nav-link text-black" #aria-current="page" href="{{ route('login') }}">
                                             {{ __('Login') }}
                                         </a>
                                     </li>
                                     @if (Route::has('register'))
-                                        <li class="nav-item ">
+                                        <li class="nav-item ms-auto p-2">
                                             <a class="nav-link text-black" aria-current="page"
                                                 href="{{ route('register') }}">
                                                 {{ __('Register') }}
@@ -124,17 +126,11 @@
                                         </li>
                                     @endif
                                 @endguest
-                            </ul>
-                        </li>
+                            {{-- </ul>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-</script>
