@@ -67,21 +67,6 @@
                             </div>
                         @enderror
                     </div>
-                    {{-- Apartment srq_meters --}}
-                    <div class="form-group col-2 me-4">
-                        <label for="sqr_meters" class="form-label my-page-text-color mb-2">
-                            metri quadri*
-                        </label>
-                        <input type="number" class="form-control @error('sqr_meters') is-invalid @enderror" id="sqr_meters"
-                            name="sqr_meters" placeholder="*n" value="{{ old('sqr_meters') }}" required
-                            autocomplete="on" autofocus min="1">
-
-                        @error('sqr_meters')
-                            <div class="text-start invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
                     {{-- Apartment n_beds --}}
                     <div class="form-group col-2 me-4">
                         <label for="n_beds" class="form-label my-page-text-color mb-2">
@@ -106,6 +91,21 @@
                             value="{{ old('n_bathrooms') }}" required autocomplete="on" autofocus min="1">
 
                         @error('n_bathrooms')
+                            <div class="text-start invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    {{-- Apartment srq_meters --}}
+                    <div class="form-group col-2 me-4">
+                        <label for="sqr_meters" class="form-label my-page-text-color mb-2">
+                            metri quadri*
+                        </label>
+                        <input type="number" class="form-control @error('sqr_meters') is-invalid @enderror" id="sqr_meters"
+                            name="sqr_meters" placeholder="*n" value="{{ old('sqr_meters') }}" required
+                            autocomplete="on" autofocus min="1">
+
+                        @error('sqr_meters')
                             <div class="text-start invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -136,7 +136,7 @@
                         placeholder="* campo richiesto" id="description" value="{{ old('description') }}" required autocomplete="on"
                         autofocus minlength="10">{{ old('description') }}</textarea>
                     @error('description')
-                        <div class="text-start invalid-feedback">
+                        <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
@@ -148,20 +148,20 @@
                             Servizi*
                         </div>
                         <div class="h-100 overflow-auto">
+                            @error('service')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                             @foreach ($services as $service)
                                 <div class="form-check">
                                     <input class="form-check-input  @error('service') is-invalid @enderror"
                                         type="checkbox" id="gridCheck1" name="service[]" value="{{ $service->id }}">
-                                    <label class="form-check-label" for="gridCheck1" required autocomplete="on">
+                                    <label class="form-check-label" for="gridCheck1" >
                                         {{ $service->name }}
                                     </label>
                                 </div>
                             @endforeach
-                            @error('service')
-                                <div class="text-start invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
                         </div>
                     </div>
                     {{-- Apartment visibility --}}
