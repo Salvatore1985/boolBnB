@@ -269,4 +269,9 @@ class ApartmentsController extends Controller
         return redirect()->route("user.apartments.index", $apartment)->with("alert-message", $apartment->title . " è stato eliminato con successo!")->with('alter-type', 'warning');
 
     }
+
+    public function indexSponsorship()
+    {
+        return view('User.Sponsorships.index');
+    }
 }
