@@ -1,6 +1,12 @@
 <template>
   <footer>
-    <!--  <h1>Footer</h1> -->
+    <div id="footer" class="my-bg-card-map">
+      <div class="container">
+        <span class="">
+          © 2022 BoolBnB, Inc. All rights reserved PrivacyTerminiMappa del sito
+        </span>
+      </div>
+    </div>
   </footer>
 </template>
 
@@ -11,4 +17,7 @@ export default {
 </script>
 
 <style lang=scss>
+span {
+  line-height: 10vh;
+}
 </style>
