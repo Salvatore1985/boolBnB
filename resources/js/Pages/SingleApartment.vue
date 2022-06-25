@@ -103,7 +103,7 @@
           </form>
           <div v-if="this.isSent === true">
             <h1 class="text-center text-primary">
-              La tuo email è stato inviato
+              La tua email è stato inviato
             </h1>
           </div>
         </div>
