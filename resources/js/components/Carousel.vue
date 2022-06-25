@@ -1,29 +1,19 @@
 <template>
   <div
     id="carouselExampleIndicators"
-    class="carousel slide"
+    class="carousel slide corousel-scaled"
     data-bs-ride="carousel"
   >
     <div class="carousel-indicators">
       <button
+        v-for="(image, index) in images"
+        :key="index"
         type="button"
         data-bs-target="#carouselExampleIndicators"
-        data-bs-slide-to="0"
+        :data-bs-slide-to="index"
         class="active"
         aria-current="true"
-        aria-label="Slide 1"
-      ></button>
-      <button
-        type="button"
-        data-bs-target="#carouselExampleIndicators"
-        data-bs-slide-to="1"
-        aria-label="Slide 2"
-      ></button>
-      <button
-        type="button"
-        data-bs-target="#carouselExampleIndicators"
-        data-bs-slide-to="2"
-        aria-label="Slide 3"
+        :aria-label="index"
       ></button>
     </div>
     <div class="carousel-inner my-rounded-1">

@@ -53,13 +53,6 @@
     <div class="row justify-content-between">
       <div class="col-12 col-lg-5">
         <Carousel :images="images" :apartment="apartment" />
-        <!--   <div>
-          <img
-            class="my-rounded-1 w-100"
-            :src="apartment.images[0].link"
-            :alt="apartment.tile"
-          />
-        </div> -->
       </div>
       <!-- tomtom -->
       <div class="col-12 col-lg-6 my-bg-card-map my-bg-card-info">
@@ -167,30 +160,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Img secondary -->
-    <!--      <div class="row mt-2">
-        <div
-          class="col-3 g-3 pb-3 d-flex"
-          v-for="(image, index) in images"
-          :key="index"
-        >
-          <div class="wraper-cover-apartment-small">
-            <img
-              v-if="image.link.startsWith('https://')"
-              class="cover-apartment-small my-rounded-1"
-              :src="image.link"
-              :alt="apartment.title"
-            />
-            <img
-              v-else
-              class="cover-apartment-small my-rounded-1"
-              :src="`storage/${image.link}`"
-              :alt="apartment.title"
-            />
-          </div>
-        </div>
-      </div> -->
   </div>
 </template>
 
