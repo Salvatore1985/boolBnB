@@ -116,11 +116,17 @@ img#logo {
     height: 143px;
 }
 
-.carousel-scaled{
+.carousel-scaled {
     transition: $transition;
 }
 
 .carousel-scaled:hover {
     transform: scale(1.2);
     margin-left: 1rem;
+}
+
+#footer {
+    height: 10vh;
+    background-color: $logo-blue;
+    color: azure;
 }
