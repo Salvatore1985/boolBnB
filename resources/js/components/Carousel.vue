@@ -1,7 +1,7 @@
 <template>
   <div
     id="carouselExampleIndicators"
-    class="carousel slide carousel-scaled"
+    class="carousel slide carousel-scaled ml-5"
     data-bs-ride="carousel"
   >
     <div class="carousel-indicators">

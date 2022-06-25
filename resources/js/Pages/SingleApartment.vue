@@ -51,20 +51,20 @@
     </div>
     <!-- Img primary -->
     <div class="row justify-content-between">
-      <div class="col-12 col-lg-5">
-        <Carousel :images="images" :apartment="apartment" />
-      </div>
-      <!-- tomtom -->
-      <div class="col-12 col-lg-6 my-bg-card-map my-bg-card-info">
-        <TomTomMap :lon="lon" :lat="lat" />
-      </div>
-      <div
-        class="
-          col-12 col-lg-6
-          my-5 my-bg-card-map my-bg-card-info my-rounded-1
-          p-3
-        "
-      >
+        <div class="col-12 col-lg-6 carousel-parent">
+            <Carousel :images="images" :apartment="apartment" />
+        </div>
+        <!-- tomtom -->
+        <div class="col-12 col-lg-5 my-bg-card-map my-bg-card-info">
+            <TomTomMap :lon="lon" :lat="lat" />
+        </div>
+        <div
+            class="
+            col-12 col-lg-6
+            my-5 my-bg-card-map my-bg-card-info my-rounded-1
+            p-3
+            "
+        >
         <div id="info-host">
           <form @submit.prevent="sendEmail">
             <div class="form-group">
