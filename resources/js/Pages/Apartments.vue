@@ -257,7 +257,8 @@ export default {
         axios
             .get(`${this.baseUri}/api/apartments/search?`, request)
             .then((res) => {
-            this.apartmentsSearch = res.data[0];
+            //this.apartmentsSearch = res.data[0];
+            console.log(res.data[0]);
             this.isEmpty = false;
             })
             .catch((err) => {
