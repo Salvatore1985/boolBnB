@@ -1,3 +1,5 @@
+@import 'variables';
+
 img#logo {
     height: 5rem;
 
@@ -114,9 +116,11 @@ img#logo {
     height: 143px;
 }
 
+.carousel-scaled{
+    transition: $transition;
+}
 
-.corousel-scaled:hover {
+.carousel-scaled:hover {
     transform: scale(1.2);
-    width: 100px;
-
+    margin-left: 1rem;
 }
