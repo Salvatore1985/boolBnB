@@ -26,18 +26,21 @@
         </div>
     </div>
 
-    <div class="row p-5 justify-content-around">
+    {{------------- aggiusto da justify-content-around a justify-content-between  (around quando c'è card singola la mette al centro e non a sinistra)----------------}}
+    <div class="row p-5 justify-content-between">
         @forelse($apartments as $index=>$apartment)
             <div
                 class="col-8 d-flex flex-column justify-content-between col-lg-3 m-3 my-bg-card-map my-col-h-index-apartment @if ($apartment->is_visible) my-bg-card-visibily @endif">
                 {{-- carousel --}}
                 <div id="carouselExampleIndicators " class="carousel slide w-100  position-relative  " data-bs-ride="true">
                     <div class="carousel-indicators">
-                        {{-- @for ($i = 0; $i < count($apartment->images); $i++) --}}
+                        @for ($i = 0; $i < count($apartment->images); $i++)
+
+                        
                         <button type="button" data-bs-target="#carouselExampleIndicators"
                             data-bs-slide-to="{{ $i }}" class="@if ($i < count($apartment->images)) active @endif"
                             aria-current="true" aria-label="{{ $i }}"></button>
-                        {{-- @endfor --}}
+                        @endfor
 
                     </div>
                     <div class="carousel-inner py-2">
