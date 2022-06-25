@@ -1,5 +1,5 @@
-{{--@extends('layouts.createPage')
+@extends('layouts.createPage')
 
-@section('form-content')--}}
+@section('form-content')
 <h1>ciao</h1>
-{{--@endsection--}}
+@endsection

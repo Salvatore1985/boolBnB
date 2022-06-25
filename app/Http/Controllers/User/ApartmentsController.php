@@ -272,6 +272,6 @@ class ApartmentsController extends Controller
 
     public function indexSponsorship()
     {
-        return view('User.Sponsorships.index');
+        return view('user.Sponsorships.index');
     }
 }
