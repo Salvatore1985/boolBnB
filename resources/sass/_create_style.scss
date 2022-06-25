@@ -1,5 +1,5 @@
 @import 'variables';
-img#logo {
+img.logo {
     height: 5rem;
 }
 
@@ -124,7 +124,7 @@ img#logo {
 }
 
 #footer {
-    height: 10vh;
+    height: 5rem;
     background-color: $logo-blue;
     color: azure;
 }
@@ -186,5 +186,5 @@ img#logo {
 
 // footer
 .footer-span {
-    line-height: 10vh;
-  }
+    line-height: 5rem;
+}

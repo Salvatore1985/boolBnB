@@ -45,7 +45,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
 
-                    <img id="logo" src="{{ asset('images/boolBnB-logo.png') }}" alt="BoolBnB Logo">
+                    <img class="logo" src="{{ asset('images/boolBnB-logo.png') }}" alt="BoolBnB Logo">
                 </a>
                 {{-- <ul class="navbar-nav  mb-2 mb-lg-0">
                     <li class="nav-item">
