@@ -2167,7 +2167,8 @@ __webpack_require__.r(__webpack_exports__);
         params: params
       };
       axios.get("".concat(this.baseUri, "/api/apartments/search?"), request).then(function (res) {
-        _this2.apartmentsSearch = res.data[0];
+        //this.apartmentsSearch = res.data[0];
+        console.log(res.data[0]);
         _this2.isEmpty = false;
       })["catch"](function (err) {
         console.error(err);
@@ -2874,7 +2875,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.my-tom {\r\n  height: 420px;\n}\r\n", ""]);
+exports.push([module.i, "\n.my-tom {\n  height: 420px;\n}\n", ""]);
 
 // exports
 
@@ -21337,7 +21338,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\final-project\boolBnB\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/airowlgasga/Documents/CODING/boolBnB/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })

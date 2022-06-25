@@ -8,6 +8,8 @@ use App\Models\Apartment;
 use App\Models\Image;
 use Illuminate\Support\Facades\Http;
 use App\Models\Service;
+use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\Redirect;
 //use App\Models\Sponsorship;
 
 
@@ -64,11 +66,15 @@ class ApartmentController extends Controller
         $min_lon = $long - $range_lon;
         $max_lon = $long + $range_lon;
 
-        $result = Apartment::whereBetween('lat', [$min_lat, $max_lat])->whereBetween('long', [$min_lon, $max_lon])
+        $result = DB::table('apartments')
+                            ->join('apartment_service', 'apartments.id', '=', 'apartment_service.apartment_id')
+                            //->join('images', 'images.apartment_id', '=', 'apartments.id')
+                            //->join('users', 'users.id', '=', 'apartments.user_id')
+                            ->whereIn('apartment_service.service_id', [1, 2])
+                            ->whereBetween('lat', [$min_lat, $max_lat])->whereBetween('long', [$min_lon, $max_lon])
                             ->where('n_rooms', 'LIKE', '%'. $request->n_rooms. '%')
                             ->where('n_beds', 'LIKE', '%'. $request->n_beds. '%')
                             ->where('is_visible', 1)
-                            ->with(['images', 'services', 'user'])
                             ->get();
 
         if(count($result)){
