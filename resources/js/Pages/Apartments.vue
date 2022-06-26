@@ -17,7 +17,7 @@
                   @keyup.enter="getApartments(searchAddress, nRooms, nBeds, nKm)"
                   placeholder="Città"
                 />
-                <ul class="list-group position-absolute start-0 start-0" :class="!isFilled ? 'd-block' : 'd-none'" id="results">
+                <ul class="list-group tomtomlist" :class="!isFilled ? 'd-block' : 'd-none'" id="results">
                     <li
                     class="list-group-item active"
                     id="1-result"
@@ -257,18 +257,15 @@ export default {
                     this.tomtomSuggest = [];
                     res.data.results.forEach((result) =>{
                         this.tomtomSuggest.push(result.address.freeformAddress)
-                        console.log(this.tomtomSuggest);
                     });
                 }
                 res.data.results.forEach((result) =>{
                     this.tomtomSuggest.push(result.address.freeformAddress)
-                    console.log(this.tomtomSuggest);
                 });
                 this.isFilled = false;
             });
     },
     setInputValue(e){
-        console.log(e);
         this.searchAddress = e;
         this.isFilled = true;
     },
@@ -371,5 +368,15 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.tomtomlist{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 4;
+    height: 20rem;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
+}
 </style>
