@@ -6,10 +6,10 @@
 
     @include('layouts.partials.header')
 
-    <main class="background-image-form height-main-form">
+    <main class="background-image-form height-main-form my-min-height m-5">
         @yield('content')
     </main>
-
+    @include('layouts.partials.footer')
     @yield('js-files')
 </body>
 

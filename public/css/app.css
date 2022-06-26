@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;
 
 500;600;700&family=Lobster&family=Noto+Sans+HK:wght@100;300;400;500;700;900&display=swap);@import url(https://fonts.googleapis.com/css2?family=Lobster&display=swap);@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);@charset "UTF-8";
-img#logo {
+img.logo {
   height: 5rem;
 }
 
@@ -89,8 +89,92 @@ img#logo {
 }
 
 .my-bg-card-info {
-  background-color: #a7c0e1;
+  background-color: #47BCFB;
   background: linear-gradient(to top right, white, white, white, white, white, white, white, white, white, #33ccff);
+}
+
+.my-bg-card-map {
+  box-shadow: 0 4px 8px 0 #BAEEFF, 0 6px 20px 0 #BAEEFF;
+}
+
+.my-list-card-alert {
+  list-style-type: none;
+}
+
+.description-apartment {
+  height: 143px;
+}
+
+.carousel-scaled {
+  transition: all 300ms ease-in-out;
+}
+
+.carousel-scaled:hover {
+  transform: scale(1.2);
+  margin-left: 1rem;
+}
+
+#footer {
+  height: 5rem;
+  background-color: #004AAD;
+  color: azure;
+}
+
+.my-page-text-color {
+  color: #004AAD;
+}
+
+.my-bg-color {
+  background-color: #004AAD;
+}
+
+.my-scroll-box {
+  height: 50px;
+  overflow-y: scroll;
+}
+
+.my-input-height {
+  height: 150px;
+}
+
+.my-btn-positions {
+  top: 52%;
+  right: 0;
+}
+
+.my-card-size {
+  width: 20rem;
+}
+
+.img-height {
+  height: 12rem;
+}
+
+.my-card-position {
+  top: -20px;
+  right: 0;
+}
+
+.my-ocapity-card {
+  background-color: rgba(255, 0, 0, 0.9);
+}
+
+.my-img-wrapper {
+  width: 150px;
+  height: 150px;
+}
+
+.my-delete-position {
+  top: 0;
+  left: 0;
+}
+
+.my-min-height {
+  min-height: 80vh;
+}
+
+.footer-span {
+  line-height: 5rem;
 }
 
 /*!
@@ -11078,5 +11162,9 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+body {
+  min-width: 400px;
 }
 

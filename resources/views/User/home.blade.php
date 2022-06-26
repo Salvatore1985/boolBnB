@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Dashboard')
 @section('content')
 <div class="container mt-2 mb-2">
     <div class="row justify-content-center ">
@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>                                                                                                              
+                        </div>
                     </div>
                 @endforeach
             @empty
@@ -99,7 +99,7 @@ border-left: 12px solid transparent;
 border-right: 12px solid transparent;
 border-bottom: 12px solid rgb(226, 238, 252);
 transform:rotate(-225deg);
-left: -6px; 
+left: -6px;
 bottom: -2px;
 }
 .card{

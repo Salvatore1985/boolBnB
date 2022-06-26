@@ -1,6 +1,10 @@
-img#logo {
-    height: 5rem;
+@import 'variables';
 
+
+
+img.logo {
+
+    height: 5rem;
 }
 
 .background_navbar {
@@ -88,15 +92,118 @@ img#logo {
 
 .my-position {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 0;
+    right: 0;
     padding: 5px;
 }
 
 
 
 .my-bg-card-info {
-    background-color: #a7c0e1;
+    background-color: $logo-light-blue;
     // background-image: linear-gradient(to top, #1D7EFF, #1D7EFF, #1D7EFF, #a7c0e1, #a7c0e1);
     background: linear-gradient(to top right, white, white, white, white, white, white, white, white, white, #33ccff)
+}
+
+.my-bg-card-visibily {
+    background-color: $logo-light-blue;
+    // background-image: linear-gradient(to top, #1D7EFF, #1D7EFF, #1D7EFF, #a7c0e1, #a7c0e1);
+    background: linear-gradient(to right, white, white, white, white, white, white, white, white, white, #33ccff)
+}
+
+.my-bg-card-map {
+
+    box-shadow: 0 4px 8px 0 #BAEEFF, 0 6px 20px 0 #BAEEFF;
+}
+
+.my-list-card-alert {
+    list-style-type: none;
+}
+
+.description-apartment {
+    height: 143px;
+}
+
+.carousel-scaled {
+    transition: $transition;
+}
+
+.carousel-scaled:hover {
+    transform: scale(1.2);
+    margin-left: 1rem;
+}
+
+
+#footer {
+    height: 5rem;
+    background-color: $logo-blue;
+    color: azure;
+}
+
+.my-page-text-color {
+    color: $logo-blue;
+}
+
+.my-bg-color {
+    background-color: $logo-blue;
+}
+
+// Forms
+
+.my-scroll-box {
+    height: 50px;
+    overflow-y: scroll;
+}
+
+.my-input-height {
+    height: 150px;
+}
+
+// Apartment index
+.my-btn-positions {
+    top: 52%;
+    right: 0;
+}
+
+// cards
+.my-card-size {
+    width: 20rem;
+}
+
+.img-height {
+    height: 12rem;
+}
+
+.my-card-position {
+    top: -20px;
+    right: 0;
+}
+
+/* .my-ocapity-card{
+    background-color:rgba(255, 0, 0, 0.9);
+} */
+
+// Apartment edit
+
+.my-img-wrapper {
+    width: 150px;
+    height: 150px;
+}
+
+.my-delete-position {
+    top: 0;
+    left: 0;
+}
+
+.my-col-h-index-apartment {
+    height: 600px;
+}
+//main
+.my-min-height {
+    min-height:80vh;
+}
+
+// footer
+.footer-span {
+    line-height: 5rem;
 }

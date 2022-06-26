@@ -1,18 +1,22 @@
 @extends('layouts.createPage')
 
 @section('form-content')
-    <div class="background-image-form height-main-form p-3 h-100">
-        <section class="container ">
-            <form class="text-center bg-light rounded p-5" action="{{ route('user.apartments.store') }}" method="POST"
-                enctype="multipart/form-data">
-                @csrf
+    <div class="my-bg-color height-main-form p-3 h-100">
+        <section class="container shadow my-bg-card-info">
+            <form class="bg-light rounded p-5"
+            action="{{ route('user.apartments.store') }}"
+            method="POST"
+            enctype="multipart/form-data">
+            @csrf
                 {{-- Apartment Title --}}
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <label for="title" class="form-label">
+                <div class="form-row d-flex flex-wrap flex-md-nowrap">
+                    <div class="form-group col-12 col-md-6 me-2">
+                        <label
+                        for="title"
+                        class="form-label my-page-text-color mb-2">
                             Titolo dell' appartamento *
                         </label>
-                        <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
+                        <input type="text" class="form-control mb-4 @error('title') is-invalid @enderror" id="title"
                             name="title" placeholder="* campo richiesto" value="{{ old('title') }}" required
                             autocomplete="on" autofocus minlength="3">
 
@@ -23,11 +27,13 @@
                         @enderror
                     </div>
                     {{-- Apartment address --}}
-                    <div class="form-group col-md-6">
-                        <label for="address">
+                    <div class="form-group col-12 col-md-6">
+                        <label
+                        for="address"
+                        class="form-label my-page-text-color mb-2">
                             Inserisci l'indirizzo dell'appartamento *
                         </label>
-                        <input class="form-control @error('address') is-invalid @enderror" type="text" name="address"
+                        <input class="form-control mb-4 @error('address') is-invalid @enderror" type="text" name="address"
                             id="address" value="{{ old('address') ?? '' }}" placeholder="* campo richiesto" required
                             autocomplete="on" autofocus minlength="5">
 
@@ -45,15 +51,15 @@
                         </ul>
                     </div>
                 </div>
-                {{-- Apartment n_rooms --}}
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <label for="n_rooms" class="form-label ">
-                            Numero delle stanze *
+                <div class="form-row d-flex mb-4 justify-content-evenly">
+                    {{-- Apartment n_rooms --}}
+                    <div class="form-group col-2 me-4">
+                        <label for="n_rooms" class="form-label my-page-text-color mb-2">
+                            Num. stanze*
                         </label>
                         <input type="number" class="form-control @error('n_rooms') is-invalid @enderror" name="n_rooms"
-                            id="n_rooms" placeholder="* campo richiesto" value="{{ old('n_rooms') }}"
-                            placeholder="* campo richiesto" required autocomplete="on" autofocus min="1">
+                            id="n_rooms" value="{{ old('n_rooms')}}"
+                            placeholder="*n" required autocomplete="on" autofocus min="1">
 
                         @error('n_rooms')
                             <div class="text-start invalid-feedback">
@@ -61,13 +67,42 @@
                             </div>
                         @enderror
                     </div>
+                    {{-- Apartment n_beds --}}
+                    <div class="form-group col-2 me-4">
+                        <label for="n_beds" class="form-label my-page-text-color mb-2">
+                            Numero letti*
+                        </label>
+                        <input type="number" class="form-control @error('n_beds') is-invalid @enderror" name="n_beds"
+                            id="n_beds" placeholder="*n" value="{{ old('n_beds') }}" required
+                            autocomplete="on" autofocus min="1">
+                        @error('n_beds')
+                            <div class="text-start invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    {{-- Apartment n_bathrooms --}}
+                    <div class="form-group col-2 me-4">
+                        <label for="n_bathrooms" class="form-label my-page-text-color mb-2">
+                            Numero Bagni*
+                        </label>
+                        <input type="number" class="form-control @error('n_bathrooms') is-invalid @enderror"
+                            id="n_bathrooms" name="n_bathrooms" placeholder="*n"
+                            value="{{ old('n_bathrooms') }}" required autocomplete="on" autofocus min="1">
+
+                        @error('n_bathrooms')
+                            <div class="text-start invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                     {{-- Apartment srq_meters --}}
-                    <div class="form-group col-md-6">
-                        <label for="sqr_meters" class="form-label">
-                            Metri dell'appartamento *
+                    <div class="form-group col-2 me-4">
+                        <label for="sqr_meters" class="form-label my-page-text-color mb-2">
+                            metri quadri*
                         </label>
                         <input type="number" class="form-control @error('sqr_meters') is-invalid @enderror" id="sqr_meters"
-                            name="sqr_meters" placeholder="* campo richiesto" value="{{ old('sqr_meters') }}" required
+                            name="sqr_meters" placeholder="*n" value="{{ old('sqr_meters') }}" required
                             autocomplete="on" autofocus min="1">
 
                         @error('sqr_meters')
@@ -76,25 +111,12 @@
                             </div>
                         @enderror
                     </div>
-                    {{-- Apartment n_beds --}}
-                    <div class="form-group col-md-3">
-                        <label for="n_beds" class="form-label">
-                            Numero dei letti *
-                        </label>
-                        <input type="number" class="form-control @error('n_beds') is-invalid @enderror" name="n_beds"
-                            id="n_beds" placeholder="* campo richiesto" value="{{ old('n_beds') }}" required
-                            autocomplete="on" autofocus min="1">
-                        @error('n_beds')
-                            <div class="text-start invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
                 </div>
                 {{-- Apartment Images --}}
-                <div class="col-12">
-                    <label for="image[]">
-                        Inserisci le foto del tuo appartamento *
+                <div class="form-group col-12 mb-4">
+                    <label for="image[]"
+                    class="form-label my-page-text-color mb-2">
+                        Inserisci le foto del tuo appartamento*
                     </label>
                     <input type="file" class="form-control @error('images') is-invalid @enderror" name="images[]"
                         id="image[]" placeholder="* campo richiesto" multiple required autocomplete="on" autofocus
@@ -106,72 +128,60 @@
                     @enderror
                 </div>
                 {{-- Apartment Description --}}
-                <div class="form-group ">
-                    <label for="description" class="form-label">
+                <div class="form-group col-12 mb-4">
+                    <label for="description" class="form-label my-page-text-color mb-2">
                         Descrizione dell'appartamento *
                     </label>
                     <textarea rows="3" class="form-control  @error('description') is-invalid @enderror" name="description"
                         placeholder="* campo richiesto" id="description" value="{{ old('description') }}" required autocomplete="on"
                         autofocus minlength="10">{{ old('description') }}</textarea>
                     @error('description')
-                        <div class="text-start invalid-feedback">
+                        <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
-                {{-- Apartment n_bathrooms --}}
-                <div class="form-row">
-                    <div class="form-group col-md-3">
-                        <label for="n_bathrooms" class="form-label">
-                            Il numero dei bagni *
-                        </label>
-                        <input type="number" class="form-control @error('n_bathrooms') is-invalid @enderror"
-                            id="n_bathrooms" name="n_bathrooms" placeholder="* campo richiesto"
-                            value="{{ old('n_bathrooms') }}" required autocomplete="on" autofocus min="1">
-
-                        @error('n_bathrooms')
-                            <div class="text-start invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
+                <div class="form-row d-flex justify-content-evenly">
                     {{-- Apartment Services --}}
-                    <div class="form-group col-md-3">
-                        <div class="col-sm-2">
-                            Servizi *
+                    <div class="form-group col-3 me-2 my-input-height">
+                        <div class="form-label my-page-text-color mb-2">
+                            Servizi*
                         </div>
-                        <div class="col-sm-10 text-left h-50 overflow-auto">
+                        <div class="h-100 overflow-auto">
+                            @error('service')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                             @foreach ($services as $service)
                                 <div class="form-check">
                                     <input class="form-check-input  @error('service') is-invalid @enderror"
                                         type="checkbox" id="gridCheck1" name="service[]" value="{{ $service->id }}">
-                                    <label class="form-check-label" for="gridCheck1" required autocomplete="on">
+                                    <label class="form-check-label" for="gridCheck1" >
                                         {{ $service->name }}
                                     </label>
                                 </div>
                             @endforeach
-                            @error('service')
-                                <div class="text-start invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
                         </div>
                     </div>
                     {{-- Apartment visibility --}}
                     <fieldset class="form-group col-md-3">
                         <div class="row">
                             <div class="col-sm-10">
+                                <label class="form-label my-page-text-color mb-2" for="is_visible">
+                                    Disponibilità*
+                                </label>
                                 <div class="form-check ">
                                     <input class="form-check-input" type="radio" name="is_visible" id="is_visible"
                                         value="1" checked>
-                                    <label class="form-check-label" for="is_visible">
+                                    <label class="form-label my-page-text-color mb-2" for="is_visible">
                                         App. disponibile
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="is_visible" id="is_visible"
                                         value="0">
-                                    <label class="form-check-label" for="gridRadios2">
+                                    <label class="form-label my-page-text-color mb-2" for="gridRadios2">
                                         App. non disponibile
                                     </label>
                                 </div>
@@ -181,7 +191,7 @@
                     </fieldset>
                     {{-- Apartment price --}}
                     <div class="form-group col-md-3">
-                        <label for="price" class="form-label">
+                        <label for="price" class="form-label my-page-text-color mb-2 text-center">
                             Inserisci il prezzo *
                         </label>
                         <input type="number" class="form-control @error('price') is-invalid @enderror" name="price"
@@ -192,11 +202,13 @@
                             <div class="text-start invalid-feedback">
                                 {{ $message }}
                             </div>
-                        @enderror
-                        {{-- Submit button --}}
-                        <div class="mt-5">
-                            <button type="submit" class="btn btn-primary col-md-12">Pubblica il tuo appartamento</button>
-                        </div>
+                            @enderror
+                    </div>
+                </div>
+                <div class="form-row d-flex justify-content-center">
+                    {{-- Submit button --}}
+                    <div class="col-6 mt-5">
+                        <button type="submit" class="btn btn-outline-primary col-md-12">Pubblica il tuo appartamento</button>
                     </div>
                 </div>
             </form>
