@@ -6,18 +6,13 @@
   <img :src="apartment.images[0].link" class="img-fluid myImgContainer rounded" alt="" >
 </div>
 <div class="mb-1"  v-else>
-  <img :src="`storage/${apartment.images[0].link}`" class="img-fluid myImgContainer rounded" alt="" >    
+  <img src="`http://127.0.0.1:8000/storage/${image.link}`" class="img-fluid myImgContainer rounded" alt="" >    
 </div>
     </router-link>  
   <!-- corpo  -->
     <div>
     <p >{{ apartment.title }}</p>
     <p >{{ apartment.user.name }}</p>
-    <ul>
-      <li>
-          
-      </li>
-    </ul>
     <h6 class="fw-bold">{{ apartment.price }}<span class="fw-light">€/Notte</span></h6>
   </div>
 </div>
@@ -74,7 +69,6 @@ export default {
   border-radius: 10px;
   transition: all .5s ease;
   filter: brightness(100%);
-
 }
 .imgHover:hover {
   box-shadow: 0 0 12px rgba(31, 220, 249, 0.869); 
@@ -82,10 +76,9 @@ export default {
 }
 p,span,h6{
   margin-bottom: .2rem !important;
-  font-size: .5rem !important;
+  font-size: 1rem !important;
 }
 ul{
   list-style-type: none;
 }
-
 </style>
