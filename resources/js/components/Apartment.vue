@@ -6,7 +6,7 @@
   <img :src="apartment.images[0].link" class="img-fluid myImgContainer rounded" alt="" >
 </div>
 <div class="mb-1"  v-else>
-  <img src="`http://127.0.0.1:8000/storage/${image.link}`" class="img-fluid myImgContainer rounded" alt="" >    
+  <img :src="`storage/${apartment.images[0].link}`" class="img-fluid myImgContainer rounded" alt="" >    
 </div>
     </router-link>  
   <!-- corpo  -->
@@ -69,6 +69,7 @@ export default {
   border-radius: 10px;
   transition: all .5s ease;
   filter: brightness(100%);
+
 }
 .imgHover:hover {
   box-shadow: 0 0 12px rgba(31, 220, 249, 0.869); 
@@ -81,4 +82,5 @@ p,span,h6{
 ul{
   list-style-type: none;
 }
+
 </style>
