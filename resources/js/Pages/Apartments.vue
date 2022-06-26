@@ -13,10 +13,15 @@
                   aria-label="First name"
                   class="form-control w-25"
                   v-model="searchAddress"
+                  @keyup="getSuggestTomTom()"
                   @keyup.enter="getApartments(searchAddress, nRooms, nBeds, nKm)"
                   placeholder="Città"
-
                 />
+                <ul class="list-group" :class="!tomtomSuggest == [] ? 'd-block' : 'd-none'" id="results">
+                    <li class="list-group-item active" id="1-result" v-for="(element, index) in tomtomSuggest" :key="index">
+                        {{element}}
+                    </li>
+                </ul>
                 <input
                   type="number"
                   aria-label="Last name"
@@ -209,6 +214,7 @@ export default {
       baseUri: "http://127.0.0.1:8000",
       apartments: [],
       apartmentsSearch: [],
+      tomtomSuggest: [],
       isSearch: false,
       isLoading: false,
       pagination: {},
@@ -232,6 +238,18 @@ export default {
     },
   },
   methods: {
+    getSuggestTomTom(){
+        const input = this.searchAddress;
+        axios
+            .get(`https://api.tomtom.com/search/2/search/${input}.json?countrySet=IT&lat=37.337&lon=-121.89&extendedPostalCodesFor=Str&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=SsllzLi6J5XLezFkwzq7gpR0xOCwBOzL&countrySet=Italia`)
+            .then((res) => {
+                //console.log(res.data.results);
+                res.data.results.forEach((result) =>{
+                    this.tomtomSuggest.push(result.address.freeformAddress)
+                    console.log(this.tomtomSuggest);
+                });
+            });
+    },
     getServices() {
       axios
         .get(`${this.baseUri}/api/services`)
