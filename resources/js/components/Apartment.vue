@@ -12,8 +12,11 @@
   <!-- corpo  -->
     <div>
     <p >{{ apartment.title }}</p>
-    <p >{{ apartment.user.name }}</p>
+    <p class="d-flex justify-content-between align-items-center">{{ apartment.user.name }} <span class="userImg d-flex justify-content-center"><span>{{initials(apartment)}}</span></span></p>
     <h6 class="fw-bold">{{ apartment.price }}<span class="fw-light">€/Notte</span></h6>
+    <ul>
+      <li v-for="(service, index) in services" :key="index">{{service.name}}</li>
+    </ul>
   </div>
 </div>
 </template>
@@ -46,10 +49,11 @@ export default {
   //       return apartment.description;
   //     }
   //   },
-  //   initials(apartment){
-  //     const name = apartment.user.name.split(' ')
-  //     return `${name[0].charAt(0)}`;
-  //   }
+  initials(apartment)
+    {
+      const name = apartment.user.name.split(' ')
+      return `${name[0].charAt(0)}`;
+    }
   },
   created() {},
 };
@@ -81,6 +85,26 @@ p,span,h6{
 }
 ul{
   list-style-type: none;
+}
+.userImg{
+  background-size: 300% 300%;
+  background-image: linear-gradient(
+        -45deg, 
+        rgba(59,173,227,1) 0%,
+        rgba(87,111,230,1) 25%, 
+        rgba(152,68,183,1) 51%, 
+        rgba(255,53,127,1) 100%,
+  );
+  animation: AnimateBG 5s ease infinite;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding-top: .4rem;
+}
+@keyframes AnimateBG { 
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 
 </style>
