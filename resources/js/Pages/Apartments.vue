@@ -9,22 +9,23 @@
             <section>
               <div class="input-group">
                 <input
-                  type="text"
-                  aria-label="First name"
-                  class="form-control w-25 position-relative"
-                  v-model="searchAddress"
-                  @keyup="getSuggestTomTom()"
-                  @keyup.enter="getApartments(searchAddress, nRooms, nBeds, nKm)"
-                  placeholder="Città"
+                    type="text"
+                    aria-label="First name"
+                    class="form-control w-25 position-relative"
+                    v-model="searchAddress"
+                    @keyup="getSuggestTomTom()"
+                    @change="provare()"
+                    @keyup.enter="getApartments(searchAddress, nRooms, nBeds, nKm)"
+                    placeholder="Città"
                 />
                 <ul class="list-group tomtomlist" :class="!isFilled ? 'd-block' : 'd-none'" id="results">
                     <li
-                    class="list-group-item active"
-                    id="1-result"
-                    v-for="(element, index) in tomtomSuggest"
-                    :key="index"
-                    :class="!tomtomSuggest == [] ? 'd-block' : 'd-none'"
-                    @click="setInputValue(element)"
+                        class="list-group-item element-list"
+                        id="1-result"
+                        v-for="(element, index) in tomtomSuggest"
+                        :key="index"
+                        :class="!tomtomSuggest == [] ? 'd-block' : 'd-none'"
+                        @click="setInputValue(element)"
                     >
                         {{element}}
                     </li>
@@ -247,6 +248,10 @@ export default {
     },
   },
   methods: {
+    provare(){
+        console.log('bellah');
+        this.isFilled = true;
+    },
     getSuggestTomTom(){
         const input = this.searchAddress;
         axios
@@ -369,14 +374,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tomtomlist{
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 4;
-    height: 20rem;
-    overflow: scroll;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;
-}
+
 </style>
