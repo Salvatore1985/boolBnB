@@ -38,27 +38,16 @@
                     @foreach ($apartment->messages as $message)
                     <div class="card chat " style="width: 18rem;">
                         <div class="card-body ">
-                            <h5 class="card-title">Da: {{$message->email}}</h5>
-                                <div >
-                                    <p class="card-text my-scroll">
-                                        {{$message->email_content}}
-                                    </p>
-                                </div>
-                                    <p class="card-text">
-                                        {{$message->created_at}}
-                                    </p>
-                                    <a href="" class="btn btn-outline-primary">
-                                        reply
-                                    </a>
-                                    <form action="{{ route('user.message.destroy', $message->id) }}" method="POST"
-                                        class="messagge-destroyer" message-email_content="{{ ucfirst($message->email_content) }}"
-                                            onclick="return confirm('Sei sicuro di voler eliminare il messaggio di {{ $message->name }}?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-pink btn-md btn-delete btn-outline-danger" type="submit">
-                                            &#10008;
-                                    </button>
-                                </form>
+                            <h5 class="card-title">
+                                Da: {{$message->email}}
+                            </h5>
+                            <div >
+                                <p class="card-text my-scroll">
+                                    <strong>messaggio:</strong>
+                                    <br>
+                                    {{$message->email_content}}
+                                </p>
+                            </div>
                             </div>
                         </div>
                     @endforeach
