@@ -17,7 +17,7 @@
                   @keyup.enter="getApartments(searchAddress, nRooms, nBeds, nKm)"
                   placeholder="Città"
                 />
-                <ul class="list-group position-absolute start-0 start-0" :class="!isFilled ? 'd-block' : 'd-none'" id="results">
+                <ul class="list-group tomtomlist" :class="!isFilled ? 'd-block' : 'd-none'" id="results">
                     <li
                     class="list-group-item active"
                     id="1-result"
@@ -109,8 +109,8 @@
       </nav>
       <!--group input service -->
       <a @click="getBtbActive()" class="btn text-info">
-        <h6 v-if="btnActive == false">Ricerca avanzata</h6>
-        <p v-else>Chiudi ricerca avanzata</p>
+        <h6 v-if="btnActive == false">filtri avanzata </h6>
+        <p v-else>Chiudi filtri avanzata</p>
       </a>
       <div class="row" :class="btnActive == false ? 'd-none' : 'dblock'">
         <section class="col-12 d-flex">
@@ -257,18 +257,15 @@ export default {
                     this.tomtomSuggest = [];
                     res.data.results.forEach((result) =>{
                         this.tomtomSuggest.push(result.address.freeformAddress)
-                        console.log(this.tomtomSuggest);
                     });
                 }
                 res.data.results.forEach((result) =>{
                     this.tomtomSuggest.push(result.address.freeformAddress)
-                    console.log(this.tomtomSuggest);
                 });
                 this.isFilled = false;
             });
     },
     setInputValue(e){
-        console.log(e);
         this.searchAddress = e;
         this.isFilled = true;
     },
@@ -371,5 +368,15 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.tomtomlist{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 4;
+    height: 20rem;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
+}
 </style>
