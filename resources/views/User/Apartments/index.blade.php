@@ -243,9 +243,16 @@
                 <div class="position-absolute w-100 h-100 my-ocapity-card">
 
                 </div>
+
+            </div>
+        </div>
+        
+    </div>
+
             @endif --}}
     {{-- </div>
     </div> --}}
+
 
 @endsection
 {{-- @section('js-files')
