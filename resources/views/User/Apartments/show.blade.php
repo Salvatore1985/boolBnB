@@ -5,7 +5,7 @@
     }
 </style>
 @extends('layouts.createPage')
-
+@section('title', 'Apartment')
 @section('form-content')
     <div class="container py-5">
         <div class="row">

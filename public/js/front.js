@@ -5252,7 +5252,7 @@ var render = function () {
                 : _c("img", {
                     staticClass: "d-block w-100",
                     attrs: {
-                      src: "storage/" + image.link,
+                      src: "http://127.0.0.1:8000/storage/" + image.link,
                       alt: _vm.apartment.tile,
                     },
                   }),

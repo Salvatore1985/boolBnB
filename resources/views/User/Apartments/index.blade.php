@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Apartments')
 
 @section('content')
     <div class="container w-75 mx-auto">

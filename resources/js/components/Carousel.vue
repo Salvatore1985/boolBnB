@@ -31,7 +31,7 @@
         />
         <img
           v-else
-          :src="`storage/${image.link}`"
+          :src="`http://127.0.0.1:8000/storage/${image.link}`"
           class="d-block w-100"
           :alt="apartment.tile"
         />
