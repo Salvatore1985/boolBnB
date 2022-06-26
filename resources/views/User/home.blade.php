@@ -39,8 +39,14 @@
                     <div class="card chat " style="width: 18rem;">
                         <div class="card-body ">
                             <h5 class="card-title">Da: {{$message->email}}</h5>
-                                <div ><p class="card-text my-scroll">{{$message->email_content}} </p></div>
-                                    <p class="card-text">{{$message->created_at}}</p>
+                                <div >
+                                    <p class="card-text my-scroll">
+                                        {{$message->email_content}}
+                                    </p>
+                                </div>
+                                    <p class="card-text">
+                                        {{$message->created_at}}
+                                    </p>
                                     <a href="" class="btn btn-outline-primary">
                                         reply
                                     </a>
