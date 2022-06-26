@@ -72,12 +72,13 @@ export default {
 }
 .imgHover{
   border-radius: 10px;
+  transition: all .5s ease;
+  filter: brightness(100%);
+
 }
 .imgHover:hover {
-  box-shadow: 0 0 12px rgba(31, 220, 249, 0.869);
-  opacity: 1; 
-  transition: .5s ease;
-
+  box-shadow: 0 0 12px rgba(31, 220, 249, 0.869); 
+  filter: brightness(105%);
 }
 p,span,h6{
   margin-bottom: .2rem !important;
