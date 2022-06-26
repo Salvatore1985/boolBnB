@@ -14,7 +14,7 @@
                     class="form-control w-25 position-relative"
                     v-model="searchAddress"
                     @keyup="getSuggestTomTom()"
-                    @change="provare()"
+                    @change="onChange()"
                     @keyup.enter="getApartments(searchAddress, nRooms, nBeds, nKm)"
                     placeholder="Città"
                 />
@@ -248,8 +248,7 @@ export default {
     },
   },
   methods: {
-    provare(){
-        console.log('bellah');
+    onChange(){
         this.isFilled = true;
     },
     getSuggestTomTom(){
