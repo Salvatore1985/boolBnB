@@ -147,11 +147,11 @@
                         <input type="file" class="form-control @error('images') is-invalid @enderror" name="images[]"
                             id="image[]" placeholder="* campo richiesto" multiple
                             type="file">
-                        @error('images')
+                        {{-- @error('images')
                             <div class="text-start invalid-feedback">
                                 {{ $message }}
                             </div>
-                        @enderror
+                        @enderror --}}
                     </div>
                     <div class="form-group col-12 mb-4">
                         <label for="description" class="form-label my-page-text-color mb-2">

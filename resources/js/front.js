@@ -11,9 +11,6 @@ Vue.use(VueRouter);
 import Apartments from "./Pages/Apartments";
 import SingleApartment from "./Pages/SingleApartment";
 
-// import Posts from "./pages/Posts";
-// import Contacts from "./pages/Contacts";
-// import About from "./pages/About";
 
 
 Vue.use(VueRouter)
@@ -30,7 +27,6 @@ const router = new VueRouter({
             name: "apartment",
             component: SingleApartment
         },
-
     ],
 
 })

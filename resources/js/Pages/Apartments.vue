@@ -280,7 +280,7 @@ export default {
             this.pagination = { currentPage: current_page, lastPage: last_page };
         })
         .catch((error) => {
-          console.warn(error);
+            console.warn(error);
         })
         .then(() => {
             this.isLoading = false;

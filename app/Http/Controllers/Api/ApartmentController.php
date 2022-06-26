@@ -8,6 +8,7 @@ use App\Models\Apartment;
 use App\Models\Image;
 use Illuminate\Support\Facades\Http;
 use App\Models\Service;
+use App\Models\Sponsorships;
 //use App\Models\Sponsorship;
 
 
@@ -16,20 +17,21 @@ class ApartmentController extends Controller
     public function index(Apartment $apartment)
     {
 
-        $apartments = Apartment::with(['images', 'services', 'user'])->paginate(8);
+        $apartments = Apartment::with(['images', 'services', 'user', 'sponsorships'])->paginate(8);
 
         return response()->json($apartments);
     }
 
     public function show($id)
     {
-        $apartment = Apartment::with(['images', 'services', 'user'])->findOrFail($id);
+        $apartment = Apartment::with(['images', 'services', 'user', 'sponsorships'])->findOrFail($id);
         return response()->json(
             [
                 'success' => true,
                 'results' => $apartment,
                 'services' => $apartment->service_id,
                 'user_id' => $apartment->users,
+                'sponsorship_id' => $apartment->sponsorshipss,
             ]);
     }
     public function destroy($id)
