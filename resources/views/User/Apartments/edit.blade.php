@@ -202,7 +202,7 @@
                                 <label class="form-label my-page-text-color mb-2" for="is_visible">
                                     Disponibilità*
                                 </label>
-                                <div class="form-check ">
+                                <div class="form-check">
                                     <input class="form-check-input" type="radio" name="is_visible" id="is_visible"
                                         value="1" checked>
                                     <label class="form-label my-page-text-color mb-2" for="is_visible">

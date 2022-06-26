@@ -1,14 +1,14 @@
 <template>
 <!-- immagini -->
 <div class="card col-md-6 col-lg-4 col-sm-6 mb-3" >
-  <router-link :to="{ name: 'apartment', params: { id: apartment.id } }"> 
+  <router-link :to="{ name: 'apartment', params: { id: apartment.id } }">
   <div class="imgHover mb-1"  v-if="apartment.images[0].link.startsWith('https://')">
   <img :src="apartment.images[0].link" class="img-fluid myImgContainer rounded" alt="" >
 </div>
-<div class="mb-1"  v-else>
-  <img :src="`storage/${apartment.images[0].link}`" class="img-fluid myImgContainer rounded" alt="" >    
+<div class="imgHover mb-1"  v-else>
+  <img :src="`storage/${apartment.images[0].link}`" class="img-fluid myImgContainer rounded" alt="" >
 </div>
-    </router-link>  
+    </router-link>
   <!-- corpo  -->
     <div>
       <p >{{ apartment.title }}</p>
@@ -78,7 +78,7 @@ export default {
 
 }
 .imgHover:hover {
-  box-shadow: 0 0 12px rgba(31, 220, 249, 0.869); 
+  box-shadow: 0 0 12px rgba(31, 220, 249, 0.869);
   filter: brightness(105%);
 }
 p,span,h6{
@@ -91,10 +91,10 @@ ul{
 .userImg{
   background-size: 300% 300%;
   background-image: linear-gradient(
-        -45deg, 
+        -45deg,
         rgba(59,173,227,1) 0%,
-        rgba(87,111,230,1) 25%, 
-        rgba(152,68,183,1) 51%, 
+        rgba(87,111,230,1) 25%,
+        rgba(152,68,183,1) 51%,
         rgba(255,53,127,1) 100%,
   );
   animation: AnimateBG 5s ease infinite;
@@ -103,7 +103,7 @@ ul{
   height: 40px;
   padding-top: .4rem;
 }
-@keyframes AnimateBG { 
+@keyframes AnimateBG {
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}

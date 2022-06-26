@@ -2104,6 +2104,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2121,6 +2133,8 @@ __webpack_require__.r(__webpack_exports__);
       baseUri: "http://127.0.0.1:8000",
       apartments: [],
       apartmentsSearch: [],
+      tomtomSuggest: [],
+      resultTomTom: "",
       isSearch: false,
       isLoading: false,
       pagination: {},
@@ -2128,11 +2142,12 @@ __webpack_require__.r(__webpack_exports__);
       searchAddress: "",
       nRooms: "",
       nBeds: "",
-      nKm: "",
+      nKm: "20",
       isEmpty: false,
       services: [],
       checkedServices: [],
-      btnActive: false
+      btnActive: false,
+      isFilled: false
     };
   },
   watch: {
@@ -2144,17 +2159,45 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    getServices: function getServices() {
+    getSuggestTomTom: function getSuggestTomTom() {
       var _this = this;
 
+      var input = this.searchAddress;
+      axios.get("https://api.tomtom.com/search/2/search/".concat(input, ".json?countrySet=IT&lat=37.337&lon=-121.89&extendedPostalCodesFor=Str&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=SsllzLi6J5XLezFkwzq7gpR0xOCwBOzL&countrySet=Italia")).then(function (res) {
+        //console.log(res.data.results);
+        if (!_this.tomtomSuggest == []) {
+          _this.tomtomSuggest = [];
+          res.data.results.forEach(function (result) {
+            _this.tomtomSuggest.push(result.address.freeformAddress);
+
+            console.log(_this.tomtomSuggest);
+          });
+        }
+
+        res.data.results.forEach(function (result) {
+          _this.tomtomSuggest.push(result.address.freeformAddress);
+
+          console.log(_this.tomtomSuggest);
+        });
+        _this.isFilled = false;
+      });
+    },
+    setInputValue: function setInputValue(e) {
+      console.log(e);
+      this.searchAddress = e;
+      this.isFilled = true;
+    },
+    getServices: function getServices() {
+      var _this2 = this;
+
       axios.get("".concat(this.baseUri, "/api/services")).then(function (results) {
-        _this.services = results.data;
+        _this2.services = results.data;
       })["catch"](function (error) {
         console.warn(error);
       });
     },
     getApartments: function getApartments(address, nRooms, nBeds, nKm) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.isLoading = true;
       this.isSearch = true;
@@ -2167,18 +2210,18 @@ __webpack_require__.r(__webpack_exports__);
         params: params
       };
       axios.get("".concat(this.baseUri, "/api/apartments/search?"), request).then(function (res) {
-        _this2.apartmentsSearch = res.data[0];
-        _this2.isEmpty = false;
+        _this3.apartmentsSearch = res.data[0];
+        _this3.isEmpty = false;
       })["catch"](function (err) {
         console.error(err);
-        _this2.apartmentsSearch = [];
-        _this2.isEmpty = true;
+        _this3.apartmentsSearch = [];
+        _this3.isEmpty = true;
       }).then(function () {
-        _this2.isLoading = false;
+        _this3.isLoading = false;
       });
     },
     getAllApartments: function getAllApartments(page) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.isLoading = true;
       axios.get("".concat(this.baseUri, "/api/apartments?page=").concat(page)).then(function (results) {
@@ -2187,22 +2230,22 @@ __webpack_require__.r(__webpack_exports__);
             data = _results$data.data,
             current_page = _results$data.current_page,
             last_page = _results$data.last_page;
-        _this3.apartments = data;
-        _this3.pagination = {
+        _this4.apartments = data;
+        _this4.pagination = {
           currentPage: current_page,
           lastPage: last_page
         };
       })["catch"](function (error) {
         console.warn(error);
       }).then(function () {
-        _this3.isLoading = false;
+        _this4.isLoading = false;
       });
     },
     changePage: function changePage(page) {
       this.getAllApartments(page);
     },
     filteredApartments: function filteredApartments() {
-      var _this4 = this;
+      var _this5 = this;
 
       var filteredApartments = [];
 
@@ -2210,10 +2253,10 @@ __webpack_require__.r(__webpack_exports__);
         this.apartmentsSearch.forEach(function (apartment) {
           var counter = 0;
           apartment.services.forEach(function (service) {
-            if (_this4.checkedServices.includes(service.name)) {
+            if (_this5.checkedServices.includes(service.name)) {
               counter++;
 
-              if (!filteredApartments.includes(apartment) && counter == _this4.checkedServices.length) {
+              if (!filteredApartments.includes(apartment) && counter == _this5.checkedServices.length) {
                 filteredApartments.push(apartment);
               }
             }
@@ -2551,12 +2594,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderIndex",
   props: ["apartment"],
-  methods: {// getFormattedDate(data) {
+  methods: {
+    // getFormattedDate(data) {
     //*creao una funzione per convertire la data dal database
     // const apartmentdate = new Date(data);
     // let day = apartmentdate.getDate();
@@ -2579,10 +2621,10 @@ __webpack_require__.r(__webpack_exports__);
     //       return apartment.description;
     //     }
     //   },
-    //   initials(apartment){
-    //     const name = apartment.user.name.split(' ')
-    //     return `${name[0].charAt(0)}`;
-    //   }
+    initials: function initials(apartment) {
+      var name = apartment.user.name.split(' ');
+      return "".concat(name[0].charAt(0));
+    }
   },
   created: function created() {}
 });
@@ -2927,7 +2969,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".myImgContainer[data-v-296c1857] {\n  height: 200px;\n  width: 100%;\n}\n.card[data-v-296c1857] {\n  border: none !important;\n  background-color: rgb(248, 250, 252);\n}\n.imgHover[data-v-296c1857] {\n  border-radius: 10px;\n}\n.imgHover[data-v-296c1857]:hover {\n  box-shadow: 0 0 12px rgba(31, 220, 249, 0.869);\n  opacity: 1;\n  transition: 0.5s ease;\n}\np[data-v-296c1857], span[data-v-296c1857], h6[data-v-296c1857] {\n  margin-bottom: 0.2rem !important;\n  font-size: 0.5rem !important;\n}\nul[data-v-296c1857] {\n  list-style-type: none;\n}", ""]);
+exports.push([module.i, ".myImgContainer[data-v-296c1857] {\n  height: 200px;\n  width: 100%;\n}\n.card[data-v-296c1857] {\n  border: none !important;\n  background-color: rgb(248, 250, 252);\n}\n.imgHover[data-v-296c1857] {\n  border-radius: 10px;\n  transition: all 0.5s ease;\n  filter: brightness(100%);\n}\n.imgHover[data-v-296c1857]:hover {\n  box-shadow: 0 0 12px rgba(31, 220, 249, 0.869);\n  filter: brightness(105%);\n}\np[data-v-296c1857], span[data-v-296c1857], h6[data-v-296c1857] {\n  margin-bottom: 0.2rem !important;\n  font-size: 1rem !important;\n}\nul[data-v-296c1857] {\n  list-style-type: none;\n}\n.userImg[data-v-296c1857] {\n  background-size: 300% 300%;\n  background-image: linear-gradient(-45deg, rgb(59, 173, 227) 0%, rgb(87, 111, 230) 25%, rgb(152, 68, 183) 51%, rgb(255, 53, 127) 100%);\n  -webkit-animation: AnimateBG-data-v-296c1857 5s ease infinite;\n          animation: AnimateBG-data-v-296c1857 5s ease infinite;\n  border-radius: 50%;\n  width: 40px;\n  height: 40px;\n  padding-top: 0.4rem;\n}\n@-webkit-keyframes AnimateBG-data-v-296c1857 {\n0% {\n    background-position: 0% 50%;\n}\n50% {\n    background-position: 100% 50%;\n}\n100% {\n    background-position: 0% 50%;\n}\n}\n@keyframes AnimateBG-data-v-296c1857 {\n0% {\n    background-position: 0% 50%;\n}\n50% {\n    background-position: 100% 50%;\n}\n100% {\n    background-position: 0% 50%;\n}\n}", ""]);
 
 // exports
 
@@ -4212,7 +4254,7 @@ var render = function () {
                           expression: "searchAddress",
                         },
                       ],
-                      staticClass: "form-control w-25",
+                      staticClass: "form-control w-25 position-relative",
                       attrs: {
                         type: "text",
                         "aria-label": "First name",
@@ -4220,26 +4262,31 @@ var render = function () {
                       },
                       domProps: { value: _vm.searchAddress },
                       on: {
-                        keyup: function ($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
+                        keyup: [
+                          function ($event) {
+                            return _vm.getSuggestTomTom()
+                          },
+                          function ($event) {
+                            if (
+                              !$event.type.indexOf("key") &&
+                              _vm._k(
+                                $event.keyCode,
+                                "enter",
+                                13,
+                                $event.key,
+                                "Enter"
+                              )
+                            ) {
+                              return null
+                            }
+                            return _vm.getApartments(
+                              _vm.searchAddress,
+                              _vm.nRooms,
+                              _vm.nBeds,
+                              _vm.nKm
                             )
-                          ) {
-                            return null
-                          }
-                          return _vm.getApartments(
-                            _vm.searchAddress,
-                            _vm.nRooms,
-                            _vm.nBeds,
-                            _vm.nKm
-                          )
-                        },
+                          },
+                        ],
                         input: function ($event) {
                           if ($event.target.composing) {
                             return
@@ -4248,6 +4295,41 @@ var render = function () {
                         },
                       },
                     }),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      {
+                        staticClass:
+                          "list-group position-absolute start-0 start-0",
+                        class: !_vm.isFilled ? "d-block" : "d-none",
+                        attrs: { id: "results" },
+                      },
+                      _vm._l(_vm.tomtomSuggest, function (element, index) {
+                        return _c(
+                          "li",
+                          {
+                            key: index,
+                            staticClass: "list-group-item active",
+                            class:
+                              !_vm.tomtomSuggest == [] ? "d-block" : "d-none",
+                            attrs: { id: "1-result" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.setInputValue(element)
+                              },
+                            },
+                          },
+                          [
+                            _vm._v(
+                              "\n                    " +
+                                _vm._s(element) +
+                                "\n                "
+                            ),
+                          ]
+                        )
+                      }),
+                      0
+                    ),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -4372,7 +4454,6 @@ var render = function () {
                           name: "nKm",
                           id: "nKm",
                           value: "5",
-                          checked: "checked",
                         },
                         domProps: { checked: _vm._q(_vm.nKm, "5") },
                         on: {
@@ -4443,9 +4524,11 @@ var render = function () {
                           name: "nKm",
                           id: "nKm",
                           value: "20",
-                          checked: "",
                         },
-                        domProps: { checked: _vm._q(_vm.nKm, "20") },
+                        domProps: {
+                          checked: _vm.nKm == 20 ? _vm.checked : "",
+                          checked: _vm._q(_vm.nKm, "20"),
+                        },
                         on: {
                           change: function ($event) {
                             _vm.nKm = "20"
@@ -4501,8 +4584,8 @@ var render = function () {
           },
           [
             _vm.btnActive == false
-              ? _c("h6", [_vm._v("Ricerca avanzata")])
-              : _c("p", [_vm._v("Chiudi ricerca avanzata")]),
+              ? _c("h6", [_vm._v("filtri avanzata ")])
+              : _c("p", [_vm._v("Chiudi filtri avanzata")]),
           ]
         ),
         _vm._v(" "),
@@ -5112,7 +5195,7 @@ var render = function () {
                   attrs: { src: _vm.apartment.images[0].link, alt: "" },
                 }),
               ])
-            : _c("div", { staticClass: "mb-1" }, [
+            : _c("div", { staticClass: "imgHover mb-1" }, [
                 _c("img", {
                   staticClass: "img-fluid myImgContainer rounded",
                   attrs: {
@@ -5127,27 +5210,37 @@ var render = function () {
       _c("div", [
         _c("p", [_vm._v(_vm._s(_vm.apartment.title))]),
         _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.apartment.user.name))]),
-        _vm._v(" "),
-        _vm._m(0),
+        _c(
+          "p",
+          { staticClass: "d-flex justify-content-between align-items-center" },
+          [
+            _vm._v(_vm._s(_vm.apartment.user.name) + " "),
+            _c(
+              "span",
+              { staticClass: "userImg d-flex justify-content-center" },
+              [_c("span", [_vm._v(_vm._s(_vm.initials(_vm.apartment)))])]
+            ),
+          ]
+        ),
         _vm._v(" "),
         _c("h6", { staticClass: "fw-bold" }, [
           _vm._v(_vm._s(_vm.apartment.price)),
           _c("span", { staticClass: "fw-light" }, [_vm._v("€/Notte")]),
         ]),
+        _vm._v(" "),
+        _c(
+          "ul",
+          _vm._l(_vm.services, function (service, index) {
+            return _c("li", { key: index }, [_vm._v(_vm._s(service.name))])
+          }),
+          0
+        ),
       ]),
     ],
     1
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", [_c("li")])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -21675,7 +21768,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Classe55\boolBnB\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\final-project\boolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
