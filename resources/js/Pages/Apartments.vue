@@ -11,14 +11,21 @@
                 <input
                   type="text"
                   aria-label="First name"
-                  class="form-control w-25"
+                  class="form-control w-25 position-relative"
                   v-model="searchAddress"
                   @keyup="getSuggestTomTom()"
                   @keyup.enter="getApartments(searchAddress, nRooms, nBeds, nKm)"
                   placeholder="Città"
                 />
-                <ul class="list-group" :class="!tomtomSuggest == [] ? 'd-block' : 'd-none'" id="results">
-                    <li class="list-group-item active" id="1-result" v-for="(element, index) in tomtomSuggest" :key="index">
+                <ul class="list-group position-absolute start-0 start-0" :class="!isFilled ? 'd-block' : 'd-none'" id="results">
+                    <li
+                    class="list-group-item active"
+                    id="1-result"
+                    v-for="(element, index) in tomtomSuggest"
+                    :key="index"
+                    :class="!tomtomSuggest == [] ? 'd-block' : 'd-none'"
+                    @click="setInputValue(element)"
+                    >
                         {{element}}
                     </li>
                 </ul>
@@ -215,6 +222,7 @@ export default {
       apartments: [],
       apartmentsSearch: [],
       tomtomSuggest: [],
+      resultTomTom: "",
       isSearch: false,
       isLoading: false,
       pagination: {},
@@ -227,6 +235,7 @@ export default {
       services: [],
       checkedServices: [],
       btnActive: false,
+      isFilled: false,
     };
   },
   watch: {
@@ -244,11 +253,24 @@ export default {
             .get(`https://api.tomtom.com/search/2/search/${input}.json?countrySet=IT&lat=37.337&lon=-121.89&extendedPostalCodesFor=Str&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=SsllzLi6J5XLezFkwzq7gpR0xOCwBOzL&countrySet=Italia`)
             .then((res) => {
                 //console.log(res.data.results);
+                if(!this.tomtomSuggest == []){
+                    this.tomtomSuggest = [];
+                    res.data.results.forEach((result) =>{
+                        this.tomtomSuggest.push(result.address.freeformAddress)
+                        console.log(this.tomtomSuggest);
+                    });
+                }
                 res.data.results.forEach((result) =>{
                     this.tomtomSuggest.push(result.address.freeformAddress)
                     console.log(this.tomtomSuggest);
                 });
+                this.isFilled = false;
             });
+    },
+    setInputValue(e){
+        console.log(e);
+        this.searchAddress = e;
+        this.isFilled = true;
     },
     getServices() {
       axios
