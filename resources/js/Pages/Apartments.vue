@@ -68,7 +68,7 @@
                   id="nKm"
                   value="5"
                   v-model="nKm"
-                  checked="checked"
+
                 />
                 <label class="form-check-label" for="nKm">5 Km</label>
               </div>
@@ -91,7 +91,7 @@
                   id="nKm"
                   value="20"
                   v-model="nKm"
-                  checked
+                  :checked = "(nKm == 20) ? checked : ''"
                 />
                 <label class="form-check-label" for="nKm">20 Km</label>
               </div>
@@ -230,7 +230,7 @@ export default {
       searchAddress: "",
       nRooms: "",
       nBeds: "",
-      nKm: "",
+      nKm: "20",
       isEmpty: false,
       services: [],
       checkedServices: [],
