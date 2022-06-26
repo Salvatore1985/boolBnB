@@ -2492,75 +2492,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderIndex",
   props: ["apartment"],
-  methods: {
-    getFormattedDate: function getFormattedDate(data) {
-      //*creao una funzione per convertire la data dal database
-      var apartmentdate = new Date(data);
-      var day = apartmentdate.getDate();
-      var month = apartmentdate.getMonth() + 1; //* sggiungo +1 perche il mesi vengono considerati come un array per questo aggiungo 1
-
-      var year = apartmentdate.getFullYear(); //? aggiungo una condistione in caso il giorno e minore di 10
-
-      if (day < 10) {
-        day = "0" + day;
-      } //? aggiungo una condistione in caso il mese e minore di 10
-
-
-      if (month < 10) {
-        month = "0" + month;
-      }
-
-      return "".concat(day, "/").concat(month, "/").concat(year);
-    },
-    limitOverview: function limitOverview(apartment) {
-      if (apartment.description.length > 150) {
-        return apartment.description.slice(0, 100) + "...";
-      } else {
-        return apartment.description;
-      }
-    },
-    initials: function initials(apartment) {
-      var name = apartment.user.name.split(' ');
-      return "".concat(name[0].charAt(0));
-    }
+  methods: {// getFormattedDate(data) {
+    //*creao una funzione per convertire la data dal database
+    // const apartmentdate = new Date(data);
+    // let day = apartmentdate.getDate();
+    // let month = apartmentdate.getMonth() + 1; //* sggiungo +1 perche il mesi vengono considerati come un array per questo aggiungo 1
+    // const year = apartmentdate.getFullYear();
+    //? aggiungo una condistione in caso il giorno e minore di 10
+    // if (day < 10) {
+    //   day = "0" + day;
+    // }
+    //? aggiungo una condistione in caso il mese e minore di 10
+    //     if (month < 10) {
+    //       month = "0" + month;
+    //     }
+    //     return `${day}/${month}/${year}`;
+    //   },
+    //   limitOverview(apartment) {
+    //     if (apartment.description.length > 150) {
+    //       return apartment.description.slice(0, 100) + "...";
+    //     } else {
+    //       return apartment.description;
+    //     }
+    //   },
+    //   initials(apartment){
+    //     const name = apartment.user.name.split(' ')
+    //     return `${name[0].charAt(0)}`;
+    //   }
   },
   created: function created() {}
 });
@@ -2848,7 +2809,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".avatar[data-v-296c1857] {\n  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);\n  background-size: 400% 400%;\n  -webkit-animation: gradient-data-v-296c1857 15s ease infinite;\n          animation: gradient-data-v-296c1857 15s ease infinite;\n}\n@-webkit-keyframes gradient-data-v-296c1857 {\n0% {\n    background-position: 0% 50%;\n}\n50% {\n    background-position: 100% 50%;\n}\n100% {\n    background-position: 0% 50%;\n}\n}\n@keyframes gradient-data-v-296c1857 {\n0% {\n    background-position: 0% 50%;\n}\n50% {\n    background-position: 100% 50%;\n}\n100% {\n    background-position: 0% 50%;\n}\n}\n.initials[data-v-296c1857] {\n  top: 2%;\n  left: 30%;\n  font-size: 2rem;\n}", ""]);
+exports.push([module.i, ".myImgContainer[data-v-296c1857] {\n  height: 200px;\n  width: 100%;\n}\n.card[data-v-296c1857] {\n  border: none !important;\n  background-color: rgb(248, 250, 252);\n}\n.imgHover[data-v-296c1857] {\n  border-radius: 10px;\n}\n.imgHover[data-v-296c1857]:hover {\n  box-shadow: 0 0 12px rgba(31, 220, 249, 0.869);\n  opacity: 1;\n  transition: 0.5s ease;\n}\np[data-v-296c1857], span[data-v-296c1857], h6[data-v-296c1857] {\n  margin-bottom: 0.2rem !important;\n  font-size: 0.5rem !important;\n}\nul[data-v-296c1857] {\n  list-style-type: none;\n}", ""]);
 
 // exports
 
@@ -4921,96 +4882,59 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "col-md-6 col-lg-4 col-sm-12 justify-content-between py-4" },
+    { staticClass: "card col-md-6 col-lg-4 col-sm-6 mb-3" },
     [
-      _c("section", { staticClass: "my-rounded-1 p-3" }, [
-        _vm.apartment.images[0].link.startsWith("https://")
-          ? _c("div", { staticClass: "text-center mb-3 " }, [
-              _c("img", {
-                staticClass: "img-apartment my-rounded-1",
-                attrs: {
-                  src: _vm.apartment.images[0].link,
-                  alt: _vm.apartment.title,
-                },
-              }),
-            ])
-          : _c("div", { staticClass: "text-center mb-3 " }, [
-              _c("img", {
-                staticClass: "img-apartment my-rounded-1",
-                attrs: {
-                  src: "storage/" + _vm.apartment.images[0].link,
-                  alt: _vm.apartment.title,
-                },
-              }),
-            ]),
+      _c(
+        "router-link",
+        {
+          attrs: {
+            to: { name: "apartment", params: { id: _vm.apartment.id } },
+          },
+        },
+        [
+          _vm.apartment.images[0].link.startsWith("https://")
+            ? _c("div", { staticClass: "imgHover mb-1" }, [
+                _c("img", {
+                  staticClass: "img-fluid myImgContainer rounded",
+                  attrs: { src: _vm.apartment.images[0].link, alt: "" },
+                }),
+              ])
+            : _c("div", { staticClass: "mb-1" }, [
+                _c("img", {
+                  staticClass: "img-fluid myImgContainer rounded",
+                  attrs: {
+                    src: "storage/" + _vm.apartment.images[0].link,
+                    alt: "",
+                  },
+                }),
+              ]),
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", [
+        _c("p", [_vm._v(_vm._s(_vm.apartment.title))]),
         _vm._v(" "),
-        _c("h6", { staticClass: "py-2" }, [_vm._v("stelline")]),
+        _c("p", [_vm._v(_vm._s(_vm.apartment.user.name))]),
         _vm._v(" "),
-        _c("h5", { staticClass: "card-title" }, [
-          _vm._v("\n      " + _vm._s(_vm.apartment.title) + "\n    "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c("h6", { staticClass: "fw-bold" }, [
+          _vm._v(_vm._s(_vm.apartment.price)),
+          _c("span", { staticClass: "fw-light" }, [_vm._v("€/Notte")]),
         ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "card-text" }, [
-          _vm._v(
-            "\n      " + _vm._s(_vm.limitOverview(_vm.apartment)) + "\n    "
-          ),
-        ]),
-        _vm._v(" "),
-        _c("pre", [
-          _vm._v(
-            "Creato il: " +
-              _vm._s(_vm.getFormattedDate(_vm.apartment.created_at))
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "d-flex " }, [
-          _c("div", { staticClass: " avatar position-relative" }, [
-            _c("div", { staticClass: "position-absolute initials" }, [
-              _vm._v(
-                "\n          " +
-                  _vm._s(_vm.initials(_vm.apartment)) +
-                  "\n      "
-              ),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "px-3 align-self-center" }, [
-            _vm._v(
-              "\n          " + _vm._s(_vm.apartment.user.name) + "\n        "
-            ),
-          ]),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "px-3" }, [
-          _vm._v(
-            "\n          " + _vm._s(_vm.apartment.user.name) + "\n        "
-          ),
-        ]),
-        _vm._v(" "),
-        _c("h5", { staticClass: "px-3" }, [
-          _vm._v(_vm._s(_vm.apartment.price) + " €/Notte"),
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          [
-            _c(
-              "router-link",
-              {
-                attrs: {
-                  to: { name: "apartment", params: { id: _vm.apartment.id } },
-                },
-              },
-              [_vm._v("\n        Leggi questo post\n      ")]
-            ),
-          ],
-          1
-        ),
       ]),
-    ]
+    ],
+    1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", [_c("li")])
+  },
+]
 render._withStripped = true
 
 
