@@ -19,7 +19,7 @@ class ApartmentController extends Controller
 
         $apartments = Apartment::with(['images', 'services', 'user'])
         ->where('is_visible', 1)
-        ->paginate(8);
+        ->paginate(9);
 
         return response()->json($apartments);
     }
