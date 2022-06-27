@@ -30,7 +30,7 @@
     <div class="row p-5 justify-content-around">
         @forelse($apartments as $index=>$apartment)
             <div
-                class="col-8 col-lg-3 m-3 d-flex
+                class="col-12 col-lg-3 m-3 d-flex
                 flex-column
                 justify-content-between
                 my-bg-card-map
@@ -39,14 +39,14 @@
                 ">
                 {{-- carousel --}}
                 <div id="carouselExampleIndicators " class="carousel slide w-100   " data-bs-ride="true">
-                    {{--<div class="carousel-indicators">--}}
+                    <div class="carousel-indicators">
                         {{-- @for ($i = 0; $i < count($apartment->images); $i++) --}}
                         {{-- <button type="button" data-bs-target="#carouselExampleIndicators"
                             data-bs-slide-to="{{ $i }}" class="@if ($i < count($apartment->images)) active @endif"
                             aria-current="true" aria-label="{{ $i }}"></button> --}}
                         {{-- @endfor --}}
 
-                    {{--</div>--}}
+                    </div>
                     <div class="carousel-inner py-2">
                         @foreach ($apartment->images as $image)
                             <div class="carousel-item  {{ $loop->first ? 'active' : '' }}">
@@ -61,7 +61,7 @@
                             </div>
                         @endforeach
                     </div>
-                    {{--<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
@@ -70,7 +70,7 @@
                         data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
-                    </button>--}}
+                    </button>
                 </div>
                 {{-- Info --}}
                 <div>
@@ -81,9 +81,9 @@
                 <div>
                     <p class="card-text">Creato il: {{ $apartment->created_at }}</p>
                     @if ($apartment->is_visible)
-                        <p>Pubblicato</p>
+                        <p>Publicato</p>
                     @else
-                        <p>Non pubblicato</p>
+                        <p>Non publicato</p>
                     @endif
                 </div>
                 {{-- Bottom --}}
@@ -121,29 +121,45 @@
                     </div>
                 @endif
                 @if (!$apartment->sponsorships == 0)
-                    @foreach ($apartment->sponsorships as $sponsorship )
-                        <div class="my-bg-card-sponsor rounded-bottom">
-                            <span class="p-3 text-primary">Sponzorizato</span>
-                        </div>
+                    @foreach ($apartment->sponsorships as $sponsorship)
+                        @switch($sponsorship->name)
+                            @case('Bronze Sponsor')
+                                <div class="my-bg-card-sponsor rounded-bottom sponsor-text-bronze">
+                                    <span class="p-3 text-white">{{ $sponsorship->name }}</span>
+                                </div>
+                            @break
+
+                            @case('Silver Sponsor')
+                                <div class="my-bg-card-sponsor rounded-bottom sponsor-text-silver">
+                                    <span class="p-3 text-white">{{ $sponsorship->name }}</span>
+                                </div>
+                            @break
+
+                            @case('Gold Sponsor')
+                                <div class="my-bg-card-sponsor rounded-bottom sponsor-text-gold">
+                                    <span class="p-3 text-white">{{ $sponsorship->name }}</span>
+                                </div>
+                            @break
+                        @endswitch
                     @endforeach
                 @endif
             </div>
 
-        @empty
-            <div class="col-12 d-flex justify-content-center shadow rounded my-3 my-bg-card-info">
-                <h2 class="py-3 py-sm-4 my-page-text-color text-center">
-                    Non hai nessun appartamento
-                </h2>
-            </div>
-        @endforelse
-    </div>
+            @empty
+                <div class="col-12 d-flex justify-content-center shadow rounded my-3 my-bg-card-info">
+                    <h2 class="py-3 py-sm-4 my-page-text-color text-center">
+                        Non hai nessun appartamento
+                    </h2>
+                </div>
+            @endforelse
+        </div>
 
 
 
 
-    {{-- Start of cards --}}
-    {{-- <div class="row"> --}}
-    {{-- <div class="col-12 d-flex flex-wrap justify-content-center position-relative">
+        {{-- Start of cards --}}
+        {{-- <div class="row"> --}}
+        {{-- <div class="col-12 d-flex flex-wrap justify-content-center position-relative">
             @forelse ($apartments as $apartment)
                 <div class="card my-card-size mb-5 m-1">
 
@@ -220,7 +236,7 @@
                         </form>
                     </div>
                 </div> --}}
-    {{-- @if ($apartment->is_visible)
+        {{-- @if ($apartment->is_visible)
                                             <h4 class="card-text py-4 "><small class="text-muted font-weight-bold">Publicato</small>
                                             </h4>
                                         @else
@@ -236,7 +252,7 @@
                                         &#10061; Visita
                                     </a>
                                     {{-- delete form --}}
-    {{-- <form action="{{ route('user.apartments.destroy', $apartment) }}" method="POST"
+        {{-- <form action="{{ route('user.apartments.destroy', $apartment) }}" method="POST"
                                         class="apartment-destroyer" apartment-name="{{ ucfirst($apartment->title) }}"
                                         onclick="return confirm('Sei sicuro di voler eliminare {{ $apartment->title }}?')">
                                         @csrf
@@ -249,14 +265,14 @@
                                     </div>
                                 </div>
                             </section> --}}
-    {{-- @empty
+        {{-- @empty
                 <div class="col-12 d-flex justify-content-center shadow rounded my-3 my-bg-card-info">
                     <h2 class="py-3 py-sm-4 my-page-text-color text-center">
                         Non hai nessun appartamento
                     </h2>
                 </div>
             @endforelse --}}
-    {{-- @if (!$apartment->is_visible)
+        {{-- @if (!$apartment->is_visible)
                 <div class="position-absolute w-100 h-100 my-ocapity-card">
 
                 </div>
@@ -267,12 +283,12 @@
     </div>
 
             @endif --}}
-    {{-- </div>
+        {{-- </div>
     </div> --}}
 
 
-@endsection
-{{-- @section('js-files')
+    @endsection
+    {{-- @section('js-files')
     <script>
         // new Splide( '.splide' ).mount();
         let elms = document.getElementsByClassName( 'splide' );
@@ -281,8 +297,8 @@
             }
     </script>
 @endsection --}}
-{{-- is_visible --}}
-{{-- @if ($apartment->is_visible == true)
+    {{-- is_visible --}}
+    {{-- @if ($apartment->is_visible == true)
                             <div class="my-position bg-warning my-rounded-1 ">
                                 <h4 class="m-0 my-auto"></h4>
                             </div>
