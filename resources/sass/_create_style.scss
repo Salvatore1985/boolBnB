@@ -100,15 +100,22 @@ img.logo {
 
 
 .my-bg-card-info {
-    background-color: $logo-light-blue;
-    // background-image: linear-gradient(to top, #1D7EFF, #1D7EFF, #1D7EFF, #a7c0e1, #a7c0e1);
     background: linear-gradient(to top right, white, white, white, white, white, white, white, white, white, #33ccff)
 }
 
 .my-bg-card-visibily {
-    background-color: $logo-light-blue;
-    // background-image: linear-gradient(to top, #1D7EFF, #1D7EFF, #1D7EFF, #a7c0e1, #a7c0e1);
-    background: linear-gradient(to right, white, white, white, white, white, white, white, white, white, #33ccff)
+    content: "";
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.my-bottom-z-index {
+    z-index: 1;
 }
 
 .my-bg-card-map {
@@ -198,9 +205,10 @@ img.logo {
 .my-col-h-index-apartment {
     height: 600px;
 }
+
 //main
 .my-min-height {
-    min-height:80vh;
+    min-height: 80vh;
 }
 
 // footer
@@ -209,21 +217,22 @@ img.logo {
 }
 
 
-.tomtomlist{
+.tomtomlist {
     position: absolute;
     top: 100%;
     left: 0;
     z-index: 4;
     height: 20rem;
     overflow: scroll;
-    -ms-overflow-style: none;  /* IE and Edge */
+    -ms-overflow-style: none;
+    /* IE and Edge */
     scrollbar-width: none;
 }
 
-.element-list{
+.element-list {
     cursor: pointer;
 
-    &:hover{
+    &:hover {
         background-color: $blue;
     }
 }
