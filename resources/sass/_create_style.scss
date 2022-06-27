@@ -316,5 +316,7 @@ img.logo {
     display: flex;
     align-items: center;
     overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 

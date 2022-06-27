@@ -41,6 +41,8 @@
                                 <h5 class="card-title">
                                     Da: {{$message->email}}
                                 </h5>
+                                <p><strong class="pb-2">Appartamento:</strong></p>
+                                <p>{{$apartment->title}}</p>
                                 <div >
                                     <p class="card-text my-scroll">
                                         <strong>messaggio:</strong>
