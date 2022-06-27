@@ -1,6 +1,7 @@
 window.axios = require('axios');
 // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-//
+Vue.prototype.$userEmail = document.querySelector("meta[name='user-email']").getAttribute('content');
+Vue.prototype.$userName = document.querySelector("meta[name='user-name']").getAttribute('content');
 window.Vue = require('vue');
 import Vue from 'vue';
 import VueRouter from 'vue-router'
