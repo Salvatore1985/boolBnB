@@ -157,4 +157,7 @@ class SponsorshipsController extends Controller
         $sponsorships = Sponsorship::all();
         return view('user.sponsorships.purchase', compact('sponsorships', 'apartment'));
     }
+    public function paymentSuccess(){
+        return view('user.sponsorships.paymentSuccess');
+    }
 }

@@ -63,7 +63,7 @@ class PaymentsController extends Controller
                 'start_date' => $start_date,
                 'end_date' => $expiration,
             ]);
-            return redirect()->route('user.apartments.show', $apartment->id)->with('alert-message', 'Sponsorizzazione pagata con successo')->with('alert-type', 'success');
+            return redirect()->route('user.sponsorships.paymentSuccess')->with('alert-message', 'Sponsorizzazione pagata con successo')->with('alert-type', 'success');
         } else {
             return redirect()->route('user.apartments.show', $apartment->id)->with('alert-message', 'Sponsorizzazione fallita')->with('alert-type', 'danger');
         }
