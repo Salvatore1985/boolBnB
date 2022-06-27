@@ -27,7 +27,7 @@
                 <ul class="d-flex justify-content-between align-items-center">
                     <li class="text-decoration-none list-style-type-none">
                         <a href="{{ route('user.apartments.index') }} "class="btn btn-success ">
-                            &#8630;
+                            I tuoi appartamenti
                         </a>
                     </li>
                     <li class="text-decoration-none list-style-type-none">
