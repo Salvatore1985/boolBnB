@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Apartment;
+use App\Models\Sponsorship;
 use App\Models\Service;
 use App\Models\Image;
 use Carbon\Carbon;
@@ -29,13 +30,15 @@ class ApartmentsController extends Controller
 
         if ($user_id == 1) {
             $apartments = Apartment::paginate(10);
+            $sponsorships = Sponsorship::all();
         } else {
             $apartments = Apartment::where('user_id', $user_id)->paginate(10);
+            $sponsorships = Sponsorship::all();
         }
 
         // return view('admin.apartments.index', compact('apartments'));
         // $apartments = Apartment::where('user_id',  Auth::user()->id)->orderBy('id', 'desc')->paginate(10);
-        return view('user.apartments.index', compact('apartments'));
+        return view('user.apartments.index', compact('apartments', 'sponsorships'));
     }
 
     public function dashboard()

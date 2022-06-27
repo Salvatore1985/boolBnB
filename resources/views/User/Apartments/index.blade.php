@@ -120,14 +120,13 @@
 
                     </div>
                 @endif
-                @if ($sponsorships->apartment_id === $apartment->id)
-                    <div class="my-bg-card-sponsor ">
-                        <span>Sponzorizato</span>
-                    </div>
+                @if (!$apartment->sponsorships == 0)
+                    @foreach ($apartment->sponsorships as $sponsorship )
+                        <div class="my-bg-card-sponsor rounded-bottom">
+                            <span class="p-3 text-primary">Sponzorizato</span>
+                        </div>
+                    @endforeach
                 @endif
-                <div class="my-bg-card-sponsor rounded-bottom">
-                    <span class="p-3 text-primary">Sponzorizato</span>
-                </div>
             </div>
 
         @empty
