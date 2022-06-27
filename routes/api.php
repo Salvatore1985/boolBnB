@@ -31,5 +31,6 @@ Route::namespace('api')->group(function(){
     Route::get('/messages','MessaggesController@store');
     Route::resource('/messages', 'MessagesController');
     Route::get('/user','UsersController@index');
+    Route::get('/sponsored','ApartmentController@indexSponsored');
     Route::resource('apartments','ApartmentController');
 });

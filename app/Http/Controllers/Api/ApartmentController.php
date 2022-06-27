@@ -8,6 +8,7 @@ use App\Models\Apartment;
 use App\Models\Image;
 use Illuminate\Support\Facades\Http;
 use App\Models\Service;
+use Illuminate\Support\Facades\DB;
 //use App\Models\Sponsorship;
 
 
@@ -80,6 +81,14 @@ class ApartmentController extends Controller
         {
             return response()->json(['Result' => 'No Data not found'], 404);
         }
+    }
+
+    public function indexSponsored(){
+        $apartments = DB::table('apartments')
+                        ->join('apartment_sponsorship', 'apartments.id', '=', 'apartment_sponsorship.apartment_id')
+                        ->get();
+
+        return Response()->json([$apartments]);
     }
 
 }
