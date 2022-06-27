@@ -217,6 +217,24 @@ class ApartmentSeeder extends Seeder
                                 Rilassatevi sul balcone a colazione o con un aperitivo a fine giornata.",
                 "title" => "MIRALAGO B&B A BELLAGIO camera doppia"
             ],
+            [
+                'address'=>'Via Larga, 13, 20122 Milano MI, Italia',
+                'lat' =>'45.4615924',
+                'long'=>'9.1926545',
+                "description"=>"Concediti un po' di lusso affacciato sul pittoresco borgo di Sala Comacina,
+                                situato sulla premier sponda centro-occidentale del Lago di Como.
+                                Rilassatevi sul balcone a colazione o con un aperitivo a fine giornata.",
+                "title" => "B&B Camera a Milano"
+            ],
+            [
+                'address'=>'Via Giuseppe Mazzini, 20, 20123 Milano MI, Italia',
+                'lat' =>'45.4617306',
+                'long'=>'9.1881138',
+                "description"=>"Concediti un po' di lusso affacciato sul pittoresco borgo di Sala Comacina,
+                                situato sulla premier sponda centro-occidentale del Lago di Como.
+                                Rilassatevi sul balcone a colazione o con un aperitivo a fine giornata.",
+                "title" => "Hotel Mazzini"
+            ],
 
         ];
 
