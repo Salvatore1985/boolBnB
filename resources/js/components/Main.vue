@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <router-view> </router-view>
-  </div>
+    <div>
+        <router-view> </router-view>
+    </div>
 </template>
 
 <script>
 //import Apartments from "../Pages/Apartments.vue";
 export default {
-  name: "MainIndex",
+    name: "MainIndex",
 };
 </script>
 

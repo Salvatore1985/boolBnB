@@ -30,9 +30,15 @@
     <div class="row p-5 justify-content-around">
         @forelse($apartments as $index=>$apartment)
             <div
-                class="col-8 d-flex flex-column justify-content-between col-lg-3 m-3 my-bg-card-map my-col-h-index-apartment @if ($apartment->is_visible) my-bg-card-visibily @endif">
+                class="col-8 col-lg-3 m-3 d-flex
+                flex-column
+                justify-content-between
+                my-bg-card-map
+                my-col-h-index-apartment
+                position-relative
+                ">
                 {{-- carousel --}}
-                <div id="carouselExampleIndicators " class="carousel slide w-100  position-relative  " data-bs-ride="true">
+                <div id="carouselExampleIndicators " class="carousel slide w-100   " data-bs-ride="true">
                     <div class="carousel-indicators">
                         {{-- @for ($i = 0; $i < count($apartment->images); $i++) --}}
                         {{-- <button type="button" data-bs-target="#carouselExampleIndicators"
@@ -73,7 +79,6 @@
                     <hr>
                 </div>
                 <div>
-
                     <p class="card-text">Creato il: {{ $apartment->created_at }}</p>
                     @if ($apartment->is_visible)
                         <p>Publicato</p>
@@ -82,7 +87,7 @@
                     @endif
                 </div>
                 {{-- Bottom --}}
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-end -reset my-bottom-z-index">
 
                     <ul class="d-flex justify-content-between align-items-center">
 
@@ -110,6 +115,18 @@
                         </li>
                     </ul>
                 </div>
+                @if (!$apartment->is_visible)
+                    <div class="my-bg-card-visibily ">
+
+                    </div>
+                @endif
+                @if (!$apartment->sponsorships == 0)
+                    @foreach ($apartment->sponsorships as $sponsorship )
+                        <div class="my-bg-card-sponsor rounded-bottom">
+                            <span class="p-3 text-primary">Sponzorizato</span>
+                        </div>
+                    @endforeach
+                @endif
             </div>
 
         @empty
@@ -246,7 +263,7 @@
 
             </div>
         </div>
-        
+
     </div>
 
             @endif --}}
