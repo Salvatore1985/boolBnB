@@ -2571,11 +2571,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderIndex",
   props: ["apartment"],
@@ -5198,16 +5193,6 @@ var render = function () {
                     alt: "",
                   },
                 }),
-                _vm._v(" "),
-                _c(
-                  "ul",
-                  _vm._l(_vm.apartment.services, function (service, index) {
-                    return _c("li", { key: index }, [
-                      _c("i", { class: service.link }),
-                    ])
-                  }),
-                  0
-                ),
               ]),
         ]
       ),
@@ -5238,14 +5223,6 @@ var render = function () {
           _vm._v(_vm._s(_vm.apartment.price)),
           _c("span", { staticClass: "fw-light" }, [_vm._v("€/Notte")]),
         ]),
-        _vm._v(" "),
-        _c(
-          "ul",
-          _vm._l(_vm.apartment.services, function (service, index) {
-            return _c("li", { key: index }, [_vm._v(_vm._s(service.name))])
-          }),
-          0
-        ),
       ]),
     ],
     1
@@ -21776,7 +21753,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Classe55\boolBnB\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\final-project\boolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

@@ -97,7 +97,7 @@
                                 <label for="date_of_birth"
                                     class="col-md-4 col-form-label text-md-right">{{ __('data di nascita *') }}</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 mb-4">
                                     <input id="date_of_birth" type="date"
                                         class="form-control @error('date_of_birth') is-invalid @enderror"
                                         name="date_of_birth" value="{{ old('date_of_birth') }}"
@@ -111,8 +111,8 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
+                            <div class="form-group row mb-0 justify-content-center">
+                                <div class="col-2">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Registrati') }}
                                     </button>
