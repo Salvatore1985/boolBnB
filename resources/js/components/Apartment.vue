@@ -12,11 +12,6 @@
 </div>
 <div class="imgHover mb-1"  v-else>
   <img :src="`storage/${apartment.images[0].link}`" class="img-fluid myImgContainer rounded" alt="" >
-  <ul>
-        <li v-for="(service, index) in apartment.services" :key="index">
-          <i :class="service.link"></i>
-        </li>
-      </ul>
 </div>
     </router-link>
     <!-- corpo  -->
