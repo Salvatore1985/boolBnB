@@ -39,14 +39,14 @@
                 ">
                 {{-- carousel --}}
                 <div id="carouselExampleIndicators " class="carousel slide w-100   " data-bs-ride="true">
-                    <div class="carousel-indicators">
+                    {{--<div class="carousel-indicators">--}}
                         {{-- @for ($i = 0; $i < count($apartment->images); $i++) --}}
                         {{-- <button type="button" data-bs-target="#carouselExampleIndicators"
                             data-bs-slide-to="{{ $i }}" class="@if ($i < count($apartment->images)) active @endif"
                             aria-current="true" aria-label="{{ $i }}"></button> --}}
                         {{-- @endfor --}}
 
-                    </div>
+                    {{--</div>--}}
                     <div class="carousel-inner py-2">
                         @foreach ($apartment->images as $image)
                             <div class="carousel-item  {{ $loop->first ? 'active' : '' }}">
@@ -61,7 +61,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    {{--<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
@@ -70,7 +70,7 @@
                         data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
-                    </button>
+                    </button>--}}
                 </div>
                 {{-- Info --}}
                 <div>
@@ -81,9 +81,9 @@
                 <div>
                     <p class="card-text">Creato il: {{ $apartment->created_at }}</p>
                     @if ($apartment->is_visible)
-                        <p>Publicato</p>
+                        <p>Pubblicato</p>
                     @else
-                        <p>Non publicato</p>
+                        <p>Non pubblicato</p>
                     @endif
                 </div>
                 {{-- Bottom --}}
