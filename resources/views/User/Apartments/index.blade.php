@@ -37,19 +37,8 @@
                 my-col-h-index-apartment
                 position-relative
                 ">
-                {{-- carousel --}}
-                <div id="carouselExampleIndicators " class="carousel slide w-100   " data-bs-ride="true">
-                    <div class="carousel-indicators">
-                        {{-- @for ($i = 0; $i < count($apartment->images); $i++) --}}
-                        {{-- <button type="button" data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide-to="{{ $i }}" class="@if ($i < count($apartment->images)) active @endif"
-                            aria-current="true" aria-label="{{ $i }}"></button> --}}
-                        {{-- @endfor --}}
-
-                    </div>
-                    <div class="carousel-inner py-2">
+                {{-- Apartment images --}}
                         @foreach ($apartment->images as $image)
-                            <div class="carousel-item  {{ $loop->first ? 'active' : '' }}">
                                 @if (str_starts_with($image->link, 'https://') || str_starts_with($image->link, 'http://'))
                                     <img class="d-block w-100 img-height my-rounded-1" src="{{ $image->link }}"
                                         alt="{{ $apartment->title }}">
@@ -58,20 +47,7 @@
                                         src="{{ asset('/storage') . '/' . $image->link }}"
                                         alt="{{ $apartment->title }}">
                                 @endif
-                            </div>
                         @endforeach
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
                 {{-- Info --}}
                 <div>
                     <h3 class="card-title  text-muted ">{{ $apartment->title }}</h3>
