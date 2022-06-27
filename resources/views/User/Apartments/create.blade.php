@@ -43,11 +43,9 @@
                             </div>
                         @enderror
                         <ul class="list-group d-none" id="results">
-                            <li class="list-group-item active" id="1-result"></li>
-                            <li class="list-group-item active" id="2-result"></li>
-                            <li class="list-group-item active" id="3-result"></li>
-                            <li class="list-group-item active" id="4-result"></li>
-                            <li class="list-group-item active" id="5-result"></li>
+                            @for ($i = 1; $i < 6; $i++ )
+                                <li class="list-group-item element-list" id="{{$i}}-result"></li>
+                            @endfor
                         </ul>
                     </div>
                 </div>
