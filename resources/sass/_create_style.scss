@@ -152,6 +152,11 @@ img.logo {
     box-shadow: 0 4px 8px 0 #BAEEFF, 0 6px 20px 0 #BAEEFF;
 }
 
+.hover-show:hover {
+    box-shadow: 0 4px 8px 0 #BAEEFF, 0 6px 20px 0 #BAEEFF;
+
+}
+
 .my-list-card-alert {
     list-style-type: none;
 }
@@ -264,4 +269,13 @@ img.logo {
     &:hover {
         background-color: $blue;
     }
+}
+
+.color-gray {
+    color: #9b9797;
+}
+
+.color-green {
+    color: #039b9b;
+
 }
