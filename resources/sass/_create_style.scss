@@ -263,6 +263,12 @@ img.logo {
     scrollbar-width: none;
 }
 
+.my-desc, .my-overflow{
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 .element-list {
     cursor: pointer;
 

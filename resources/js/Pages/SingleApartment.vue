@@ -3,7 +3,7 @@
     <div class="row my-4 justify-content-between">
       <div class="col-lg-6 my-rounded-1 my-bg-card-info my-bg-card-map">
         <div class="row">
-          <div class="col-12">
+          <div class="col-12 apartment-text">
             <div class="d-flex">
               <h1 class="py-4 color-gray">
                 {{ apartment.title }}
@@ -39,7 +39,7 @@
             <h2>Info</h2>
             <h3 class="py-4">{{ apartment.price }}€ /notte</h3>
           </div>
-          <div class="overflow-auto description-apartment color-green">
+          <div class="overflow-auto description-apartment color-green my-desc">
             <p>{{ apartment.description }}</p>
           </div>
           <div class="d-flex align-items-center mt-3 color-gray">

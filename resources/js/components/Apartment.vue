@@ -4,7 +4,7 @@
     <router-link :to="{ name: 'apartment', params: { id: apartment.id } }">
     <div class="imgHover mb-1"  v-if="apartment.images[0].link.startsWith('https://')">
     <img :src="apartment.images[0].link" class="img-fluid myImgContainer rounded" alt="" >
-    <ul class="d-flex flex-column justify-content-center">
+    <ul class="d-flex flex-column justify-content-center my-overflow">
         <li v-for="(service, index) in apartment.services" :key="index">
             <span class="bg-icon">
                 <i :class="service.link"></i>
@@ -99,11 +99,9 @@ ul{
   left: 0%;
   padding-left: 0;
   width: 100%;
+  height: 6.5rem;
 }
 li{
-//  transition: all 300ms ease-in-out;
-//  align-self: end;
-//  color: rgb(5, 55, 255);
     display: flex;
     align-items: center;
     justify-content: end;
