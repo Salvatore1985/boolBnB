@@ -199,31 +199,15 @@ export default {
         .then((results) => {
           this.apartment = results.data.results;
           console.warn(this.apartment);
-          // this.initializeMap(this.apartment.lat,this.apartment.long);
           this.images = results.data.results.images;
           this.services = results.data.results.services;
           this.lon = this.apartment.long;
           this.lat = this.apartment.lat;
-          // this.initializeMap(this.apartment.lat, this.apartment.long);
-          // console.log("images: ", this.images);
-          // console.log("service: ", this.services);
         })
         .catch((error) => {
           console.warn(error);
         });
     },
-    // initializeMap(lat,lon) {
-    //     const map = tt.map({
-    //         key: "tlI6fGKvUCfBh91AG1PKyRZwhaxoGIWp",
-    //         container: this.$refs.mapRef,
-    //         center: [lon, lat],
-    //         zoom: 9,
-    //     });
-    //     new tt.Marker()
-    //     .setLngLat([lon, lat])
-    //     .addTo(map);
-    //     this.map = Object.freeze(map);
-    // },
     sendEmail() {
       axios
         .post("/api/messages", {
@@ -240,22 +224,12 @@ export default {
             (this.isSent = true), (this.emailName = ""), (this.email = "");
             this.emailContent = "";
           }
-          // })
-          // if(emailName != '' && email != '' && emailContent != '') {
-          //     axios.post( `${this.baseURI}/messages/?name=${this.emailName}&email=${this.email}&email_content=${this.emailContent}&apartment_id=${this.apartment.id}`).then(response => {
-          //         if(!response.data.success) {
-          //         this.errors = response.data.errors;
-          //     } else {
-          //         this.isSent= true,
-          //         this.name = "",
-          //         this.surname = "",
-          //         this.email = '';
-          //         this.message_content = '';
-          //     }
         });
     },
   },
   mounted() {
+    this.email = this.$userEmail;
+    this.emailName = this.$userName;
     console.warn(this.$route.params.id);
     this.getSingleApartment(this.$route.params.id);
   },
