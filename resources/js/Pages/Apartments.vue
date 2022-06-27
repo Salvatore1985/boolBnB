@@ -110,7 +110,7 @@
         </nav>
         <!--group input service -->
         <a @click="getBtbActive()" class="btn text-info">
-            <h6 v-if="btnActive == false">filtri avanzata </h6>
+            <h6 v-if="btnActive == false">Filtri Avanzati</h6>
             <p v-else>Chiudi filtri avanzata</p>
         </a>
         <div class="row" :class="btnActive == false ? 'd-none' : 'dblock'">

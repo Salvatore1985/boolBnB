@@ -65,6 +65,7 @@ class RegisterController extends Controller
             'email.unique'=>"Email e già registrata",
             'password.confirmed'=>"La tua password non è esatta",
             'password.required'=>"Inserisci la tua Password",
+            'password.min'=>"La password deve essere lungo minimo 8 caratteri",
             'password_confirmation.confirmed'=>"La password non è uguale",
             'surname.required'=>"Inserisci il tuo Cognome",
             'surname.unique'=>"questo username e già stato preso",
