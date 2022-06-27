@@ -2570,6 +2570,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderIndex",
   props: ["apartment"],
@@ -2943,7 +2949,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".myImgContainer[data-v-296c1857] {\n  height: 200px;\n  width: 100%;\n}\n.card[data-v-296c1857] {\n  border: none !important;\n  background-color: rgb(248, 250, 252);\n}\n.imgHover[data-v-296c1857] {\n  border-radius: 10px;\n  transition: all 0.5s ease;\n  filter: brightness(100%);\n}\n.imgHover[data-v-296c1857]:hover {\n  box-shadow: 0 0 12px rgba(31, 220, 249, 0.869);\n  filter: brightness(105%);\n}\np[data-v-296c1857], span[data-v-296c1857], h6[data-v-296c1857] {\n  margin-bottom: 0.2rem !important;\n  font-size: 1rem !important;\n}\nul[data-v-296c1857] {\n  list-style-type: none;\n}\n.userImg[data-v-296c1857] {\n  background-size: 300% 300%;\n  background-image: linear-gradient(-45deg, rgb(59, 173, 227) 0%, rgb(87, 111, 230) 25%, rgb(152, 68, 183) 51%, rgb(255, 53, 127) 100%);\n  -webkit-animation: AnimateBG-data-v-296c1857 5s ease infinite;\n          animation: AnimateBG-data-v-296c1857 5s ease infinite;\n  border-radius: 50%;\n  width: 40px;\n  height: 40px;\n  padding-top: 0.4rem;\n}\n@-webkit-keyframes AnimateBG-data-v-296c1857 {\n0% {\n    background-position: 0% 50%;\n}\n50% {\n    background-position: 100% 50%;\n}\n100% {\n    background-position: 0% 50%;\n}\n}\n@keyframes AnimateBG-data-v-296c1857 {\n0% {\n    background-position: 0% 50%;\n}\n50% {\n    background-position: 100% 50%;\n}\n100% {\n    background-position: 0% 50%;\n}\n}", ""]);
+exports.push([module.i, ".myImgContainer[data-v-296c1857] {\n  height: 200px;\n  width: 100%;\n}\n.card[data-v-296c1857] {\n  border: none !important;\n  background-color: rgb(248, 250, 252);\n}\n.imgHover[data-v-296c1857] {\n  border-radius: 10px;\n  transition: all 0.5s ease;\n  filter: brightness(100%);\n  position: relative;\n}\n.imgHover[data-v-296c1857]:hover {\n  box-shadow: 0 0 12px rgba(31, 220, 249, 0.869);\n  filter: brightness(105%);\n}\np[data-v-296c1857], span[data-v-296c1857], h6[data-v-296c1857] {\n  margin-bottom: 0.2rem;\n  font-size: 1rem;\n}\nul[data-v-296c1857] {\n  list-style-type: none;\n  position: absolute;\n  top: 30%;\n  left: 0%;\n  padding-left: 0;\n  width: 100%;\n}\nli[data-v-296c1857] {\n  transition: transform 250ms;\n  align-self: end;\n  color: rgb(5, 55, 255);\n}\nli[data-v-296c1857]:hover {\n  transform: translateY(-10px);\n}\n.userImg[data-v-296c1857] {\n  background-size: 300% 300%;\n  background-image: linear-gradient(-45deg, rgb(59, 173, 227) 0%, rgb(87, 111, 230) 25%, rgb(152, 68, 183) 51%, rgb(255, 53, 127) 100%);\n  -webkit-animation: AnimateBG-data-v-296c1857 5s ease infinite;\n          animation: AnimateBG-data-v-296c1857 5s ease infinite;\n  border-radius: 50%;\n  width: 40px;\n  height: 40px;\n  padding-top: 0.4rem;\n}\n@-webkit-keyframes AnimateBG-data-v-296c1857 {\n0% {\n    background-position: 0% 50%;\n}\n50% {\n    background-position: 100% 50%;\n}\n100% {\n    background-position: 0% 50%;\n}\n}\n@keyframes AnimateBG-data-v-296c1857 {\n0% {\n    background-position: 0% 50%;\n}\n50% {\n    background-position: 100% 50%;\n}\n100% {\n    background-position: 0% 50%;\n}\n}", ""]);
 
 // exports
 
@@ -5172,6 +5178,17 @@ var render = function () {
                   staticClass: "img-fluid myImgContainer rounded",
                   attrs: { src: _vm.apartment.images[0].link, alt: "" },
                 }),
+                _vm._v(" "),
+                _c(
+                  "ul",
+                  { staticClass: "d-flex flex-column justify-content-center" },
+                  _vm._l(_vm.apartment.services, function (service, index) {
+                    return _c("li", { key: index, staticClass: "m-1" }, [
+                      _c("i", { class: service.link }),
+                    ])
+                  }),
+                  0
+                ),
               ])
             : _c("div", { staticClass: "imgHover mb-1" }, [
                 _c("img", {
@@ -5181,6 +5198,16 @@ var render = function () {
                     alt: "",
                   },
                 }),
+                _vm._v(" "),
+                _c(
+                  "ul",
+                  _vm._l(_vm.apartment.services, function (service, index) {
+                    return _c("li", { key: index }, [
+                      _c("i", { class: service.link }),
+                    ])
+                  }),
+                  0
+                ),
               ]),
         ]
       ),
@@ -21749,7 +21776,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\final-project\boolBnB\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Classe55\boolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

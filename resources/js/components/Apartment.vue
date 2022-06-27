@@ -1,17 +1,28 @@
 <template>
 <!-- immagini -->
 <div class="card col-md-6 col-lg-4 col-sm-6 mb-3" >
-    <router-link :to="{ name: 'apartment', params: { id: apartment.id } }">
-    <div class="imgHover mb-1"  v-if="apartment.images[0].link.startsWith('https://')">
-        <img :src="apartment.images[0].link" class="img-fluid myImgContainer rounded" alt="" >
-    </div>
-    <div class="imgHover mb-1"  v-else>
-        <img :src="`storage/${apartment.images[0].link}`" class="img-fluid myImgContainer rounded" alt="" >
-    </div>
+  <router-link :to="{ name: 'apartment', params: { id: apartment.id } }">
+  <div class="imgHover mb-1"  v-if="apartment.images[0].link.startsWith('https://')">
+  <img :src="apartment.images[0].link" class="img-fluid myImgContainer rounded" alt="" >
+  <ul class="d-flex flex-column justify-content-center">
+        <li class="m-1" v-for="(service, index) in apartment.services" :key="index">
+          <i :class="service.link"></i>
+        </li>
+      </ul>
+</div>
+<div class="imgHover mb-1"  v-else>
+  <img :src="`storage/${apartment.images[0].link}`" class="img-fluid myImgContainer rounded" alt="" >
+  <ul>
+        <li v-for="(service, index) in apartment.services" :key="index">
+          <i :class="service.link"></i>
+        </li>
+      </ul>
+</div>
     </router-link>
     <!-- corpo  -->
     <div>
-        <p >{{ apartment.title }}</p>
+         <p >{{ apartment.title }}</p>
+
         <p class="d-flex justify-content-between align-items-center">{{ apartment.user.name }}
         <span class="userImg d-flex justify-content-center text-white"><span>{{initials(apartment)}}
         </span></span></p>
@@ -22,7 +33,6 @@
     </div>
 </div>
 </template>
-
 <script>
 export default {
     name: "HeaderIndex",
@@ -71,21 +81,37 @@ export default {
     background-color: rgb(248, 250, 252) ;
 }
 .imgHover{
-    border-radius: 10px;
-    transition: all .5s ease;
-    filter: brightness(100%);
 
+  border-radius: 10px;
+  transition: all .5s ease;
+  filter: brightness(100%);
+  position: relative;
 }
 .imgHover:hover {
     box-shadow: 0 0 12px rgba(31, 220, 249, 0.869);
     filter: brightness(105%);
 }
 p,span,h6{
-    margin-bottom: .2rem !important;
-    font-size: 1rem !important;
+
+  margin-bottom: .2rem ;
+  font-size: 1rem ;
 }
 ul{
-    list-style-type: none;
+  list-style-type: none;
+  position: absolute;
+  top: 30%;
+  left: 0%;
+  padding-left: 0;
+  width: 100%;
+}
+li{
+  transition: transform 250ms;
+  align-self: end;
+  color: rgb(5, 55, 255);
+}
+li:hover{
+  transform: translateY(-10px);
+
 }
 .userImg{
     background-size: 300% 300%;
