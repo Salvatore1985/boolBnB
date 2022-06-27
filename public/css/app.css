@@ -116,7 +116,21 @@ img.logo {
   /* width: 50px;
   height: 50px; */
   position: absolute;
-  background-color: yellow;
+}
+
+.sponsor-text-gold {
+  background-color: goldenrod;
+  color: black;
+}
+
+.sponsor-text-silver {
+  background-color: grey;
+  color: black;
+}
+
+.sponsor-text-bronze {
+  background-color: #CD7F32;
+  color: white;
 }
 
 .my-bottom-z-index {
@@ -229,6 +243,25 @@ img.logo {
 
 .element-list:hover {
   background-color: #3490dc;
+}
+
+.bg-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3490dc;
+  margin-right: 1rem;
+}
+
+.bg-icon:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.bg-icon i {
+  color: white;
 }
 
 /*!
