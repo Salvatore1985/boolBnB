@@ -86,7 +86,8 @@ class ApartmentController extends Controller
     public function indexSponsored(){
         $apartments = DB::table('apartments')
                         ->join('apartment_sponsorship', 'apartments.id', '=', 'apartment_sponsorship.apartment_id')
-                        ->get();
+                        //->with(['images', 'services', 'user'])
+                        ->get('apartments.id');
 
         return Response()->json([$apartments]);
     }

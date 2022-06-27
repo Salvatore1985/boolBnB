@@ -179,11 +179,20 @@
         </section>
         <section class="container" v-else>
             <div class="row">
-            <Apartment
-                v-for="apartment in apartments"
-                :key="apartment.index"
-                :apartment="apartment"
-            />
+                <h4>Apartamenti Sponsorizzati</h4>
+                <div class="col-12 apart-sponso">
+                    <ApartmentSponsored
+                        v-for="apartment in sponsoredApartments"
+                        :key="apartment.index"
+                        :apartment="apartment"
+                    />
+                </div>
+                <h4>Tutti gli Apartamenti</h4>
+                <Apartment
+                    v-for="apartment in apartments"
+                    :key="apartment.index"
+                    :apartment="apartment"
+                />
             </div>
         </section>
     </div>
@@ -206,6 +215,7 @@
 <script>
 import Loader from "../components/Loader.vue";
 import Apartment from "../components/Apartment.vue";
+import ApartmentSponsored from "../components/ApartmentSponsored.vue";
 import ApartmentSearch from "../components/ApartmentSearch.vue";
 import Pagination from "../components/Pagination.vue";
 
@@ -216,6 +226,7 @@ export default {
         Apartment,
         ApartmentSearch,
         Pagination,
+        ApartmentSponsored
     },
     data() {
         return {
@@ -237,6 +248,7 @@ export default {
         checkedServices: [],
         btnActive: false,
         isFilled: false,
+        sponsoredApartments: []
         };
     },
     watch: {
@@ -330,6 +342,22 @@ export default {
         changePage(page) {
             this.getAllApartments(page);
         },
+        getSponsoredApartments() {
+            this.isLoading = true;
+            axios
+            .get(`${this.baseUri}/api/sponsored`)
+            .then((results) => {
+                console.log(results.data[0]);
+                this.sponsoredApartments = results.data[0];
+                console.warn(this.sponsoredApartments)
+            })
+            .catch((error) => {
+                console.warn(error);
+            })
+            .then(() => {
+                this.isLoading = false;
+            });
+        },
         filteredApartments() {
         const filteredApartments = [];
         if (this.checkedServices.length) {
@@ -362,11 +390,10 @@ export default {
         },
     },
     created(){
-        //this.getAllApartments();
         setTimeout(this.getAllApartments(), 3000);
     },
     mounted() {
-        //this.getAllApartments();
+        this.getSponsoredApartments();
         this.getServices();
     },
 };
