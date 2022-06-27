@@ -88,7 +88,7 @@
                     @endif
                 </div>
                 {{-- Bottom --}}
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-end -reset my-bottom-z-index">
 
                     <ul class="d-flex justify-content-between align-items-center">
 
