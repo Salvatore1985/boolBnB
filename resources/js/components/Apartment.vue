@@ -1,14 +1,14 @@
 <template>
 <!-- immagini -->
 <div class="card col-md-6 col-lg-4 col-sm-6 mb-3" >
-  <router-link :to="{ name: 'apartment', params: { id: apartment.id } }">
-  <div class="imgHover mb-1"  v-if="apartment.images[0].link.startsWith('https://')">
-  <img :src="apartment.images[0].link" class="img-fluid myImgContainer rounded" alt="" >
-  <ul class="d-flex flex-column justify-content-center">
-        <li class="m-1" v-for="(service, index) in apartment.services" :key="index">
-          <i :class="service.link"></i>
+    <router-link :to="{ name: 'apartment', params: { id: apartment.id } }">
+    <div class="imgHover mb-1"  v-if="apartment.images[0].link.startsWith('https://')">
+    <img :src="apartment.images[0].link" class="img-fluid myImgContainer rounded" alt="" >
+    <ul class="d-flex flex-column justify-content-center">
+        <li class="bg-icon" v-for="(service, index) in apartment.services" :key="index">
+            <i :class="service.link"></i>
         </li>
-      </ul>
+    </ul>
 </div>
 <div class="imgHover mb-1"  v-else>
   <img :src="`storage/${apartment.images[0].link}`" class="img-fluid myImgContainer rounded" alt="" >
@@ -96,12 +96,12 @@ ul{
   width: 100%;
 }
 li{
-  transition: transform 250ms;
+  transition: all 300ms ease-in-out;
   align-self: end;
   color: rgb(5, 55, 255);
 }
 li:hover{
-  transform: translateY(-10px);
+  transform: translateX(-20px);
 
 }
 .userImg{
