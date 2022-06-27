@@ -5,8 +5,13 @@
     <div class="imgHover mb-1"  v-if="apartment.images[0].link.startsWith('https://')">
     <img :src="apartment.images[0].link" class="img-fluid myImgContainer rounded" alt="" >
     <ul class="d-flex flex-column justify-content-center">
-        <li class="bg-icon" v-for="(service, index) in apartment.services" :key="index">
-            <i :class="service.link"></i>
+        <li v-for="(service, index) in apartment.services" :key="index">
+            <span class="bg-icon">
+                <i :class="service.link"></i>
+            </span>
+            <span class="icon-text">
+                {{service.name}}
+            </span>
         </li>
     </ul>
 </div>
@@ -96,14 +101,28 @@ ul{
   width: 100%;
 }
 li{
-  transition: all 300ms ease-in-out;
-  align-self: end;
-  color: rgb(5, 55, 255);
+//  transition: all 300ms ease-in-out;
+//  align-self: end;
+//  color: rgb(5, 55, 255);
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    position: relative;
+    margin-bottom: 1rem;
+    color: azure;
 }
 li:hover{
-  transform: translateX(-20px);
 
+    .bg-icon{
+        opacity: 0;
+    }
+
+    .icon-text{
+        //display: block;
+        opacity: 1;
+    }
 }
+
 .userImg{
     background-size: 300% 300%;
     background-image: linear-gradient(
