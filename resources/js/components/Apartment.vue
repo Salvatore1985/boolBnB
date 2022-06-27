@@ -21,15 +21,11 @@
     </router-link>
     <!-- corpo  -->
     <div>
-         <p >{{ apartment.title }}</p>
-
+        <p >{{ apartment.title }}</p>
         <p class="d-flex justify-content-between align-items-center">{{ apartment.user.name }}
         <span class="userImg d-flex justify-content-center text-white"><span>{{initials(apartment)}}
         </span></span></p>
         <h6 class="fw-bold">{{ apartment.price }}<span class="fw-light">€/Notte</span></h6>
-        <ul>
-            <li v-for="(service, index) in apartment.services" :key="index">{{service.name}}</li>
-        </ul>
     </div>
 </div>
 </template>
