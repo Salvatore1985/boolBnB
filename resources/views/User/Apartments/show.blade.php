@@ -18,20 +18,21 @@
             </div>
             <div class="col-12 col-lg-8 d-flex my-bg-card-map">
                 <div>
-                    <h1>{{ $apartment->title }}</h1>
-                    <h2>Sito in: {{ $apartment->address }}</h2>
+                    <h1 class="p-4 ">{{ $apartment->title }}</h1>
+                    <h2 class="px-4 pb-4">Sito in: {{ $apartment->address }}</h2>
                 </div>
             </div>
             {{-- form --}}
             <div class="col-12 col-lg-4 my-5">
-                <ul class="d-flex justify-content-between align-items-center">
+                <ul class="  d-flex justify-content-between align-items-center">
                     <li class="text-decoration-none list-style-type-none">
-                        <a href="{{ route('user.apartments.index') }} "class="btn btn-success ">
-                            &#8630;
+                        <a href="{{ route('user.apartments.index') }} "class="btn btn-outline-success ">
+                            I tuoi appartamenti
                         </a>
                     </li>
-                    <li class="text-decoration-none list-style-type-none">
-                        <a href="{{ route('user.apartments.edit', $apartment) }} "class="btn btn-warning">
+                    <li class="text-decoration-none
+                        list-style-type-none">
+                        <a href="{{ route('user.apartments.edit', $apartment) }} "class="btn btn-outline-warning">
                             &#9998;
                         </a>
                     </li>
@@ -47,7 +48,7 @@
                         </form>
                     </li>
                     <li class="text-decoration-none list-style-type-none">
-                        <a href="{{ route('user.sponsorships.purchase', $apartment) }} "class="btn btn-primary">
+                        <a href="{{ route('user.sponsorships.purchase', $apartment) }} "class="btn btn-outline-primary">
                             Sponsorizza
                         </a>
                     </li>

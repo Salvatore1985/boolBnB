@@ -2498,30 +2498,15 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("".concat(this.baseURI, "/apartments/").concat(apartmentId)).then(function (results) {
         _this.apartment = results.data.results;
-        console.warn(_this.apartment); // this.initializeMap(this.apartment.lat,this.apartment.long);
-
+        console.warn(_this.apartment);
         _this.images = results.data.results.images;
         _this.services = results.data.results.services;
         _this.lon = _this.apartment["long"];
-        _this.lat = _this.apartment.lat; // this.initializeMap(this.apartment.lat, this.apartment.long);
-        // console.log("images: ", this.images);
-        // console.log("service: ", this.services);
+        _this.lat = _this.apartment.lat;
       })["catch"](function (error) {
         console.warn(error);
       });
     },
-    // initializeMap(lat,lon) {
-    //     const map = tt.map({
-    //         key: "tlI6fGKvUCfBh91AG1PKyRZwhaxoGIWp",
-    //         container: this.$refs.mapRef,
-    //         center: [lon, lat],
-    //         zoom: 9,
-    //     });
-    //     new tt.Marker()
-    //     .setLngLat([lon, lat])
-    //     .addTo(map);
-    //     this.map = Object.freeze(map);
-    // },
     sendEmail: function sendEmail() {
       var _this2 = this;
 
@@ -2537,23 +2522,13 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           _this2.isSent = true, _this2.emailName = "", _this2.email = "";
           _this2.emailContent = "";
-        } // })
-        // if(emailName != '' && email != '' && emailContent != '') {
-        //     axios.post( `${this.baseURI}/messages/?name=${this.emailName}&email=${this.email}&email_content=${this.emailContent}&apartment_id=${this.apartment.id}`).then(response => {
-        //         if(!response.data.success) {
-        //         this.errors = response.data.errors;
-        //     } else {
-        //         this.isSent= true,
-        //         this.name = "",
-        //         this.surname = "",
-        //         this.email = '';
-        //         this.message_content = '';
-        //     }
-
+        }
       });
     }
   },
   mounted: function mounted() {
+    this.email = this.$userEmail;
+    this.emailName = this.$userName;
     console.warn(this.$route.params.id);
     this.getSingleApartment(this.$route.params.id);
   }
@@ -2691,8 +2666,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderIndex",
@@ -2701,7 +2674,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: ["apartment"]
   /*   methods: {
-    getFormattedDate(data) {
+      getFormattedDate(data) {
       //*creao una funzione per convertire la data dal database
       const apartmentdate = new Date(data);
       let day = apartmentdate.getDate();
@@ -2709,21 +2682,21 @@ __webpack_require__.r(__webpack_exports__);
       const year = apartmentdate.getFullYear();
       //? aggiungo una condistione in caso il giorno e minore di 10
       if (day < 10) {
-        day = "0" + day;
+          day = "0" + day;
       }
       //? aggiungo una condistione in caso il mese e minore di 10
       if (month < 10) {
-        month = "0" + month;
+          month = "0" + month;
       }
       return `${day}/${month}/${year}`;
-    },
-    limitOverview(apartment) {
+      },
+      limitOverview(apartment) {
       if (apartment.description.length > 150) {
-        return apartment.description.slice(0, 100) + "...";
+          return apartment.description.slice(0, 100) + "...";
       } else {
-        return apartment.description;
+          return apartment.description;
       }
-    },
+      },
   }, */
 
   /*  created() {}, */
@@ -3033,7 +3006,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.my-tom {\r\n  height: 420px;\n}\r\n", ""]);
+exports.push([module.i, "\n.my-tom {\n  height: 420px;\n}\n", ""]);
 
 // exports
 
@@ -4330,9 +4303,9 @@ var render = function () {
                           },
                           [
                             _vm._v(
-                              "\n                    " +
+                              "\n                        " +
                                 _vm._s(element) +
-                                "\n                "
+                                "\n                    "
                             ),
                           ]
                         )
@@ -4439,7 +4412,7 @@ var render = function () {
                 "div",
                 {
                   staticClass:
-                    "\n          col-12 col-lg-5\n          py-3\n          d-flex\n          justify-content-around\n          align-items-center\n        ",
+                    "\n            col-12 col-lg-5\n            py-3\n            d-flex\n            justify-content-around\n            align-items-center\n            ",
                 },
                 [
                   _c("label", { staticClass: "form-check-label" }, [
@@ -4574,7 +4547,7 @@ var render = function () {
                       },
                     },
                   },
-                  [_vm._v("\n          Cerca\n        ")]
+                  [_vm._v("\n            Cerca\n            ")]
                 ),
               ]),
             ]
@@ -4671,9 +4644,9 @@ var render = function () {
                         },
                         [
                           _vm._v(
-                            "\n            " +
+                            "\n                " +
                               _vm._s(service.name) +
-                              "\n          "
+                              "\n            "
                           ),
                         ]
                       ),
@@ -4813,7 +4786,7 @@ var render = function () {
               _c("div", { staticClass: "d-flex" }, [
                 _c("h1", { staticClass: "py-4" }, [
                   _vm._v(
-                    "\n              " +
+                    "\n                " +
                       _vm._s(_vm.apartment.title) +
                       "\n            "
                   ),
@@ -4875,7 +4848,9 @@ var render = function () {
                 _vm._l(_vm.services, function (service, index) {
                   return _c("h5", { key: index, staticClass: "ps-2" }, [
                     _vm._v(
-                      "\n            " + _vm._s(service.name) + ",\n          "
+                      "\n            " +
+                        _vm._s(service.name) +
+                        ",\n            "
                     ),
                   ])
                 }),
@@ -4910,7 +4885,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "\n        col-12 col-lg-6\n        my-5 my-bg-card-map my-bg-card-info my-rounded-1\n        p-3\n      ",
+            "\n        col-12 col-lg-6\n        my-5 my-bg-card-map my-bg-card-info my-rounded-1\n        p-3\n        ",
         },
         [
           _c("div", { attrs: { id: "info-host" } }, [
@@ -5034,7 +5009,7 @@ var render = function () {
               ? _c("div", [
                   _c("h1", { staticClass: "text-center text-primary" }, [
                     _vm._v(
-                      "\n            La tua email è stata inviata\n          "
+                      "\n            La tua email è stata inviata\n            "
                     ),
                   ]),
                 ])
@@ -5082,7 +5057,7 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "\n        col-12 col-lg-6\n        d-flex\n        align-items-center\n        my-3\n        p-5\n        d-flex\n        align-items-center\n      ",
+          "\n        col-12 col-lg-6\n        d-flex\n        align-items-center\n        my-3\n        p-5\n        d-flex\n        align-items-center\n        ",
       },
       [
         _c("div", [
@@ -5121,13 +5096,13 @@ var staticRenderFns = [
                 _vm._v(" "),
                 _c("li", { staticClass: "my-list-card-alert" }, [
                   _vm._v(
-                    "\n                Si applicano le pratiche di sicurezza di Airbnb per\n                l'emergenza COVID-19\n              "
+                    "\n                Si applicano le pratiche di sicurezza di Airbnb per\n                l'emergenza COVID-19\n                "
                   ),
                 ]),
                 _vm._v(" "),
                 _c("li", { staticClass: "my-list-card-alert" }, [
                   _vm._v(
-                    "\n                Nessun rilevatore di monossido di carbonio\n              "
+                    "\n                Nessun rilevatore di monossido di carbonio\n                "
                   ),
                 ]),
                 _vm._v(" "),
@@ -5141,19 +5116,19 @@ var staticRenderFns = [
               _c("ul", [
                 _c("li", { staticClass: "py-4 my-list-card-alert" }, [
                   _vm._v(
-                    "\n                Termini di cancellazione\n              "
+                    "\n                Termini di cancellazione\n                "
                   ),
                 ]),
                 _vm._v(" "),
                 _c("li", { staticClass: "my-list-card-alert" }, [
                   _vm._v(
-                    "\n                Cancella prima delle ore 15:00 del giorno 16 lug e riceverai\n                solo un rimborso dei costi di ospitalità.\n              "
+                    "\n                Cancella prima delle ore 15:00 del giorno 16 lug e riceverai\n                solo un rimborso dei costi di ospitalità.\n                "
                   ),
                 ]),
                 _vm._v(" "),
                 _c("li", { staticClass: "my-list-card-alert" }, [
                   _vm._v(
-                    "\n                Leggi i termini di cancellazione completi dell'host, che si\n                applicano anche in caso di malattia o disagi legati alla\n                pandemia di COVID-19.\n              "
+                    "\n                Leggi i termini di cancellazione completi dell'host, che si\n                applicano anche in caso di malattia o disagi legati alla\n                pandemia di COVID-19.\n                "
                   ),
                 ]),
               ]),
@@ -5263,6 +5238,14 @@ var render = function () {
           _vm._v(_vm._s(_vm.apartment.price)),
           _c("span", { staticClass: "fw-light" }, [_vm._v("€/Notte")]),
         ]),
+        _vm._v(" "),
+        _c(
+          "ul",
+          _vm._l(_vm.apartment.services, function (service, index) {
+            return _c("li", { key: index }, [_vm._v(_vm._s(service.name))])
+          }),
+          0
+        ),
       ]),
     ],
     1
@@ -5290,11 +5273,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    [_c("Apartment", { attrs: { apartment: _vm.apartment } })],
-    1
-  )
+  return _c("Apartment", { attrs: { apartment: _vm.apartment } })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -21685,8 +21664,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Pages_Apartments__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Pages/Apartments */ "./resources/js/Pages/Apartments.vue");
 /* harmony import */ var _Pages_SingleApartment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Pages/SingleApartment */ "./resources/js/Pages/SingleApartment.vue");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-//
 
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$userEmail = document.querySelector("meta[name='user-email']").getAttribute('content');
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$userName = document.querySelector("meta[name='user-name']").getAttribute('content');
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
 
