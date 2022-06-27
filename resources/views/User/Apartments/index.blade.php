@@ -38,16 +38,14 @@
                 position-relative
                 ">
                 {{-- Apartment images --}}
-                        @foreach ($apartment->images as $image)
-                                @if (str_starts_with($image->link, 'https://') || str_starts_with($image->link, 'http://'))
-                                    <img class="d-block w-100 img-height my-rounded-1" src="{{ $image->link }}"
+                                @if (str_starts_with($apartment->images[0]->link, 'https://') || str_starts_with($apartment->images[0]->link, 'http://'))
+                                    <img class="d-block w-100 img-height my-rounded-1" src="{{$apartment->images[0]->link }}"
                                         alt="{{ $apartment->title }}">
                                 @else
                                     <img class="d-block w-100 img-height my-rounded-1"
-                                        src="{{ asset('/storage') . '/' . $image->link }}"
+                                        src="{{ asset('/storage') . '/' . $apartment->images[0]->link }}"
                                         alt="{{ $apartment->title }}">
                                 @endif
-                        @endforeach
                 {{-- Info --}}
                 <div>
                     <h3 class="card-title  text-muted ">{{ $apartment->title }}</h3>
