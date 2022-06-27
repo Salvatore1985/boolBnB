@@ -2116,6 +2116,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2159,6 +2160,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    onChange: function onChange() {
+      this.isFilled = true;
+    },
     getSuggestTomTom: function getSuggestTomTom() {
       var _this = this;
 
@@ -2169,21 +2173,16 @@ __webpack_require__.r(__webpack_exports__);
           _this.tomtomSuggest = [];
           res.data.results.forEach(function (result) {
             _this.tomtomSuggest.push(result.address.freeformAddress);
-
-            console.log(_this.tomtomSuggest);
           });
         }
 
         res.data.results.forEach(function (result) {
           _this.tomtomSuggest.push(result.address.freeformAddress);
-
-          console.log(_this.tomtomSuggest);
         });
         _this.isFilled = false;
       });
     },
     setInputValue: function setInputValue(e) {
-      console.log(e);
       this.searchAddress = e;
       this.isFilled = true;
     },
@@ -2594,6 +2593,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderIndex",
   props: ["apartment"],
@@ -2969,7 +2976,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".myImgContainer[data-v-296c1857] {\n  height: 200px;\n  width: 100%;\n}\n.card[data-v-296c1857] {\n  border: none !important;\n  background-color: rgb(248, 250, 252);\n}\n.imgHover[data-v-296c1857] {\n  border-radius: 10px;\n  transition: all 0.5s ease;\n  filter: brightness(100%);\n}\n.imgHover[data-v-296c1857]:hover {\n  box-shadow: 0 0 12px rgba(31, 220, 249, 0.869);\n  filter: brightness(105%);\n}\np[data-v-296c1857], span[data-v-296c1857], h6[data-v-296c1857] {\n  margin-bottom: 0.2rem !important;\n  font-size: 1rem !important;\n}\nul[data-v-296c1857] {\n  list-style-type: none;\n}\n.userImg[data-v-296c1857] {\n  background-size: 300% 300%;\n  background-image: linear-gradient(-45deg, rgb(59, 173, 227) 0%, rgb(87, 111, 230) 25%, rgb(152, 68, 183) 51%, rgb(255, 53, 127) 100%);\n  -webkit-animation: AnimateBG-data-v-296c1857 5s ease infinite;\n          animation: AnimateBG-data-v-296c1857 5s ease infinite;\n  border-radius: 50%;\n  width: 40px;\n  height: 40px;\n  padding-top: 0.4rem;\n}\n@-webkit-keyframes AnimateBG-data-v-296c1857 {\n0% {\n    background-position: 0% 50%;\n}\n50% {\n    background-position: 100% 50%;\n}\n100% {\n    background-position: 0% 50%;\n}\n}\n@keyframes AnimateBG-data-v-296c1857 {\n0% {\n    background-position: 0% 50%;\n}\n50% {\n    background-position: 100% 50%;\n}\n100% {\n    background-position: 0% 50%;\n}\n}", ""]);
+exports.push([module.i, ".myImgContainer[data-v-296c1857] {\n  height: 200px;\n  width: 100%;\n}\n.card[data-v-296c1857] {\n  border: none !important;\n  background-color: rgb(248, 250, 252);\n}\n.imgHover[data-v-296c1857] {\n  border-radius: 10px;\n  transition: all 0.5s ease;\n  filter: brightness(100%);\n  position: relative;\n}\n.imgHover[data-v-296c1857]:hover {\n  box-shadow: 0 0 12px rgba(31, 220, 249, 0.869);\n  filter: brightness(105%);\n}\np[data-v-296c1857], span[data-v-296c1857], h6[data-v-296c1857] {\n  margin-bottom: 0.2rem;\n  font-size: 1rem;\n}\nul[data-v-296c1857] {\n  list-style-type: none;\n  position: absolute;\n  top: 30%;\n  left: 0%;\n  padding-left: 0;\n  width: 100%;\n}\nli[data-v-296c1857] {\n  transition: transform 250ms;\n  align-self: end;\n  color: rgb(5, 55, 255);\n}\nli[data-v-296c1857]:hover {\n  transform: translateY(-10px);\n}\n.userImg[data-v-296c1857] {\n  background-size: 300% 300%;\n  background-image: linear-gradient(-45deg, rgb(59, 173, 227) 0%, rgb(87, 111, 230) 25%, rgb(152, 68, 183) 51%, rgb(255, 53, 127) 100%);\n  -webkit-animation: AnimateBG-data-v-296c1857 5s ease infinite;\n          animation: AnimateBG-data-v-296c1857 5s ease infinite;\n  border-radius: 50%;\n  width: 40px;\n  height: 40px;\n  padding-top: 0.4rem;\n}\n@-webkit-keyframes AnimateBG-data-v-296c1857 {\n0% {\n    background-position: 0% 50%;\n}\n50% {\n    background-position: 100% 50%;\n}\n100% {\n    background-position: 0% 50%;\n}\n}\n@keyframes AnimateBG-data-v-296c1857 {\n0% {\n    background-position: 0% 50%;\n}\n50% {\n    background-position: 100% 50%;\n}\n100% {\n    background-position: 0% 50%;\n}\n}", ""]);
 
 // exports
 
@@ -4217,10 +4224,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Apartments.vue?vue&type=template&id=9ff8252c&":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Apartments.vue?vue&type=template&id=9ff8252c& ***!
-  \********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Apartments.vue?vue&type=template&id=9ff8252c&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Apartments.vue?vue&type=template&id=9ff8252c&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4287,6 +4294,9 @@ var render = function () {
                             )
                           },
                         ],
+                        change: function ($event) {
+                          return _vm.onChange()
+                        },
                         input: function ($event) {
                           if ($event.target.composing) {
                             return
@@ -4299,8 +4309,7 @@ var render = function () {
                     _c(
                       "ul",
                       {
-                        staticClass:
-                          "list-group position-absolute start-0 start-0",
+                        staticClass: "list-group tomtomlist",
                         class: !_vm.isFilled ? "d-block" : "d-none",
                         attrs: { id: "results" },
                       },
@@ -4309,7 +4318,7 @@ var render = function () {
                           "li",
                           {
                             key: index,
-                            staticClass: "list-group-item active",
+                            staticClass: "list-group-item element-list",
                             class:
                               !_vm.tomtomSuggest == [] ? "d-block" : "d-none",
                             attrs: { id: "1-result" },
@@ -5194,6 +5203,17 @@ var render = function () {
                   staticClass: "img-fluid myImgContainer rounded",
                   attrs: { src: _vm.apartment.images[0].link, alt: "" },
                 }),
+                _vm._v(" "),
+                _c(
+                  "ul",
+                  { staticClass: "d-flex flex-column justify-content-center" },
+                  _vm._l(_vm.apartment.services, function (service, index) {
+                    return _c("li", { key: index, staticClass: "m-1" }, [
+                      _c("i", { class: service.link }),
+                    ])
+                  }),
+                  0
+                ),
               ])
             : _c("div", { staticClass: "imgHover mb-1" }, [
                 _c("img", {
@@ -5203,6 +5223,16 @@ var render = function () {
                     alt: "",
                   },
                 }),
+                _vm._v(" "),
+                _c(
+                  "ul",
+                  _vm._l(_vm.apartment.services, function (service, index) {
+                    return _c("li", { key: index }, [
+                      _c("i", { class: service.link }),
+                    ])
+                  }),
+                  0
+                ),
               ]),
         ]
       ),
@@ -5214,11 +5244,17 @@ var render = function () {
           "p",
           { staticClass: "d-flex justify-content-between align-items-center" },
           [
-            _vm._v(_vm._s(_vm.apartment.user.name) + " "),
+            _vm._v(_vm._s(_vm.apartment.user.name) + "\r\n        "),
             _c(
               "span",
-              { staticClass: "userImg d-flex justify-content-center" },
-              [_c("span", [_vm._v(_vm._s(_vm.initials(_vm.apartment)))])]
+              {
+                staticClass: "userImg d-flex justify-content-center text-white",
+              },
+              [
+                _c("span", [
+                  _vm._v(_vm._s(_vm.initials(_vm.apartment)) + "\r\n        "),
+                ]),
+              ]
             ),
           ]
         ),
@@ -5227,14 +5263,6 @@ var render = function () {
           _vm._v(_vm._s(_vm.apartment.price)),
           _c("span", { staticClass: "fw-light" }, [_vm._v("€/Notte")]),
         ]),
-        _vm._v(" "),
-        _c(
-          "ul",
-          _vm._l(_vm.services, function (service, index) {
-            return _c("li", { key: index }, [_vm._v(_vm._s(service.name))])
-          }),
-          0
-        ),
       ]),
     ],
     1
@@ -20957,7 +20985,7 @@ module.exports = g;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Apartments_vue_vue_type_template_id_9ff8252c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Apartments.vue?vue&type=template&id=9ff8252c& */ "./resources/js/Pages/Apartments.vue?vue&type=template&id=9ff8252c&");
+/* harmony import */ var _Apartments_vue_vue_type_template_id_9ff8252c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Apartments.vue?vue&type=template&id=9ff8252c&scoped=true& */ "./resources/js/Pages/Apartments.vue?vue&type=template&id=9ff8252c&scoped=true&");
 /* harmony import */ var _Apartments_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Apartments.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Apartments.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -20969,11 +20997,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _Apartments_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Apartments_vue_vue_type_template_id_9ff8252c___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Apartments_vue_vue_type_template_id_9ff8252c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Apartments_vue_vue_type_template_id_9ff8252c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Apartments_vue_vue_type_template_id_9ff8252c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "9ff8252c",
   null
   
 )
@@ -20999,19 +21027,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Apartments.vue?vue&type=template&id=9ff8252c&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/Pages/Apartments.vue?vue&type=template&id=9ff8252c& ***!
-  \**************************************************************************/
+/***/ "./resources/js/Pages/Apartments.vue?vue&type=template&id=9ff8252c&scoped=true&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/Pages/Apartments.vue?vue&type=template&id=9ff8252c&scoped=true& ***!
+  \**************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Apartments_vue_vue_type_template_id_9ff8252c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Apartments.vue?vue&type=template&id=9ff8252c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Apartments.vue?vue&type=template&id=9ff8252c&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Apartments_vue_vue_type_template_id_9ff8252c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Apartments_vue_vue_type_template_id_9ff8252c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Apartments.vue?vue&type=template&id=9ff8252c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Apartments.vue?vue&type=template&id=9ff8252c&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Apartments_vue_vue_type_template_id_9ff8252c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Apartments_vue_vue_type_template_id_9ff8252c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Apartments_vue_vue_type_template_id_9ff8252c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -21768,7 +21796,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\final-project\boolBnB\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Classe55\boolBnB\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

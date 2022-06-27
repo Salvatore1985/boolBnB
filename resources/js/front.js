@@ -1,3 +1,4 @@
+
 window.axios = require('axios');
 // window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //
@@ -10,6 +11,7 @@ Vue.use(VueRouter);
 
 import Apartments from "./Pages/Apartments";
 import SingleApartment from "./Pages/SingleApartment";
+
 
 // import Posts from "./pages/Posts";
 // import Contacts from "./pages/Contacts";
