@@ -35,29 +35,29 @@
                         <h1 class="mb-3">I tuoi messaggi:</h1>
 
                     @forelse ($apartments  as $apartment)
-                    @foreach ($apartment->messages as $message)
-                    <div class="card chat " style="width: 18rem;">
-                        <div class="card-body ">
-                            <h5 class="card-title">
-                                Da: {{$message->email}}
-                            </h5>
-                            <div >
-                                <p class="card-text my-scroll">
-                                    <strong>messaggio:</strong>
-                                    <br>
-                                    {{$message->email_content}}
-                                </p>
+                        @foreach ($apartment->messages as $message)
+                        <div class="card chat " style="width: 18rem;">
+                            <div class="card-body ">
+                                <h5 class="card-title">
+                                    Da: {{$message->email}}
+                                </h5>
+                                <div >
+                                    <p class="card-text my-scroll">
+                                        <strong>messaggio:</strong>
+                                        <br>
+                                        {{$message->email_content}}
+                                    </p>
+                                </div>
+                                </div>
                             </div>
-                            </div>
+                        @endforeach
+                    @empty
+                        <div class="card-body border-bottom">
+                            <p>
+                                Non ci sono messaggi
+                            </p>
                         </div>
-                    @endforeach
-                        @empty
-                            <div class="card-body border-bottom">
-                                <p>
-                                    Non ci sono messaggi
-                                </p>
-                            </div>
-                        @endforelse
+                    @endforelse
                     </div>
                 </div>
             </div>

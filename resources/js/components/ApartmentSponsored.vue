@@ -1,6 +1,6 @@
 <template>
 <!-- immagini -->
-<div class="card col-md-6 col-lg-4 col-sm-6 mb-3 me-5">
+<div class="card col-12 col-lg-4 mb-3 me-5">
     <router-link :to="{ name: 'apartment', params: { id: singleApartment.id } }">
     <div class="imgHover mb-1"  v-if="singleApartment.images[0].link.startsWith('https://')">
     <img :src="singleApartment.images[0].link" class="img-fluid myImgContainer rounded" alt="" >
@@ -93,18 +93,19 @@ p,span,h6{
 ul{
   list-style-type: none;
   position: absolute;
-  top: 30%;
+  top: 0;
   left: 0%;
   padding-left: 0;
   width: 100%;
-  height: 6.5rem;
+  height: 100%;
 }
 li{
     display: flex;
     align-items: center;
     justify-content: end;
     position: relative;
-    margin-bottom: 1rem;
+    //margin-bottom: 1rem;
+    margin-top: 1rem;
     color: azure;
 }
 li:hover{
