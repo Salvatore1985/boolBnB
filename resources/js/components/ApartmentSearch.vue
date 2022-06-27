@@ -37,9 +37,7 @@
         <h5 class="px-3">{{ apartment.price }} €/Notte</h5>
         </div>
     </div> -->
-    <section>
-        <Apartment :apartment="apartment" />
-    </section>
+    <Apartment :apartment="apartment" />
 </template>
 
 
