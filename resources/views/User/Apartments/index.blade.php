@@ -81,9 +81,9 @@
                 <div>
                     <p class="card-text">Creato il: {{ $apartment->created_at }}</p>
                     @if ($apartment->is_visible)
-                        <p>Publicato</p>
+                        <p>Pubblicato</p>
                     @else
-                        <p>Non publicato</p>
+                        <p>Non pubblicato</p>
                     @endif
                 </div>
                 {{-- Bottom --}}
