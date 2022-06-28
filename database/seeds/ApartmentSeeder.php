@@ -249,7 +249,7 @@ class ApartmentSeeder extends Seeder
             $newApartment->n_beds= $faker->numberBetween(1, 10);
             $newApartment->n_bathrooms= $faker->numberBetween(1, 5);
             $newApartment->title=$addresses[$i]['title'];
-            $newApartment->is_visible= $faker->boolean();
+            $newApartment->is_visible= 1;
             $newApartment->address = $addresses[$i]['address'];
             $newApartment->lat = $addresses[$i]['lat'];
             $newApartment->long = $addresses[$i]['long'];
