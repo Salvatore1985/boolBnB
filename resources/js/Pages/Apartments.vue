@@ -179,7 +179,7 @@
         </section>
         <section class="container" v-else>
             <div class="row">
-                <h4>Apartamenti Sponsorizzati</h4>
+                <h4>Appartamenti Sponsorizzati</h4>
                 <div class="col-12 apart-sponso">
                     <ApartmentSponsored
                         v-for="apartment in sponsoredApartments"
@@ -187,7 +187,7 @@
                         :apartment="apartment"
                     />
                 </div>
-                <h4>Tutti gli Apartamenti</h4>
+                <h4>Tutti gli Appartamenti</h4>
                 <Apartment
                     v-for="apartment in apartments"
                     :key="apartment.index"
